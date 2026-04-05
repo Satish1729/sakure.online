@@ -1,380 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="google-adsense-account" content="ca-pub-3115584163084664">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakure — Free Online Tools for Everyone</title>
-    <meta name="description" content="100+ free online tools — text editors, image compressors, developer utilities, calculators, and more. No signup, no ads tracking, runs in your browser.">
-    <meta name="keywords" content="free online tools, text tools, image tools, developer tools, calculators, word counter, json formatter, password generator">
-    <meta property="og:title" content="Sakure — Free Online Tools for Everyone">
-    <meta property="og:description" content="100+ free online tools. Text, image, developer, and calculator utilities. No signup needed.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sakure.online">
-    <link rel="canonical" href="https://sakure.online">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#6c72ff;--accent-glow:rgba(108,114,255,0.15);--green:#34d399;--amber:#fbbf24;--rose:#fb7185;--cyan:#22d3ee;--purple:#a78bfa;--pink:#f472b6;--orange:#f97316;--teal:#14b8a6;--radius:12px}
-        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
-        .container{max-width:1100px;margin:0 auto;padding:0 20px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakure – Free Online Tools | Text, Calculators, Encoders, Generators & More</title>
+<meta name="description" content="Free online tools for developers, students & professionals. Text tools, calculators, encoders, generators, image tools — 34 tools, no signup, no cost.">
+<meta name="keywords" content="free online tools, text tools, calculator, encoder decoder, developer tools, generator tools, sakure">
+<meta property="og:title" content="Sakure – Free Online Tools">
+<meta property="og:description" content="34 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online">
+<link rel="canonical" href="https://sakure.online">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Sakure",
+  "url": "https://sakure.online",
+  "description": "Free online tools for text, calculations, encoding, generation and images.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://sakure.online/tools?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #1e2535;
+    --border: #2e3345;
+    --text: #e4e6ef;
+    --muted: #7a8499;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+  a { text-decoration: none; color: inherit; }
 
-        /* Header */
-        header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(15,17,23,0.95);backdrop-filter:blur(12px);z-index:100}
-        .header-inner{display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:22px;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-0.5px}
-        .logo .dot{color:var(--text-muted);font-weight:400;font-size:16px}
-        nav{display:flex;gap:20px;align-items:center}
-        nav a{color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s}
-        nav a:hover{color:var(--text)}
-        .badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;margin-left:6px}
+  /* ── NAV ── */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; }
+  .nav-logo .dot { color: #6366f1; }
+  .nav-links { display: flex; gap: 24px; font-size: 0.87rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-count { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 0.75rem; font-family: var(--mono); color: var(--muted); }
 
-        /* Hero */
-        .hero{text-align:center;padding:72px 0 48px}
-        .hero h1{font-size:clamp(32px,6vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
-        .hero h1 .gradient{background:linear-gradient(135deg,var(--accent) 0%,var(--cyan) 50%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero p{color:var(--text-muted);font-size:18px;max-width:560px;margin:0 auto 32px}
-        .hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-        .hero-stat{text-align:center}
-        .hero-stat .num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--accent)}
-        .hero-stat .label{font-size:13px;color:var(--text-muted);margin-top:2px}
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 72px 24px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+    color: #818cf8; font-size: 0.75rem; font-weight: 600;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800; letter-spacing: -2px; line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: normal; color: #6366f1; }
+  .hero p {
+    color: var(--muted); font-size: 1.05rem;
+    max-width: 520px; margin: 0 auto 36px; line-height: 1.6;
+  }
 
-        /* Search */
-        .search-wrap{max-width:500px;margin:0 auto 48px;position:relative}
-        .search-input{width:100%;padding:14px 20px 14px 48px;background:var(--surface);border:1px solid var(--border);border-radius:14px;font-family:inherit;font-size:16px;color:var(--text);outline:none;transition:all .2s}
-        .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-glow)}
-        .search-input::placeholder{color:var(--text-muted)}
-        .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:18px;pointer-events:none}
-        .search-count{text-align:center;font-size:13px;color:var(--text-muted);margin-top:8px;display:none}
+  /* ── SEARCH ── */
+  .search-wrap {
+    max-width: 520px; margin: 0 auto;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-size: 1rem; pointer-events: none;
+  }
+  #search {
+    width: 100%; padding: 14px 20px 14px 44px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    color: var(--text); font-family: var(--font); font-size: 1rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  #search:focus { border-color: #6366f1; }
+  #search::placeholder { color: var(--muted); }
+  .search-count { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
 
-        /* Category */
-        .category{margin-bottom:48px}
-        .category-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-        .category-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
-        .category-title{font-size:20px;font-weight:700;letter-spacing:-0.5px}
-        .category-count{font-size:13px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+  /* ── AD BANNER ── */
+  .ad-banner {
+    background: var(--surface); border: 1px dashed var(--border); border-radius: 10px;
+    height: 90px; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 0.8rem; margin: 32px auto; max-width: 1160px;
+  }
 
-        /* Tool Grid */
-        .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-        .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;transition:all .25s;display:block;position:relative;overflow:hidden}
-        .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--card-accent,var(--accent));opacity:0;transition:opacity .25s}
-        .tool-card:hover{border-color:var(--card-accent,var(--accent));transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
-        .tool-card:hover::before{opacity:1}
-        .tool-card .tool-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
-        .tool-card .tool-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
-        .tool-card .tool-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--card-accent,var(--accent));background:var(--card-accent-bg,var(--accent-glow));padding:2px 8px;border-radius:4px}
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 1160px; margin: 0 auto; padding: 0 20px 80px; }
 
-        /* Ad Slot */
-        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+  /* ── CATEGORY ── */
+  .category { margin-bottom: 48px; }
+  .cat-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-icon { font-size: 1.3rem; }
+  .cat-name { font-size: 1.05rem; font-weight: 700; }
+  .cat-count {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 8px; margin-left: auto;
+  }
 
-        /* Footer */
-        footer{border-top:1px solid var(--border);padding:40px 0;text-align:center}
-        .footer-brand{font-size:18px;font-weight:800;color:var(--accent);margin-bottom:8px}
-        .footer-text{color:var(--text-muted);font-size:14px;margin-bottom:16px}
-        .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
-        .footer-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color .2s}
-        .footer-links a:hover{color:var(--accent)}
-        .footer-copy{margin-top:24px;font-size:12px;color:var(--text-muted)}
+  /* ── TOOL GRID ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.18s, transform 0.15s, background 0.18s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .tool-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--card-accent, transparent);
+    transition: opacity 0.2s;
+    opacity: 0;
+  }
+  .tool-card:hover {
+    border-color: var(--card-accent, #6366f1);
+    background: var(--surface2);
+    transform: translateY(-2px);
+  }
+  .tool-card:hover::before { opacity: 1; }
+  .tool-card-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 2px; }
+  .tool-card-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+  .tool-card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.45; flex: 1; }
+  .tool-card-tag {
+    display: inline-flex; align-items: center;
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--card-accent, var(--muted));
+    background: rgba(255,255,255,0.04); border-radius: 4px; padding: 2px 7px;
+    width: fit-content; margin-top: 2px;
+  }
+  .tool-card.hidden { display: none; }
 
-        /* Responsive */
-        @media(max-width:600px){
-            .hero{padding:48px 0 32px}
-            .hero-stats{gap:20px}
-            .tool-grid{grid-template-columns:1fr}
-            nav{gap:12px}
-        }
-    </style>
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    padding: 28px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 40px;
+  }
+  .stat { text-align: center; }
+  .stat-val { font-family: var(--mono); font-size: 1.8rem; font-weight: 700; color: #6366f1; line-height: 1; }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  /* ── WEEK BADGE ── */
+  .week-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
+    color: #818cf8; font-size: 0.6rem; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .week-badge.new { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.3); color: #34d399; }
+
+  /* ── NO RESULTS ── */
+  #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); }
+  #no-results.show { display: block; }
+  #no-results h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 32px 24px; text-align: center;
+  }
+  .footer-logo { font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; }
+  .footer-logo .dot { color: #6366f1; }
+  .footer-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 16px; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; }
+  .footer-links a { color: var(--muted); }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    .hero { padding: 48px 20px 36px; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <div class="container header-inner">
-        <a href="/" class="logo">Sakure<span class="dot">.online</span></a>
-        <nav>
-            <a href="#text-tools">Text</a>
-            <a href="#encoding-tools">Encoding</a>
-            <a href="#developer-tools">Developer</a>
-            <a href="#generators">Generators</a>
-            <a href="#image-tools">Image</a>
-        </nav>
+<nav>
+  <div class="nav-logo">sakure<span class="dot">.</span>online</div>
+  <div class="nav-links">
+    <a href="/tools">All Tools</a>
+    <a href="/blog">Blog</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="nav-count" id="nav-count">34 tools</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">✦ Free · No Signup · Client-Side</div>
+  <h1>The Internet's<br>Most <em>Useful</em> Toolbox</h1>
+  <p>34 free browser-based tools for text, math, encoding, generation, and images. No accounts, no servers, no cost.</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="Search tools… e.g. BMI, base64, word count" oninput="filterTools(this.value)" autocomplete="off">
+    <span class="search-count" id="search-count"></span>
+  </div>
+</div>
+
+<!-- TOP AD -->
+<div class="ad-banner"><!-- Adsense slot: 728x90 leaderboard --></div>
+
+<div class="main">
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val">34</div><div class="stat-label">Tools Available</div></div>
+    <div class="stat"><div class="stat-val">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-val">0</div><div class="stat-label">API Costs</div></div>
+    <div class="stat"><div class="stat-val">∞</div><div class="stat-label">Free Uses</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 1: TEXT TOOLS
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="text">
+    <div class="cat-header">
+      <span class="cat-icon">📝</span>
+      <span class="cat-name">Text Tools</span>
+      <span class="cat-count">8 tools</span>
     </div>
-</header>
+    <div class="tools-grid">
+      <a href="/tools/word-counter" class="tool-card" style="--card-accent:#6366f1" data-tags="word counter character count text analysis">
+        <div class="tool-card-icon">📊</div>
+        <div class="tool-card-name">Word Counter</div>
+        <div class="tool-card-desc">Count words, characters, sentences and paragraphs in any text.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/case-converter" class="tool-card" style="--card-accent:#6366f1" data-tags="case converter uppercase lowercase title camel">
+        <div class="tool-card-icon">🔡</div>
+        <div class="tool-card-name">Case Converter</div>
+        <div class="tool-card-desc">Convert text to UPPER, lower, Title, camelCase, snake_case and more.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/text-reverser" class="tool-card" style="--card-accent:#6366f1" data-tags="text reverser reverse string flip">
+        <div class="tool-card-icon">🔄</div>
+        <div class="tool-card-name">Text Reverser</div>
+        <div class="tool-card-desc">Reverse any text, words or sentences instantly.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/duplicate-remover" class="tool-card" style="--card-accent:#6366f1" data-tags="duplicate remover lines unique dedupe">
+        <div class="tool-card-icon">🧹</div>
+        <div class="tool-card-name">Duplicate Line Remover</div>
+        <div class="tool-card-desc">Remove duplicate lines from any list or text block.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/text-sorter" class="tool-card" style="--card-accent:#6366f1" data-tags="text sorter alphabetical sort lines">
+        <div class="tool-card-icon">📋</div>
+        <div class="tool-card-name">Text Sorter</div>
+        <div class="tool-card-desc">Sort lines alphabetically, by length, or reverse order.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/find-replace" class="tool-card" style="--card-accent:#6366f1" data-tags="find replace text substitution regex">
+        <div class="tool-card-icon">🔎</div>
+        <div class="tool-card-name">Find & Replace</div>
+        <div class="tool-card-desc">Find and replace text with support for regex patterns.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/whitespace-remover" class="tool-card" style="--card-accent:#6366f1" data-tags="whitespace remover trim spaces clean">
+        <div class="tool-card-icon">✂️</div>
+        <div class="tool-card-name">Whitespace Remover</div>
+        <div class="tool-card-desc">Remove extra spaces, tabs and blank lines from text.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+      <a href="/tools/lorem-ipsum" class="tool-card" style="--card-accent:#6366f1" data-tags="lorem ipsum placeholder dummy text generator">
+        <div class="tool-card-icon">📄</div>
+        <div class="tool-card-name">Lorem Ipsum Generator</div>
+        <div class="tool-card-desc">Generate placeholder lorem ipsum text for designs and mockups.</div>
+        <div class="tool-card-tag">Text</div>
+      </a>
+    </div>
+  </div>
 
-<main class="container">
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 2: ENCODING / DECODING
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="encoding">
+    <div class="cat-header">
+      <span class="cat-icon">🔐</span>
+      <span class="cat-name">Encoding & Decoding</span>
+      <span class="cat-count">6 tools</span>
+    </div>
+    <div class="tools-grid">
+      <a href="/tools/base64-encoder" class="tool-card" style="--card-accent:#f59e0b" data-tags="base64 encoder decoder encode decode">
+        <div class="tool-card-icon">🔒</div>
+        <div class="tool-card-name">Base64 Encoder / Decoder</div>
+        <div class="tool-card-desc">Encode text or files to Base64, decode Base64 strings.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+      <a href="/tools/url-encoder" class="tool-card" style="--card-accent:#f59e0b" data-tags="url encoder decoder percent encoding">
+        <div class="tool-card-icon">🔗</div>
+        <div class="tool-card-name">URL Encoder / Decoder</div>
+        <div class="tool-card-desc">Encode and decode URLs with percent-encoding for safe transmission.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+      <a href="/tools/html-encoder" class="tool-card" style="--card-accent:#f59e0b" data-tags="html encoder decoder entities escape unescape">
+        <div class="tool-card-icon">🏷️</div>
+        <div class="tool-card-name">HTML Encoder / Decoder</div>
+        <div class="tool-card-desc">Encode special characters to HTML entities and decode them back.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+      <a href="/tools/morse-code" class="tool-card" style="--card-accent:#f59e0b" data-tags="morse code encoder decoder dots dashes">
+        <div class="tool-card-icon">📡</div>
+        <div class="tool-card-name">Morse Code Translator</div>
+        <div class="tool-card-desc">Translate text to Morse code and Morse code back to text.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+      <a href="/tools/binary-converter" class="tool-card" style="--card-accent:#f59e0b" data-tags="binary converter text ascii hex decimal">
+        <div class="tool-card-icon">01</div>
+        <div class="tool-card-name">Binary Converter</div>
+        <div class="tool-card-desc">Convert text to binary and binary back to readable text.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+      <a href="/tools/hash-generator" class="tool-card" style="--card-accent:#f59e0b" data-tags="hash generator md5 sha256 sha1 checksum">
+        <div class="tool-card-icon">#️⃣</div>
+        <div class="tool-card-name">Hash Generator</div>
+        <div class="tool-card-desc">Generate MD5, SHA-1, SHA-256 hashes for any text string.</div>
+        <div class="tool-card-tag">Encoding</div>
+      </a>
+    </div>
+  </div>
 
-    <section class="hero">
-        <h1>Free Online Tools<br><span class="gradient">That Just Work</span></h1>
-        <p>Fast, private, no-signup tools for text, images, code, and calculations. Everything runs in your browser — nothing is uploaded.</p>
-        <div class="hero-stats">
-            <div class="hero-stat"><div class="num">28</div><div class="label">Free Tools</div></div>
-            <div class="hero-stat"><div class="num">0</div><div class="label">Server Uploads</div></div>
-            <div class="hero-stat"><div class="num">∞</div><div class="label">Usage Limit</div></div>
-        </div>
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 3: DEVELOPER TOOLS
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="developer">
+    <div class="cat-header">
+      <span class="cat-icon">💻</span>
+      <span class="cat-name">Developer Tools</span>
+      <span class="cat-count">6 tools</span>
+    </div>
+    <div class="tools-grid">
+      <a href="/tools/json-formatter" class="tool-card" style="--card-accent:#06b6d4" data-tags="json formatter beautifier minifier validator">
+        <div class="tool-card-icon">{ }</div>
+        <div class="tool-card-name">JSON Formatter</div>
+        <div class="tool-card-desc">Format, validate and minify JSON data with syntax highlighting.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+      <a href="/tools/css-minifier" class="tool-card" style="--card-accent:#06b6d4" data-tags="css minifier beautifier compress">
+        <div class="tool-card-icon">🎨</div>
+        <div class="tool-card-name">CSS Minifier</div>
+        <div class="tool-card-desc">Minify and compress CSS code to reduce file size.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+      <a href="/tools/js-minifier" class="tool-card" style="--card-accent:#06b6d4" data-tags="javascript minifier compress js">
+        <div class="tool-card-icon">⚡</div>
+        <div class="tool-card-name">JS Minifier</div>
+        <div class="tool-card-desc">Minify JavaScript code to reduce bundle size.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+      <a href="/tools/regex-tester" class="tool-card" style="--card-accent:#06b6d4" data-tags="regex tester regular expression test match">
+        <div class="tool-card-icon">🔮</div>
+        <div class="tool-card-name">Regex Tester</div>
+        <div class="tool-card-desc">Test and debug regular expressions with live match highlighting.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+      <a href="/tools/color-converter" class="tool-card" style="--card-accent:#06b6d4" data-tags="color converter hex rgb hsl css picker">
+        <div class="tool-card-icon">🎨</div>
+        <div class="tool-card-name">Color Converter</div>
+        <div class="tool-card-desc">Convert colors between HEX, RGB, HSL and CSS color formats.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+      <a href="/tools/unix-timestamp" class="tool-card" style="--card-accent:#06b6d4" data-tags="unix timestamp converter epoch date time">
+        <div class="tool-card-icon">⏱️</div>
+        <div class="tool-card-name">Unix Timestamp Converter</div>
+        <div class="tool-card-desc">Convert Unix timestamps to human-readable dates and vice versa.</div>
+        <div class="tool-card-tag">Developer</div>
+      </a>
+    </div>
+  </div>
 
-        <div class="search-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search tools... (e.g. json, image, password)" oninput="filterTools()">
-            <div class="search-count" id="searchCount"></div>
-        </div>
-    </section>
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 4: GENERATOR TOOLS
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="generator">
+    <div class="cat-header">
+      <span class="cat-icon">⚙️</span>
+      <span class="cat-name">Generator Tools</span>
+      <span class="cat-count">8 tools</span>
+    </div>
+    <div class="tools-grid">
+      <a href="/tools/password-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="password generator random secure strong">
+        <div class="tool-card-icon">🔑</div>
+        <div class="tool-card-name">Password Generator</div>
+        <div class="tool-card-desc">Generate strong, secure random passwords with custom rules.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/uuid-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="uuid generator v4 unique id random">
+        <div class="tool-card-icon">🪪</div>
+        <div class="tool-card-name">UUID Generator</div>
+        <div class="tool-card-desc">Generate version 4 UUIDs instantly in bulk.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/qr-code-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="qr code generator url text barcode">
+        <div class="tool-card-icon">📱</div>
+        <div class="tool-card-name">QR Code Generator</div>
+        <div class="tool-card-desc">Create QR codes for URLs, text, Wi-Fi and more. Download as PNG.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/random-number" class="tool-card" style="--card-accent:#8b5cf6" data-tags="random number generator dice picker">
+        <div class="tool-card-icon">🎲</div>
+        <div class="tool-card-name">Random Number Generator</div>
+        <div class="tool-card-desc">Generate random numbers within any range with custom options.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/color-palette" class="tool-card" style="--card-accent:#8b5cf6" data-tags="color palette generator scheme gradient design">
+        <div class="tool-card-icon">🎨</div>
+        <div class="tool-card-name">Color Palette Generator</div>
+        <div class="tool-card-desc">Generate beautiful color palettes for your next design project.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/username-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="username generator random name ideas">
+        <div class="tool-card-icon">👤</div>
+        <div class="tool-card-name">Username Generator</div>
+        <div class="tool-card-desc">Generate creative usernames for social media and gaming accounts.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/business-name-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="business name generator startup brand ideas">
+        <div class="tool-card-icon">🏢</div>
+        <div class="tool-card-name">Business Name Generator</div>
+        <div class="tool-card-desc">Brainstorm business and brand name ideas for your startup.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+      <a href="/tools/invoice-generator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="invoice generator pdf freelance billing">
+        <div class="tool-card-icon">🧾</div>
+        <div class="tool-card-name">Invoice Generator</div>
+        <div class="tool-card-desc">Create professional invoices and download as PDF for free.</div>
+        <div class="tool-card-tag">Generator</div>
+      </a>
+    </div>
+  </div>
 
-    <!-- Text Tools -->
-    <section class="category" id="text-tools">
-        <div class="category-header">
-            <div class="category-icon" style="background:rgba(108,114,255,0.1);color:var(--accent)">📝</div>
-            <span class="category-title">Text Tools</span>
-            <span class="category-count">5 tools</span>
-        </div>
-        <div class="tool-grid">
-            <a href="/tools/word-counter" class="tool-card" style="--card-accent:#6c72ff;--card-accent-bg:rgba(108,114,255,0.1)" data-search="word counter character sentence paragraph reading time">
-                <div class="tool-name">Word Counter</div>
-                <div class="tool-desc">Count words, characters, sentences, paragraphs and reading time</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-            <a href="/tools/case-converter" class="tool-card" style="--card-accent:#22d3ee;--card-accent-bg:rgba(34,211,238,0.1)" data-search="case converter uppercase lowercase title camelcase snake">
-                <div class="tool-name">Case Converter</div>
-                <div class="tool-desc">Convert text to UPPER, lower, Title, camelCase, snake_case & more</div>
-                <span class="tool-tag">14 FORMATS</span>
-            </a>
-            <a href="/tools/text-repeater" class="tool-card" style="--card-accent:#e879f9;--card-accent-bg:rgba(232,121,249,0.1)" data-search="text repeater repeat multiply duplicate">
-                <div class="tool-name">Text Repeater</div>
-                <div class="tool-desc">Repeat any text up to 10,000 times with custom separators</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-            <a href="/tools/lorem-ipsum-generator" class="tool-card" style="--card-accent:#fb923c;--card-accent-bg:rgba(251,146,60,0.1)" data-search="lorem ipsum placeholder dummy text generator filler">
-                <div class="tool-name">Lorem Ipsum Generator</div>
-                <div class="tool-desc">Generate placeholder text by paragraphs, sentences, or words</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-            <a href="/tools/remove-duplicate-lines" class="tool-card" style="--card-accent:#34d399;--card-accent-bg:rgba(52,211,153,0.1)" data-search="remove duplicate lines deduplicate unique sort">
-                <div class="tool-name">Remove Duplicate Lines</div>
-                <div class="tool-desc">Deduplicate text lines with sort, trim, and case options</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-        </div>
-    </section>
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 5: IMAGE TOOLS
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="image">
+    <div class="cat-header">
+      <span class="cat-icon">🖼️</span>
+      <span class="cat-name">Image Tools</span>
+      <span class="cat-count">6 tools</span>
+    </div>
+    <div class="tools-grid">
+      <a href="/tools/image-resizer" class="tool-card" style="--card-accent:#ec4899" data-tags="image resizer resize compress dimensions">
+        <div class="tool-card-icon">📐</div>
+        <div class="tool-card-name">Image Resizer</div>
+        <div class="tool-card-desc">Resize images to any dimension without losing quality.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+      <a href="/tools/image-compressor" class="tool-card" style="--card-accent:#ec4899" data-tags="image compressor reduce size optimize jpg png">
+        <div class="tool-card-icon">🗜️</div>
+        <div class="tool-card-name">Image Compressor</div>
+        <div class="tool-card-desc">Compress JPG and PNG images to reduce file size for web.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+      <a href="/tools/image-converter" class="tool-card" style="--card-accent:#ec4899" data-tags="image converter jpg png webp gif format">
+        <div class="tool-card-icon">🔄</div>
+        <div class="tool-card-name">Image Format Converter</div>
+        <div class="tool-card-desc">Convert images between JPG, PNG, WebP, and GIF formats.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+      <a href="/tools/image-crop" class="tool-card" style="--card-accent:#ec4899" data-tags="image crop cropper trim square circle">
+        <div class="tool-card-icon">✂️</div>
+        <div class="tool-card-name">Image Cropper</div>
+        <div class="tool-card-desc">Crop images to any size, aspect ratio, or custom shape.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+      <a href="/tools/favicon-generator" class="tool-card" style="--card-accent:#ec4899" data-tags="favicon generator ico png website icon">
+        <div class="tool-card-icon">⭐</div>
+        <div class="tool-card-name">Favicon Generator</div>
+        <div class="tool-card-desc">Create favicon.ico files from any image for your website.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+      <a href="/tools/svg-to-png" class="tool-card" style="--card-accent:#ec4899" data-tags="svg png converter vector rasterize">
+        <div class="tool-card-icon">🖌️</div>
+        <div class="tool-card-name">SVG to PNG Converter</div>
+        <div class="tool-card-desc">Convert SVG vector files to PNG at any resolution.</div>
+        <div class="tool-card-tag">Image</div>
+      </a>
+    </div>
+  </div>
 
-    <!-- Encoding Tools -->
-    <section class="category" id="encoding-tools">
-        <div class="category-header">
-            <div class="category-icon" style="background:rgba(56,189,248,0.1);color:#38bdf8">🔐</div>
-            <span class="category-title">Encoding & Decoding</span>
-            <span class="category-count">6 tools</span>
-        </div>
-        <div class="tool-grid">
-            <a href="/tools/text-to-binary" class="tool-card" style="--card-accent:#38bdf8;--card-accent-bg:rgba(56,189,248,0.1)" data-search="text binary converter ascii utf8 encode decode">
-                <div class="tool-name">Text to Binary</div>
-                <div class="tool-desc">Convert text to binary and binary back to text</div>
-                <span class="tool-tag">BIDIRECTIONAL</span>
-            </a>
-            <a href="/tools/rot13-decoder" class="tool-card" style="--card-accent:#a78bfa;--card-accent-bg:rgba(167,139,250,0.1)" data-search="rot13 caesar cipher rotation encode decode encrypt">
-                <div class="tool-name">ROT13 Encoder/Decoder</div>
-                <div class="tool-desc">Apply ROT13 or any rotation cipher with visual alphabet map</div>
-                <span class="tool-tag">7 PRESETS</span>
-            </a>
-            <a href="/tools/base64-encoder" class="tool-card" style="--card-accent:#f472b6;--card-accent-bg:rgba(244,114,182,0.1)" data-search="base64 encode decode converter utf8 unicode">
-                <div class="tool-name">Base64 Encoder/Decoder</div>
-                <div class="tool-desc">Encode text to Base64 or decode Base64 with UTF-8 support</div>
-                <span class="tool-tag">BIDIRECTIONAL</span>
-            </a>
-            <a href="/tools/url-encoder" class="tool-card" style="--card-accent:#2dd4bf;--card-accent-bg:rgba(45,212,191,0.1)" data-search="url encode decode percent encoding uri component query string">
-                <div class="tool-name">URL Encoder/Decoder</div>
-                <div class="tool-desc">Encode special characters for URLs or decode percent-encoded strings</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-            <a href="/tools/reverse-text" class="tool-card" style="--card-accent:#f97316;--card-accent-bg:rgba(249,115,22,0.1)" data-search="reverse text flip mirror backwards words lines unicode">
-                <div class="tool-name">Reverse Text</div>
-                <div class="tool-desc">Reverse characters, words, lines, or create Unicode mirror text</div>
-                <span class="tool-tag">5 MODES</span>
-            </a>
-            <a href="/tools/add-line-numbers" class="tool-card" style="--card-accent:#818cf8;--card-accent-bg:rgba(129,140,248,0.1)" data-search="add line numbers numbering prepend code lines">
-                <div class="tool-name">Add Line Numbers</div>
-                <div class="tool-desc">Prepend line numbers with custom format, padding, and separator</div>
-                <span class="tool-tag">FREE</span>
-            </a>
-        </div>
-    </section>
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 6: CALCULATOR TOOLS  ← Week 6
+  ════════════════════════════════════════════ -->
+  <div class="category" data-category="calculator">
+    <div class="cat-header">
+      <span class="cat-icon">🧮</span>
+      <span class="cat-name">Calculator Tools</span>
+      <span class="cat-count">6 tools</span>
+    </div>
+    <div class="tools-grid">
 
-    <div class="ad-slot"><!-- Ad Space --></div>
+      <a href="/tools/percentage-calculator" class="tool-card" style="--card-accent:#f59e0b" data-tags="percentage calculator percent increase decrease change">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">%</div>
+        <div class="tool-card-name">Percentage Calculator</div>
+        <div class="tool-card-desc">Find X% of Y, what % is X of Y, % change, and reverse percentage.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
 
-    <!-- Developer Tools -->
-    <section class="category" id="developer-tools">
-        <div class="category-header">
-            <div class="category-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa">⚡</div>
-            <span class="category-title">Developer Tools</span>
-            <span class="category-count">6 tools</span>
-        </div>
-        <div class="tool-grid">
-            <a href="/tools/json-formatter" class="tool-card" style="--card-accent:#60a5fa;--card-accent-bg:rgba(96,165,250,0.1)" data-search="json formatter validator beautifier pretty print minify sort keys">
-                <div class="tool-name">JSON Formatter & Validator</div>
-                <div class="tool-desc">Beautify, validate, minify, and sort JSON with syntax highlighting</div>
-                <span class="tool-tag">SYNTAX HIGHLIGHT</span>
-            </a>
-            <a href="/tools/json-to-csv" class="tool-card" style="--card-accent:#4ade80;--card-accent-bg:rgba(74,222,128,0.1)" data-search="json csv converter spreadsheet excel table nested flatten">
-                <div class="tool-name">JSON to CSV</div>
-                <div class="tool-desc">Convert JSON arrays to CSV with nested object flattening</div>
-                <span class="tool-tag">TABLE PREVIEW</span>
-            </a>
-            <a href="/tools/html-beautifier" class="tool-card" style="--card-accent:#f472b6;--card-accent-bg:rgba(244,114,182,0.1)" data-search="html beautifier formatter minifier indent pretty print code">
-                <div class="tool-name">HTML Beautifier</div>
-                <div class="tool-desc">Format messy HTML with proper indentation or minify for production</div>
-                <span class="tool-tag">BEAUTIFY + MINIFY</span>
-            </a>
-            <a href="/tools/css-minifier" class="tool-card" style="--card-accent:#06b6d4;--card-accent-bg:rgba(6,182,212,0.1)" data-search="css minifier compressor compress optimize stylesheet beautify">
-                <div class="tool-name">CSS Minifier</div>
-                <div class="tool-desc">Compress CSS by removing comments, whitespace, and redundancies</div>
-                <span class="tool-tag">SIZE SAVINGS</span>
-            </a>
-            <a href="/tools/js-minifier" class="tool-card" style="--card-accent:#facc15;--card-accent-bg:rgba(250,204,21,0.1)" data-search="javascript minifier js compressor compress optimize script">
-                <div class="tool-name">JavaScript Minifier</div>
-                <div class="tool-desc">Remove comments and whitespace from JavaScript code</div>
-                <span class="tool-tag">COMMENT REMOVAL</span>
-            </a>
-            <a href="/tools/regex-tester" class="tool-card" style="--card-accent:#f97316;--card-accent-bg:rgba(249,115,22,0.1)" data-search="regex tester regular expression match test debug pattern cheat sheet">
-                <div class="tool-name">Regex Tester</div>
-                <div class="tool-desc">Test regex patterns with real-time highlighting and capture groups</div>
-                <span class="tool-tag">LIVE MATCHING</span>
-            </a>
-        </div>
-    </section>
+      <a href="/tools/bmi-calculator" class="tool-card" style="--card-accent:#10b981" data-tags="bmi calculator body mass index healthy weight metric imperial">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">⚖️</div>
+        <div class="tool-card-name">BMI Calculator</div>
+        <div class="tool-card-desc">Calculate Body Mass Index with metric or imperial units and health category.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
 
-    <!-- Generators & Calculators -->
-    <section class="category" id="generators">
-        <div class="category-header">
-            <div class="category-icon" style="background:rgba(16,185,129,0.1);color:#10b981">🔧</div>
-            <span class="category-title">Generators & Calculators</span>
-            <span class="category-count">6 tools</span>
-        </div>
-        <div class="tool-grid">
-            <a href="/tools/password-generator" class="tool-card" style="--card-accent:#10b981;--card-accent-bg:rgba(16,185,129,0.1)" data-search="password generator strong secure random bulk crypto">
-                <div class="tool-name">Password Generator</div>
-                <div class="tool-desc">Generate strong random passwords with crypto-secure randomness</div>
-                <span class="tool-tag">CRYPTO SECURE</span>
-            </a>
-            <a href="/tools/uuid-generator" class="tool-card" style="--card-accent:#8b5cf6;--card-accent-bg:rgba(139,92,246,0.1)" data-search="uuid generator guid v4 unique id identifier bulk">
-                <div class="tool-name">UUID Generator</div>
-                <div class="tool-desc">Generate UUID v4 identifiers in 5 formats with bulk support</div>
-                <span class="tool-tag">5 FORMATS</span>
-            </a>
-            <a href="/tools/qr-code-generator" class="tool-card" style="--card-accent:#ec4899;--card-accent-bg:rgba(236,72,153,0.1)" data-search="qr code generator maker wifi email phone sms url custom colors">
-                <div class="tool-name">QR Code Generator</div>
-                <div class="tool-desc">Create QR codes for URLs, WiFi, email, phone with custom colors</div>
-                <span class="tool-tag">6 TYPES</span>
-            </a>
-            <a href="/tools/color-picker" class="tool-card" style="--card-accent:#f43f5e;--card-accent-bg:rgba(244,63,94,0.1)" data-search="color picker hex rgb hsl converter palette contrast wcag css">
-                <div class="tool-name">Color Picker</div>
-                <div class="tool-desc">Pick colors, convert HEX/RGB/HSL, generate palettes, check contrast</div>
-                <span class="tool-tag">WCAG CHECK</span>
-            </a>
-            <a href="/tools/hash-generator" class="tool-card" style="--card-accent:#14b8a6;--card-accent-bg:rgba(20,184,166,0.1)" data-search="hash generator md5 sha1 sha256 sha512 checksum crypto">
-                <div class="tool-name">Hash Generator</div>
-                <div class="tool-desc">Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes</div>
-                <span class="tool-tag">5 ALGORITHMS</span>
-            </a>
-            <a href="/tools/timestamp-converter" class="tool-card" style="--card-accent:#eab308;--card-accent-bg:rgba(234,179,8,0.1)" data-search="unix timestamp converter epoch time date utc live clock">
-                <div class="tool-name">Timestamp Converter</div>
-                <div class="tool-desc">Convert Unix timestamps to dates and dates to timestamps</div>
-                <span class="tool-tag">LIVE CLOCK</span>
-            </a>
-        </div>
-    </section>
+      <a href="/tools/tip-calculator" class="tool-card" style="--card-accent:#8b5cf6" data-tags="tip calculator gratuity bill split restaurant">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🍽️</div>
+        <div class="tool-card-name">Tip Calculator</div>
+        <div class="tool-card-desc">Calculate restaurant tips and split the bill equally among multiple people.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
 
-    <!-- Image Tools -->
-    <section class="category" id="image-tools">
-        <div class="category-header">
-            <div class="category-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b">🖼️</div>
-            <span class="category-title">Image Tools</span>
-            <span class="category-count">5 tools</span>
-        </div>
-        <div class="tool-grid">
-            <a href="/tools/image-compressor" class="tool-card" style="--card-accent:#f59e0b;--card-accent-bg:rgba(245,158,11,0.1)" data-search="image compressor compress reduce size jpeg png webp photo optimizer">
-                <div class="tool-name">Image Compressor</div>
-                <div class="tool-desc">Reduce image file size with adjustable quality and batch support</div>
-                <span class="tool-tag">BATCH SUPPORT</span>
-            </a>
-            <a href="/tools/image-resizer" class="tool-card" style="--card-accent:#3b82f6;--card-accent-bg:rgba(59,130,246,0.1)" data-search="image resizer resize dimensions pixels percentage aspect ratio preset">
-                <div class="tool-name">Image Resizer</div>
-                <div class="tool-desc">Resize by pixels or percentage with aspect ratio lock and presets</div>
-                <span class="tool-tag">7 PRESETS</span>
-            </a>
-            <a href="/tools/image-format-converter" class="tool-card" style="--card-accent:#a855f7;--card-accent-bg:rgba(168,85,247,0.1)" data-search="image converter format jpeg png webp bmp convert photo">
-                <div class="tool-name">Image Format Converter</div>
-                <div class="tool-desc">Convert between JPEG, PNG, WebP, and BMP formats</div>
-                <span class="tool-tag">4 FORMATS</span>
-            </a>
-            <a href="/tools/image-to-base64" class="tool-card" style="--card-accent:#06b6d4;--card-accent-bg:rgba(6,182,212,0.1)" data-search="image base64 encoder data uri html css json embed inline">
-                <div class="tool-name">Image to Base64</div>
-                <div class="tool-desc">Convert images to Base64 data URIs for HTML, CSS, and JSON</div>
-                <span class="tool-tag">5 OUTPUTS</span>
-            </a>
-            <a href="/tools/svg-to-png" class="tool-card" style="--card-accent:#f43f5e;--card-accent-bg:rgba(244,63,94,0.1)" data-search="svg png converter vector raster convert scale retina export">
-                <div class="tool-name">SVG to PNG</div>
-                <div class="tool-desc">Convert SVG vectors to PNG with custom size and retina scaling</div>
-                <span class="tool-tag">UP TO 4×</span>
-            </a>
-        </div>
-    </section>
+      <a href="/tools/loan-calculator" class="tool-card" style="--card-accent:#06b6d4" data-tags="loan emi calculator mortgage home car personal amortization">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🏦</div>
+        <div class="tool-card-name">Loan / EMI Calculator</div>
+        <div class="tool-card-desc">Calculate monthly EMI for any loan with full amortization schedule.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
 
-    <div class="ad-slot"><!-- Ad Space --></div>
+      <a href="/tools/age-calculator" class="tool-card" style="--card-accent:#ec4899" data-tags="age calculator date of birth birthday years months days">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🎂</div>
+        <div class="tool-card-name">Age Calculator</div>
+        <div class="tool-card-desc">Find your exact age in years, months & days. Countdown to next birthday.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
 
-</main>
+      <a href="/tools/discount-calculator" class="tool-card" style="--card-accent:#f97316" data-tags="discount calculator sale price savings percent off shopping">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🏷️</div>
+        <div class="tool-card-name">Discount Calculator</div>
+        <div class="tool-card-desc">Find final sale price, savings amount, and effective discount percentage.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- NO RESULTS -->
+  <div id="no-results">
+    <h3>No tools found</h3>
+    <p>Try searching for something else, like "base64", "BMI", or "password".</p>
+  </div>
+
+</div><!-- /main -->
 
 <footer>
-    <div class="container">
-        <div class="footer-brand">Sakure.online</div>
-        <div class="footer-text">Free online tools that run entirely in your browser. No signup, no tracking, no uploads.</div>
-        <div class="footer-links">
-            <a href="#text-tools">Text Tools</a>
-            <a href="#encoding-tools">Encoding</a>
-            <a href="#developer-tools">Developer</a>
-            <a href="#generators">Generators</a>
-            <a href="#image-tools">Image</a>
-        </div>
-        <div class="footer-copy">© 2026 Sakure.online — Built with care. Free forever.</div>
-    </div>
+  <div class="footer-logo">sakure<span class="dot">.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/tools">All Tools</a>
+    <a href="/blog">Blog</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:16px">© 2025 Sakure.online · Made with ❤️ in India</div>
 </footer>
 
 <script>
-function filterTools(){
-    const query=document.getElementById('searchInput').value.toLowerCase().trim();
-    const cards=document.querySelectorAll('.tool-card');
-    const categories=document.querySelectorAll('.category');
-    let visible=0;
+function filterTools(query) {
+  const q = query.toLowerCase().trim();
+  const cards = document.querySelectorAll('.tool-card');
+  const categories = document.querySelectorAll('.category');
+  let visibleCount = 0;
 
-    if(!query){
-        cards.forEach(c=>{c.style.display='block'});
-        categories.forEach(c=>{c.style.display='block'});
-        document.getElementById('searchCount').style.display='none';
-        return;
-    }
+  if (!q) {
+    cards.forEach(c => c.classList.remove('hidden'));
+    categories.forEach(c => c.style.display = '');
+    document.getElementById('no-results').classList.remove('show');
+    document.getElementById('search-count').textContent = '';
+    return;
+  }
 
-    cards.forEach(card=>{
-        const searchText=(card.getAttribute('data-search')||'')+' '+(card.textContent||'');
-        const match=searchText.toLowerCase().includes(query);
-        card.style.display=match?'block':'none';
-        if(match)visible++;
-    });
+  cards.forEach(card => {
+    const name = card.querySelector('.tool-card-name').textContent.toLowerCase();
+    const desc = card.querySelector('.tool-card-desc').textContent.toLowerCase();
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const match = name.includes(q) || desc.includes(q) || tags.includes(q);
+    card.classList.toggle('hidden', !match);
+    if (match) visibleCount++;
+  });
 
-    // Hide empty categories
-    categories.forEach(cat=>{
-        const visibleCards=[...cat.querySelectorAll('.tool-card')].filter(c=>c.style.display!=='none');
-        cat.style.display=visibleCards.length>0?'block':'none';
-    });
+  // Hide empty categories
+  categories.forEach(cat => {
+    const visible = cat.querySelectorAll('.tool-card:not(.hidden)').length;
+    cat.style.display = visible === 0 ? 'none' : '';
+  });
 
-    const countEl=document.getElementById('searchCount');
-    countEl.textContent=visible===0?'No tools found — try a different search':`${visible} tool${visible!==1?'s':''} found`;
-    countEl.style.display='block';
+  document.getElementById('no-results').classList.toggle('show', visibleCount === 0);
+  document.getElementById('search-count').textContent = visibleCount > 0 ? visibleCount + ' found' : '';
 }
 
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-        e.preventDefault();
-        const target=document.querySelector(a.getAttribute('href'));
-        if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-});
+// Update nav count dynamically
+document.getElementById('nav-count').textContent = document.querySelectorAll('.tool-card').length + ' tools';
 </script>
-
 </body>
 </html>
