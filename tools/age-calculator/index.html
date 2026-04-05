@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator – Calculate Exact Age from Date of Birth | Sakure Tools</title>
+<meta name="description" content="Calculate your exact age in years, months, days, hours, and minutes. Find days until next birthday, age difference between two people. Free online age calculator.">
+<meta name="keywords" content="age calculator, date of birth calculator, how old am i, birthday calculator, age difference calculator">
+<meta property="og:title" content="Age Calculator – Sakure Tools">
+<meta property="og:description" content="Calculate your exact age down to seconds. Find days until birthday and age difference.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://sakure.online/age-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Age Calculator",
+  "url": "https://sakure.online/age-calculator",
+  "description": "Free online age calculator. Calculate exact age from date of birth with years, months, days breakdown.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3147;
+    --text: #e8eaf0;
+    --muted: #7a8499;
+    --accent: #ec4899;
+    --accent2: #f472b6;
+    --accent-glow: rgba(236,72,153,0.12);
+    --font: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 20px; font-size: 0.85rem; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .hero { text-align: center; padding: 48px 24px 32px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: var(--accent-glow); border-radius: 50%; filter: blur(60px); pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-glow); border: 1px solid rgba(236,72,153,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+  h1 span { color: var(--accent); }
+  .hero-sub { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 16px 80px; }
+  .ad-banner { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 24px 0; }
+  .ad-square { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 20px 0; }
+
+  /* TABS */
+  .mode-tabs { display: flex; gap: 8px; margin: 28px 0 20px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-family: var(--font); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.18s; }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .pane { display: none; }
+  .pane.active { display: block; }
+
+  .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-group label { font-size: 0.78rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  input[type="date"] {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; color: var(--text); font-family: var(--font); font-size: 0.95rem;
+    width: 100%; outline: none; transition: border-color 0.2s; color-scheme: dark;
+  }
+  input[type="date"]:focus { border-color: var(--accent); }
+  .calc-btn { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: var(--font); font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+  .calc-btn:hover { opacity: 0.9; }
+
+  /* AGE DISPLAY */
+  .age-hero { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  .age-unit { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; text-align: center; min-width: 90px; }
+  .age-unit.main { border-color: var(--accent); background: rgba(236,72,153,0.08); }
+  .age-unit .u-val { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .age-unit.main .u-val { color: var(--accent); font-size: 2.6rem; }
+  .age-unit .u-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  .stat-card .s-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .stat-card .s-val { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: var(--text); }
+  .birthday-card { background: linear-gradient(135deg, rgba(236,72,153,0.12), transparent); border: 1px solid rgba(236,72,153,0.3); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+  .birthday-icon { font-size: 2rem; }
+  .birthday-text h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .birthday-text p { font-size: 0.83rem; color: var(--muted); }
+  .birthday-text .highlight { color: var(--accent); font-weight: 600; }
+
+  /* LIVE CLOCK */
+  .live-counter { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; text-align: center; margin-top: 16px; }
+  .live-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .live-val { font-family: var(--mono); font-size: 1.3rem; font-weight: 700; color: var(--accent2); letter-spacing: 2px; }
+
+  .result-area { display: none; }
+  .result-area.show { display: block; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 32px 0; }
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .info-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .info-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+  .info-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .faq-section { margin: 40px 0; }
+  .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq-q { padding: 16px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-icon { color: var(--accent); font-size: 1.2rem; transition: transform 0.2s; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+  .faq-a-inner { padding: 0 20px 16px; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .related-section { margin: 32px 0; }
+  .related-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .related-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; color: var(--text); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.82rem; color: var(--muted); }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } nav .nav-links { display: none; } .age-unit.main .u-val { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">sakure<span>.online</span></div>
+  <div class="nav-links"><a href="/">Home</a><a href="/tools">All Tools</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🎂 Date Calculator</div>
+  <h1>Age <span>Calculator</span></h1>
+  <p class="hero-sub">Find your exact age in years, months, days, hours, and seconds — with live countdown to your next birthday.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner">📢 Advertisement · 728×90</div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('age')">My Age</button>
+    <button class="tab-btn" onclick="switchTab('diff')">Age Difference</button>
+    <button class="tab-btn" onclick="switchTab('on')">Age on Date</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- PANE 1: My Age -->
+    <div class="pane active" id="pane-age">
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Date of Birth</label>
+          <input type="date" id="dob" onchange="calcAge()">
+        </div>
+        <div class="input-group">
+          <label>Age At Date</label>
+          <input type="date" id="age-at" onchange="calcAge()">
+        </div>
+      </div>
+      <div class="result-area" id="res-age">
+        <div class="age-hero">
+          <div class="age-unit main"><div class="u-val" id="a-years">0</div><div class="u-label">Years</div></div>
+          <div class="age-unit"><div class="u-val" id="a-months">0</div><div class="u-label">Months</div></div>
+          <div class="age-unit"><div class="u-val" id="a-days">0</div><div class="u-label">Days</div></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="s-label">Total Months</div><div class="s-val" id="a-total-months">—</div></div>
+          <div class="stat-card"><div class="s-label">Total Weeks</div><div class="s-val" id="a-total-weeks">—</div></div>
+          <div class="stat-card"><div class="s-label">Total Days</div><div class="s-val" id="a-total-days">—</div></div>
+          <div class="stat-card"><div class="s-label">Total Hours</div><div class="s-val" id="a-total-hours">—</div></div>
+        </div>
+        <div class="birthday-card">
+          <div class="birthday-icon">🎂</div>
+          <div class="birthday-text">
+            <h3>Next Birthday</h3>
+            <p id="bday-text">—</p>
+          </div>
+        </div>
+        <div class="live-counter">
+          <div class="live-label">⚡ You've been alive for</div>
+          <div class="live-val" id="live-seconds">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 2: Difference -->
+    <div class="pane" id="pane-diff">
+      <div class="form-grid">
+        <div class="input-group"><label>Person 1 DOB</label><input type="date" id="d-dob1" onchange="calcDiff()"></div>
+        <div class="input-group"><label>Person 2 DOB</label><input type="date" id="d-dob2" onchange="calcDiff()"></div>
+      </div>
+      <div class="result-area" id="res-diff">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="s-label">Difference</div><div class="s-val" id="diff-years">—</div></div>
+          <div class="stat-card"><div class="s-label">Total Days Apart</div><div class="s-val" id="diff-days">—</div></div>
+          <div class="stat-card"><div class="s-label">Older Person</div><div class="s-val" id="diff-older">—</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 3: Age on date -->
+    <div class="pane" id="pane-on">
+      <div class="form-grid">
+        <div class="input-group"><label>Date of Birth</label><input type="date" id="on-dob" onchange="calcOn()"></div>
+        <div class="input-group"><label>Target Date</label><input type="date" id="on-target" onchange="calcOn()"></div>
+      </div>
+      <div class="result-area" id="res-on">
+        <div class="age-hero">
+          <div class="age-unit main"><div class="u-val" id="on-years">0</div><div class="u-label">Years</div></div>
+          <div class="age-unit"><div class="u-val" id="on-months">0</div><div class="u-label">Months</div></div>
+          <div class="age-unit"><div class="u-val" id="on-days">0</div><div class="u-label">Days</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">📅</div><h3>Leap Year Ages</h3><p>If you were born on Feb 29, you officially celebrate on Feb 28 or March 1 in non-leap years, depending on convention.</p></div>
+    <div class="info-card"><div class="info-icon">🌍</div><h3>Age by Country</h3><p>In South Korea, everyone gains one year on January 1st. In some cultures, age is counted from conception, not birth.</p></div>
+    <div class="info-card"><div class="info-icon">⏳</div><h3>Fun Fact</h3><p>The average human heart beats about 2.5 billion times in a 70-year lifetime. Every year adds ~42 million heartbeats.</p></div>
+  </div>
+
+  <div class="ad-square">📢 Advertisement · 300×250</div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate my exact age? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Enter your date of birth in the calculator above. It computes the difference between today and your birthday in years, months, days, hours, and even seconds.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the age difference calculator for? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Use the "Age Difference" tab to find out the age gap between two people — useful for siblings, couples, or comparing ages. It shows the difference in years and total days.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I calculate my age on a future date? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes! Use the "Age on Date" tab or change the "Age At Date" field to any past or future date to see what your age will be (or was) at that time.</div></div>
+    </div>
+  </div>
+
+  <div class="related-section">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator" class="related-link"><span>🧮</span> Percentage Calc</a>
+      <a href="/bmi-calculator" class="related-link"><span>⚖️</span> BMI Calc</a>
+      <a href="/loan-calculator" class="related-link"><span>🏦</span> Loan / EMI</a>
+      <a href="/tip-calculator" class="related-link"><span>🍽️</span> Tip Calculator</a>
+      <a href="/discount-calculator" class="related-link"><span>🏷️</span> Discount Calc</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 <a href="/">Sakure.online</a> · Free Online Tools · <a href="/privacy">Privacy</a> · <a href="/contact">Contact</a></footer>
+
+<script>
+// Set today as default for "age at" and "on-target"
+const today = new Date();
+const todayStr = today.toISOString().split('T')[0];
+document.getElementById('age-at').value = todayStr;
+document.getElementById('on-target').value = todayStr;
+
+let liveInterval = null;
+let liveDOB = null;
+
+function switchTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id !== 'age' && liveInterval) { clearInterval(liveInterval); liveInterval = null; }
+}
+
+function diffDate(d1, d2) {
+  let years = d2.getFullYear() - d1.getFullYear();
+  let months = d2.getMonth() - d1.getMonth();
+  let days = d2.getDate() - d1.getDate();
+  if (days < 0) { months--; const prev = new Date(d2.getFullYear(), d2.getMonth(), 0); days += prev.getDate(); }
+  if (months < 0) { years--; months += 12; }
+  return { years, months, days };
+}
+
+function calcAge() {
+  const dobStr = document.getElementById('dob').value;
+  const atStr = document.getElementById('age-at').value;
+  if (!dobStr || !atStr) return;
+  const dob = new Date(dobStr + 'T00:00:00');
+  const at = new Date(atStr + 'T00:00:00');
+  if (dob >= at) { document.getElementById('res-age').classList.remove('show'); return; }
+
+  const diff = diffDate(dob, at);
+  document.getElementById('a-years').textContent = diff.years;
+  document.getElementById('a-months').textContent = diff.months;
+  document.getElementById('a-days').textContent = diff.days;
+
+  const totalDays = Math.floor((at - dob) / 86400000);
+  document.getElementById('a-total-months').textContent = (diff.years * 12 + diff.months).toLocaleString('en-IN');
+  document.getElementById('a-total-weeks').textContent = Math.floor(totalDays / 7).toLocaleString('en-IN');
+  document.getElementById('a-total-days').textContent = totalDays.toLocaleString('en-IN');
+  document.getElementById('a-total-hours').textContent = (totalDays * 24).toLocaleString('en-IN');
+
+  // Next birthday
+  const nowDate = new Date();
+  let nextBday = new Date(nowDate.getFullYear(), dob.getMonth(), dob.getDate());
+  if (nextBday <= nowDate) nextBday.setFullYear(nowDate.getFullYear() + 1);
+  const daysUntil = Math.ceil((nextBday - nowDate) / 86400000);
+  const bdayText = daysUntil === 0
+    ? '🎉 Today is your birthday!'
+    : `In <span class="highlight">${daysUntil} days</span> on ${nextBday.toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric'})}`;
+  document.getElementById('bday-text').innerHTML = bdayText;
+
+  // Live seconds
+  liveDOB = dob;
+  if (liveInterval) clearInterval(liveInterval);
+  function updateLive() {
+    const secs = Math.floor((new Date() - liveDOB) / 1000);
+    document.getElementById('live-seconds').textContent = secs.toLocaleString('en-IN') + ' seconds';
+  }
+  updateLive();
+  liveInterval = setInterval(updateLive, 1000);
+
+  document.getElementById('res-age').classList.add('show');
+}
+
+function calcDiff() {
+  const d1 = document.getElementById('d-dob1').value;
+  const d2 = document.getElementById('d-dob2').value;
+  if (!d1 || !d2) return;
+  const date1 = new Date(d1), date2 = new Date(d2);
+  const [older, newer] = date1 < date2 ? [date1, date2] : [date2, date1];
+  const diff = diffDate(older, newer);
+  const totalDays = Math.floor(Math.abs(date1 - date2) / 86400000);
+  document.getElementById('diff-years').textContent = `${diff.years}y ${diff.months}m ${diff.days}d`;
+  document.getElementById('diff-days').textContent = totalDays.toLocaleString('en-IN');
+  document.getElementById('diff-older').textContent = date1 < date2 ? 'Person 1' : 'Person 2';
+  document.getElementById('res-diff').classList.add('show');
+}
+
+function calcOn() {
+  const dobStr = document.getElementById('on-dob').value;
+  const targetStr = document.getElementById('on-target').value;
+  if (!dobStr || !targetStr) return;
+  const dob = new Date(dobStr), target = new Date(targetStr);
+  if (dob >= target) { document.getElementById('res-on').classList.remove('show'); return; }
+  const diff = diffDate(dob, target);
+  document.getElementById('on-years').textContent = diff.years;
+  document.getElementById('on-months').textContent = diff.months;
+  document.getElementById('on-days').textContent = diff.days;
+  document.getElementById('res-on').classList.add('show');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+// Auto-calc if dob is set
+document.getElementById('dob').addEventListener('change', calcAge);
+</script>
+</body>
+</html>

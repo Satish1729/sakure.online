@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discount Calculator – Sale Price & Savings | Sakure Tools</title>
+<meta name="description" content="Calculate discounted price, savings, and final price after discount instantly. Find original price from sale price. Free online discount calculator.">
+<meta name="keywords" content="discount calculator, sale price calculator, percentage off calculator, savings calculator, original price calculator">
+<meta property="og:title" content="Discount Calculator – Sakure Tools">
+<meta property="og:description" content="Calculate sale prices, find how much you save, and figure out percentage discounts instantly.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://sakure.online/discount-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Discount Calculator",
+  "url": "https://sakure.online/discount-calculator",
+  "description": "Free online discount calculator. Calculate sale prices, savings, and original prices.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3147;
+    --text: #e8eaf0;
+    --muted: #7a8499;
+    --accent: #f97316;
+    --accent2: #fb923c;
+    --accent-glow: rgba(249,115,22,0.12);
+    --font: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 20px; font-size: 0.85rem; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .hero { text-align: center; padding: 48px 24px 32px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: var(--accent-glow); border-radius: 50%; filter: blur(60px); pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-glow); border: 1px solid rgba(249,115,22,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+  h1 span { color: var(--accent); }
+  .hero-sub { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 16px 80px; }
+  .ad-banner { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 24px 0; }
+  .ad-square { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 20px 0; }
+  .mode-tabs { display: flex; gap: 8px; margin: 28px 0 20px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-family: var(--font); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.18s; }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .pane { display: none; }
+  .pane.active { display: block; }
+  .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .pane-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .pane-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-group label { font-size: 0.78rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .input-with-prefix { position: relative; }
+  .input-prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--mono); pointer-events: none; }
+  .suffix-inp { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--mono); pointer-events: none; }
+  input[type="number"] {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; color: var(--text); font-family: var(--mono); font-size: 1rem;
+    width: 100%; transition: border-color 0.2s; outline: none; -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus { border-color: var(--accent); }
+  .pfx { padding-left: 34px !important; }
+  .sfx { padding-right: 34px !important; }
+
+  /* DISCOUNT PRESETS */
+  .disc-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .disc-preset { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); font-family: var(--font); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+  .disc-preset:hover { border-color: var(--accent); color: var(--text); }
+
+  /* RESULT */
+  .result-box { display: none; margin-top: 18px; }
+  .result-box.show { display: block; }
+  .price-display { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; }
+  .price-col { text-align: center; }
+  .price-col .p-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+  .price-col .p-val { font-family: var(--mono); font-size: 1.4rem; font-weight: 700; }
+  .price-col.original .p-val { color: var(--muted); text-decoration: line-through; font-size: 1.1rem; }
+  .price-col.final .p-val { color: var(--accent); font-size: 1.8rem; }
+  .arrow-col { color: var(--accent); font-size: 1.4rem; }
+  .savings-badge { background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(249,115,22,0.05)); border: 1px solid rgba(249,115,22,0.3); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .save-label { font-size: 0.82rem; color: var(--muted); }
+  .save-val { font-family: var(--mono); font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+  .save-pct { font-size: 0.85rem; color: var(--muted); }
+
+  /* MULTI-ITEM TABLE */
+  .item-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .item-row { display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+  .item-row input { background: transparent; border: none; color: var(--text); font-family: var(--mono); font-size: 0.9rem; outline: none; }
+  .item-row input:first-child { font-family: var(--font); }
+  .item-row .item-result { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); text-align: right; }
+  .item-remove { color: var(--muted); cursor: pointer; font-size: 1.1rem; padding: 4px; border-radius: 4px; }
+  .item-remove:hover { color: #ef4444; }
+  .add-item-btn { background: transparent; border: 1px dashed var(--border); border-radius: 8px; padding: 10px; color: var(--muted); font-family: var(--font); font-size: 0.85rem; cursor: pointer; width: 100%; transition: all 0.15s; }
+  .add-item-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .multi-total { background: var(--surface2); border: 1px solid var(--accent); border-radius: 10px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .mt-label { font-size: 0.85rem; color: var(--muted); }
+  .mt-val { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 32px 0; }
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .info-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .info-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+  .info-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .faq-section { margin: 40px 0; }
+  .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq-q { padding: 16px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-icon { color: var(--accent); font-size: 1.2rem; transition: transform 0.2s; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+  .faq-a-inner { padding: 0 20px 16px; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .related-section { margin: 32px 0; }
+  .related-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .related-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; color: var(--text); transition: border-color 0.2s; }
+  .related-link:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.82rem; color: var(--muted); }
+  @media (max-width: 600px) { .form-grid, .form-grid-3 { grid-template-columns: 1fr; } .price-display { grid-template-columns: 1fr 1fr; } .arrow-col { display: none; } nav .nav-links { display: none; } .item-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">sakure<span>.online</span></div>
+  <div class="nav-links"><a href="/">Home</a><a href="/tools">All Tools</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🏷️ Shopping Calculator</div>
+  <h1>Discount <span>Calculator</span></h1>
+  <p class="hero-sub">Find the final price after discount, calculate savings, or determine what % off you're getting — instantly.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner">📢 Advertisement · 728×90</div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('basic')">% Off → Price</button>
+    <button class="tab-btn" onclick="switchTab('reverse')">Find % Off</button>
+    <button class="tab-btn" onclick="switchTab('multi')">Multi-Item</button>
+    <button class="tab-btn" onclick="switchTab('double')">Double Discount</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- PANE 1 -->
+    <div class="pane active" id="pane-basic">
+      <div class="pane-title">Calculate Final Price</div>
+      <div class="pane-desc">Enter original price and discount percentage to find final price and savings.</div>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Original Price</label>
+          <div class="input-with-prefix"><span class="input-prefix">₹</span><input type="number" id="b-price" class="pfx" placeholder="e.g. 2500" oninput="calcBasic()"></div>
+        </div>
+        <div class="input-group">
+          <label>Discount (%)</label>
+          <div class="disc-presets">
+            <span class="disc-preset" onclick="setDisc(5)">5%</span>
+            <span class="disc-preset" onclick="setDisc(10)">10%</span>
+            <span class="disc-preset" onclick="setDisc(20)">20%</span>
+            <span class="disc-preset" onclick="setDisc(30)">30%</span>
+            <span class="disc-preset" onclick="setDisc(50)">50%</span>
+          </div>
+          <div class="input-with-prefix"><span class="suffix-inp">%</span><input type="number" id="b-disc" class="sfx" placeholder="e.g. 25" oninput="calcBasic()"></div>
+        </div>
+      </div>
+      <div class="result-box" id="res-basic">
+        <div class="price-display">
+          <div class="price-col original"><div class="p-label">Original</div><div class="p-val" id="b-orig">—</div></div>
+          <div class="arrow-col">→</div>
+          <div class="price-col final"><div class="p-label">Final Price</div><div class="p-val" id="b-final">—</div></div>
+        </div>
+        <div class="savings-badge">
+          <div><div class="save-label">You save</div><div class="save-val" id="b-save">—</div></div>
+          <div class="save-pct" id="b-save-pct"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 2 -->
+    <div class="pane" id="pane-reverse">
+      <div class="pane-title">Find Discount Percentage</div>
+      <div class="pane-desc">Enter original and sale prices to find the discount percentage.</div>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Original Price</label>
+          <div class="input-with-prefix"><span class="input-prefix">₹</span><input type="number" id="r-orig" class="pfx" placeholder="e.g. 3000" oninput="calcReverse()"></div>
+        </div>
+        <div class="input-group">
+          <label>Sale Price</label>
+          <div class="input-with-prefix"><span class="input-prefix">₹</span><input type="number" id="r-sale" class="pfx" placeholder="e.g. 2100" oninput="calcReverse()"></div>
+        </div>
+      </div>
+      <div class="result-box" id="res-reverse">
+        <div class="savings-badge">
+          <div><div class="save-label">Discount Percentage</div><div class="save-val" id="rv-pct">—</div></div>
+          <div><div class="save-label">Amount Saved</div><div class="save-val" id="rv-save">—</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 3 -->
+    <div class="pane" id="pane-multi">
+      <div class="pane-title">Multi-Item Cart Calculator</div>
+      <div class="pane-desc">Add multiple items with individual discounts to calculate total savings.</div>
+      <div class="item-list" id="item-list"></div>
+      <button class="add-item-btn" onclick="addItem()">+ Add Item</button>
+      <div class="multi-total" style="margin-top:14px">
+        <div>
+          <div class="mt-label">Total Savings: <span style="color:var(--accent);font-weight:600;font-family:var(--mono)" id="mt-savings">₹0</span></div>
+          <div class="mt-label" style="margin-top:4px">Original Total: <span style="font-family:var(--mono)" id="mt-orig">₹0</span></div>
+        </div>
+        <div><div class="mt-label">Final Total</div><div class="mt-val" id="mt-final">₹0</div></div>
+      </div>
+    </div>
+
+    <!-- PANE 4 -->
+    <div class="pane" id="pane-double">
+      <div class="pane-title">Double / Stacked Discount</div>
+      <div class="pane-desc">Calculate the effective discount when two discounts are applied successively.</div>
+      <div class="form-grid-3">
+        <div class="input-group">
+          <label>Original Price</label>
+          <div class="input-with-prefix"><span class="input-prefix">₹</span><input type="number" id="dd-price" class="pfx" placeholder="e.g. 5000" oninput="calcDouble()"></div>
+        </div>
+        <div class="input-group">
+          <label>1st Discount</label>
+          <div class="input-with-prefix"><span class="suffix-inp">%</span><input type="number" id="dd-d1" class="sfx" placeholder="e.g. 20" oninput="calcDouble()"></div>
+        </div>
+        <div class="input-group">
+          <label>2nd Discount</label>
+          <div class="input-with-prefix"><span class="suffix-inp">%</span><input type="number" id="dd-d2" class="sfx" placeholder="e.g. 10" oninput="calcDouble()"></div>
+        </div>
+      </div>
+      <div class="result-box" id="res-double">
+        <div class="price-display">
+          <div class="price-col original"><div class="p-label">Original</div><div class="p-val" id="dd-orig">—</div></div>
+          <div class="arrow-col">→</div>
+          <div class="price-col final"><div class="p-label">Final Price</div><div class="p-val" id="dd-final">—</div></div>
+        </div>
+        <div class="savings-badge">
+          <div><div class="save-label">Effective Discount</div><div class="save-val" id="dd-eff">—</div></div>
+          <div><div class="save-label">You save</div><div class="save-val" id="dd-save">—</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">💡</div><h3>Stacked Discounts</h3><p>Two discounts don't add up! 20% + 10% off ≠ 30% off. The actual discount is 1 − (0.8 × 0.9) = 28% off.</p></div>
+    <div class="info-card"><div class="info-icon">🛒</div><h3>Flash Sales</h3><p>60–80% off sales are common on Amazon, Flipkart, and Meesho during festivals. Use this calculator to verify deals.</p></div>
+    <div class="info-card"><div class="info-icon">📊</div><h3>Compare Offers</h3><p>Always compare by final price, not discount %. A higher discount % on an inflated MRP can be worse than a smaller % on the real price.</p></div>
+  </div>
+
+  <div class="ad-square">📢 Advertisement · 300×250</div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate the discount price? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Final Price = Original Price × (1 − Discount%/100). For 25% off ₹2000: 2000 × 0.75 = ₹1500. Use the calculator above for instant results.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I find the original price from a sale price? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Original Price = Sale Price / (1 − Discount%/100). If you see ₹1500 after 25% off: 1500 / 0.75 = ₹2000 original price.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How are stacked discounts calculated? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Apply each discount sequentially. 20% off then 10% off on ₹1000: After first: ₹800. After second: ₹720. Effective discount = 28%, NOT 30%. They never simply add up.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does "flat ₹X off" vs "X% off" mean? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Flat amount off (₹200 off) is always the same regardless of price. Percentage off (20% off) varies with price — better for expensive items. On a ₹500 item, 20% off = ₹100 saved; on ₹2000, 20% = ₹400 saved.</div></div>
+    </div>
+  </div>
+
+  <div class="related-section">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator" class="related-link"><span>🧮</span> Percentage Calc</a>
+      <a href="/tip-calculator" class="related-link"><span>🍽️</span> Tip Calculator</a>
+      <a href="/loan-calculator" class="related-link"><span>🏦</span> Loan / EMI</a>
+      <a href="/bmi-calculator" class="related-link"><span>⚖️</span> BMI Calc</a>
+      <a href="/age-calculator" class="related-link"><span>🎂</span> Age Calculator</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 <a href="/">Sakure.online</a> · Free Online Tools · <a href="/privacy">Privacy</a> · <a href="/contact">Contact</a></footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function setDisc(v) { document.getElementById('b-disc').value = v; calcBasic(); }
+function fmtINR(n) { return '₹' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+function calcBasic() {
+  const p = parseFloat(document.getElementById('b-price').value);
+  const d = parseFloat(document.getElementById('b-disc').value);
+  if (isNaN(p) || isNaN(d)) { document.getElementById('res-basic').classList.remove('show'); return; }
+  const save = p * d / 100;
+  const final = p - save;
+  document.getElementById('b-orig').textContent = fmtINR(p);
+  document.getElementById('b-final').textContent = fmtINR(final);
+  document.getElementById('b-save').textContent = fmtINR(save);
+  document.getElementById('b-save-pct').textContent = d + '% off';
+  document.getElementById('res-basic').classList.add('show');
+}
+
+function calcReverse() {
+  const orig = parseFloat(document.getElementById('r-orig').value);
+  const sale = parseFloat(document.getElementById('r-sale').value);
+  if (isNaN(orig) || isNaN(sale) || orig <= 0) { document.getElementById('res-reverse').classList.remove('show'); return; }
+  const discPct = ((orig - sale) / orig * 100).toFixed(2);
+  document.getElementById('rv-pct').textContent = discPct + '%';
+  document.getElementById('rv-save').textContent = fmtINR(orig - sale);
+  document.getElementById('res-reverse').classList.add('show');
+}
+
+// Multi-item
+let items = [{ name: 'Item 1', price: '', disc: '' }];
+function renderItems() {
+  const list = document.getElementById('item-list');
+  list.innerHTML = '';
+  items.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Item name" value="${item.name}" oninput="items[${i}].name=this.value">
+      <input type="number" placeholder="Price ₹" value="${item.price}" oninput="items[${i}].price=this.value; updateMulti()">
+      <input type="number" placeholder="Disc %" value="${item.disc}" oninput="items[${i}].disc=this.value; updateMulti()">
+      <span class="item-result" id="item-res-${i}">—</span>
+      <span class="item-remove" onclick="removeItem(${i})">✕</span>
+    `;
+    list.appendChild(row);
+  });
+  updateMulti();
+}
+function addItem() {
+  items.push({ name: `Item ${items.length + 1}`, price: '', disc: '' });
+  renderItems();
+}
+function removeItem(i) {
+  if (items.length === 1) return;
+  items.splice(i, 1);
+  renderItems();
+}
+function updateMulti() {
+  let totalOrig = 0, totalFinal = 0;
+  items.forEach((item, i) => {
+    const p = parseFloat(item.price) || 0;
+    const d = parseFloat(item.disc) || 0;
+    const final = p * (1 - d/100);
+    totalOrig += p;
+    totalFinal += final;
+    const el = document.getElementById('item-res-' + i);
+    if (el) el.textContent = p > 0 ? fmtINR(final) : '—';
+  });
+  document.getElementById('mt-orig').textContent = fmtINR(totalOrig);
+  document.getElementById('mt-savings').textContent = fmtINR(totalOrig - totalFinal);
+  document.getElementById('mt-final').textContent = fmtINR(totalFinal);
+}
+renderItems();
+
+function calcDouble() {
+  const p = parseFloat(document.getElementById('dd-price').value);
+  const d1 = parseFloat(document.getElementById('dd-d1').value);
+  const d2 = parseFloat(document.getElementById('dd-d2').value);
+  if (isNaN(p) || isNaN(d1) || isNaN(d2)) { document.getElementById('res-double').classList.remove('show'); return; }
+  const after1 = p * (1 - d1/100);
+  const final = after1 * (1 - d2/100);
+  const effDisc = ((p - final) / p * 100).toFixed(2);
+  document.getElementById('dd-orig').textContent = fmtINR(p);
+  document.getElementById('dd-final').textContent = fmtINR(final);
+  document.getElementById('dd-eff').textContent = effDisc + '%';
+  document.getElementById('dd-save').textContent = fmtINR(p - final);
+  document.getElementById('res-double').classList.add('show');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Calculator – Free Online Tool | Sakure</title>
+<meta name="description" content="Calculate percentages instantly. Find what percent of a number is, percentage increase/decrease, and more. Free, fast, no signup required.">
+<meta name="keywords" content="percentage calculator, percent calculator, percentage increase, percentage decrease, what percent of">
+<meta property="og:title" content="Percentage Calculator – Sakure Tools">
+<meta property="og:description" content="Calculate percentages instantly. Multiple modes: basic %, increase/decrease, difference, and more.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://sakure.online/percentage-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Percentage Calculator",
+  "url": "https://sakure.online/percentage-calculator",
+  "description": "Free online percentage calculator. Calculate what percent of a number is, find percentage increase or decrease.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3147;
+    --text: #e8eaf0;
+    --muted: #7a8499;
+    --accent: #f59e0b;
+    --accent2: #fbbf24;
+    --accent-glow: rgba(245,158,11,0.15);
+    --font: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--text); letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 20px; font-size: 0.85rem; color: var(--muted); }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 48px 24px 32px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: var(--accent-glow); border-radius: 50%; filter: blur(60px); pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-glow); border: 1px solid rgba(245,158,11,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+  h1 span { color: var(--accent); }
+  .hero-sub { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+  /* MAIN */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 16px 80px; }
+
+  /* AD PLACEHOLDER */
+  .ad-banner { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 24px 0; }
+
+  /* MODE TABS */
+  .mode-tabs { display: flex; gap: 8px; margin: 28px 0 20px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-family: var(--font); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.18s; }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 600; }
+
+  /* CALC CARD */
+  .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+  .calc-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .calc-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; }
+
+  .pane { display: none; }
+  .pane.active { display: block; }
+
+  .input-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin-bottom: 16px; }
+  .op-label { color: var(--muted); font-size: 1.2rem; text-align: center; font-weight: 300; }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-group label { font-size: 0.78rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  input[type="number"] {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.2s;
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus { border-color: var(--accent); }
+
+  .full-row { grid-column: 1 / -1; }
+  .calc-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-family: var(--font); font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; margin-top: 4px; }
+  .calc-btn:hover { opacity: 0.9; }
+  .calc-btn:active { transform: scale(0.99); }
+
+  .result-box { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 20px; margin-top: 18px; display: none; }
+  .result-box.show { display: block; }
+  .result-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .result-value { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .result-formula { font-size: 0.82rem; color: var(--muted); margin-top: 6px; font-family: var(--mono); }
+
+  /* INFO CARDS */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 32px 0; }
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .info-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .info-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+  .info-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* FAQ */
+  .faq-section { margin: 40px 0; }
+  .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq-q { padding: 16px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-icon { color: var(--accent); font-size: 1.2rem; transition: transform 0.2s; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+  .faq-a-inner { padding: 0 20px 16px; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* RELATED */
+  .related-section { margin: 32px 0; }
+  .related-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .related-link { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; color: var(--text); transition: border-color 0.2s, background 0.2s; }
+  .related-link:hover { border-color: var(--accent); background: var(--surface2); text-decoration: none; color: var(--text); }
+  .related-link .icon { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.82rem; color: var(--muted); }
+
+  /* AD SIDE */
+  .ad-square { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; height: 250px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; margin: 20px 0; }
+
+  @media (max-width: 600px) {
+    .input-row { grid-template-columns: 1fr; }
+    .op-label { display: none; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">sakure<span>.online</span></div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/tools">All Tools</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🧮 Calculator Tools</div>
+  <h1>Percentage <span>Calculator</span></h1>
+  <p class="hero-sub">Calculate percentages in multiple ways — instantly, accurately, for free.</p>
+</div>
+
+<div class="container">
+
+  <!-- AD -->
+  <div class="ad-banner">📢 Advertisement · 728×90</div>
+
+  <!-- TABS -->
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('basic')">X% of Y</button>
+    <button class="tab-btn" onclick="switchTab('iswhat')">X is what % of Y?</button>
+    <button class="tab-btn" onclick="switchTab('change')">% Change</button>
+    <button class="tab-btn" onclick="switchTab('reverse')">Reverse %</button>
+  </div>
+
+  <!-- CALC CARD -->
+  <div class="calc-card">
+
+    <!-- PANE 1: X% of Y -->
+    <div class="pane active" id="pane-basic">
+      <div class="calc-title">What is X% of Y?</div>
+      <div class="calc-desc">Find a percentage of any number. e.g. What is 15% of 200?</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Percentage (%)</label>
+          <input type="number" id="b-pct" placeholder="e.g. 15" oninput="calcBasic()">
+        </div>
+        <div class="op-label">% of</div>
+        <div class="input-group">
+          <label>Number</label>
+          <input type="number" id="b-num" placeholder="e.g. 200" oninput="calcBasic()">
+        </div>
+      </div>
+      <div class="result-box" id="r-basic">
+        <div class="result-label">Result</div>
+        <div class="result-value" id="r-basic-val">—</div>
+        <div class="result-formula" id="r-basic-f"></div>
+      </div>
+    </div>
+
+    <!-- PANE 2: is what % -->
+    <div class="pane" id="pane-iswhat">
+      <div class="calc-title">X is what percent of Y?</div>
+      <div class="calc-desc">e.g. 30 is what percent of 150?</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Part (X)</label>
+          <input type="number" id="iw-part" placeholder="e.g. 30" oninput="calcIsWhat()">
+        </div>
+        <div class="op-label">out of</div>
+        <div class="input-group">
+          <label>Total (Y)</label>
+          <input type="number" id="iw-total" placeholder="e.g. 150" oninput="calcIsWhat()">
+        </div>
+      </div>
+      <div class="result-box" id="r-iswhat">
+        <div class="result-label">Result</div>
+        <div class="result-value" id="r-iswhat-val">—</div>
+        <div class="result-formula" id="r-iswhat-f"></div>
+      </div>
+    </div>
+
+    <!-- PANE 3: % change -->
+    <div class="pane" id="pane-change">
+      <div class="calc-title">Percentage Change</div>
+      <div class="calc-desc">Find the % increase or decrease between two values.</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Original Value</label>
+          <input type="number" id="ch-from" placeholder="e.g. 80" oninput="calcChange()">
+        </div>
+        <div class="op-label">→</div>
+        <div class="input-group">
+          <label>New Value</label>
+          <input type="number" id="ch-to" placeholder="e.g. 100" oninput="calcChange()">
+        </div>
+      </div>
+      <div class="result-box" id="r-change">
+        <div class="result-label">Percentage Change</div>
+        <div class="result-value" id="r-change-val">—</div>
+        <div class="result-formula" id="r-change-f"></div>
+      </div>
+    </div>
+
+    <!-- PANE 4: reverse % -->
+    <div class="pane" id="pane-reverse">
+      <div class="calc-title">Reverse Percentage</div>
+      <div class="calc-desc">Find the original value before a percentage was applied.</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Final Value</label>
+          <input type="number" id="rv-val" placeholder="e.g. 120" oninput="calcReverse()">
+        </div>
+        <div class="op-label">after</div>
+        <div class="input-group">
+          <label>Percentage Applied (%)</label>
+          <input type="number" id="rv-pct" placeholder="e.g. 20" oninput="calcReverse()">
+        </div>
+      </div>
+      <div class="result-box" id="r-reverse">
+        <div class="result-label">Original Value</div>
+        <div class="result-value" id="r-reverse-val">—</div>
+        <div class="result-formula" id="r-reverse-f"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INFO CARDS -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">📐</div>
+      <h3>Basic Formula</h3>
+      <p>Percentage = (Part / Total) × 100. Simply divide the part by the whole and multiply by 100.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">📈</div>
+      <h3>% Increase</h3>
+      <p>% Increase = ((New − Old) / Old) × 100. A positive result means growth.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">💡</div>
+      <h3>Quick Tip</h3>
+      <p>To find 10% of any number, just move the decimal one place left. 10% of 350 = 35.</p>
+    </div>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-square">📢 Advertisement · 300×250</div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate a percentage of a number? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Multiply the number by the percentage and divide by 100. For example, 25% of 80 = (25 × 80) / 100 = 20. Use the "X% of Y" tab above for instant results.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I find what percentage one number is of another? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Divide the part by the whole and multiply by 100. Example: 30 out of 150 = (30 / 150) × 100 = 20%. Use the "X is what % of Y?" tab.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is percentage increase/decrease? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Percentage change = ((New Value − Old Value) / Old Value) × 100. A positive result is an increase, negative is a decrease.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I find the original value before a percentage was added? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Use the Reverse Percentage tab. Original = Final Value / (1 + percentage/100). E.g., if price after 20% increase is ₹120, original = 120 / 1.2 = ₹100.</div></div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="related-section">
+    <h2>Related Calculators</h2>
+    <div class="related-grid">
+      <a href="/discount-calculator" class="related-link"><span class="icon">🏷️</span> Discount Calc</a>
+      <a href="/tip-calculator" class="related-link"><span class="icon">🍽️</span> Tip Calculator</a>
+      <a href="/bmi-calculator" class="related-link"><span class="icon">⚖️</span> BMI Calculator</a>
+      <a href="/loan-calculator" class="related-link"><span class="icon">🏦</span> Loan / EMI</a>
+      <a href="/age-calculator" class="related-link"><span class="icon">🎂</span> Age Calculator</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 <a href="/">Sakure.online</a> · Free Online Tools · <a href="/privacy">Privacy</a> · <a href="/contact">Contact</a>
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function fmt(n) {
+  if (isNaN(n) || !isFinite(n)) return null;
+  return parseFloat(n.toFixed(6)).toLocaleString('en-IN', { maximumFractionDigits: 4 });
+}
+
+function showResult(boxId, valId, fId, val, formula) {
+  const box = document.getElementById(boxId);
+  if (val === null) { box.classList.remove('show'); return; }
+  document.getElementById(valId).textContent = val;
+  document.getElementById(fId).textContent = formula;
+  box.classList.add('show');
+}
+
+function calcBasic() {
+  const p = parseFloat(document.getElementById('b-pct').value);
+  const n = parseFloat(document.getElementById('b-num').value);
+  if (isNaN(p) || isNaN(n)) { document.getElementById('r-basic').classList.remove('show'); return; }
+  const res = (p / 100) * n;
+  showResult('r-basic', 'r-basic-val', 'r-basic-f', fmt(res), `${p}% × ${n} = ${fmt(res)}`);
+}
+
+function calcIsWhat() {
+  const part = parseFloat(document.getElementById('iw-part').value);
+  const total = parseFloat(document.getElementById('iw-total').value);
+  if (isNaN(part) || isNaN(total) || total === 0) { document.getElementById('r-iswhat').classList.remove('show'); return; }
+  const res = (part / total) * 100;
+  showResult('r-iswhat', 'r-iswhat-val', 'r-iswhat-f', fmt(res) + '%', `(${part} / ${total}) × 100 = ${fmt(res)}%`);
+}
+
+function calcChange() {
+  const from = parseFloat(document.getElementById('ch-from').value);
+  const to = parseFloat(document.getElementById('ch-to').value);
+  if (isNaN(from) || isNaN(to) || from === 0) { document.getElementById('r-change').classList.remove('show'); return; }
+  const res = ((to - from) / Math.abs(from)) * 100;
+  const sign = res >= 0 ? '▲ +' : '▼ ';
+  showResult('r-change', 'r-change-val', 'r-change-f', sign + fmt(res) + '%', `((${to} − ${from}) / ${from}) × 100`);
+}
+
+function calcReverse() {
+  const val = parseFloat(document.getElementById('rv-val').value);
+  const pct = parseFloat(document.getElementById('rv-pct').value);
+  if (isNaN(val) || isNaN(pct)) { document.getElementById('r-reverse').classList.remove('show'); return; }
+  const res = val / (1 + pct / 100);
+  showResult('r-reverse', 'r-reverse-val', 'r-reverse-f', fmt(res), `${val} / (1 + ${pct}/100) = ${fmt(res)}`);
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
