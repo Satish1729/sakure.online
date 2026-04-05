@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Base64 Converter - Free Online Encoder</title>
+    <meta name="description" content="Convert images to Base64 encoded strings and data URIs. Free online image to Base64 converter with CSS, HTML, and JSON output. No upload needed.">
+    <meta name="keywords" content="image to base64, base64 image encoder, convert image to base64, image data uri, base64 to image, image encoder online">
+    <link rel="canonical" href="https://yoursite.com/tools/image-to-base64">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Image to Base64 Converter","description":"Free online tool to convert images to Base64 strings and data URIs.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#06b6d4;--accent-glow:rgba(6,182,212,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:900px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+        .drop-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:50px 40px;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:24px;position:relative}
+        .drop-zone:hover,.drop-zone.dragover{border-color:var(--accent);background:var(--accent-glow)}
+        .drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+        .drop-icon{font-size:48px;margin-bottom:12px}.drop-text{color:var(--text-muted);font-size:15px}.drop-text strong{color:var(--text)}.drop-hint{color:var(--text-muted);font-size:12px;margin-top:8px}
+        .result-panel{display:none;margin-bottom:24px}
+        .preview-bar{display:flex;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;flex-wrap:wrap}
+        .preview-thumb{width:80px;height:80px;border-radius:8px;object-fit:contain;background:var(--surface-2);border:1px solid var(--border)}
+        .preview-info{flex:1;min-width:150px}
+        .preview-name{font-weight:600;font-size:14px;margin-bottom:4px}
+        .preview-meta{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+        .btn-new{padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:var(--surface);color:var(--text)}.btn-new:hover{border-color:var(--accent)}
+        .output-tabs{display:flex;gap:4px;margin-bottom:0;background:var(--surface);border:1px solid var(--border);border-bottom:none;border-radius:var(--radius) var(--radius) 0 0;padding:8px 8px 0}
+        .output-tab{padding:8px 16px;border:none;border-radius:8px 8px 0 0;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;background:transparent;color:var(--text-muted)}
+        .output-tab.active{background:var(--surface-2);color:var(--accent)}
+        .output-tab:hover:not(.active){color:var(--text)}
+        .output-box{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:4px}
+        .output-code{width:100%;min-height:180px;max-height:400px;background:var(--surface-2);border:none;border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);line-height:1.6;resize:vertical;outline:none;overflow:auto;word-break:break-all}
+        .copy-bar{display:flex;gap:8px;padding:12px;justify-content:end}
+        .btn-copy{padding:8px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--accent);background:var(--accent);color:#fff}.btn-copy:hover{box-shadow:0 0 16px var(--accent-glow)}
+        .size-info{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;margin-right:auto;padding-top:4px}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Image to Base64</h1><p>Convert any image to a Base64 encoded string. Get ready-to-use data URIs for HTML, CSS, and JSON embedding.</p></section>
+
+    <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" onchange="handleFile(this.files[0])">
+        <div class="drop-icon">🔤</div>
+        <div class="drop-text"><strong>Drop an image here</strong> or click to browse</div>
+        <div class="drop-hint">Supports JPEG, PNG, WebP, GIF, SVG, BMP, ICO</div>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+        <div class="preview-bar">
+            <img id="previewThumb" class="preview-thumb" alt="">
+            <div class="preview-info">
+                <div class="preview-name" id="pName">—</div>
+                <div class="preview-meta" id="pMeta">—</div>
+            </div>
+            <button class="btn-new" onclick="resetTool()">New Image</button>
+        </div>
+
+        <div class="output-tabs">
+            <button class="output-tab active" onclick="showTab('datauri',this)">Data URI</button>
+            <button class="output-tab" onclick="showTab('raw',this)">Raw Base64</button>
+            <button class="output-tab" onclick="showTab('html',this)">HTML &lt;img&gt;</button>
+            <button class="output-tab" onclick="showTab('css',this)">CSS</button>
+            <button class="output-tab" onclick="showTab('json',this)">JSON</button>
+        </div>
+        <div class="output-box">
+            <textarea class="output-code" id="outputCode" readonly></textarea>
+            <div class="copy-bar">
+                <span class="size-info" id="sizeInfo">—</span>
+                <button class="btn-copy" onclick="copyOutput()">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Image to Base64 Converter</h2>
+        <p>Convert any image file to a Base64 encoded string that can be embedded directly in HTML, CSS, or JSON. This eliminates separate HTTP requests for small images — useful for icons, logos, email templates, and single-file HTML documents. Everything runs in your browser with no server upload.</p>
+        <h3>Output Formats</h3>
+        <p>Data URI gives you the complete data:image/... string ready to use in src attributes. Raw Base64 provides just the encoded string without the data URI prefix. HTML output wraps it in an img tag. CSS output formats it as a background-image property. JSON output provides a properly escaped string for API payloads and configuration files.</p>
+        <h3>When to Use Base64 Images</h3>
+        <p>Small icons and logos (under 10KB) where eliminating an HTTP request improves performance. Email HTML templates where external images may be blocked. Single-file HTML documents that need to be self-contained. CSS sprites replacement for small UI elements. Embedding images in JSON API responses or configuration files.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>How much larger is Base64 than the original?</strong><p>Base64 encoding increases file size by approximately 33%. A 10KB image becomes about 13.3KB as Base64 text. For small images (under 10KB), this overhead is offset by saving an HTTP request. For larger images, use regular file references instead.</p></div>
+        <div class="faq-item"><strong>Does Base64 affect page load speed?</strong><p>For small images, Base64 embedding improves speed by reducing HTTP requests. For large images (over 10-20KB), it's slower because the Base64 string increases HTML/CSS file size and can't be cached separately. Use Base64 only for small assets.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-format-converter">Format Converter</a><a href="/tools/image-resizer">Image Resizer</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+const dropZone=document.getElementById('dropZone');
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover')});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('dragover');handleFile(e.dataTransfer.files[0])});
+
+let base64Data='',dataURI='',mimeType='',currentTab='datauri';
+function formatSize(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB'}
+
+function handleFile(file){
+    if(!file||!file.type.startsWith('image/'))return;
+    mimeType=file.type;
+    const reader=new FileReader();
+    reader.onload=e=>{
+        dataURI=e.target.result;
+        base64Data=dataURI.split(',')[1];
+        const img=new Image();
+        img.onload=()=>{
+            document.getElementById('previewThumb').src=dataURI;
+            document.getElementById('pName').textContent=file.name;
+            document.getElementById('pMeta').textContent=`${img.naturalWidth}×${img.naturalHeight} • ${formatSize(file.size)} → ${formatSize(base64Data.length)} base64`;
+            document.getElementById('dropZone').style.display='none';
+            document.getElementById('resultPanel').style.display='block';
+            showTab('datauri',document.querySelector('.output-tab.active'));
+        };
+        img.src=dataURI;
+    };
+    reader.readAsDataURL(file);
+}
+
+function getOutput(tab){
+    switch(tab){
+        case'datauri':return dataURI;
+        case'raw':return base64Data;
+        case'html':return`<img src="${dataURI}" alt="Embedded Image" />`;
+        case'css':return`background-image: url('${dataURI}');\nbackground-size: contain;\nbackground-repeat: no-repeat;`;
+        case'json':return JSON.stringify({image:dataURI},null,2);
+        default:return dataURI;
+    }
+}
+
+function showTab(tab,btn){
+    currentTab=tab;
+    document.querySelectorAll('.output-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const output=getOutput(tab);
+    document.getElementById('outputCode').value=output;
+    document.getElementById('sizeInfo').textContent=formatSize(output.length)+' encoded';
+}
+
+function copyOutput(){
+    const code=document.getElementById('outputCode');
+    navigator.clipboard.writeText(code.value);
+}
+
+function resetTool(){
+    base64Data='';dataURI='';
+    document.getElementById('dropZone').style.display='block';
+    document.getElementById('resultPanel').style.display='none';
+    document.getElementById('fileInput').value='';
+}
+</script>
+</body>
+</html>

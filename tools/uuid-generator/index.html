@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator - Free Online UUID/GUID Generator Tool</title>
+    <meta name="description" content="Generate UUID v4 (GUID) identifiers instantly. Free online UUID generator with bulk generation, formatting options, and one-click copy. No signup needed.">
+    <meta name="keywords" content="uuid generator, guid generator, uuid v4, generate uuid, random uuid, unique id generator, uuid online">
+    <link rel="canonical" href="https://yoursite.com/tools/uuid-generator">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"UUID Generator","description":"Free online UUID v4 generator with bulk generation and formatting options.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#8b5cf6;--accent-glow:rgba(139,92,246,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:720px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:500px;margin:0 auto}
+        .uuid-display{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;margin-bottom:20px;cursor:pointer;transition:border-color .2s}
+        .uuid-display:hover{border-color:var(--accent)}
+        .uuid-text{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,3.5vw,26px);font-weight:600;color:var(--accent);letter-spacing:2px;word-break:break-all;user-select:all}
+        .uuid-text .dash{color:var(--text-muted)}
+        .click-hint{font-size:12px;color:var(--text-muted);margin-top:8px}
+        .actions{display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+        .btn{padding:12px 24px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border)}.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn-primary:hover{box-shadow:0 0 24px var(--accent-glow);transform:translateY(-1px)}.btn-secondary{background:var(--surface);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
+        .format-bar{display:flex;gap:6px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+        .fmt-btn{padding:6px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;transition:all .2s}
+        .fmt-btn.active{border-color:var(--accent);background:var(--accent);color:#fff}
+        .fmt-btn:hover:not(.active){border-color:var(--accent);color:var(--text)}
+        .bulk-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+        .bulk-section h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px}
+        .bulk-controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+        .bulk-controls input{width:80px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);outline:none;text-align:center}
+        .bulk-controls input:focus{border-color:var(--accent)}
+        .btn-sm{padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:var(--surface);color:var(--text)}.btn-sm:hover{border-color:var(--accent)}
+        .bulk-output{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);background:var(--surface-2);border-radius:8px;padding:14px;max-height:300px;overflow-y:auto;white-space:pre-wrap;display:none;line-height:1.8}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>UUID Generator</h1><p>Generate random UUID v4 identifiers. Click to copy, bulk generate, or choose your preferred format.</p></section>
+
+    <div class="uuid-display" onclick="copyUUID()">
+        <div class="uuid-text" id="uuidText"></div>
+        <div class="click-hint">Click to copy</div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-primary" onclick="generate()">🔄 Generate New</button>
+        <button class="btn btn-secondary" onclick="copyUUID()" id="copyBtn">📋 Copy</button>
+    </div>
+
+    <div class="format-bar">
+        <button class="fmt-btn active" onclick="setFormat('standard',this)">Standard</button>
+        <button class="fmt-btn" onclick="setFormat('uppercase',this)">UPPERCASE</button>
+        <button class="fmt-btn" onclick="setFormat('nodash',this)">No Dashes</button>
+        <button class="fmt-btn" onclick="setFormat('braces',this)">{Braces}</button>
+        <button class="fmt-btn" onclick="setFormat('urn',this)">URN</button>
+    </div>
+
+    <div class="bulk-section">
+        <h3>Bulk Generate</h3>
+        <div class="bulk-controls">
+            <span style="font-size:14px;color:var(--text-muted)">Generate</span>
+            <input type="number" id="bulkCount" value="10" min="1" max="500">
+            <span style="font-size:14px;color:var(--text-muted)">UUIDs</span>
+            <button class="btn-sm" onclick="bulkGenerate()">Generate</button>
+            <button class="btn-sm" onclick="copyBulk()">Copy All</button>
+        </div>
+        <div class="bulk-output" id="bulkOutput"></div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online UUID/GUID Generator</h2>
+        <p>Generate universally unique identifiers (UUIDs) version 4, also known as GUIDs (Globally Unique Identifiers). UUID v4 uses random numbers to generate identifiers that are statistically guaranteed to be unique — the probability of generating two identical UUIDs is astronomically small (1 in 2^122).</p>
+        <h3>UUID Format</h3>
+        <p>A standard UUID v4 looks like: 550e8400-e29b-41d4-a716-446655440000. It consists of 32 hexadecimal digits displayed in five groups separated by hyphens, in the pattern 8-4-4-4-12. The version number (4) is encoded in the third group, and the variant bits are in the fourth group.</p>
+        <h3>Common Use Cases</h3>
+        <p>Database primary keys (especially in distributed systems), API request identifiers, session tokens, file naming to avoid conflicts, message queue identifiers, correlation IDs for logging and tracing, and temporary file or resource identifiers. UUIDs are widely used in software development because they can be generated independently on any machine without coordination.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>What's the difference between UUID and GUID?</strong><p>They are essentially the same thing. UUID (Universally Unique Identifier) is the official term used in RFC 4122. GUID (Globally Unique Identifier) is Microsoft's terminology for the same concept. Both refer to 128-bit identifiers in the same format.</p></div>
+        <div class="faq-item"><strong>Are these UUIDs truly unique?</strong><p>Statistically yes. UUID v4 uses 122 random bits, giving 5.3 × 10^36 possible values. The probability of generating a duplicate is negligible — you'd need to generate 2.71 quintillion UUIDs to have a 50% chance of one collision.</p></div>
+        <div class="faq-item"><strong>Can I use these UUIDs in my database?</strong><p>Yes. UUIDs are commonly used as primary keys in PostgreSQL (uuid type), MySQL (CHAR(36) or BINARY(16)), MongoDB, and other databases. They're especially useful in distributed systems where multiple servers need to generate IDs independently.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/password-generator">Password Generator</a><a href="/tools/hash-generator">Hash Generator</a><a href="/tools/timestamp-converter">Timestamp Converter</a><a href="/tools/json-formatter">JSON Formatter</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+let currentFormat='standard';
+function uuidv4(){return([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16))}
+function formatUUID(uuid,fmt){
+    switch(fmt){
+        case'uppercase':return uuid.toUpperCase();
+        case'nodash':return uuid.replace(/-/g,'');
+        case'braces':return'{'+uuid+'}';
+        case'urn':return'urn:uuid:'+uuid;
+        default:return uuid;
+    }
+}
+function generate(){
+    const uuid=uuidv4();
+    const formatted=formatUUID(uuid,currentFormat);
+    const el=document.getElementById('uuidText');
+    if(currentFormat==='standard'||currentFormat==='uppercase'){
+        el.innerHTML=formatted.split('-').join('<span class="dash">-</span>');
+    }else{el.textContent=formatted}
+}
+function setFormat(fmt,btn){
+    currentFormat=fmt;
+    document.querySelectorAll('.fmt-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    generate();
+}
+function copyUUID(){
+    const text=document.getElementById('uuidText').textContent;
+    navigator.clipboard.writeText(text).then(()=>{const b=document.getElementById('copyBtn');b.textContent='✓ Copied!';setTimeout(()=>b.textContent='📋 Copy',1500)});
+}
+function bulkGenerate(){
+    const count=Math.min(Math.max(parseInt(document.getElementById('bulkCount').value)||10,1),500);
+    const uuids=Array.from({length:count},()=>formatUUID(uuidv4(),currentFormat));
+    const el=document.getElementById('bulkOutput');
+    el.textContent=uuids.join('\n');
+    el.style.display='block';
+}
+function copyBulk(){const el=document.getElementById('bulkOutput');if(el.textContent)navigator.clipboard.writeText(el.textContent)}
+generate();
+</script>
+</body>
+</html>

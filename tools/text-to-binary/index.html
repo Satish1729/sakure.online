@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Binary Converter - Free Online Binary Translator</title>
+    <meta name="description" content="Convert text to binary code and binary to text instantly. Free online binary translator with ASCII, UTF-8 support. Copy binary output with one click.">
+    <meta name="keywords" content="text to binary, binary to text, binary converter, binary translator, ascii to binary, binary code converter">
+    <link rel="canonical" href="https://yoursite.com/tools/text-to-binary">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Text to Binary Converter","description":"Free online tool to convert text to binary and binary to text.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#38bdf8;--accent-glow:rgba(56,189,248,0.15);--green:#34d399;--radius:12px}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+        .container{max-width:960px;margin:0 auto;padding:0 20px}
+        header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:-.5px}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px;transition:color .2s}nav a:hover{color:var(--text)}
+        .hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:560px;margin:0 auto}
+        .mode-toggle{display:flex;justify-content:center;gap:4px;margin-bottom:24px;background:var(--surface);border-radius:10px;padding:4px;width:fit-content;margin-left:auto;margin-right:auto}
+        .mode-btn{padding:10px 24px;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:var(--text-muted)}
+        .mode-btn.active{background:var(--accent);color:#fff}
+        .mode-btn:hover:not(.active){color:var(--text)}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+        @media(max-width:640px){.editor-grid{grid-template-columns:1fr}}
+        .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+        .panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+        .btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea,.output-area{width:100%;min-height:220px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8;resize:vertical;outline:none;transition:border-color .2s}
+        textarea{color:var(--text)}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{color:var(--green);overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+        .stats-row{display:flex;gap:16px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+        .stat-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:8px 16px;font-size:13px;color:var(--text-muted)}.stat-pill strong{color:var(--text);font-family:'JetBrains Mono',monospace;margin-right:4px}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}
+        .faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none;transition:all .2s}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Text to Binary Converter</h1><p>Convert text to binary code and binary back to readable text. Supports ASCII and UTF-8 characters.</p></section>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" onclick="setMode('text2bin',this)">Text → Binary</button>
+        <button class="mode-btn" onclick="setMode('bin2text',this)">Binary → Text</button>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label" id="inLabel">Text Input</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="clearInput()">Clear</button></div></div>
+            <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label" id="outLabel">Binary Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadOutput()">Download</button></div></div>
+            <div class="output-area" id="outputText">Result will appear here...</div>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-pill"><strong id="stInput">0</strong> input chars</div>
+        <div class="stat-pill"><strong id="stBits">0</strong> bits</div>
+        <div class="stat-pill"><strong id="stBytes">0</strong> bytes</div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online Text to Binary Converter</h2>
+        <p>This tool converts any text into its binary representation and vice versa. Each character is converted to its 8-bit binary equivalent using UTF-8 encoding. The tool handles all standard ASCII characters as well as extended Unicode characters.</p>
+        <h3>How Binary Conversion Works</h3>
+        <p>Computers store all data as binary — sequences of 0s and 1s. Each character in text has a numeric code (like ASCII code 65 for "A"). This number is converted to its base-2 (binary) representation. For standard ASCII characters, each letter becomes 8 binary digits (bits), also known as one byte. The letter "A" becomes 01000001, "B" becomes 01000010, and so on.</p>
+        <h3>Use Cases</h3>
+        <p>Students learning computer science use binary converters to understand how text is stored digitally. Programmers debug encoding issues by inspecting the binary representation of strings. Educators create exercises for binary arithmetic and encoding lessons. It's also used in puzzle games, escape rooms, and cryptography challenges where messages are encoded in binary.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Does it support emojis and special characters?</strong><p>Yes. The converter uses UTF-8 encoding, which supports the full Unicode character set including emojis, accented letters, and characters from all writing systems.</p></div>
+        <div class="faq-item"><strong>What format is the binary output?</strong><p>Each character's binary value is displayed as 8 bits (padded with leading zeros), separated by spaces. For example, "Hi" becomes "01001000 01101001".</p></div>
+        <div class="faq-item"><strong>Can I convert binary back to text?</strong><p>Yes. Switch to "Binary → Text" mode and paste binary code (space-separated 8-bit groups). The tool will decode it back to readable text.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools/url-encoder">URL Encoder</a><a href="/tools/rot13-decoder">ROT13 Decoder</a><a href="/tools/word-counter">Word Counter</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+let mode='text2bin';
+function setMode(m,btn){
+    mode=m;
+    document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('inLabel').textContent=m==='text2bin'?'Text Input':'Binary Input';
+    document.getElementById('outLabel').textContent=m==='text2bin'?'Binary Output':'Text Output';
+    document.getElementById('inputText').placeholder=m==='text2bin'?'Type or paste your text here...':'Paste binary code (e.g., 01001000 01101001)...';
+    document.getElementById('inputText').value='';
+    document.getElementById('outputText').textContent='Result will appear here...';
+    document.getElementById('outputText').style.color='var(--text-muted)';
+    updateStats('','');
+}
+function textToBin(text){
+    return Array.from(text).map(c=>{
+        const code=c.codePointAt(0);
+        const bin=code.toString(2);
+        return bin.padStart(Math.max(8,Math.ceil(bin.length/8)*8),'0');
+    }).join(' ');
+}
+function binToText(bin){
+    const cleaned=bin.replace(/[^01\s]/g,'').trim();
+    if(!cleaned)return'';
+    const bytes=cleaned.split(/\s+/);
+    return bytes.map(b=>String.fromCodePoint(parseInt(b,2))).join('');
+}
+function convert(){
+    const input=document.getElementById('inputText').value;
+    const outEl=document.getElementById('outputText');
+    if(!input.trim()){outEl.textContent='Result will appear here...';outEl.style.color='var(--text-muted)';updateStats('','');return}
+    let result;
+    if(mode==='text2bin'){result=textToBin(input)}
+    else{try{result=binToText(input)}catch(e){result='Invalid binary input'}}
+    outEl.textContent=result;
+    outEl.style.color='var(--green)';
+    updateStats(input,result);
+}
+function updateStats(input,result){
+    const inputLen=input.length;
+    const binary=mode==='text2bin'?result:textToBin(mode==='bin2text'?result:input);
+    const bits=binary.replace(/\s/g,'').length;
+    const bytes=Math.ceil(bits/8);
+    document.getElementById('stInput').textContent=inputLen;
+    document.getElementById('stBits').textContent=bits;
+    document.getElementById('stBytes').textContent=bytes;
+}
+function clearInput(){document.getElementById('inputText').value='';convert()}
+function copyOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Result'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Result'))return;const b=new Blob([t],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=mode==='text2bin'?'binary-output.txt':'text-output.txt';a.click();URL.revokeObjectURL(u)}
+document.getElementById('inputText').addEventListener('input',convert);
+</script>
+</body>
+</html>

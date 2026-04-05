@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Text Generator - Free Online Text Reverser Tool</title>
+    <meta name="description" content="Reverse text, flip words, mirror text, or reverse lines instantly. Free online reverse text generator with multiple reversal modes. No signup needed.">
+    <meta name="keywords" content="reverse text generator, reverse text, flip text, mirror text, backwards text, reverse words, text reverser online">
+    <link rel="canonical" href="https://yoursite.com/tools/reverse-text">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Reverse Text Generator","description":"Free online tool to reverse text characters, words, or lines in multiple modes.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#f97316;--accent-glow:rgba(249,115,22,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:960px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:560px;margin:0 auto}
+        .modes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+        .mode-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;cursor:pointer;transition:all .2s;text-align:center;min-width:140px}
+        .mode-card.active{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+        .mode-card:hover:not(.active){border-color:rgba(249,115,22,0.4)}
+        .mode-card .mode-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+        .mode-card .mode-example{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted)}
+        .mode-card.active .mode-name{color:var(--accent)}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}@media(max-width:640px){.editor-grid{grid-template-columns:1fr}}.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}.btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea,.output-area{width:100%;min-height:200px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.8;resize:vertical;outline:none}textarea{color:var(--text)}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}.output-area{color:var(--green);overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Reverse Text Generator</h1><p>Reverse characters, flip word order, mirror text, or reverse each line — multiple modes for any use case.</p></section>
+
+    <div class="modes">
+        <div class="mode-card active" onclick="setMode('chars',this)"><div class="mode-name">Reverse Characters</div><div class="mode-example">Hello → olleH</div></div>
+        <div class="mode-card" onclick="setMode('words',this)"><div class="mode-name">Reverse Words</div><div class="mode-example">Hello World → World Hello</div></div>
+        <div class="mode-card" onclick="setMode('lines',this)"><div class="mode-name">Reverse Lines</div><div class="mode-example">Line 1↵Line 2 → Line 2↵Line 1</div></div>
+        <div class="mode-card" onclick="setMode('each',this)"><div class="mode-name">Reverse Each Word</div><div class="mode-example">Hello World → olleH dlroW</div></div>
+        <div class="mode-card" onclick="setMode('mirror',this)"><div class="mode-name">Mirror (Unicode)</div><div class="mode-example">Hello → oʅʅǝH</div></div>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">Input</span><button class="btn-tiny" onclick="clearAll()">Clear</button></div>
+            <textarea id="inputText" placeholder="Type or paste your text here to reverse it..."></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label">Reversed Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadOutput()">Download</button></div></div>
+            <div class="output-area" id="outputText">Reversed text will appear here...</div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online Reverse Text Generator</h2>
+        <p>Reverse any text instantly with five different modes. Whether you need to reverse characters for fun social media posts, flip word order for linguistic analysis, reverse lines for data processing, or create mirror text using Unicode characters — this tool handles it all in your browser with no data sent to any server.</p>
+        <h3>Reversal Modes Explained</h3>
+        <p>Reverse Characters flips the entire string character by character ("Hello" becomes "olleH"). Reverse Words keeps each word intact but reverses their order ("Hello World" becomes "World Hello"). Reverse Lines reverses the order of lines in multi-line text. Reverse Each Word flips the characters within each word while keeping words in their original order. Mirror uses special Unicode characters to create a visually flipped version that appears upside-down or mirrored.</p>
+        <h3>Use Cases</h3>
+        <p>Social media users create fun backwards messages and mirror text. Programmers test string manipulation and palindrome detection. Data analysts reverse line order in log files. Language learners study text patterns by reversing word order. Puzzle creators design challenges using reversed text.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Does the mirror mode work with all characters?</strong><p>The mirror mode maps common English letters and numbers to their closest Unicode visual equivalents. Not all characters have a mirror counterpart, so some may remain unchanged. It works best with standard English text.</p></div>
+        <div class="faq-item"><strong>Can I reverse text in other languages?</strong><p>Yes. The character, word, and line reversal modes work with any language including right-to-left scripts like Arabic and Hebrew. The mirror mode is limited to Latin characters.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/case-converter">Case Converter</a><a href="/tools/text-repeater">Text Repeater</a><a href="/tools/word-counter">Word Counter</a><a href="/tools/rot13-decoder">ROT13 Decoder</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+let mode='chars';
+const mirrorMap={'a':'ɐ','b':'q','c':'ɔ','d':'p','e':'ǝ','f':'ɟ','g':'ƃ','h':'ɥ','i':'ᴉ','j':'ɾ','k':'ʞ','l':'ʅ','m':'ɯ','n':'u','o':'o','p':'d','q':'b','r':'ɹ','s':'s','t':'ʇ','u':'n','v':'ʌ','w':'ʍ','x':'x','y':'ʎ','z':'z','A':'∀','B':'ꓭ','C':'Ɔ','D':'ꓷ','E':'Ǝ','F':'Ⅎ','G':'⅁','H':'H','I':'I','J':'ſ','K':'ꓘ','L':'˥','M':'W','N':'N','O':'O','P':'Ԁ','Q':'Ꝺ','R':'ꓤ','S':'S','T':'⊥','U':'∩','V':'Λ','W':'M','X':'X','Y':'⅄','Z':'Z','0':'0','1':'Ɩ','2':'ᄅ','3':'Ɛ','4':'ㄣ','5':'ϛ','6':'9','7':'ㄥ','8':'8','9':'6','.':'˙',',':'\'','?':'¿','!':'¡','\'':',','"':'„','(':')',')':'(','[':']',']':'[','{':'}','}':'{','<':'>','>':'<','&':'⅋','_':'‾'};
+const reverses={
+    chars(t){return[...t].reverse().join('')},
+    words(t){return t.split('\n').map(line=>line.split(/(\s+)/).filter(Boolean).reverse().join('')).join('\n')},
+    lines(t){return t.split('\n').reverse().join('\n')},
+    each(t){return t.split(/(\s+)/).map(w=>/\s/.test(w)?w:[...w].reverse().join('')).join('')},
+    mirror(t){return[...t].reverse().map(c=>mirrorMap[c]||c).join('')}
+};
+function setMode(m,el){mode=m;document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('active'));el.classList.add('active');convert()}
+function convert(){const input=document.getElementById('inputText').value;const outEl=document.getElementById('outputText');if(!input){outEl.textContent='Reversed text will appear here...';outEl.style.color='var(--text-muted)';return}outEl.textContent=reverses[mode](input);outEl.style.color='var(--green)'}
+function clearAll(){document.getElementById('inputText').value='';convert()}
+function copyOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Reversed'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Reversed'))return;const b=new Blob([t],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='reversed-text.txt';a.click();URL.revokeObjectURL(u)}
+document.getElementById('inputText').addEventListener('input',convert);
+</script>
+</body>
+</html>

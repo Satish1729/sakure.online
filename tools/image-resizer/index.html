@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer - Free Online Resize Images Tool</title>
+    <meta name="description" content="Resize images online for free. Change dimensions by pixels or percentage with aspect ratio lock. Supports JPEG, PNG, WebP. No upload needed.">
+    <meta name="keywords" content="image resizer, resize image online, resize photo, change image size, image dimensions, resize picture, reduce image dimensions">
+    <link rel="canonical" href="https://yoursite.com/tools/image-resizer">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Image Resizer","description":"Free online image resizer. Change image dimensions by pixels or percentage with aspect ratio lock.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#3b82f6;--accent-glow:rgba(59,130,246,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:900px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+        .drop-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:60px 40px;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:24px;position:relative}
+        .drop-zone:hover,.drop-zone.dragover{border-color:var(--accent);background:var(--accent-glow)}
+        .drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+        .drop-icon{font-size:48px;margin-bottom:12px}.drop-text{color:var(--text-muted);font-size:15px}.drop-text strong{color:var(--text)}.drop-hint{color:var(--text-muted);font-size:12px;margin-top:8px}
+        .tool-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px}
+        .preview-row{display:flex;gap:20px;align-items:start;margin-bottom:20px;flex-wrap:wrap}
+        .preview-img{max-width:300px;max-height:250px;border-radius:8px;object-fit:contain;background:var(--surface-2);border:1px solid var(--border)}
+        .info-col{flex:1;min-width:200px}
+        .info-item{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid var(--border)}
+        .info-item:last-child{border-bottom:none}
+        .info-item .lbl{color:var(--text-muted)}
+        .info-item .val{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:500}
+        .resize-controls{border-top:1px solid var(--border);padding-top:20px}
+        .mode-tabs{display:flex;gap:6px;margin-bottom:16px}
+        .mode-tab{padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--surface-2);color:var(--text-muted);font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+        .mode-tab.active{border-color:var(--accent);background:var(--accent);color:#fff}
+        .mode-tab:hover:not(.active){color:var(--text)}
+        .dim-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+        .dim-group{display:flex;flex-direction:column;gap:4px}
+        .dim-group label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+        .dim-group input{width:120px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text);outline:none;text-align:center}
+        .dim-group input:focus{border-color:var(--accent)}
+        .lock-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:8px;background:var(--surface-2);color:var(--accent);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:18px}
+        .lock-btn.locked{background:var(--accent);color:#fff;border-color:var(--accent)}
+        .lock-btn:hover{border-color:var(--accent)}
+        .presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+        .preset-btn{padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface-2);color:var(--text-muted);font-size:11px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .2s}
+        .preset-btn:hover{border-color:var(--accent);color:var(--text)}
+        .action-row{display:flex;gap:10px;flex-wrap:wrap}
+        .btn{padding:10px 20px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border)}.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn-primary:hover{box-shadow:0 0 20px var(--accent-glow)}.btn-secondary{background:var(--surface);color:var(--text)}.btn-secondary:hover{border-color:var(--accent)}
+        .result-info{margin-top:16px;padding:12px 16px;background:var(--surface-2);border-radius:8px;font-size:13px;color:var(--green);font-family:'JetBrains Mono',monospace;display:none}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/image-compressor">Image Compressor</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Image Resizer</h1><p>Resize images by exact dimensions or percentage. Lock aspect ratio, use presets, and download instantly — all in your browser.</p></section>
+
+    <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" onchange="handleFile(this.files[0])">
+        <div class="drop-icon">📐</div>
+        <div class="drop-text"><strong>Drop an image here</strong> or click to browse</div>
+        <div class="drop-hint">Supports JPEG, PNG, WebP, GIF, BMP, SVG</div>
+    </div>
+
+    <div class="tool-panel" id="toolPanel">
+        <div class="preview-row">
+            <img id="previewImg" class="preview-img" alt="Preview">
+            <div class="info-col">
+                <div class="info-item"><span class="lbl">File Name</span><span class="val" id="infoName">—</span></div>
+                <div class="info-item"><span class="lbl">Original Size</span><span class="val" id="infoSize">—</span></div>
+                <div class="info-item"><span class="lbl">Dimensions</span><span class="val" id="infoDims">—</span></div>
+                <div class="info-item"><span class="lbl">Format</span><span class="val" id="infoFormat">—</span></div>
+                <div class="info-item"><span class="lbl">New Dimensions</span><span class="val" id="infoNewDims" style="color:var(--accent)">—</span></div>
+            </div>
+        </div>
+        <div class="resize-controls">
+            <div class="mode-tabs">
+                <button class="mode-tab active" onclick="setMode('pixels',this)">By Pixels</button>
+                <button class="mode-tab" onclick="setMode('percent',this)">By Percentage</button>
+            </div>
+            <div class="dim-row" id="pixelMode">
+                <div class="dim-group"><label>Width (px)</label><input type="number" id="widthInput" min="1" max="10000" oninput="onWidthChange()"></div>
+                <button class="lock-btn locked" id="lockBtn" onclick="toggleLock()" title="Lock aspect ratio">🔒</button>
+                <div class="dim-group"><label>Height (px)</label><input type="number" id="heightInput" min="1" max="10000" oninput="onHeightChange()"></div>
+            </div>
+            <div class="dim-row" id="percentMode" style="display:none">
+                <div class="dim-group"><label>Scale (%)</label><input type="number" id="scaleInput" min="1" max="1000" value="50" oninput="onScaleChange()"></div>
+            </div>
+            <div class="presets">
+                <span style="font-size:12px;color:var(--text-muted);margin-right:4px;padding-top:6px">Presets:</span>
+                <button class="preset-btn" onclick="applyPreset(1920,1080)">1920×1080</button>
+                <button class="preset-btn" onclick="applyPreset(1280,720)">1280×720</button>
+                <button class="preset-btn" onclick="applyPreset(1080,1080)">1080×1080</button>
+                <button class="preset-btn" onclick="applyPreset(800,600)">800×600</button>
+                <button class="preset-btn" onclick="applyPreset(500,500)">500×500</button>
+                <button class="preset-btn" onclick="applyPreset(256,256)">256×256</button>
+                <button class="preset-btn" onclick="applyPreset(64,64)">64×64</button>
+            </div>
+            <div class="action-row">
+                <button class="btn btn-primary" onclick="resizeImage()">Resize & Download</button>
+                <button class="btn btn-secondary" onclick="resetTool()">Choose Another Image</button>
+            </div>
+            <div class="result-info" id="resultInfo"></div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online Image Resizer</h2>
+        <p>Resize any image by specifying exact pixel dimensions or scaling by percentage. The aspect ratio lock ensures your image doesn't stretch or distort. Built-in presets cover common sizes for social media, web, and print. All processing happens in your browser — no image data is uploaded to any server.</p>
+        <h3>Resize Modes</h3>
+        <p>By Pixels lets you set exact width and height. With aspect ratio locked, changing one dimension automatically adjusts the other. By Percentage scales the image uniformly — enter 50 to halve the size, 200 to double it. Both modes produce a high-quality result using the browser's bilinear interpolation.</p>
+        <h3>Common Image Sizes</h3>
+        <p>Social media profile photos: 500×500 or 1080×1080. Instagram posts: 1080×1080 (square) or 1080×1350 (portrait). Twitter/X header: 1500×500. Facebook cover: 820×312. Web thumbnails: 256×256. YouTube thumbnails: 1280×720. Full HD: 1920×1080.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Will resizing reduce image quality?</strong><p>Downscaling (making smaller) preserves quality well. Upscaling (making larger) can cause blurriness since the browser must interpolate new pixels. For best upscaling results, avoid going beyond 2× the original size.</p></div>
+        <div class="faq-item"><strong>Can I resize without changing the aspect ratio?</strong><p>Yes. The aspect ratio lock is enabled by default (the lock icon between width and height). When locked, changing one dimension automatically adjusts the other to maintain proportions.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-to-base64">Image to Base64</a><a href="/tools/image-format-converter">Format Converter</a><a href="/tools/color-picker">Color Picker</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+const dropZone=document.getElementById('dropZone');
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover')});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('dragover');handleFile(e.dataTransfer.files[0])});
+
+let origImg=null,origW=0,origH=0,locked=true,mode='pixels',loadedFile=null;
+
+function formatSize(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB'}
+
+function handleFile(file){
+    if(!file||!file.type.startsWith('image/'))return;
+    loadedFile=file;
+    const reader=new FileReader();
+    reader.onload=e=>{
+        origImg=new Image();
+        origImg.onload=()=>{
+            origW=origImg.naturalWidth;origH=origImg.naturalHeight;
+            document.getElementById('previewImg').src=e.target.result;
+            document.getElementById('infoName').textContent=file.name;
+            document.getElementById('infoSize').textContent=formatSize(file.size);
+            document.getElementById('infoDims').textContent=origW+'×'+origH+' px';
+            document.getElementById('infoFormat').textContent=file.type;
+            document.getElementById('widthInput').value=origW;
+            document.getElementById('heightInput').value=origH;
+            updateNewDims();
+            document.getElementById('dropZone').style.display='none';
+            document.getElementById('toolPanel').style.display='block';
+        };
+        origImg.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function setMode(m,btn){mode=m;document.querySelectorAll('.mode-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pixelMode').style.display=m==='pixels'?'flex':'none';document.getElementById('percentMode').style.display=m==='percent'?'flex':'none';if(m==='percent')onScaleChange()}
+function toggleLock(){locked=!locked;const btn=document.getElementById('lockBtn');btn.textContent=locked?'🔒':'🔓';btn.classList.toggle('locked',locked)}
+function onWidthChange(){if(locked){const w=parseInt(document.getElementById('widthInput').value)||1;document.getElementById('heightInput').value=Math.round(w*(origH/origW))}updateNewDims()}
+function onHeightChange(){if(locked){const h=parseInt(document.getElementById('heightInput').value)||1;document.getElementById('widthInput').value=Math.round(h*(origW/origH))}updateNewDims()}
+function onScaleChange(){const s=(parseInt(document.getElementById('scaleInput').value)||100)/100;document.getElementById('widthInput').value=Math.round(origW*s);document.getElementById('heightInput').value=Math.round(origH*s);updateNewDims()}
+function applyPreset(w,h){document.getElementById('widthInput').value=w;document.getElementById('heightInput').value=h;updateNewDims()}
+function updateNewDims(){const w=document.getElementById('widthInput').value;const h=document.getElementById('heightInput').value;document.getElementById('infoNewDims').textContent=w+'×'+h+' px'}
+
+function resizeImage(){
+    if(!origImg)return;
+    const w=parseInt(document.getElementById('widthInput').value)||origW;
+    const h=parseInt(document.getElementById('heightInput').value)||origH;
+    const canvas=document.createElement('canvas');
+    canvas.width=w;canvas.height=h;
+    const ctx=canvas.getContext('2d');
+    ctx.imageSmoothingEnabled=true;
+    ctx.imageSmoothingQuality='high';
+    ctx.drawImage(origImg,0,0,w,h);
+    canvas.toBlob(blob=>{
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        const ext=loadedFile.type.split('/')[1]==='jpeg'?'jpg':loadedFile.type.split('/')[1];
+        a.href=url;a.download=loadedFile.name.replace(/\.[^.]+$/,'')+`-${w}x${h}.${ext}`;a.click();
+        URL.revokeObjectURL(url);
+        const info=document.getElementById('resultInfo');
+        info.textContent=`✓ Resized to ${w}×${h} — ${formatSize(blob.size)} — Download started`;
+        info.style.display='block';
+    },loadedFile.type,0.92);
+}
+
+function resetTool(){
+    origImg=null;loadedFile=null;
+    document.getElementById('dropZone').style.display='block';
+    document.getElementById('toolPanel').style.display='none';
+    document.getElementById('resultInfo').style.display='none';
+    document.getElementById('fileInput').value='';
+}
+</script>
+</body>
+</html>

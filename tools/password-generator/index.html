@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Free Strong Random Password Tool</title>
+    <meta name="description" content="Generate strong, secure random passwords instantly. Free online password generator with customizable length, character types, and password strength meter.">
+    <meta name="keywords" content="password generator, strong password generator, random password, secure password generator, password maker, generate password online">
+    <link rel="canonical" href="https://yoursite.com/tools/password-generator">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Password Generator","description":"Free online strong password generator with customizable options and strength indicator.","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#10b981;--accent-glow:rgba(16,185,129,0.15);--green:#34d399;--amber:#fbbf24;--rose:#fb7185;--red:#ef4444;--radius:12px}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+        .container{max-width:720px;margin:0 auto;padding:0 20px}
+        header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}
+        .hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:500px;margin:0 auto}
+
+        /* Password Display */
+        .password-display{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;text-align:center;position:relative}
+        .password-text{font-family:'JetBrains Mono',monospace;font-size:clamp(18px,4vw,28px);font-weight:600;color:var(--green);word-break:break-all;letter-spacing:1px;min-height:40px;padding:8px 0;user-select:all;cursor:pointer;transition:color .2s}
+        .password-text:hover{color:var(--accent)}
+
+        /* Strength Bar */
+        .strength-bar-wrap{margin:16px 0 8px;display:flex;gap:4px}
+        .strength-segment{flex:1;height:6px;border-radius:3px;background:var(--surface-2);transition:background .3s}
+        .strength-label{text-align:center;font-size:13px;font-weight:600;margin-bottom:4px;transition:color .3s}
+        .strength-info{text-align:center;font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+
+        /* Action Buttons */
+        .actions{display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+        .btn{padding:12px 24px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border)}
+        .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn-primary:hover{box-shadow:0 0 24px var(--accent-glow);transform:translateY(-1px)}
+        .btn-secondary{background:var(--surface);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
+
+        /* Options */
+        .options-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px}
+        .option-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+        .option-row:last-child{border-bottom:none}
+        .option-label{font-size:15px;font-weight:500}
+        .option-label small{display:block;color:var(--text-muted);font-size:12px;font-weight:400;margin-top:2px}
+
+        /* Slider */
+        .slider-wrap{display:flex;align-items:center;gap:12px}
+        .slider-value{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--accent);min-width:36px;text-align:center}
+        input[type="range"]{-webkit-appearance:none;width:200px;height:6px;border-radius:3px;background:var(--surface-2);outline:none}
+        input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 0 8px var(--accent-glow)}
+
+        /* Toggle */
+        .toggle{position:relative;width:48px;height:26px;cursor:pointer}
+        .toggle input{opacity:0;width:0;height:0}
+        .toggle-track{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--surface-2);border-radius:13px;border:1px solid var(--border);transition:all .3s}
+        .toggle-thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;background:var(--text-muted);border-radius:50%;transition:all .3s}
+        .toggle input:checked+.toggle-track{background:var(--accent);border-color:var(--accent)}
+        .toggle input:checked+.toggle-track .toggle-thumb{left:25px;background:#fff}
+
+        /* History */
+        .history-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+        .history-card h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px}
+        .history-list{max-height:200px;overflow-y:auto}
+        .history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--surface-2);border-radius:8px;margin-bottom:6px;font-family:'JetBrains Mono',monospace;font-size:12px}
+        .history-item .pw{color:var(--green);cursor:pointer;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px}
+        .history-item .pw:hover{color:var(--accent)}
+        .history-item .len{color:var(--text-muted);font-size:11px}
+        .no-history{color:var(--text-muted);font-size:13px;font-style:italic}
+
+        /* Bulk Generate */
+        .bulk-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+        .bulk-section h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px}
+        .bulk-controls{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+        .bulk-controls input{width:80px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);outline:none;text-align:center}
+        .bulk-output{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);background:var(--surface-2);border-radius:8px;padding:12px;max-height:200px;overflow-y:auto;white-space:pre-wrap;display:none}
+
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Password Generator</h1><p>Generate strong, secure, random passwords. Customize length and character types to fit any requirement.</p></section>
+
+    <!-- Password Display -->
+    <div class="password-display">
+        <div class="password-text" id="passwordText" onclick="copyPassword()" title="Click to copy">Generating...</div>
+        <div class="strength-bar-wrap" id="strengthBar"></div>
+        <div class="strength-label" id="strengthLabel">—</div>
+        <div class="strength-info" id="strengthInfo"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+        <button class="btn btn-primary" onclick="generate()">🔄 Generate New</button>
+        <button class="btn btn-secondary" onclick="copyPassword()" id="copyBtn">📋 Copy</button>
+    </div>
+
+    <!-- Options -->
+    <div class="options-card">
+        <div class="option-row">
+            <div class="option-label">Password Length<small>Recommended: 16+ characters</small></div>
+            <div class="slider-wrap">
+                <input type="range" id="lengthSlider" min="4" max="128" value="20" oninput="updateLength()">
+                <span class="slider-value" id="lengthValue">20</span>
+            </div>
+        </div>
+        <div class="option-row">
+            <div class="option-label">Uppercase Letters<small>A B C D E F ...</small></div>
+            <label class="toggle"><input type="checkbox" id="optUpper" checked onchange="generate()"><div class="toggle-track"><div class="toggle-thumb"></div></div></label>
+        </div>
+        <div class="option-row">
+            <div class="option-label">Lowercase Letters<small>a b c d e f ...</small></div>
+            <label class="toggle"><input type="checkbox" id="optLower" checked onchange="generate()"><div class="toggle-track"><div class="toggle-thumb"></div></div></label>
+        </div>
+        <div class="option-row">
+            <div class="option-label">Numbers<small>0 1 2 3 4 5 6 7 8 9</small></div>
+            <label class="toggle"><input type="checkbox" id="optNumbers" checked onchange="generate()"><div class="toggle-track"><div class="toggle-thumb"></div></div></label>
+        </div>
+        <div class="option-row">
+            <div class="option-label">Symbols<small>! @ # $ % ^ & * ( ) - _ = +</small></div>
+            <label class="toggle"><input type="checkbox" id="optSymbols" checked onchange="generate()"><div class="toggle-track"><div class="toggle-thumb"></div></div></label>
+        </div>
+        <div class="option-row">
+            <div class="option-label">Exclude Ambiguous<small>Remove 0 O o l 1 I | ` ' "</small></div>
+            <label class="toggle"><input type="checkbox" id="optExclude" onchange="generate()"><div class="toggle-track"><div class="toggle-thumb"></div></div></label>
+        </div>
+    </div>
+
+    <!-- Bulk Generate -->
+    <div class="bulk-section">
+        <h3>Bulk Generate</h3>
+        <div class="bulk-controls">
+            <span style="font-size:14px;color:var(--text-muted)">Generate</span>
+            <input type="number" id="bulkCount" value="10" min="1" max="100">
+            <span style="font-size:14px;color:var(--text-muted)">passwords</span>
+            <button class="btn btn-secondary" style="padding:8px 16px;font-size:13px" onclick="bulkGenerate()">Go</button>
+            <button class="btn btn-secondary" style="padding:8px 16px;font-size:13px" onclick="copyBulk()">Copy All</button>
+        </div>
+        <div class="bulk-output" id="bulkOutput"></div>
+    </div>
+
+    <!-- History -->
+    <div class="history-card">
+        <h3>Recent Passwords (this session only)</h3>
+        <div class="history-list" id="historyList"><p class="no-history">Generated passwords will appear here</p></div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online Strong Password Generator</h2>
+        <p>Create secure, random passwords that are virtually impossible to crack. This generator uses your browser's cryptographically secure random number generator (crypto.getRandomValues) to produce truly random passwords — no patterns, no predictability. Your passwords are never stored, transmitted, or logged anywhere.</p>
+        <h3>What Makes a Strong Password?</h3>
+        <p>A strong password is at least 12 characters long (16+ recommended), uses a mix of uppercase and lowercase letters, numbers, and symbols, doesn't contain dictionary words or personal information, and is unique for every account. This generator handles all of these requirements automatically.</p>
+        <h3>How Secure Are These Passwords?</h3>
+        <p>A 20-character password using all character types has approximately 130 bits of entropy. At current computing speeds, it would take billions of years to brute-force crack such a password. Even with quantum computing advances, passwords of 16+ characters with mixed character types remain secure for the foreseeable future.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Are these passwords truly random?</strong><p>Yes. This tool uses the Web Crypto API (crypto.getRandomValues), which provides cryptographically secure random numbers. This is the same randomness source used by password managers and encryption software.</p></div>
+        <div class="faq-item"><strong>Are my generated passwords stored anywhere?</strong><p>No. All password generation happens entirely in your browser. Nothing is sent to any server, saved in any database, or logged in any way. When you close this page, the passwords are gone.</p></div>
+        <div class="faq-item"><strong>What password length should I use?</strong><p>For most accounts, 16 characters is excellent. For high-security accounts (banking, email, password manager master password), use 20+ characters. The minimum acceptable length for any online account is 12 characters.</p></div>
+        <div class="faq-item"><strong>Why should I exclude ambiguous characters?</strong><p>Characters like 0/O, 1/l/I, and backtick/quote can be hard to distinguish in certain fonts. Excluding them is useful when you need to manually type or read a password aloud, such as sharing a WiFi password.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/uuid-generator">UUID Generator</a><a href="/tools/hash-generator">Hash Generator</a><a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools/qr-code-generator">QR Code Generator</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+const CHARS={upper:'ABCDEFGHIJKLMNOPQRSTUVWXYZ',lower:'abcdefghijklmnopqrstuvwxyz',numbers:'0123456789',symbols:'!@#$%^&*()-_=+[]{}|;:,.<>?/~'};
+const AMBIGUOUS='0OolI1|`\'"';
+const history=[];
+
+function getCharset(){
+    let charset='';
+    if(document.getElementById('optUpper').checked)charset+=CHARS.upper;
+    if(document.getElementById('optLower').checked)charset+=CHARS.lower;
+    if(document.getElementById('optNumbers').checked)charset+=CHARS.numbers;
+    if(document.getElementById('optSymbols').checked)charset+=CHARS.symbols;
+    if(document.getElementById('optExclude').checked){charset=[...charset].filter(c=>!AMBIGUOUS.includes(c)).join('')}
+    return charset||CHARS.lower;
+}
+
+function generatePassword(len,charset){
+    const arr=new Uint32Array(len);
+    crypto.getRandomValues(arr);
+    return Array.from(arr,v=>charset[v%charset.length]).join('');
+}
+
+function calcStrength(pw){
+    let pool=0;
+    if(/[a-z]/.test(pw))pool+=26;
+    if(/[A-Z]/.test(pw))pool+=26;
+    if(/[0-9]/.test(pw))pool+=10;
+    if(/[^a-zA-Z0-9]/.test(pw))pool+=32;
+    const entropy=Math.log2(pool)*pw.length;
+    if(entropy<28)return{level:0,label:'Very Weak',color:'var(--red)',time:'Seconds'};
+    if(entropy<36)return{level:1,label:'Weak',color:'var(--rose)',time:'Minutes to hours'};
+    if(entropy<60)return{level:2,label:'Fair',color:'var(--amber)',time:'Days to months'};
+    if(entropy<80)return{level:3,label:'Strong',color:'var(--green)',time:'Years'};
+    return{level:4,label:'Very Strong',color:'var(--accent)',time:'Centuries+'};
+}
+
+function generate(){
+    const len=parseInt(document.getElementById('lengthSlider').value);
+    const charset=getCharset();
+    const pw=generatePassword(len,charset);
+    document.getElementById('passwordText').textContent=pw;
+
+    const strength=calcStrength(pw);
+    const bar=document.getElementById('strengthBar');
+    bar.innerHTML=Array.from({length:4},(_,i)=>`<div class="strength-segment" style="background:${i<=strength.level-1?strength.color:'var(--surface-2)'}"></div>`).join('');
+    document.getElementById('strengthLabel').textContent=strength.label;
+    document.getElementById('strengthLabel').style.color=strength.color;
+    const entropy=Math.round(Math.log2(charset.length)*len);
+    document.getElementById('strengthInfo').textContent=`${entropy} bits entropy · ${len} chars · ${charset.length} possible chars · Crack time: ${strength.time}`;
+
+    history.unshift(pw);
+    if(history.length>20)history.pop();
+    renderHistory();
+}
+
+function renderHistory(){
+    const list=document.getElementById('historyList');
+    if(history.length===0){list.innerHTML='<p class="no-history">Generated passwords will appear here</p>';return}
+    list.innerHTML=history.map(pw=>`<div class="history-item"><span class="pw" onclick="navigator.clipboard.writeText('${pw}')" title="Click to copy">${pw}</span><span class="len">${pw.length}ch</span></div>`).join('');
+}
+
+function updateLength(){
+    document.getElementById('lengthValue').textContent=document.getElementById('lengthSlider').value;
+    generate();
+}
+
+function copyPassword(){
+    const pw=document.getElementById('passwordText').textContent;
+    if(!pw||pw==='Generating...')return;
+    navigator.clipboard.writeText(pw).then(()=>{
+        const btn=document.getElementById('copyBtn');
+        btn.textContent='✓ Copied!';
+        setTimeout(()=>btn.textContent='📋 Copy',1500);
+    });
+}
+
+function bulkGenerate(){
+    const count=Math.min(Math.max(parseInt(document.getElementById('bulkCount').value)||10,1),100);
+    const len=parseInt(document.getElementById('lengthSlider').value);
+    const charset=getCharset();
+    const passwords=Array.from({length:count},()=>generatePassword(len,charset));
+    const el=document.getElementById('bulkOutput');
+    el.textContent=passwords.join('\n');
+    el.style.display='block';
+}
+
+function copyBulk(){
+    const el=document.getElementById('bulkOutput');
+    if(!el.textContent)return;
+    navigator.clipboard.writeText(el.textContent);
+}
+
+generate();
+</script>
+</body>
+</html>

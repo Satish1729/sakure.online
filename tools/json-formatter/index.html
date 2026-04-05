@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator - Free Online JSON Beautifier</title>
+    <meta name="description" content="Format, validate, and beautify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, minification, and tree view. No signup.">
+    <meta name="keywords" content="json formatter, json validator, json beautifier, json format online, json pretty print, format json, validate json, json viewer">
+    <link rel="canonical" href="https://yoursite.com/tools/json-formatter">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"JSON Formatter & Validator","description":"Free online JSON formatter, validator, and beautifier with syntax highlighting and error detection.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#60a5fa;--accent-glow:rgba(96,165,250,0.15);--green:#34d399;--rose:#fb7185;--amber:#fbbf24;--purple:#a78bfa;--cyan:#22d3ee;--radius:12px;--str-color:#34d399;--num-color:#60a5fa;--bool-color:#f472b6;--null-color:#8b90a5;--key-color:#a78bfa;--bracket-color:#e4e6ef}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+        .container{max-width:1100px;margin:0 auto;padding:0 20px}
+        header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}
+        .hero{text-align:center;padding:40px 0 28px}.hero h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-1px;margin-bottom:10px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:15px;max-width:540px;margin:0 auto}
+        .toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+        .btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.btn:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{box-shadow:0 0 20px var(--accent-glow)}
+        .btn.danger{color:var(--rose)}.btn.danger:hover{border-color:var(--rose)}
+        .spacer{flex:1}
+        .indent-select{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13px;color:var(--text);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none}
+        .status-bar{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+        .status-chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
+        .status-valid{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2)}
+        .status-invalid{background:rgba(251,113,133,0.1);color:var(--rose);border:1px solid rgba(251,113,133,0.2)}
+        .status-empty{background:var(--surface);color:var(--text-muted);border:1px solid var(--border)}
+        .status-info{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+        @media(max-width:768px){.editor-grid{grid-template-columns:1fr}}
+        .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+        .btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea{width:100%;min-height:400px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;outline:none;color:var(--text);tab-size:2}
+        textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{width:100%;min-height:400px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow:auto;white-space:pre;tab-size:2}
+        .output-area .key{color:var(--key-color)}.output-area .str{color:var(--str-color)}.output-area .num{color:var(--num-color)}.output-area .bool{color:var(--bool-color)}.output-area .null{color:var(--null-color)}.output-area .bracket{color:var(--bracket-color)}
+        .error-msg{background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;color:var(--rose);font-family:'JetBrains Mono',monospace;font-size:13px;display:none}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>JSON Formatter & Validator</h1><p>Beautify, validate, and minify JSON data with syntax highlighting and detailed error messages.</p></section>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="formatJSON()">Format / Beautify</button>
+        <button class="btn" onclick="minifyJSON()">Minify</button>
+        <button class="btn" onclick="validateJSON()">Validate Only</button>
+        <button class="btn" onclick="sortKeys()">Sort Keys</button>
+        <button class="btn" onclick="loadSample()">Sample JSON</button>
+        <span class="spacer"></span>
+        <select class="indent-select" id="indentSize" onchange="formatJSON()">
+            <option value="2">2 spaces</option>
+            <option value="4">4 spaces</option>
+            <option value="tab">Tab</option>
+        </select>
+        <button class="btn danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="status-bar">
+        <span class="status-chip status-empty" id="statusChip">Paste JSON to begin</span>
+        <span class="status-info" id="statsInfo"></span>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">Input JSON</span><button class="btn-tiny" onclick="pasteClipboard()">Paste</button></div>
+            <textarea id="inputText" placeholder='Paste your JSON here...
+
+{
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}'></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label">Formatted Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadOutput()">Download</button></div></div>
+            <div class="output-area" id="outputText">Formatted JSON will appear here with syntax highlighting...</div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online JSON Formatter & Validator</h2>
+        <p>This tool formats (beautifies), validates, and minifies JSON data directly in your browser. It provides syntax highlighting with distinct colors for keys, strings, numbers, booleans, and null values, making it easy to read and debug complex JSON structures. No data is sent to any server — everything runs locally in your browser.</p>
+        <h3>Features</h3>
+        <p>Format/Beautify adds proper indentation and line breaks to compressed JSON. Minify removes all whitespace to produce the smallest possible output. Validate checks JSON syntax and shows precise error locations. Sort Keys alphabetically orders all object keys at every nesting level. Choose between 2-space, 4-space, or tab indentation. Syntax highlighting colors keys, strings, numbers, booleans, and null distinctly.</p>
+        <h3>Common JSON Errors</h3>
+        <p>The most frequent JSON mistakes include trailing commas after the last item in an array or object, single quotes instead of double quotes around keys and strings, unquoted keys, comments (JSON doesn't support comments), and missing commas between items. This validator pinpoints the exact position of syntax errors to help you fix them quickly.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>What is JSON?</strong><p>JSON (JavaScript Object Notation) is a lightweight data format used for storing and exchanging data between a server and a web application. It's human-readable and is the most common format for REST APIs, configuration files, and data storage.</p></div>
+        <div class="faq-item"><strong>What's the difference between JSON and JavaScript objects?</strong><p>JSON is stricter than JavaScript: all keys must be double-quoted strings, it only supports basic data types (string, number, boolean, null, array, object), and it doesn't allow comments, trailing commas, or undefined values. JavaScript objects are more flexible but not directly interchangeable with JSON.</p></div>
+        <div class="faq-item"><strong>Is there a size limit?</strong><p>No hard limit — the tool handles large JSON files efficiently since everything runs in your browser. Files over 10MB may cause slight delays depending on your device.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/json-to-csv">JSON to CSV</a><a href="/tools/html-beautifier">HTML Beautifier</a><a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools/url-encoder">URL Encoder</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+function getIndent(){const v=document.getElementById('indentSize').value;return v==='tab'?'\t':parseInt(v)}
+function setStatus(type,msg){const chip=document.getElementById('statusChip');chip.className='status-chip status-'+type;chip.textContent=msg}
+function setError(msg){const el=document.getElementById('errorMsg');if(msg){el.textContent='⚠ '+msg;el.style.display='block'}else{el.style.display='none'}}
+function countJSON(obj){let keys=0,values=0,depth=0;function walk(o,d){if(d>depth)depth=d;if(Array.isArray(o)){values++;o.forEach(i=>walk(i,d+1))}else if(o&&typeof o==='object'){Object.keys(o).forEach(k=>{keys++;walk(o[k],d+1)})}else{values++}}walk(obj,0);return{keys,values,depth}}
+
+function syntaxHighlight(json){
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(match){
+        let cls='num';
+        if(/^"/.test(match)){if(/:$/.test(match)){cls='key'}else{cls='str'}}
+        else if(/true|false/.test(match)){cls='bool'}
+        else if(/null/.test(match)){cls='null'}
+        if(cls==='key')match=match.replace(/"/g,'"');
+        return'<span class="'+cls+'">'+match+'</span>';
+    });
+}
+
+function formatJSON(){
+    const input=document.getElementById('inputText').value.trim();
+    const outEl=document.getElementById('outputText');
+    if(!input){outEl.innerHTML='Formatted JSON will appear here with syntax highlighting...';outEl.style.color='var(--text-muted)';setStatus('empty','Paste JSON to begin');setError(null);document.getElementById('statsInfo').textContent='';return}
+    try{
+        const obj=JSON.parse(input);
+        const indent=getIndent();
+        const formatted=JSON.stringify(obj,null,indent);
+        outEl.innerHTML=syntaxHighlight(formatted.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+        outEl.style.color='';
+        setStatus('valid','✓ Valid JSON');setError(null);
+        const stats=countJSON(obj);
+        document.getElementById('statsInfo').textContent=`${stats.keys} keys · ${stats.values} values · depth ${stats.depth} · ${formatted.length} chars`;
+    }catch(e){
+        outEl.innerHTML='<span style="color:var(--rose)">Invalid JSON — see error below</span>';
+        setStatus('invalid','✗ Invalid JSON');
+        setError(e.message);
+        document.getElementById('statsInfo').textContent='';
+    }
+}
+
+function minifyJSON(){
+    const input=document.getElementById('inputText').value.trim();
+    if(!input)return;
+    try{
+        const obj=JSON.parse(input);
+        const minified=JSON.stringify(obj);
+        document.getElementById('outputText').innerHTML=syntaxHighlight(minified.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+        document.getElementById('outputText').style.color='';
+        setStatus('valid','✓ Valid · Minified');setError(null);
+        document.getElementById('statsInfo').textContent=`${minified.length} chars (saved ${input.length-minified.length})`;
+    }catch(e){setStatus('invalid','✗ Invalid JSON');setError(e.message)}
+}
+
+function validateJSON(){
+    const input=document.getElementById('inputText').value.trim();
+    if(!input){setStatus('empty','Paste JSON to begin');return}
+    try{JSON.parse(input);setStatus('valid','✓ Valid JSON');setError(null)}
+    catch(e){setStatus('invalid','✗ Invalid JSON');setError(e.message)}
+}
+
+function sortKeys(){
+    const input=document.getElementById('inputText').value.trim();
+    if(!input)return;
+    try{
+        const obj=JSON.parse(input);
+        function sortObj(o){
+            if(Array.isArray(o))return o.map(sortObj);
+            if(o&&typeof o==='object'){const sorted={};Object.keys(o).sort().forEach(k=>{sorted[k]=sortObj(o[k])});return sorted}
+            return o;
+        }
+        const sorted=sortObj(obj);
+        const indent=getIndent();
+        const formatted=JSON.stringify(sorted,null,indent);
+        document.getElementById('outputText').innerHTML=syntaxHighlight(formatted.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+        setStatus('valid','✓ Sorted by keys');setError(null);
+    }catch(e){setStatus('invalid','✗ Invalid JSON');setError(e.message)}
+}
+
+function loadSample(){
+    document.getElementById('inputText').value='{"users":[{"id":1,"name":"Alice Johnson","email":"alice@example.com","active":true,"roles":["admin","editor"],"address":{"city":"San Francisco","state":"CA","zip":"94105"}},{"id":2,"name":"Bob Smith","email":"bob@example.com","active":false,"roles":["viewer"],"address":{"city":"New York","state":"NY","zip":"10001"}}],"total":2,"page":1,"metadata":{"version":"2.1","generated_at":"2026-04-04T12:00:00Z","api_key":null}}';
+    formatJSON();
+}
+
+function clearAll(){document.getElementById('inputText').value='';formatJSON()}
+async function pasteClipboard(){try{document.getElementById('inputText').value=await navigator.clipboard.readText();formatJSON()}catch{}}
+function copyOutput(){const t=document.getElementById('outputText').innerText;if(!t||t.startsWith('Formatted')||t.startsWith('Invalid'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadOutput(){const t=document.getElementById('outputText').innerText;if(!t||t.startsWith('Formatted')||t.startsWith('Invalid'))return;const b=new Blob([t],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='formatted.json';a.click();URL.revokeObjectURL(u)}
+
+document.getElementById('inputText').addEventListener('input',formatJSON);
+document.getElementById('inputText').addEventListener('keydown',function(e){if(e.key==='Tab'){e.preventDefault();const s=this.selectionStart;const end=this.selectionEnd;this.value=this.value.substring(0,s)+'  '+this.value.substring(end);this.selectionStart=this.selectionEnd=s+2}});
+</script>
+</body>
+</html>

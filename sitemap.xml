@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sakure.online/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://sakure.online/tools/word-counter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/case-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/text-repeater</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/lorem-ipsum-generator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/remove-duplicate-lines</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/text-to-binary</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/rot13-decoder</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/base64-encoder</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/url-encoder</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/reverse-text</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/add-line-numbers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/json-formatter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/json-to-csv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/html-beautifier</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/css-minifier</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/js-minifier</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/regex-tester</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/password-generator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/uuid-generator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/qr-code-generator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/color-picker</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/hash-generator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/timestamp-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/image-compressor</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/image-resizer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/image-format-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/image-to-base64</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sakure.online/tools/svg-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>

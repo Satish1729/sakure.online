@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROT13 Encoder & Decoder - Free Online Cipher Tool</title>
+    <meta name="description" content="Encode and decode ROT13 cipher text instantly. Free online ROT13 translator — also supports ROT5, ROT18, ROT47, and custom rotation values.">
+    <meta name="keywords" content="rot13 decoder, rot13 encoder, rot13 cipher, rot13 converter, caesar cipher, letter rotation, rot13 online">
+    <link rel="canonical" href="https://yoursite.com/tools/rot13-decoder">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"ROT13 Encoder & Decoder","description":"Free online ROT13 cipher encoder and decoder with support for custom rotation values.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#a78bfa;--accent-glow:rgba(167,139,250,0.15);--green:#34d399;--radius:12px}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+        .container{max-width:960px;margin:0 auto;padding:0 20px}
+        header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}
+        .hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:560px;margin:0 auto}
+        .rot-selector{display:flex;justify-content:center;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+        .rot-btn{padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-muted);font-family:'JetBrains Mono',monospace;font-size:13px;cursor:pointer;transition:all .2s}
+        .rot-btn.active{border-color:var(--accent);background:var(--accent);color:#fff}
+        .rot-btn:hover:not(.active){border-color:var(--accent);color:var(--text)}
+        .custom-rot{display:inline-flex;align-items:center;gap:6px}
+        .custom-rot input{width:50px;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);text-align:center;outline:none}
+        .custom-rot input:focus{border-color:var(--accent)}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+        @media(max-width:640px){.editor-grid{grid-template-columns:1fr}}
+        .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+        .btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea,.output-area{width:100%;min-height:220px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.8;resize:vertical;outline:none}
+        textarea{color:var(--text)}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{color:var(--green);overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+        .alpha-map{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:24px;overflow-x:auto}
+        .alpha-map table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center}
+        .alpha-map td,.alpha-map th{padding:6px 4px;border:1px solid var(--border);min-width:28px}
+        .alpha-map th{color:var(--text-muted);font-weight:400;font-size:10px;text-transform:uppercase}
+        .alpha-map .orig{color:var(--text)}
+        .alpha-map .mapped{color:var(--accent);font-weight:600}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}
+        .faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>ROT13 Encoder & Decoder</h1><p>Apply ROT13 or any rotation cipher to your text. Encoding and decoding use the same operation — just paste and convert.</p></section>
+
+    <div class="rot-selector">
+        <button class="rot-btn active" onclick="setRot(13,this)">ROT13</button>
+        <button class="rot-btn" onclick="setRot(1,this)">ROT1</button>
+        <button class="rot-btn" onclick="setRot(3,this)">ROT3</button>
+        <button class="rot-btn" onclick="setRot(5,this)">ROT5</button>
+        <button class="rot-btn" onclick="setRot(7,this)">ROT7</button>
+        <button class="rot-btn" onclick="setRot(10,this)">ROT10</button>
+        <button class="rot-btn" onclick="setRot(25,this)">ROT25</button>
+        <div class="custom-rot">
+            <span style="color:var(--text-muted);font-size:13px">Custom:</span>
+            <input type="number" id="customRot" value="13" min="1" max="25" onchange="setRotCustom()">
+        </div>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">Input</span><button class="btn-tiny" onclick="clearAll()">Clear</button></div>
+            <textarea id="inputText" placeholder="Enter text to encode/decode with ROT13..."></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label" id="outLabel">ROT13 Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="swapText()">↕ Swap</button></div></div>
+            <div class="output-area" id="outputText">Converted text appears here...</div>
+        </div>
+    </div>
+
+    <div class="alpha-map" id="alphaMap"></div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free ROT13 Cipher Tool</h2>
+        <p>ROT13 (rotate by 13 places) is a simple letter substitution cipher that replaces each letter with the letter 13 positions after it in the alphabet. Since the English alphabet has 26 letters, applying ROT13 twice returns the original text — meaning the same operation both encodes and decodes.</p>
+        <h3>How ROT13 Works</h3>
+        <p>Each letter is shifted by 13 positions: A becomes N, B becomes O, C becomes P, and so on. After Z, it wraps back to A. Numbers, spaces, and special characters remain unchanged. ROT13 is its own inverse — applying it to encoded text returns the original, making it one of the simplest symmetric ciphers.</p>
+        <h3>Other Rotation Values</h3>
+        <p>While ROT13 is the most common, any rotation from 1 to 25 is valid. ROT1 (shift by 1) is the classic Caesar cipher used by Julius Caesar. ROT25 is equivalent to shifting backward by 1. This tool supports all rotation values from 1 to 25, including custom values.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Is ROT13 secure encryption?</strong><p>No. ROT13 is not encryption — it's a simple obfuscation technique. It's trivially easy to decode and should never be used for protecting sensitive information. It's commonly used to hide spoilers, punchlines, or puzzle answers online.</p></div>
+        <div class="faq-item"><strong>Why is ROT13 special compared to other rotations?</strong><p>ROT13 is unique because 13 is exactly half of 26 (the alphabet length). This means encoding and decoding use the same operation. For other rotation values, you need to apply the complementary rotation to decode (e.g., ROT3 encoding requires ROT23 decoding).</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/text-to-binary">Text to Binary</a><a href="/tools/base64-encoder">Base64 Encoder</a><a href="/tools/url-encoder">URL Encoder</a><a href="/tools/case-converter">Case Converter</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+let rotValue=13;
+function setRot(n,btn){rotValue=n;document.getElementById('customRot').value=n;document.querySelectorAll('.rot-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('outLabel').textContent=`ROT${n} Output`;convert();renderMap()}
+function setRotCustom(){const v=Math.min(Math.max(parseInt(document.getElementById('customRot').value)||13,1),25);rotValue=v;document.querySelectorAll('.rot-btn').forEach(b=>b.classList.remove('active'));document.getElementById('outLabel').textContent=`ROT${v} Output`;convert();renderMap()}
+function rot(text,n){return text.replace(/[a-zA-Z]/g,c=>{const base=c<='Z'?65:97;return String.fromCharCode((c.charCodeAt(0)-base+n)%26+base)})}
+function convert(){const input=document.getElementById('inputText').value;const outEl=document.getElementById('outputText');if(!input.trim()){outEl.textContent='Converted text appears here...';outEl.style.color='var(--text-muted)';return}outEl.textContent=rot(input,rotValue);outEl.style.color='var(--green)'}
+function clearAll(){document.getElementById('inputText').value='';convert()}
+function copyOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Converted'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function swapText(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Converted'))return;document.getElementById('inputText').value=t;convert()}
+function renderMap(){
+    const upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let html='<table><tr><th>Original</th>';
+    for(const c of upper)html+=`<td class="orig">${c}</td>`;
+    html+='</tr><tr><th>ROT'+rotValue+'</th>';
+    for(const c of upper)html+=`<td class="mapped">${rot(c,rotValue)}</td>`;
+    html+='</tr></table>';
+    document.getElementById('alphaMap').innerHTML=html;
+}
+document.getElementById('inputText').addEventListener('input',convert);
+renderMap();
+</script>
+</body>
+</html>

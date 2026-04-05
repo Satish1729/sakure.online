@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakure — Free Online Tools for Everyone</title>
+    <meta name="description" content="100+ free online tools — text editors, image compressors, developer utilities, calculators, and more. No signup, no ads tracking, runs in your browser.">
+    <meta name="keywords" content="free online tools, text tools, image tools, developer tools, calculators, word counter, json formatter, password generator">
+    <meta property="og:title" content="Sakure — Free Online Tools for Everyone">
+    <meta property="og:description" content="100+ free online tools. Text, image, developer, and calculator utilities. No signup needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sakure.online">
+    <link rel="canonical" href="https://sakure.online">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#6c72ff;--accent-glow:rgba(108,114,255,0.15);--green:#34d399;--amber:#fbbf24;--rose:#fb7185;--cyan:#22d3ee;--purple:#a78bfa;--pink:#f472b6;--orange:#f97316;--teal:#14b8a6;--radius:12px}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+        .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+        /* Header */
+        header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(15,17,23,0.95);backdrop-filter:blur(12px);z-index:100}
+        .header-inner{display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:22px;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-0.5px}
+        .logo .dot{color:var(--text-muted);font-weight:400;font-size:16px}
+        nav{display:flex;gap:20px;align-items:center}
+        nav a{color:var(--text-muted);text-decoration:none;font-size:14px;transition:color .2s}
+        nav a:hover{color:var(--text)}
+        .badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;margin-left:6px}
+
+        /* Hero */
+        .hero{text-align:center;padding:72px 0 48px}
+        .hero h1{font-size:clamp(32px,6vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
+        .hero h1 .gradient{background:linear-gradient(135deg,var(--accent) 0%,var(--cyan) 50%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{color:var(--text-muted);font-size:18px;max-width:560px;margin:0 auto 32px}
+        .hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+        .hero-stat{text-align:center}
+        .hero-stat .num{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--accent)}
+        .hero-stat .label{font-size:13px;color:var(--text-muted);margin-top:2px}
+
+        /* Search */
+        .search-wrap{max-width:500px;margin:0 auto 48px;position:relative}
+        .search-input{width:100%;padding:14px 20px 14px 48px;background:var(--surface);border:1px solid var(--border);border-radius:14px;font-family:inherit;font-size:16px;color:var(--text);outline:none;transition:all .2s}
+        .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-glow)}
+        .search-input::placeholder{color:var(--text-muted)}
+        .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:18px;pointer-events:none}
+        .search-count{text-align:center;font-size:13px;color:var(--text-muted);margin-top:8px;display:none}
+
+        /* Category */
+        .category{margin-bottom:48px}
+        .category-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+        .category-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+        .category-title{font-size:20px;font-weight:700;letter-spacing:-0.5px}
+        .category-count{font-size:13px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+
+        /* Tool Grid */
+        .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+        .tool-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;transition:all .25s;display:block;position:relative;overflow:hidden}
+        .tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--card-accent,var(--accent));opacity:0;transition:opacity .25s}
+        .tool-card:hover{border-color:var(--card-accent,var(--accent));transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+        .tool-card:hover::before{opacity:1}
+        .tool-card .tool-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+        .tool-card .tool-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
+        .tool-card .tool-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--card-accent,var(--accent));background:var(--card-accent-bg,var(--accent-glow));padding:2px 8px;border-radius:4px}
+
+        /* Ad Slot */
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+
+        /* Footer */
+        footer{border-top:1px solid var(--border);padding:40px 0;text-align:center}
+        .footer-brand{font-size:18px;font-weight:800;color:var(--accent);margin-bottom:8px}
+        .footer-text{color:var(--text-muted);font-size:14px;margin-bottom:16px}
+        .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+        .footer-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color .2s}
+        .footer-links a:hover{color:var(--accent)}
+        .footer-copy{margin-top:24px;font-size:12px;color:var(--text-muted)}
+
+        /* Responsive */
+        @media(max-width:600px){
+            .hero{padding:48px 0 32px}
+            .hero-stats{gap:20px}
+            .tool-grid{grid-template-columns:1fr}
+            nav{gap:12px}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo">Sakure<span class="dot">.online</span></a>
+        <nav>
+            <a href="#text-tools">Text</a>
+            <a href="#encoding-tools">Encoding</a>
+            <a href="#developer-tools">Developer</a>
+            <a href="#generators">Generators</a>
+            <a href="#image-tools">Image</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h1>Free Online Tools<br><span class="gradient">That Just Work</span></h1>
+        <p>Fast, private, no-signup tools for text, images, code, and calculations. Everything runs in your browser — nothing is uploaded.</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">28</div><div class="label">Free Tools</div></div>
+            <div class="hero-stat"><div class="num">0</div><div class="label">Server Uploads</div></div>
+            <div class="hero-stat"><div class="num">∞</div><div class="label">Usage Limit</div></div>
+        </div>
+
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search tools... (e.g. json, image, password)" oninput="filterTools()">
+            <div class="search-count" id="searchCount"></div>
+        </div>
+    </section>
+
+    <!-- Text Tools -->
+    <section class="category" id="text-tools">
+        <div class="category-header">
+            <div class="category-icon" style="background:rgba(108,114,255,0.1);color:var(--accent)">📝</div>
+            <span class="category-title">Text Tools</span>
+            <span class="category-count">5 tools</span>
+        </div>
+        <div class="tool-grid">
+            <a href="/tools/word-counter" class="tool-card" style="--card-accent:#6c72ff;--card-accent-bg:rgba(108,114,255,0.1)" data-search="word counter character sentence paragraph reading time">
+                <div class="tool-name">Word Counter</div>
+                <div class="tool-desc">Count words, characters, sentences, paragraphs and reading time</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+            <a href="/tools/case-converter" class="tool-card" style="--card-accent:#22d3ee;--card-accent-bg:rgba(34,211,238,0.1)" data-search="case converter uppercase lowercase title camelcase snake">
+                <div class="tool-name">Case Converter</div>
+                <div class="tool-desc">Convert text to UPPER, lower, Title, camelCase, snake_case & more</div>
+                <span class="tool-tag">14 FORMATS</span>
+            </a>
+            <a href="/tools/text-repeater" class="tool-card" style="--card-accent:#e879f9;--card-accent-bg:rgba(232,121,249,0.1)" data-search="text repeater repeat multiply duplicate">
+                <div class="tool-name">Text Repeater</div>
+                <div class="tool-desc">Repeat any text up to 10,000 times with custom separators</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+            <a href="/tools/lorem-ipsum-generator" class="tool-card" style="--card-accent:#fb923c;--card-accent-bg:rgba(251,146,60,0.1)" data-search="lorem ipsum placeholder dummy text generator filler">
+                <div class="tool-name">Lorem Ipsum Generator</div>
+                <div class="tool-desc">Generate placeholder text by paragraphs, sentences, or words</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+            <a href="/tools/remove-duplicate-lines" class="tool-card" style="--card-accent:#34d399;--card-accent-bg:rgba(52,211,153,0.1)" data-search="remove duplicate lines deduplicate unique sort">
+                <div class="tool-name">Remove Duplicate Lines</div>
+                <div class="tool-desc">Deduplicate text lines with sort, trim, and case options</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Encoding Tools -->
+    <section class="category" id="encoding-tools">
+        <div class="category-header">
+            <div class="category-icon" style="background:rgba(56,189,248,0.1);color:#38bdf8">🔐</div>
+            <span class="category-title">Encoding & Decoding</span>
+            <span class="category-count">6 tools</span>
+        </div>
+        <div class="tool-grid">
+            <a href="/tools/text-to-binary" class="tool-card" style="--card-accent:#38bdf8;--card-accent-bg:rgba(56,189,248,0.1)" data-search="text binary converter ascii utf8 encode decode">
+                <div class="tool-name">Text to Binary</div>
+                <div class="tool-desc">Convert text to binary and binary back to text</div>
+                <span class="tool-tag">BIDIRECTIONAL</span>
+            </a>
+            <a href="/tools/rot13-decoder" class="tool-card" style="--card-accent:#a78bfa;--card-accent-bg:rgba(167,139,250,0.1)" data-search="rot13 caesar cipher rotation encode decode encrypt">
+                <div class="tool-name">ROT13 Encoder/Decoder</div>
+                <div class="tool-desc">Apply ROT13 or any rotation cipher with visual alphabet map</div>
+                <span class="tool-tag">7 PRESETS</span>
+            </a>
+            <a href="/tools/base64-encoder" class="tool-card" style="--card-accent:#f472b6;--card-accent-bg:rgba(244,114,182,0.1)" data-search="base64 encode decode converter utf8 unicode">
+                <div class="tool-name">Base64 Encoder/Decoder</div>
+                <div class="tool-desc">Encode text to Base64 or decode Base64 with UTF-8 support</div>
+                <span class="tool-tag">BIDIRECTIONAL</span>
+            </a>
+            <a href="/tools/url-encoder" class="tool-card" style="--card-accent:#2dd4bf;--card-accent-bg:rgba(45,212,191,0.1)" data-search="url encode decode percent encoding uri component query string">
+                <div class="tool-name">URL Encoder/Decoder</div>
+                <div class="tool-desc">Encode special characters for URLs or decode percent-encoded strings</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+            <a href="/tools/reverse-text" class="tool-card" style="--card-accent:#f97316;--card-accent-bg:rgba(249,115,22,0.1)" data-search="reverse text flip mirror backwards words lines unicode">
+                <div class="tool-name">Reverse Text</div>
+                <div class="tool-desc">Reverse characters, words, lines, or create Unicode mirror text</div>
+                <span class="tool-tag">5 MODES</span>
+            </a>
+            <a href="/tools/add-line-numbers" class="tool-card" style="--card-accent:#818cf8;--card-accent-bg:rgba(129,140,248,0.1)" data-search="add line numbers numbering prepend code lines">
+                <div class="tool-name">Add Line Numbers</div>
+                <div class="tool-desc">Prepend line numbers with custom format, padding, and separator</div>
+                <span class="tool-tag">FREE</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="ad-slot"><!-- Ad Space --></div>
+
+    <!-- Developer Tools -->
+    <section class="category" id="developer-tools">
+        <div class="category-header">
+            <div class="category-icon" style="background:rgba(96,165,250,0.1);color:#60a5fa">⚡</div>
+            <span class="category-title">Developer Tools</span>
+            <span class="category-count">6 tools</span>
+        </div>
+        <div class="tool-grid">
+            <a href="/tools/json-formatter" class="tool-card" style="--card-accent:#60a5fa;--card-accent-bg:rgba(96,165,250,0.1)" data-search="json formatter validator beautifier pretty print minify sort keys">
+                <div class="tool-name">JSON Formatter & Validator</div>
+                <div class="tool-desc">Beautify, validate, minify, and sort JSON with syntax highlighting</div>
+                <span class="tool-tag">SYNTAX HIGHLIGHT</span>
+            </a>
+            <a href="/tools/json-to-csv" class="tool-card" style="--card-accent:#4ade80;--card-accent-bg:rgba(74,222,128,0.1)" data-search="json csv converter spreadsheet excel table nested flatten">
+                <div class="tool-name">JSON to CSV</div>
+                <div class="tool-desc">Convert JSON arrays to CSV with nested object flattening</div>
+                <span class="tool-tag">TABLE PREVIEW</span>
+            </a>
+            <a href="/tools/html-beautifier" class="tool-card" style="--card-accent:#f472b6;--card-accent-bg:rgba(244,114,182,0.1)" data-search="html beautifier formatter minifier indent pretty print code">
+                <div class="tool-name">HTML Beautifier</div>
+                <div class="tool-desc">Format messy HTML with proper indentation or minify for production</div>
+                <span class="tool-tag">BEAUTIFY + MINIFY</span>
+            </a>
+            <a href="/tools/css-minifier" class="tool-card" style="--card-accent:#06b6d4;--card-accent-bg:rgba(6,182,212,0.1)" data-search="css minifier compressor compress optimize stylesheet beautify">
+                <div class="tool-name">CSS Minifier</div>
+                <div class="tool-desc">Compress CSS by removing comments, whitespace, and redundancies</div>
+                <span class="tool-tag">SIZE SAVINGS</span>
+            </a>
+            <a href="/tools/js-minifier" class="tool-card" style="--card-accent:#facc15;--card-accent-bg:rgba(250,204,21,0.1)" data-search="javascript minifier js compressor compress optimize script">
+                <div class="tool-name">JavaScript Minifier</div>
+                <div class="tool-desc">Remove comments and whitespace from JavaScript code</div>
+                <span class="tool-tag">COMMENT REMOVAL</span>
+            </a>
+            <a href="/tools/regex-tester" class="tool-card" style="--card-accent:#f97316;--card-accent-bg:rgba(249,115,22,0.1)" data-search="regex tester regular expression match test debug pattern cheat sheet">
+                <div class="tool-name">Regex Tester</div>
+                <div class="tool-desc">Test regex patterns with real-time highlighting and capture groups</div>
+                <span class="tool-tag">LIVE MATCHING</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Generators & Calculators -->
+    <section class="category" id="generators">
+        <div class="category-header">
+            <div class="category-icon" style="background:rgba(16,185,129,0.1);color:#10b981">🔧</div>
+            <span class="category-title">Generators & Calculators</span>
+            <span class="category-count">6 tools</span>
+        </div>
+        <div class="tool-grid">
+            <a href="/tools/password-generator" class="tool-card" style="--card-accent:#10b981;--card-accent-bg:rgba(16,185,129,0.1)" data-search="password generator strong secure random bulk crypto">
+                <div class="tool-name">Password Generator</div>
+                <div class="tool-desc">Generate strong random passwords with crypto-secure randomness</div>
+                <span class="tool-tag">CRYPTO SECURE</span>
+            </a>
+            <a href="/tools/uuid-generator" class="tool-card" style="--card-accent:#8b5cf6;--card-accent-bg:rgba(139,92,246,0.1)" data-search="uuid generator guid v4 unique id identifier bulk">
+                <div class="tool-name">UUID Generator</div>
+                <div class="tool-desc">Generate UUID v4 identifiers in 5 formats with bulk support</div>
+                <span class="tool-tag">5 FORMATS</span>
+            </a>
+            <a href="/tools/qr-code-generator" class="tool-card" style="--card-accent:#ec4899;--card-accent-bg:rgba(236,72,153,0.1)" data-search="qr code generator maker wifi email phone sms url custom colors">
+                <div class="tool-name">QR Code Generator</div>
+                <div class="tool-desc">Create QR codes for URLs, WiFi, email, phone with custom colors</div>
+                <span class="tool-tag">6 TYPES</span>
+            </a>
+            <a href="/tools/color-picker" class="tool-card" style="--card-accent:#f43f5e;--card-accent-bg:rgba(244,63,94,0.1)" data-search="color picker hex rgb hsl converter palette contrast wcag css">
+                <div class="tool-name">Color Picker</div>
+                <div class="tool-desc">Pick colors, convert HEX/RGB/HSL, generate palettes, check contrast</div>
+                <span class="tool-tag">WCAG CHECK</span>
+            </a>
+            <a href="/tools/hash-generator" class="tool-card" style="--card-accent:#14b8a6;--card-accent-bg:rgba(20,184,166,0.1)" data-search="hash generator md5 sha1 sha256 sha512 checksum crypto">
+                <div class="tool-name">Hash Generator</div>
+                <div class="tool-desc">Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes</div>
+                <span class="tool-tag">5 ALGORITHMS</span>
+            </a>
+            <a href="/tools/timestamp-converter" class="tool-card" style="--card-accent:#eab308;--card-accent-bg:rgba(234,179,8,0.1)" data-search="unix timestamp converter epoch time date utc live clock">
+                <div class="tool-name">Timestamp Converter</div>
+                <div class="tool-desc">Convert Unix timestamps to dates and dates to timestamps</div>
+                <span class="tool-tag">LIVE CLOCK</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Image Tools -->
+    <section class="category" id="image-tools">
+        <div class="category-header">
+            <div class="category-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b">🖼️</div>
+            <span class="category-title">Image Tools</span>
+            <span class="category-count">5 tools</span>
+        </div>
+        <div class="tool-grid">
+            <a href="/tools/image-compressor" class="tool-card" style="--card-accent:#f59e0b;--card-accent-bg:rgba(245,158,11,0.1)" data-search="image compressor compress reduce size jpeg png webp photo optimizer">
+                <div class="tool-name">Image Compressor</div>
+                <div class="tool-desc">Reduce image file size with adjustable quality and batch support</div>
+                <span class="tool-tag">BATCH SUPPORT</span>
+            </a>
+            <a href="/tools/image-resizer" class="tool-card" style="--card-accent:#3b82f6;--card-accent-bg:rgba(59,130,246,0.1)" data-search="image resizer resize dimensions pixels percentage aspect ratio preset">
+                <div class="tool-name">Image Resizer</div>
+                <div class="tool-desc">Resize by pixels or percentage with aspect ratio lock and presets</div>
+                <span class="tool-tag">7 PRESETS</span>
+            </a>
+            <a href="/tools/image-format-converter" class="tool-card" style="--card-accent:#a855f7;--card-accent-bg:rgba(168,85,247,0.1)" data-search="image converter format jpeg png webp bmp convert photo">
+                <div class="tool-name">Image Format Converter</div>
+                <div class="tool-desc">Convert between JPEG, PNG, WebP, and BMP formats</div>
+                <span class="tool-tag">4 FORMATS</span>
+            </a>
+            <a href="/tools/image-to-base64" class="tool-card" style="--card-accent:#06b6d4;--card-accent-bg:rgba(6,182,212,0.1)" data-search="image base64 encoder data uri html css json embed inline">
+                <div class="tool-name">Image to Base64</div>
+                <div class="tool-desc">Convert images to Base64 data URIs for HTML, CSS, and JSON</div>
+                <span class="tool-tag">5 OUTPUTS</span>
+            </a>
+            <a href="/tools/svg-to-png" class="tool-card" style="--card-accent:#f43f5e;--card-accent-bg:rgba(244,63,94,0.1)" data-search="svg png converter vector raster convert scale retina export">
+                <div class="tool-name">SVG to PNG</div>
+                <div class="tool-desc">Convert SVG vectors to PNG with custom size and retina scaling</div>
+                <span class="tool-tag">UP TO 4×</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="ad-slot"><!-- Ad Space --></div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-brand">Sakure.online</div>
+        <div class="footer-text">Free online tools that run entirely in your browser. No signup, no tracking, no uploads.</div>
+        <div class="footer-links">
+            <a href="#text-tools">Text Tools</a>
+            <a href="#encoding-tools">Encoding</a>
+            <a href="#developer-tools">Developer</a>
+            <a href="#generators">Generators</a>
+            <a href="#image-tools">Image</a>
+        </div>
+        <div class="footer-copy">© 2026 Sakure.online — Built with care. Free forever.</div>
+    </div>
+</footer>
+
+<script>
+function filterTools(){
+    const query=document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards=document.querySelectorAll('.tool-card');
+    const categories=document.querySelectorAll('.category');
+    let visible=0;
+
+    if(!query){
+        cards.forEach(c=>{c.style.display='block'});
+        categories.forEach(c=>{c.style.display='block'});
+        document.getElementById('searchCount').style.display='none';
+        return;
+    }
+
+    cards.forEach(card=>{
+        const searchText=(card.getAttribute('data-search')||'')+' '+(card.textContent||'');
+        const match=searchText.toLowerCase().includes(query);
+        card.style.display=match?'block':'none';
+        if(match)visible++;
+    });
+
+    // Hide empty categories
+    categories.forEach(cat=>{
+        const visibleCards=[...cat.querySelectorAll('.tool-card')].filter(c=>c.style.display!=='none');
+        cat.style.display=visibleCards.length>0?'block':'none';
+    });
+
+    const countEl=document.getElementById('searchCount');
+    countEl.textContent=visible===0?'No tools found — try a different search':`${visible} tool${visible!==1?'s':''} found`;
+    countEl.style.display='block';
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+});
+</script>
+
+</body>
+</html>

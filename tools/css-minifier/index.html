@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Minifier - Free Online CSS Compressor Tool</title>
+    <meta name="description" content="Minify and compress CSS code instantly. Free online CSS minifier removes comments, whitespace, and optimizes your stylesheets for faster loading.">
+    <meta name="keywords" content="css minifier, css compressor, minify css, compress css online, css minify tool, reduce css size, css optimization">
+    <link rel="canonical" href="https://yoursite.com/tools/css-minifier">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"CSS Minifier","description":"Free online CSS minifier and compressor. Remove whitespace, comments, and optimize CSS for production.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#06b6d4;--accent-glow:rgba(6,182,212,0.15);--green:#34d399;--rose:#fb7185;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:1100px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:40px 0 28px}.hero h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-1px;margin-bottom:10px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:15px;max-width:540px;margin:0 auto}
+        .toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.btn:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}.btn.primary:hover{box-shadow:0 0 20px var(--accent-glow)}.spacer{flex:1}
+        .stats-bar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}.stat-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--text-muted)}.stat-pill strong{color:var(--text);font-family:'JetBrains Mono',monospace;margin-right:4px}.stat-pill.highlight strong{color:var(--green)}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}@media(max-width:768px){.editor-grid{grid-template-columns:1fr}}.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}.btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;outline:none;color:var(--text);tab-size:2}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow:auto;white-space:pre-wrap;word-break:break-all;color:var(--green)}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>CSS Minifier</h1><p>Compress your CSS by removing comments, whitespace, and unnecessary characters. Make your stylesheets load faster.</p></section>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="minifyCSS()">Minify CSS</button>
+        <button class="btn" onclick="beautifyCSS()">Beautify CSS</button>
+        <button class="btn" onclick="loadSample()">Sample CSS</button>
+        <span class="spacer"></span>
+        <button class="btn" style="color:var(--rose)" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-pill"><strong id="stIn">0</strong> original</div>
+        <div class="stat-pill"><strong id="stOut">0</strong> minified</div>
+        <div class="stat-pill highlight"><strong id="stSaved">0%</strong> saved</div>
+        <div class="stat-pill"><strong id="stRules">0</strong> rules</div>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">Input CSS</span><button class="btn-tiny" onclick="pasteCSS()">Paste</button></div>
+            <textarea id="inputText" placeholder="Paste your CSS code here...
+
+/* Example */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}"></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label">Minified Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadOutput()">Download</button></div></div>
+            <div class="output-area" id="outputText">Minified CSS will appear here...</div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online CSS Minifier & Compressor</h2>
+        <p>Reduce your CSS file size by removing unnecessary characters without changing functionality. This CSS minifier strips comments, extra whitespace, line breaks, and redundant semicolons to produce the smallest possible output. Smaller CSS files mean faster page loads, better Core Web Vitals scores, and improved SEO rankings.</p>
+        <h3>What Gets Removed</h3>
+        <p>All CSS comments (both single-line and multi-line), extra whitespace and indentation, line breaks and carriage returns, spaces around selectors and property delimiters, trailing semicolons before closing braces, and redundant whitespace inside property values. The tool preserves all functional CSS — your styles will render identically after minification.</p>
+        <h3>Why Minify CSS?</h3>
+        <p>Google's PageSpeed Insights specifically recommends minifying CSS as a performance optimization. Reducing CSS file size decreases download time, especially on mobile networks. It also reduces parsing time in the browser. For a typical 50KB stylesheet, minification can save 10-15KB — a meaningful improvement that compounds across multiple CSS files on a page.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Will minification break my CSS?</strong><p>No. Minification only removes characters that don't affect how CSS is interpreted by browsers — whitespace, comments, and redundant characters. The visual output of your stylesheets remains identical.</p></div>
+        <div class="faq-item"><strong>Can I reverse minification?</strong><p>Yes. Use the "Beautify CSS" button to add back readable formatting with proper indentation. However, comments removed during minification cannot be recovered.</p></div>
+        <div class="faq-item"><strong>Should I minify CSS for development or production?</strong><p>Keep readable CSS during development for easier debugging. Minify only for production deployment. Most build tools (Webpack, Vite, etc.) handle this automatically, but this tool is useful for quick one-off minification or when you don't have a build pipeline.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/js-minifier">JS Minifier</a><a href="/tools/html-beautifier">HTML Beautifier</a><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools/json-to-csv">JSON to CSV</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+function minifyCSS(){
+    const input=document.getElementById('inputText').value;
+    if(!input.trim()){reset();return}
+    let css=input;
+    // Remove comments
+    css=css.replace(/\/\*[\s\S]*?\*\//g,'');
+    // Remove whitespace
+    css=css.replace(/\s+/g,' ');
+    // Remove spaces around special chars
+    css=css.replace(/\s*([{};:,>~+])\s*/g,'$1');
+    // Remove trailing semicolons before }
+    css=css.replace(/;}/g,'}');
+    // Remove leading/trailing whitespace
+    css=css.trim();
+    // Remove spaces after commas in selectors (but keep in values)
+    css=css.replace(/,\s*/g,',');
+    // Clean up remaining double spaces
+    css=css.replace(/\s{2,}/g,' ');
+    showOutput(input,css);
+}
+
+function beautifyCSS(){
+    const input=document.getElementById('inputText').value;
+    if(!input.trim()){reset();return}
+    // First minify to normalize
+    let css=input.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,' ').trim();
+    // Add line breaks and indentation
+    let result='';let level=0;
+    for(let i=0;i<css.length;i++){
+        const c=css[i];
+        if(c==='{'){result+=' {\n';level++;result+='  '.repeat(level)}
+        else if(c==='}'){level=Math.max(0,level-1);result=result.trimEnd();result+='\n'+'  '.repeat(level)+'}\n';if(level>0)result+='  '.repeat(level)}
+        else if(c===';'){result+=';\n'+'  '.repeat(level)}
+        else if(c===','&&level===0){result+=',\n'}
+        else{result+=c}
+    }
+    showOutput(input,result.replace(/\n{3,}/g,'\n\n').trim());
+}
+
+function showOutput(input,result){
+    document.getElementById('outputText').textContent=result;
+    document.getElementById('outputText').style.color='var(--green)';
+    const inLen=input.length;const outLen=result.length;
+    const saved=inLen>0?Math.round((1-outLen/inLen)*100):0;
+    const rules=(result.match(/\{/g)||[]).length;
+    document.getElementById('stIn').textContent=inLen.toLocaleString()+' chars';
+    document.getElementById('stOut').textContent=outLen.toLocaleString()+' chars';
+    document.getElementById('stSaved').textContent=saved+'%';
+    document.getElementById('stRules').textContent=rules;
+}
+
+function reset(){document.getElementById('outputText').textContent='Minified CSS will appear here...';document.getElementById('outputText').style.color='var(--text-muted)';['stIn','stOut'].forEach(id=>document.getElementById(id).textContent='0');document.getElementById('stSaved').textContent='0%';document.getElementById('stRules').textContent='0'}
+function loadSample(){document.getElementById('inputText').value='/* ==========================================================================\n   Base Styles\n   ========================================================================== */\n\n/* Box model reset */\n*,\n*::before,\n*::after {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0;\n}\n\n/* Body defaults */\nbody {\n    font-family: \'DM Sans\', -apple-system, BlinkMacSystemFont, sans-serif;\n    background-color: #0f1117;\n    color: #e4e6ef;\n    line-height: 1.6;\n    min-height: 100vh;\n    -webkit-font-smoothing: antialiased;\n}\n\n/* Container */\n.container {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 0 20px;\n}\n\n/* Typography */\nh1, h2, h3, h4, h5, h6 {\n    font-weight: 700;\n    letter-spacing: -0.5px;\n    line-height: 1.2;\n}\n\nh1 { font-size: 2.5rem; }\nh2 { font-size: 2rem; }\nh3 { font-size: 1.5rem; }\n\np {\n    margin-bottom: 1rem;\n    color: #8b90a5;\n}\n\n/* Links */\na {\n    color: #60a5fa;\n    text-decoration: none;\n    transition: color 0.2s ease;\n}\n\na:hover {\n    color: #93bbfc;\n}\n\n/* Buttons */\n.btn {\n    display: inline-flex;\n    align-items: center;\n    padding: 10px 20px;\n    border-radius: 8px;\n    font-family: inherit;\n    font-size: 14px;\n    font-weight: 600;\n    cursor: pointer;\n    transition: all 0.2s ease;\n    border: 1px solid transparent;\n}\n\n.btn-primary {\n    background-color: #6c72ff;\n    color: #ffffff;\n    border-color: #6c72ff;\n}\n\n.btn-primary:hover {\n    box-shadow: 0 0 20px rgba(108, 114, 255, 0.3);\n    transform: translateY(-1px);\n}';minifyCSS()}
+function clearAll(){document.getElementById('inputText').value='';reset()}
+async function pasteCSS(){try{document.getElementById('inputText').value=await navigator.clipboard.readText();minifyCSS()}catch{}}
+function copyOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Minified'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Minified'))return;const b=new Blob([t],{type:'text/css'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='styles.min.css';a.click();URL.revokeObjectURL(u)}
+</script>
+</body>
+</html>

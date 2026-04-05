@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unix Timestamp Converter - Free Epoch Time Converter</title>
+    <meta name="description" content="Convert Unix timestamps to human-readable dates and dates to Unix timestamps. Free online epoch time converter with live clock and timezone support.">
+    <meta name="keywords" content="unix timestamp converter, epoch converter, timestamp to date, date to timestamp, unix time, epoch time converter, unix timestamp online">
+    <link rel="canonical" href="https://yoursite.com/tools/timestamp-converter">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Unix Timestamp Converter","description":"Free online Unix/Epoch timestamp converter. Convert between timestamps and human-readable dates.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#eab308;--accent-glow:rgba(234,179,8,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:800px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+        /* Live Clock */
+        .live-clock{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:24px}
+        .clock-timestamp{font-family:'JetBrains Mono',monospace;font-size:clamp(24px,5vw,36px);font-weight:700;color:var(--accent)}
+        .clock-date{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-muted);margin-top:4px}
+        .clock-label{font-size:12px;color:var(--text-muted);margin-top:8px;text-transform:uppercase;letter-spacing:1px}
+        /* Converter Cards */
+        .converter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+        .converter-card h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:16px}
+        .input-row{display:flex;gap:10px;align-items:end;margin-bottom:16px;flex-wrap:wrap}
+        .input-group{flex:1;min-width:200px}
+        .input-group label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:6px}
+        .input-group input,.input-group select{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);outline:none}
+        .input-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+        .btn-convert{padding:10px 20px;background:var(--accent);border:none;border-radius:8px;color:var(--bg);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;align-self:end}.btn-convert:hover{box-shadow:0 0 20px var(--accent-glow)}
+        .result-box{background:var(--surface-2);border-radius:10px;padding:14px 18px;margin-top:12px}
+        .result-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:14px;border-bottom:1px solid var(--border)}
+        .result-row:last-child{border-bottom:none}
+        .result-row .label{color:var(--text-muted);font-size:13px}
+        .result-row .val{font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:500;cursor:pointer}
+        .result-row .val:hover{color:var(--accent)}
+        /* Reference */
+        .ref-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+        .ref-card h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px}
+        .ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        @media(max-width:500px){.ref-grid{grid-template-columns:1fr}}
+        .ref-item{display:flex;justify-content:space-between;padding:8px 12px;background:var(--surface-2);border-radius:8px;font-size:13px}
+        .ref-item .ref-label{color:var(--text-muted)}
+        .ref-item .ref-val{font-family:'JetBrains Mono',monospace;color:var(--text);cursor:pointer}
+        .ref-item .ref-val:hover{color:var(--accent)}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Unix Timestamp Converter</h1><p>Convert between Unix timestamps (epoch time) and human-readable dates. Live clock shows current timestamp.</p></section>
+
+    <!-- Live Clock -->
+    <div class="live-clock">
+        <div class="clock-timestamp" id="liveTimestamp">—</div>
+        <div class="clock-date" id="liveDate">—</div>
+        <div class="clock-label">Current Unix Timestamp (updates live)</div>
+    </div>
+
+    <!-- Timestamp → Date -->
+    <div class="converter-card">
+        <h3>Timestamp → Date</h3>
+        <div class="input-row">
+            <div class="input-group"><label>Unix Timestamp</label><input type="number" id="tsInput" placeholder="e.g. 1712332800"></div>
+            <div class="input-group" style="max-width:140px"><label>Unit</label><select id="tsUnit"><option value="s">Seconds</option><option value="ms">Milliseconds</option></select></div>
+            <button class="btn-convert" onclick="tsToDate()">Convert →</button>
+        </div>
+        <div class="result-box" id="tsResult" style="display:none"></div>
+    </div>
+
+    <!-- Date → Timestamp -->
+    <div class="converter-card">
+        <h3>Date → Timestamp</h3>
+        <div class="input-row">
+            <div class="input-group"><label>Date & Time</label><input type="datetime-local" id="dateInput" step="1"></div>
+            <button class="btn-convert" onclick="dateToTs()">Convert →</button>
+        </div>
+        <div class="result-box" id="dateResult" style="display:none"></div>
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="ref-card">
+        <h3>Common Timestamps</h3>
+        <div class="ref-grid">
+            <div class="ref-item"><span class="ref-label">Unix Epoch</span><span class="ref-val" onclick="useTS(0)">0</span></div>
+            <div class="ref-item"><span class="ref-label">Y2K</span><span class="ref-val" onclick="useTS(946684800)">946684800</span></div>
+            <div class="ref-item"><span class="ref-label">2038 Problem</span><span class="ref-val" onclick="useTS(2147483647)">2147483647</span></div>
+            <div class="ref-item"><span class="ref-label">1 Hour Ago</span><span class="ref-val" id="refHourAgo" onclick="useTS(this.textContent)">—</span></div>
+            <div class="ref-item"><span class="ref-label">Start of Today</span><span class="ref-val" id="refToday" onclick="useTS(this.textContent)">—</span></div>
+            <div class="ref-item"><span class="ref-label">Start of Year</span><span class="ref-val" id="refYear" onclick="useTS(this.textContent)">—</span></div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Unix Timestamp Converter</h2>
+        <p>Convert Unix timestamps (also called epoch time or POSIX time) to human-readable dates and vice versa. Unix time counts the number of seconds since January 1, 1970, 00:00:00 UTC — this is the universal time standard used by all operating systems, databases, and programming languages to represent points in time as simple numbers.</p>
+        <h3>What Is a Unix Timestamp?</h3>
+        <p>A Unix timestamp is a single number representing a moment in time. For example, 1712332800 represents April 5, 2024 at midnight UTC. This format is used because it's compact, timezone-independent, and easy to do math with (adding 86400 seconds always moves forward exactly one day). It's the standard time representation in APIs, databases, log files, and server configurations.</p>
+        <h3>Seconds vs Milliseconds</h3>
+        <p>Traditional Unix timestamps use seconds (10 digits, like 1712332800). JavaScript, Java, and some APIs use milliseconds (13 digits, like 1712332800000). This tool automatically handles both formats — select "Seconds" or "Milliseconds" in the unit dropdown, or the tool will auto-detect based on the number of digits.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>What is the Year 2038 problem?</strong><p>Many older systems store Unix timestamps as signed 32-bit integers, which can hold a maximum value of 2,147,483,647 — corresponding to January 19, 2038 at 03:14:07 UTC. After this point, the timestamp overflows and wraps to a negative number, potentially causing systems to interpret the date as December 13, 1901. Modern 64-bit systems don't have this limitation.</p></div>
+        <div class="faq-item"><strong>Are Unix timestamps timezone-dependent?</strong><p>No. Unix timestamps always represent UTC (Coordinated Universal Time). When converting to a human-readable date, your local timezone is applied for display. The timestamp itself is the same regardless of where in the world you are.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/uuid-generator">UUID Generator</a><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools/hash-generator">Hash Generator</a><a href="/tools/password-generator">Password Generator</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+function updateClock(){
+    const now=new Date();
+    const ts=Math.floor(now.getTime()/1000);
+    document.getElementById('liveTimestamp').textContent=ts.toLocaleString();
+    document.getElementById('liveDate').textContent=now.toUTCString();
+    document.getElementById('refHourAgo').textContent=ts-3600;
+    const startOfDay=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    document.getElementById('refToday').textContent=Math.floor(startOfDay.getTime()/1000);
+    const startOfYear=new Date(now.getFullYear(),0,1);
+    document.getElementById('refYear').textContent=Math.floor(startOfYear.getTime()/1000);
+    // Set default date input to now
+    if(!document.getElementById('dateInput').value){
+        const local=new Date(now.getTime()-now.getTimezoneOffset()*60000);
+        document.getElementById('dateInput').value=local.toISOString().slice(0,19);
+    }
+    if(!document.getElementById('tsInput').value){document.getElementById('tsInput').value=ts}
+}
+
+function tsToDate(){
+    let ts=parseInt(document.getElementById('tsInput').value);
+    if(!ts&&ts!==0){return}
+    const unit=document.getElementById('tsUnit').value;
+    const msTs=unit==='ms'?ts:ts*1000;
+    const date=new Date(msTs);
+    if(isNaN(date.getTime())){document.getElementById('tsResult').innerHTML='<div style="color:var(--rose)">Invalid timestamp</div>';document.getElementById('tsResult').style.display='block';return}
+    const utc=date.toUTCString();
+    const local=date.toString();
+    const iso=date.toISOString();
+    const relative=getRelative(msTs);
+    document.getElementById('tsResult').innerHTML=`
+        <div class="result-row"><span class="label">UTC</span><span class="val" onclick="navigator.clipboard.writeText('${utc}')">${utc}</span></div>
+        <div class="result-row"><span class="label">Local</span><span class="val" onclick="navigator.clipboard.writeText('${local}')">${local}</span></div>
+        <div class="result-row"><span class="label">ISO 8601</span><span class="val" onclick="navigator.clipboard.writeText('${iso}')">${iso}</span></div>
+        <div class="result-row"><span class="label">Relative</span><span class="val">${relative}</span></div>
+        <div class="result-row"><span class="label">Day of Week</span><span class="val">${date.toLocaleDateString('en',{weekday:'long'})}</span></div>
+        <div class="result-row"><span class="label">Milliseconds</span><span class="val" onclick="navigator.clipboard.writeText('${msTs}')">${msTs}</span></div>
+    `;
+    document.getElementById('tsResult').style.display='block';
+}
+
+function dateToTs(){
+    const val=document.getElementById('dateInput').value;
+    if(!val)return;
+    const date=new Date(val);
+    const tsSec=Math.floor(date.getTime()/1000);
+    const tsMs=date.getTime();
+    const relative=getRelative(tsMs);
+    document.getElementById('dateResult').innerHTML=`
+        <div class="result-row"><span class="label">Unix (seconds)</span><span class="val" onclick="navigator.clipboard.writeText('${tsSec}')">${tsSec}</span></div>
+        <div class="result-row"><span class="label">Unix (milliseconds)</span><span class="val" onclick="navigator.clipboard.writeText('${tsMs}')">${tsMs}</span></div>
+        <div class="result-row"><span class="label">ISO 8601</span><span class="val" onclick="navigator.clipboard.writeText('${date.toISOString()}')">${date.toISOString()}</span></div>
+        <div class="result-row"><span class="label">Relative</span><span class="val">${relative}</span></div>
+    `;
+    document.getElementById('dateResult').style.display='block';
+}
+
+function useTS(ts){document.getElementById('tsInput').value=ts;tsToDate()}
+
+function getRelative(ms){
+    const now=Date.now();
+    const diff=Math.abs(now-ms);
+    const past=ms<now;
+    const sec=Math.floor(diff/1000);
+    if(sec<60)return sec+' seconds '+(past?'ago':'from now');
+    const min=Math.floor(sec/60);
+    if(min<60)return min+' minutes '+(past?'ago':'from now');
+    const hr=Math.floor(min/60);
+    if(hr<24)return hr+' hours '+(past?'ago':'from now');
+    const days=Math.floor(hr/24);
+    if(days<30)return days+' days '+(past?'ago':'from now');
+    const months=Math.floor(days/30);
+    if(months<12)return months+' months '+(past?'ago':'from now');
+    const years=Math.floor(days/365);
+    return years+' years '+(past?'ago':'from now');
+}
+
+updateClock();
+setInterval(updateClock,1000);
+</script>
+</body>
+</html>

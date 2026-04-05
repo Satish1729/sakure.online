@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Free Online Word & Character Count Tool</title>
+    <meta name="description" content="Count words, characters, sentences, and paragraphs instantly. Free online word counter with reading time, keyword density, and text analysis. No signup required.">
+    <meta name="keywords" content="word counter, character counter, word count, character count, text counter, online word counter, free word counter">
+    <meta property="og:title" content="Word Counter - Free Online Word & Character Count Tool">
+    <meta property="og:description" content="Count words, characters, sentences, and paragraphs instantly. Free, fast, no signup.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://yoursite.com/tools/word-counter">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Word Counter",
+        "description": "Free online word counter tool. Count words, characters, sentences, paragraphs, and analyze reading time and keyword density.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface-2: #242836;
+            --border: #2e3345;
+            --text: #e4e6ef;
+            --text-muted: #8b90a5;
+            --accent: #6c72ff;
+            --accent-glow: rgba(108, 114, 255, 0.15);
+            --green: #34d399;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 18px; font-weight: 700; color: var(--accent);
+            text-decoration: none; letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--text-muted); font-weight: 400; }
+        nav a {
+            color: var(--text-muted); text-decoration: none; font-size: 14px;
+            margin-left: 24px; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            text-align: center; padding: 48px 0 32px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px); font-weight: 700;
+            letter-spacing: -1px; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p { color: var(--text-muted); font-size: 16px; max-width: 560px; margin: 0 auto; }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .stat-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px; font-weight: 700; color: var(--accent);
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 12px; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Textarea */
+        .editor-wrap {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        #textInput {
+            width: 100%;
+            min-height: 280px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #textInput::placeholder { color: var(--text-muted); }
+        #textInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .editor-actions {
+            position: absolute; top: 12px; right: 12px;
+            display: flex; gap: 8px;
+        }
+        .btn-small {
+            background: var(--surface-2); border: 1px solid var(--border);
+            color: var(--text-muted); padding: 6px 12px; border-radius: 8px;
+            font-size: 12px; cursor: pointer; font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn-small:hover { color: var(--text); border-color: var(--accent); }
+
+        /* Detail Stats */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .detail-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .detail-card h3 {
+            font-size: 14px; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .detail-row {
+            display: flex; justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .detail-row span:first-child { color: var(--text-muted); }
+        .detail-row span:last-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text); font-weight: 500;
+        }
+
+        /* Keyword Density */
+        .keyword-bar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .keyword-word { color: var(--text); min-width: 100px; font-weight: 500; }
+        .keyword-track {
+            flex: 1; height: 6px; background: var(--surface-2);
+            border-radius: 3px; overflow: hidden;
+        }
+        .keyword-fill {
+            height: 100%; background: var(--accent); border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .keyword-pct {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted); font-size: 12px; min-width: 44px;
+            text-align: right;
+        }
+        .keyword-count {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted); font-size: 12px; min-width: 24px;
+            text-align: right;
+        }
+        .no-data { color: var(--text-muted); font-size: 14px; font-style: italic; }
+
+        /* Ad placeholder */
+        .ad-slot {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 32px 0;
+        }
+
+        /* SEO Content */
+        .seo-content {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+        .seo-content h2 {
+            font-size: 24px; font-weight: 700; margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .seo-content h3 {
+            font-size: 18px; font-weight: 600; margin: 24px 0 12px;
+            color: var(--text);
+        }
+        .seo-content p {
+            color: var(--text-muted); font-size: 15px; margin-bottom: 16px;
+            max-width: 720px;
+        }
+        .faq-item { margin-bottom: 20px; }
+        .faq-item strong { color: var(--text); font-size: 15px; }
+        .faq-item p { margin-top: 8px; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stat-value { font-size: 22px; }
+            #textInput { min-height: 200px; font-size: 15px; }
+            .hero { padding: 32px 0 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo">ToolKit <span>/ free tools</span></a>
+        <nav>
+            <a href="/tools">All Tools</a>
+            <a href="/about">About</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h1>Word Counter</h1>
+        <p>Count words, characters, sentences and paragraphs instantly. Analyze reading time and keyword density — free, fast, private.</p>
+    </section>
+
+    <!-- Main Stats -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-value" id="wordCount">0</div>
+            <div class="stat-label">Words</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="charCount">0</div>
+            <div class="stat-label">Characters</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="charNoSpace">0</div>
+            <div class="stat-label">No Spaces</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="sentenceCount">0</div>
+            <div class="stat-label">Sentences</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="paraCount">0</div>
+            <div class="stat-label">Paragraphs</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="readTime">0m</div>
+            <div class="stat-label">Read Time</div>
+        </div>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor-wrap">
+        <textarea id="textInput" placeholder="Start typing or paste your text here to count words, characters, sentences and more..."></textarea>
+        <div class="editor-actions">
+            <button class="btn-small" onclick="copyText()" id="copyBtn">Copy</button>
+            <button class="btn-small" onclick="clearText()">Clear</button>
+        </div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot">
+        <!-- Google AdSense ad unit goes here -->
+        Ad Space
+    </div>
+
+    <!-- Detailed Analysis -->
+    <div class="details-grid">
+        <div class="detail-card">
+            <h3>Text Statistics</h3>
+            <div class="detail-row"><span>Avg. Word Length</span><span id="avgWordLen">0</span></div>
+            <div class="detail-row"><span>Avg. Sentence Length</span><span id="avgSentLen">0 words</span></div>
+            <div class="detail-row"><span>Longest Word</span><span id="longestWord">—</span></div>
+            <div class="detail-row"><span>Speaking Time</span><span id="speakTime">0m</span></div>
+            <div class="detail-row"><span>Unique Words</span><span id="uniqueWords">0</span></div>
+        </div>
+        <div class="detail-card">
+            <h3>Top Keywords</h3>
+            <div id="keywordList">
+                <p class="no-data">Start typing to see keyword density</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot">
+        <!-- Google AdSense ad unit goes here -->
+        Ad Space
+    </div>
+
+    <!-- SEO Content -->
+    <section class="seo-content">
+        <h2>Free Online Word Counter Tool</h2>
+        <p>Our word counter instantly analyzes your text to show the exact number of words, characters (with and without spaces), sentences, and paragraphs. Whether you're writing an essay, blog post, social media caption, or email, knowing your word count helps you stay within limits and write more effectively.</p>
+
+        <h3>Why Use a Word Counter?</h3>
+        <p>Writers, students, marketers, and professionals use word counters daily. Social media platforms like Twitter (280 characters), LinkedIn (3,000 characters for posts), and Instagram (2,200 characters for captions) all have strict limits. SEO professionals need to hit optimal content lengths — typically 1,500-2,500 words for blog posts that rank well on Google. Our tool makes hitting these targets effortless.</p>
+
+        <h3>Features</h3>
+        <p>Beyond basic word and character counting, this tool provides reading time estimates (based on 225 words per minute), speaking time (based on 150 words per minute), keyword density analysis showing your most-used words and their frequency, average word and sentence length, and unique word count — all updating in real time as you type.</p>
+
+        <h3>Frequently Asked Questions</h3>
+
+        <div class="faq-item">
+            <strong>How accurate is this word counter?</strong>
+            <p>Our counter splits text on whitespace and punctuation boundaries, matching the behavior of word processors like Microsoft Word and Google Docs. Results are accurate for all languages using space-separated words.</p>
+        </div>
+        <div class="faq-item">
+            <strong>Is my text stored or shared?</strong>
+            <p>No. All processing happens entirely in your browser. Your text never leaves your device — we don't send it to any server, and nothing is stored.</p>
+        </div>
+        <div class="faq-item">
+            <strong>What is a good word count for a blog post?</strong>
+            <p>For SEO, most high-ranking blog posts contain 1,500 to 2,500 words. However, quality matters more than length. Focus on covering the topic thoroughly rather than hitting a specific number.</p>
+        </div>
+        <div class="faq-item">
+            <strong>How is reading time calculated?</strong>
+            <p>Reading time is calculated using an average adult reading speed of 225 words per minute. Speaking time uses 150 words per minute, which is the average pace for presentations and speeches.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+    </div>
+</footer>
+
+<script>
+const textInput = document.getElementById('textInput');
+
+const stopWords = new Set([
+    'the','be','to','of','and','a','in','that','have','i','it','for','not','on',
+    'with','he','as','you','do','at','this','but','his','by','from','they','we',
+    'say','her','she','or','an','will','my','one','all','would','there','their',
+    'what','so','up','out','if','about','who','get','which','go','me','when',
+    'make','can','like','time','no','just','him','know','take','people','into',
+    'year','your','good','some','could','them','see','other','than','then','now',
+    'look','only','come','its','over','think','also','back','after','use','two',
+    'how','our','work','first','well','way','even','new','want','because','any',
+    'these','give','day','most','us','is','are','was','were','been','has','had',
+    'did','does','am','being','has','had','having','does','doing','did','done',
+    'should','could','would','may','might','must','shall','will','need','dare',
+    'ought','used','very','really','quite','rather','too','more','much','many',
+    'such','own','same','still','each','every','both','few','several','another'
+]);
+
+function analyze() {
+    const text = textInput.value;
+
+    // Characters
+    const chars = text.length;
+    const charsNoSpace = text.replace(/\s/g, '').length;
+
+    // Words
+    const words = text.trim() === '' ? [] : text.trim().split(/\s+/);
+    const wordCount = words.length;
+
+    // Sentences
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const sentenceCount = text.trim() === '' ? 0 : sentences.length;
+
+    // Paragraphs
+    const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+    const paraCount = text.trim() === '' ? 0 : paragraphs.length;
+
+    // Reading & speaking time
+    const readMin = Math.ceil(wordCount / 225);
+    const speakMin = Math.ceil(wordCount / 150);
+
+    // Avg word length
+    const avgWordLength = wordCount > 0
+        ? (words.reduce((sum, w) => sum + w.replace(/[^a-zA-Z0-9\u0C00-\u0C7F]/g, '').length, 0) / wordCount).toFixed(1)
+        : 0;
+
+    // Avg sentence length
+    const avgSentLength = sentenceCount > 0 ? Math.round(wordCount / sentenceCount) : 0;
+
+    // Longest word
+    const cleanWords = words.map(w => w.replace(/[^a-zA-Z0-9\u0C00-\u0C7F'-]/g, '')).filter(w => w.length > 0);
+    const longest = cleanWords.length > 0
+        ? cleanWords.reduce((a, b) => a.length >= b.length ? a : b)
+        : '—';
+
+    // Unique words
+    const lowerWords = cleanWords.map(w => w.toLowerCase());
+    const uniqueCount = new Set(lowerWords).size;
+
+    // Update DOM
+    document.getElementById('wordCount').textContent = wordCount.toLocaleString();
+    document.getElementById('charCount').textContent = chars.toLocaleString();
+    document.getElementById('charNoSpace').textContent = charsNoSpace.toLocaleString();
+    document.getElementById('sentenceCount').textContent = sentenceCount.toLocaleString();
+    document.getElementById('paraCount').textContent = paraCount.toLocaleString();
+    document.getElementById('readTime').textContent = readMin > 0 ? readMin + 'm' : '0m';
+    document.getElementById('avgWordLen').textContent = avgWordLength;
+    document.getElementById('avgSentLen').textContent = avgSentLength + ' words';
+    document.getElementById('longestWord').textContent = longest.length > 16 ? longest.substring(0, 16) + '…' : longest;
+    document.getElementById('speakTime').textContent = speakMin > 0 ? speakMin + 'm' : '0m';
+    document.getElementById('uniqueWords').textContent = uniqueCount.toLocaleString();
+
+    // Keyword density
+    updateKeywords(lowerWords, wordCount);
+}
+
+function updateKeywords(words, totalWords) {
+    const container = document.getElementById('keywordList');
+
+    if (totalWords < 5) {
+        container.innerHTML = '<p class="no-data">Start typing to see keyword density</p>';
+        return;
+    }
+
+    const freq = {};
+    words.forEach(w => {
+        const clean = w.replace(/[^a-z0-9\u0C00-\u0C7F]/g, '');
+        if (clean.length > 2 && !stopWords.has(clean)) {
+            freq[clean] = (freq[clean] || 0) + 1;
+        }
+    });
+
+    const sorted = Object.entries(freq)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 8);
+
+    if (sorted.length === 0) {
+        container.innerHTML = '<p class="no-data">No significant keywords found</p>';
+        return;
+    }
+
+    const maxCount = sorted[0][1];
+    container.innerHTML = sorted.map(([word, count]) => {
+        const pct = ((count / totalWords) * 100).toFixed(1);
+        const barWidth = (count / maxCount) * 100;
+        return `
+            <div class="keyword-bar">
+                <span class="keyword-word">${word}</span>
+                <div class="keyword-track"><div class="keyword-fill" style="width:${barWidth}%"></div></div>
+                <span class="keyword-count">${count}</span>
+                <span class="keyword-pct">${pct}%</span>
+            </div>
+        `;
+    }).join('');
+}
+
+function clearText() {
+    textInput.value = '';
+    analyze();
+    textInput.focus();
+}
+
+function copyText() {
+    navigator.clipboard.writeText(textInput.value).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+}
+
+textInput.addEventListener('input', analyze);
+
+// Initial state
+analyze();
+</script>
+
+</body>
+</html>

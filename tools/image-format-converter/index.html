@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Format Converter - Convert JPEG, PNG, WebP Online Free</title>
+    <meta name="description" content="Convert images between JPEG, PNG, WebP, and BMP formats instantly. Free online image format converter. No upload, runs in your browser.">
+    <meta name="keywords" content="image converter, convert png to jpg, jpg to png, webp converter, image format converter, convert image online, png to webp">
+    <link rel="canonical" href="https://yoursite.com/tools/image-format-converter">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Image Format Converter","description":"Free online image format converter. Convert between JPEG, PNG, WebP, and BMP.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#a855f7;--accent-glow:rgba(168,85,247,0.15);--green:#34d399;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:900px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:48px 0 32px}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto}
+        .drop-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:60px 40px;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:24px;position:relative}
+        .drop-zone:hover,.drop-zone.dragover{border-color:var(--accent);background:var(--accent-glow)}
+        .drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+        .drop-icon{font-size:48px;margin-bottom:12px}.drop-text{color:var(--text-muted);font-size:15px}.drop-text strong{color:var(--text)}.drop-hint{color:var(--text-muted);font-size:12px;margin-top:8px}
+        .tool-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px}
+        .file-info{display:flex;gap:16px;align-items:center;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+        .file-thumb{width:80px;height:80px;border-radius:8px;object-fit:cover;background:var(--surface-2);border:1px solid var(--border)}
+        .file-details{flex:1}
+        .file-name{font-weight:600;font-size:15px;margin-bottom:4px}
+        .file-meta{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+        .convert-section h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px}
+        .format-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+        .format-card{background:var(--surface-2);border:2px solid var(--border);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+        .format-card:hover{border-color:var(--accent)}
+        .format-card.active{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+        .format-card .fmt-name{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+        .format-card .fmt-ext{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent)}
+        .format-card .fmt-desc{font-size:11px;color:var(--text-muted);margin-top:4px}
+        .format-card.active .fmt-name{color:var(--accent)}
+        .quality-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:12px 16px;background:var(--surface-2);border-radius:8px}
+        .quality-row label{font-size:13px;color:var(--text-muted);white-space:nowrap}
+        input[type="range"]{-webkit-appearance:none;flex:1;height:6px;border-radius:3px;background:var(--border);outline:none}
+        input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer}
+        .quality-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--accent);min-width:40px}
+        .action-row{display:flex;gap:10px;flex-wrap:wrap}
+        .btn{padding:12px 24px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border)}.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn-primary:hover{box-shadow:0 0 20px var(--accent-glow)}.btn-secondary{background:var(--surface);color:var(--text)}.btn-secondary:hover{border-color:var(--accent)}
+        .result-box{margin-top:16px;padding:14px 18px;background:var(--surface-2);border-radius:10px;display:none}
+        .result-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:8px}
+        .result-row:last-child{margin-bottom:0}
+        .result-row .lbl{color:var(--text-muted)}
+        .result-row .val{font-family:'JetBrains Mono',monospace;color:var(--green);font-weight:500}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/image-compressor">Image Compressor</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>Image Format Converter</h1><p>Convert images between JPEG, PNG, WebP, and BMP formats. Choose quality, compare file sizes, download instantly.</p></section>
+
+    <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" onchange="handleFile(this.files[0])">
+        <div class="drop-icon">🔄</div>
+        <div class="drop-text"><strong>Drop an image here</strong> or click to browse</div>
+        <div class="drop-hint">Supports JPEG, PNG, WebP, BMP, GIF, SVG, ICO</div>
+    </div>
+
+    <div class="tool-panel" id="toolPanel">
+        <div class="file-info">
+            <img id="fileThumb" class="file-thumb" alt="">
+            <div class="file-details">
+                <div class="file-name" id="fileName">—</div>
+                <div class="file-meta" id="fileMeta">—</div>
+            </div>
+        </div>
+        <div class="convert-section">
+            <h3>Convert To</h3>
+            <div class="format-grid">
+                <div class="format-card active" onclick="selectFormat('image/jpeg',this)"><div class="fmt-name">JPEG</div><div class="fmt-ext">.jpg</div><div class="fmt-desc">Best for photos. Lossy compression.</div></div>
+                <div class="format-card" onclick="selectFormat('image/png',this)"><div class="fmt-name">PNG</div><div class="fmt-ext">.png</div><div class="fmt-desc">Lossless. Supports transparency.</div></div>
+                <div class="format-card" onclick="selectFormat('image/webp',this)"><div class="fmt-name">WebP</div><div class="fmt-ext">.webp</div><div class="fmt-desc">Modern format. Smallest files.</div></div>
+                <div class="format-card" onclick="selectFormat('image/bmp',this)"><div class="fmt-name">BMP</div><div class="fmt-ext">.bmp</div><div class="fmt-desc">Uncompressed bitmap.</div></div>
+            </div>
+            <div class="quality-row" id="qualityRow">
+                <label>Quality:</label>
+                <input type="range" id="qualitySlider" min="1" max="100" value="90" oninput="document.getElementById('qualityVal').textContent=this.value+'%'">
+                <span class="quality-val" id="qualityVal">90%</span>
+            </div>
+            <div class="action-row">
+                <button class="btn btn-primary" onclick="convertImage()">Convert & Download</button>
+                <button class="btn btn-secondary" onclick="resetTool()">Choose Another</button>
+            </div>
+            <div class="result-box" id="resultBox">
+                <div class="result-row"><span class="lbl">Original</span><span class="val" id="resOriginal">—</span></div>
+                <div class="result-row"><span class="lbl">Converted</span><span class="val" id="resConverted">—</span></div>
+                <div class="result-row"><span class="lbl">Size Change</span><span class="val" id="resChange">—</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online Image Format Converter</h2>
+        <p>Convert images between JPEG, PNG, WebP, and BMP formats directly in your browser. This tool uses the Canvas API for conversion — your images stay on your device and are never uploaded to any server. Compare file sizes between formats to find the best option for your use case.</p>
+        <h3>Format Comparison</h3>
+        <p>JPEG is best for photographs and complex images with many colors. It uses lossy compression, producing small files but doesn't support transparency. PNG uses lossless compression and supports transparency — ideal for logos, icons, screenshots, and graphics with sharp edges. WebP is Google's modern format that supports both lossy and lossless compression, typically producing files 25-35% smaller than JPEG at equivalent quality. BMP is an uncompressed format — large files but zero quality loss, useful for image processing pipelines.</p>
+        <h3>When to Convert</h3>
+        <p>Convert PNG screenshots to JPEG or WebP for smaller email attachments. Convert JPEG to PNG when you need to add transparency or prevent further quality loss from re-saving. Convert any format to WebP for the best file size on modern websites — all major browsers now support WebP. Convert to BMP when an application requires uncompressed input.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Does converting from JPEG to PNG improve quality?</strong><p>No. Converting a lossy format (JPEG) to a lossless format (PNG) preserves the current quality but cannot recover lost detail. The PNG file will actually be larger. Convert to PNG only to prevent further quality loss from future edits.</p></div>
+        <div class="faq-item"><strong>What about transparency?</strong><p>JPEG and BMP don't support transparency — transparent areas become white. PNG and WebP both support full alpha transparency. If your image has a transparent background, choose PNG or WebP as the output format.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-to-base64">Image to Base64</a><a href="/tools/color-picker">Color Picker</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+const dropZone=document.getElementById('dropZone');
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover')});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('dragover');handleFile(e.dataTransfer.files[0])});
+
+let loadedImg=null,loadedFile=null,targetFormat='image/jpeg';
+function formatSize(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB'}
+const extMap={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/bmp':'bmp'};
+
+function handleFile(file){
+    if(!file||!file.type.startsWith('image/'))return;
+    loadedFile=file;
+    const reader=new FileReader();
+    reader.onload=e=>{
+        loadedImg=new Image();
+        loadedImg.onload=()=>{
+            document.getElementById('fileThumb').src=e.target.result;
+            document.getElementById('fileName').textContent=file.name;
+            document.getElementById('fileMeta').textContent=`${loadedImg.naturalWidth}×${loadedImg.naturalHeight} • ${formatSize(file.size)} • ${file.type}`;
+            document.getElementById('dropZone').style.display='none';
+            document.getElementById('toolPanel').style.display='block';
+        };
+        loadedImg.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function selectFormat(fmt,el){
+    targetFormat=fmt;
+    document.querySelectorAll('.format-card').forEach(c=>c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('qualityRow').style.display=(fmt==='image/png'||fmt==='image/bmp')?'none':'flex';
+}
+
+function convertImage(){
+    if(!loadedImg)return;
+    const canvas=document.createElement('canvas');
+    canvas.width=loadedImg.naturalWidth;canvas.height=loadedImg.naturalHeight;
+    const ctx=canvas.getContext('2d');
+    if(targetFormat==='image/jpeg'||targetFormat==='image/bmp'){ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height)}
+    ctx.drawImage(loadedImg,0,0);
+    const quality=parseInt(document.getElementById('qualitySlider').value)/100;
+    canvas.toBlob(blob=>{
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        a.href=url;a.download=loadedFile.name.replace(/\.[^.]+$/,'')+'.'+extMap[targetFormat];a.click();
+        URL.revokeObjectURL(url);
+        const change=Math.round((blob.size/loadedFile.size-1)*100);
+        document.getElementById('resOriginal').textContent=formatSize(loadedFile.size)+' ('+loadedFile.type.split('/')[1]+')';
+        document.getElementById('resConverted').textContent=formatSize(blob.size)+' ('+extMap[targetFormat]+')';
+        document.getElementById('resChange').textContent=(change>=0?'+':'')+change+'%';
+        document.getElementById('resChange').style.color=change<=0?'var(--green)':'var(--rose)';
+        document.getElementById('resultBox').style.display='block';
+    },targetFormat,quality);
+}
+
+function resetTool(){
+    loadedImg=null;loadedFile=null;
+    document.getElementById('dropZone').style.display='block';
+    document.getElementById('toolPanel').style.display='none';
+    document.getElementById('resultBox').style.display='none';
+    document.getElementById('fileInput').value='';
+}
+</script>
+</body>
+</html>

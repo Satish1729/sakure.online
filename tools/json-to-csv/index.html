@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to CSV Converter - Free Online JSON to CSV Tool</title>
+    <meta name="description" content="Convert JSON to CSV format instantly. Free online JSON to CSV converter with custom delimiters, header options, and downloadable CSV output. No signup needed.">
+    <meta name="keywords" content="json to csv, json to csv converter, convert json to csv online, json to csv free, json csv converter, json to spreadsheet">
+    <link rel="canonical" href="https://yoursite.com/tools/json-to-csv">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"JSON to CSV Converter","description":"Free online tool to convert JSON data to CSV format with customizable options.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#4ade80;--accent-glow:rgba(74,222,128,0.15);--green:#34d399;--rose:#fb7185;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:1100px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:40px 0 28px}.hero h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-1px;margin-bottom:10px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:15px;max-width:540px;margin:0 auto}
+        .toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+        .btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.btn:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}.btn.primary:hover{box-shadow:0 0 20px var(--accent-glow)}
+        .spacer{flex:1}
+        .opt-inline{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted)}
+        .opt-inline select,.opt-inline input{background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);outline:none}
+        .opt-inline input[type="checkbox"]{width:15px;height:15px;accent-color:var(--accent)}
+        .status-bar{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+        .status-chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
+        .status-valid{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2)}
+        .status-invalid{background:rgba(251,113,133,0.1);color:var(--rose);border:1px solid rgba(251,113,133,0.2)}
+        .status-empty{background:var(--surface);color:var(--text-muted);border:1px solid var(--border)}
+        .status-info{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+        .error-msg{background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;color:var(--rose);font-family:'JetBrains Mono',monospace;font-size:13px;display:none}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}@media(max-width:768px){.editor-grid{grid-template-columns:1fr}}
+        .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+        .btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;outline:none;color:var(--text);tab-size:2}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow:auto;white-space:pre;color:var(--green)}
+        .preview-table{width:100%;border-collapse:collapse;margin:16px 0;overflow-x:auto;display:block}
+        .preview-table th,.preview-table td{padding:8px 12px;border:1px solid var(--border);font-size:12px;font-family:'JetBrains Mono',monospace;text-align:left;white-space:nowrap}
+        .preview-table th{background:var(--surface-2);color:var(--accent);font-weight:600;position:sticky;top:0}
+        .preview-table td{color:var(--text)}
+        .preview-table tr:hover td{background:var(--surface-2)}
+        .preview-wrap{max-height:300px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>JSON to CSV Converter</h1><p>Convert JSON arrays and objects to CSV format with customizable delimiters, headers, and preview table.</p></section>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="convertToCSV()">Convert to CSV</button>
+        <button class="btn" onclick="loadSample()">Sample JSON</button>
+        <span class="spacer"></span>
+        <div class="opt-inline"><span>Delimiter:</span><select id="delimiter"><option value=",">,  (comma)</option><option value=";">; (semicolon)</option><option value="&#9">Tab</option><option value="|">| (pipe)</option></select></div>
+        <div class="opt-inline"><input type="checkbox" id="includeHeaders" checked><label for="includeHeaders">Include headers</label></div>
+        <button class="btn" style="color:var(--rose)" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="status-bar">
+        <span class="status-chip status-empty" id="statusChip">Paste JSON to begin</span>
+        <span class="status-info" id="statsInfo"></span>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">JSON Input</span><button class="btn-tiny" onclick="pasteJSON()">Paste</button></div>
+            <textarea id="inputText" placeholder='Paste JSON array here, e.g.:
+[
+  {"name": "Alice", "age": 30, "city": "NYC"},
+  {"name": "Bob", "age": 25, "city": "LA"}
+]'></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label">CSV Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyCSV()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadCSV()">Download .csv</button></div></div>
+            <div class="output-area" id="outputText">CSV output will appear here...</div>
+        </div>
+    </div>
+
+    <div class="panel-header"><span class="panel-label">Table Preview</span></div>
+    <div class="preview-wrap" id="previewWrap" style="display:none"><table class="preview-table" id="previewTable"></table></div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online JSON to CSV Converter</h2>
+        <p>Convert JSON data to CSV (Comma-Separated Values) format instantly. This tool handles JSON arrays of objects, nested values, and mixed data types. The output CSV can be opened in Excel, Google Sheets, or any spreadsheet application. All processing happens in your browser with no data uploaded to any server.</p>
+        <h3>How It Works</h3>
+        <p>The converter reads your JSON array, extracts all unique keys as column headers, and generates a CSV row for each object. Nested objects and arrays are automatically flattened — nested objects use dot notation (address.city) and arrays are joined with semicolons. Missing values in objects become empty cells.</p>
+        <h3>Supported JSON Formats</h3>
+        <p>The tool works with JSON arrays of objects (the most common API response format), single JSON objects (converted to one data row), and arrays of arrays. It handles strings, numbers, booleans, null values, nested objects, and arrays within objects.</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>How are nested objects handled?</strong><p>Nested objects are flattened using dot notation. For example, {"address": {"city": "NYC"}} becomes a column named "address.city" with value "NYC". Nested arrays are joined with semicolons.</p></div>
+        <div class="faq-item"><strong>Can I change the delimiter?</strong><p>Yes. Choose from comma, semicolon, tab, or pipe delimiters. Semicolons are common in European countries where commas are used as decimal separators.</p></div>
+        <div class="faq-item"><strong>Can I open the CSV in Excel?</strong><p>Yes. Click "Download .csv" to save the file, then open it in Microsoft Excel, Google Sheets, LibreOffice Calc, or any spreadsheet application.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/json-formatter">JSON Formatter</a><a href="/tools/html-beautifier">HTML Beautifier</a><a href="/tools/word-counter">Word Counter</a><a href="/tools/base64-encoder">Base64 Encoder</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+function setStatus(t,m){const c=document.getElementById('statusChip');c.className='status-chip status-'+t;c.textContent=m}
+function setError(m){const e=document.getElementById('errorMsg');if(m){e.textContent='⚠ '+m;e.style.display='block'}else{e.style.display='none'}}
+
+function flatten(obj,prefix=''){
+    const result={};
+    for(const[key,val]of Object.entries(obj)){
+        const newKey=prefix?prefix+'.'+key:key;
+        if(val&&typeof val==='object'&&!Array.isArray(val)){Object.assign(result,flatten(val,newKey))}
+        else if(Array.isArray(val)){result[newKey]=val.map(v=>typeof v==='object'?JSON.stringify(v):String(v)).join('; ')}
+        else{result[newKey]=val}
+    }
+    return result;
+}
+
+function escapeCSV(val,delim){
+    if(val===null||val===undefined)return'';
+    const str=String(val);
+    if(str.includes(delim)||str.includes('"')||str.includes('\n')||str.includes('\r')){return'"'+str.replace(/"/g,'""')+'"'}
+    return str;
+}
+
+function convertToCSV(){
+    const input=document.getElementById('inputText').value.trim();
+    const outEl=document.getElementById('outputText');
+    if(!input){outEl.textContent='CSV output will appear here...';outEl.style.color='var(--text-muted)';setStatus('empty','Paste JSON to begin');setError(null);document.getElementById('previewWrap').style.display='none';return}
+
+    try{
+        let data=JSON.parse(input);
+        if(!Array.isArray(data)){data=[data]}
+        if(data.length===0){setError('JSON array is empty');setStatus('invalid','✗ Empty array');return}
+
+        const delim=document.getElementById('delimiter').value;
+        const includeHeaders=document.getElementById('includeHeaders').checked;
+
+        const flatData=data.map(item=>typeof item==='object'&&item!==null?flatten(item):{value:item});
+        const allKeys=[...new Set(flatData.flatMap(Object.keys))];
+
+        const rows=[];
+        if(includeHeaders)rows.push(allKeys.map(k=>escapeCSV(k,delim)).join(delim));
+        flatData.forEach(item=>{rows.push(allKeys.map(k=>escapeCSV(item[k],delim)).join(delim))});
+
+        const csv=rows.join('\n');
+        outEl.textContent=csv;
+        outEl.style.color='var(--green)';
+        setStatus('valid',`✓ Converted · ${data.length} rows · ${allKeys.length} columns`);
+        setError(null);
+        document.getElementById('statsInfo').textContent=`${csv.length} chars`;
+
+        // Table preview
+        let html='<tr>'+allKeys.map(k=>'<th>'+k+'</th>').join('')+'</tr>';
+        flatData.slice(0,50).forEach(item=>{html+='<tr>'+allKeys.map(k=>'<td>'+(item[k]!==undefined&&item[k]!==null?String(item[k]).substring(0,60):'')+'</td>').join('')+'</tr>'});
+        if(data.length>50)html+='<tr><td colspan="'+allKeys.length+'" style="text-align:center;color:var(--text-muted)">... and '+(data.length-50)+' more rows</td></tr>';
+        document.getElementById('previewTable').innerHTML=html;
+        document.getElementById('previewWrap').style.display='block';
+    }catch(e){
+        outEl.textContent='Invalid JSON — see error above';outEl.style.color='var(--rose)';
+        setStatus('invalid','✗ Invalid JSON');setError(e.message);
+        document.getElementById('previewWrap').style.display='none';
+    }
+}
+
+function loadSample(){
+    document.getElementById('inputText').value=JSON.stringify([{id:1,name:"Alice Johnson",email:"alice@example.com",age:30,active:true,address:{city:"San Francisco",state:"CA"},skills:["JavaScript","Python","SQL"]},{id:2,name:"Bob Smith",email:"bob@example.com",age:25,active:false,address:{city:"New York",state:"NY"},skills:["Java","C++"]},{id:3,name:"Carol White",email:"carol@example.com",age:35,active:true,address:{city:"Chicago",state:"IL"},skills:["Ruby","Go","Rust"]}],null,2);
+    convertToCSV();
+}
+function clearAll(){document.getElementById('inputText').value='';document.getElementById('outputText').textContent='CSV output will appear here...';document.getElementById('outputText').style.color='var(--text-muted)';setStatus('empty','Paste JSON to begin');setError(null);document.getElementById('previewWrap').style.display='none';document.getElementById('statsInfo').textContent=''}
+async function pasteJSON(){try{document.getElementById('inputText').value=await navigator.clipboard.readText();convertToCSV()}catch{}}
+function copyCSV(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('CSV'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadCSV(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('CSV')||t.startsWith('Invalid'))return;const b=new Blob([t],{type:'text/csv;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='data.csv';a.click();URL.revokeObjectURL(u)}
+</script>
+</body>
+</html>

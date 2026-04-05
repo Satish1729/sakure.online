@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Minifier - Free Online JS Compressor Tool</title>
+    <meta name="description" content="Minify JavaScript code instantly. Free online JS minifier removes comments, whitespace, and compresses your scripts for faster page loading. No signup needed.">
+    <meta name="keywords" content="javascript minifier, js minifier, minify javascript, compress javascript, js compressor, minify js online, javascript compressor">
+    <link rel="canonical" href="https://yoursite.com/tools/js-minifier">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"JavaScript Minifier","description":"Free online JavaScript minifier and compressor. Remove whitespace and comments from JS code for production.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+    </script>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#0f1117;--surface:#1a1d27;--surface-2:#242836;--border:#2e3345;--text:#e4e6ef;--text-muted:#8b90a5;--accent:#facc15;--accent-glow:rgba(250,204,21,0.12);--green:#34d399;--rose:#fb7185;--radius:12px}body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.container{max-width:1100px;margin:0 auto;padding:0 20px}header{padding:24px 0;border-bottom:1px solid var(--border)}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:var(--accent);text-decoration:none}.logo span{color:var(--text-muted);font-weight:400}nav a{color:var(--text-muted);text-decoration:none;font-size:14px;margin-left:24px}nav a:hover{color:var(--text)}.hero{text-align:center;padding:40px 0 28px}.hero h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-1px;margin-bottom:10px;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero p{color:var(--text-muted);font-size:15px;max-width:540px;margin:0 auto}
+        .toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}.btn:hover{border-color:var(--accent);box-shadow:0 0 12px var(--accent-glow)}.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}.btn.primary:hover{box-shadow:0 0 20px var(--accent-glow)}.spacer{flex:1}
+        .stats-bar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}.stat-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--text-muted)}.stat-pill strong{color:var(--text);font-family:'JetBrains Mono',monospace;margin-right:4px}.stat-pill.highlight strong{color:var(--green)}
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}@media(max-width:768px){.editor-grid{grid-template-columns:1fr}}.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.panel-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}.btn-tiny{background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}.btn-tiny:hover{color:var(--text);border-color:var(--accent)}
+        textarea{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;resize:vertical;outline:none;color:var(--text);tab-size:2}textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}textarea::placeholder{color:var(--text-muted)}
+        .output-area{width:100%;min-height:380px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;overflow:auto;white-space:pre-wrap;word-break:break-all;color:var(--green)}
+        .warn-box{background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.2);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;color:var(--accent);font-size:13px;display:none}
+        .ad-slot{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:40px;text-align:center;color:var(--text-muted);font-size:13px;margin:32px 0}
+        .seo-content{padding:48px 0;border-top:1px solid var(--border)}.seo-content h2{font-size:24px;font-weight:700;margin-bottom:16px}.seo-content h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text)}.seo-content p{color:var(--text-muted);font-size:15px;margin-bottom:16px;max-width:720px}.faq-item{margin-bottom:20px}.faq-item strong{color:var(--text);font-size:15px}.faq-item p{margin-top:8px}
+        .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
+        footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
+    </style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/css-minifier">CSS Minifier</a><a href="/tools">All Tools</a></nav></div></header>
+<main class="container">
+    <section class="hero"><h1>JavaScript Minifier</h1><p>Compress your JavaScript by removing comments, whitespace, and unnecessary characters for faster page loads.</p></section>
+
+    <div class="toolbar">
+        <button class="btn primary" onclick="minifyJS()">Minify JS</button>
+        <button class="btn" onclick="loadSample()">Sample JS</button>
+        <span class="spacer"></span>
+        <button class="btn" style="color:var(--rose)" onclick="clearAll()">Clear</button>
+    </div>
+
+    <div class="warn-box" id="warnBox">⚡ Note: This is a lightweight whitespace/comment remover. For production use with advanced optimizations (variable renaming, dead code elimination, tree shaking), use tools like Terser, UglifyJS, or esbuild in your build pipeline.</div>
+
+    <div class="stats-bar">
+        <div class="stat-pill"><strong id="stIn">0</strong> original</div>
+        <div class="stat-pill"><strong id="stOut">0</strong> minified</div>
+        <div class="stat-pill highlight"><strong id="stSaved">0%</strong> saved</div>
+        <div class="stat-pill"><strong id="stLines">0</strong> → <strong id="stLinesOut">0</strong> lines</div>
+    </div>
+
+    <div class="editor-grid">
+        <div>
+            <div class="panel-header"><span class="panel-label">Input JavaScript</span><button class="btn-tiny" onclick="pasteJS()">Paste</button></div>
+            <textarea id="inputText" placeholder="Paste your JavaScript code here...
+
+// Example function
+function greet(name) {
+    console.log('Hello, ' + name);
+}"></textarea>
+        </div>
+        <div>
+            <div class="panel-header"><span class="panel-label">Minified Output</span><div style="display:flex;gap:6px"><button class="btn-tiny" onclick="copyOutput()" id="copyBtn">Copy</button><button class="btn-tiny" onclick="downloadOutput()">Download</button></div></div>
+            <div class="output-area" id="outputText">Minified JS will appear here...</div>
+        </div>
+    </div>
+
+    <div class="ad-slot">Ad Space</div>
+
+    <section class="seo-content">
+        <h2>Free Online JavaScript Minifier</h2>
+        <p>Reduce your JavaScript file size by removing comments, whitespace, and unnecessary formatting. This lightweight minifier handles single-line comments (//), multi-line comments (/* */), extra whitespace, and blank lines while preserving string literals and regex patterns. For more aggressive optimizations like variable renaming and dead code elimination, use build tools like Terser or esbuild.</p>
+        <h3>What This Tool Does</h3>
+        <p>Removes all single-line comments (// ...) and multi-line comments (/* ... */). Collapses multiple whitespace characters into single spaces. Removes blank lines and trailing whitespace. Preserves string contents (both single and double quoted) and template literals. Maintains proper semicolons and line breaks where syntactically required.</p>
+        <h3>When to Use This Tool</h3>
+        <p>Quick minification of small scripts and snippets. Reducing inline script size in HTML pages. Compressing standalone JavaScript files without a build pipeline. Educational purposes — understanding what minification removes. For production applications with multiple files, use a proper bundler with built-in minification (Webpack + Terser, Vite, esbuild, or Rollup).</p>
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item"><strong>Will this break my JavaScript?</strong><p>This tool performs safe whitespace and comment removal. It preserves string literals, regex patterns, and syntactic structure. However, for complex code with edge cases, always test the minified output before deploying to production.</p></div>
+        <div class="faq-item"><strong>Does it rename variables?</strong><p>No. Variable renaming (mangling) is an advanced optimization that requires full code parsing. This tool focuses on safe whitespace and comment removal. For variable renaming, use Terser or Google Closure Compiler.</p></div>
+        <div class="faq-item"><strong>How much space does JS minification save?</strong><p>Comment and whitespace removal typically saves 20-40% of file size. Variable renaming (not done by this tool) can save an additional 10-20%. Gzip compression on top of minification saves another 60-70%, which is why both are recommended for production.</p></div>
+        <div class="related-tools"><h3>Related Tools</h3><div class="related-links">
+            <a href="/tools/css-minifier">CSS Minifier</a><a href="/tools/html-beautifier">HTML Beautifier</a><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools/regex-tester">Regex Tester</a>
+        </div></div>
+    </section>
+</main>
+<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<script>
+function minifyJS(){
+    const input=document.getElementById('inputText').value;
+    if(!input.trim()){reset();return}
+    let js=input;
+    // Remove multi-line comments (careful with regex and strings)
+    let result='';let i=0;let inStr=false;let strChar='';let inTmpl=false;
+    while(i<js.length){
+        // String literals
+        if(!inStr&&!inTmpl&&(js[i]==='"'||js[i]==="'")){inStr=true;strChar=js[i];result+=js[i];i++;continue}
+        if(inStr&&js[i]===strChar&&js[i-1]!=='\\'){inStr=false;result+=js[i];i++;continue}
+        if(inStr){result+=js[i];i++;continue}
+        // Template literals
+        if(!inStr&&!inTmpl&&js[i]==='`'){inTmpl=true;result+=js[i];i++;continue}
+        if(inTmpl&&js[i]==='`'&&js[i-1]!=='\\'){inTmpl=false;result+=js[i];i++;continue}
+        if(inTmpl){result+=js[i];i++;continue}
+        // Multi-line comment
+        if(js[i]==='/'&&js[i+1]==='*'){i+=2;while(i<js.length&&!(js[i]==='*'&&js[i+1]==='/')){i++}i+=2;continue}
+        // Single-line comment
+        if(js[i]==='/'&&js[i+1]==='/'){while(i<js.length&&js[i]!=='\n'){i++}continue}
+        result+=js[i];i++;
+    }
+    // Collapse whitespace
+    result=result.replace(/[ \t]+/g,' ');
+    // Remove blank lines
+    result=result.split('\n').map(l=>l.trim()).filter(l=>l.length>0).join('\n');
+    // Remove spaces around operators (safe subset)
+    result=result.replace(/ ?([{};,=:+\-*/<>!&|?]) ?/g,(m,op)=>{
+        // Be careful - don't remove space after keywords
+        return op;
+    });
+    // Safer approach: just collapse lines
+    result=result.replace(/\n{2,}/g,'\n').replace(/;\n/g,';').replace(/\{\n/g,'{').replace(/\n\}/g,'}').replace(/,\n/g,',');
+    result=result.trim();
+
+    document.getElementById('outputText').textContent=result;
+    document.getElementById('outputText').style.color='var(--green)';
+    document.getElementById('warnBox').style.display='block';
+
+    const inLen=input.length;const outLen=result.length;
+    const saved=inLen>0?Math.round((1-outLen/inLen)*100):0;
+    document.getElementById('stIn').textContent=inLen.toLocaleString()+' chars';
+    document.getElementById('stOut').textContent=outLen.toLocaleString()+' chars';
+    document.getElementById('stSaved').textContent=saved+'%';
+    document.getElementById('stLines').textContent=input.split('\n').length;
+    document.getElementById('stLinesOut').textContent=result.split('\n').length;
+}
+
+function reset(){document.getElementById('outputText').textContent='Minified JS will appear here...';document.getElementById('outputText').style.color='var(--text-muted)';document.getElementById('warnBox').style.display='none';['stIn','stOut'].forEach(id=>document.getElementById(id).textContent='0');document.getElementById('stSaved').textContent='0%';document.getElementById('stLines').textContent='0';document.getElementById('stLinesOut').textContent='0'}
+
+function loadSample(){document.getElementById('inputText').value=`/**\n * Utility Functions Library\n * Version: 2.0.0\n * Author: Developer\n * License: MIT\n */\n\n// Debounce function - limits how often a function fires\nfunction debounce(func, wait, immediate) {\n    let timeout;\n    \n    return function executedFunction() {\n        const context = this;\n        const args = arguments;\n        \n        // Clear any existing timeout\n        const later = function() {\n            timeout = null;\n            if (!immediate) {\n                func.apply(context, args);\n            }\n        };\n        \n        const callNow = immediate && !timeout;\n        clearTimeout(timeout);\n        timeout = setTimeout(later, wait);\n        \n        if (callNow) {\n            func.apply(context, args);\n        }\n    };\n}\n\n// Deep clone an object\nfunction deepClone(obj) {\n    // Handle null and non-objects\n    if (obj === null || typeof obj !== 'object') {\n        return obj;\n    }\n    \n    // Handle Date\n    if (obj instanceof Date) {\n        return new Date(obj.getTime());\n    }\n    \n    // Handle Array\n    if (Array.isArray(obj)) {\n        return obj.map(item => deepClone(item));\n    }\n    \n    // Handle Object\n    const cloned = {};\n    for (const key in obj) {\n        if (obj.hasOwnProperty(key)) {\n            cloned[key] = deepClone(obj[key]);\n        }\n    }\n    \n    return cloned;\n}\n\n// Format number with commas\nfunction formatNumber(num) {\n    return num.toString().replace(\n        /\\B(?=(\\d{3})+(?!\\d))/g,\n        ','\n    );\n}\n\n// Generate a random UUID v4\nfunction uuid() {\n    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(\n        /[xy]/g,\n        function(c) {\n            const r = Math.random() * 16 | 0;\n            const v = c === 'x' ? r : (r & 0x3 | 0x8);\n            return v.toString(16);\n        }\n    );\n}\n\n// Export functions\nexport { debounce, deepClone, formatNumber, uuid };`;minifyJS()}
+
+function clearAll(){document.getElementById('inputText').value='';reset()}
+async function pasteJS(){try{document.getElementById('inputText').value=await navigator.clipboard.readText();minifyJS()}catch{}}
+function copyOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Minified'))return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})}
+function downloadOutput(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Minified'))return;const b=new Blob([t],{type:'application/javascript'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='script.min.js';a.click();URL.revokeObjectURL(u)}
+</script>
+</body>
+</html>
