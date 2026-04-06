@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sakure – Free Online Tools | Text, Calculators, Encoders, Generators & More</title>
-<meta name="description" content="Free online tools for developers, students & professionals. Text tools, calculators, encoders, generators, image tools — 34 tools, no signup, no cost.">
+<meta name="description" content="Free online tools for developers, students & professionals. Text tools, math tools, calculators, encoders, generators, image tools — 45 tools, no signup, no cost.">
 <meta name="keywords" content="free online tools, text tools, calculator, encoder decoder, developer tools, generator tools, sakure">
 <meta property="og:title" content="Sakure – Free Online Tools">
 <meta property="og:description" content="34 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
@@ -211,6 +211,39 @@
   .footer-links a { color: var(--muted); }
   .footer-links a:hover { color: var(--text); }
 
+  /* ── CATEGORY NAV ── */
+  .cat-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+    padding: 0 16px;
+  }
+  .cat-nav::-webkit-scrollbar { display: none; }
+  .cat-nav-link {
+    white-space: nowrap;
+    padding: 0 14px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    text-decoration: none;
+  }
+  .cat-nav-link:hover { color: var(--text); }
+  .cat-nav-link.active { color: var(--text); border-bottom-color: #6366f1; }
+
   @media (max-width: 640px) {
     nav .nav-links { display: none; }
     .hero { padding: 48px 20px 36px; }
@@ -228,6 +261,17 @@
     <a href="/about">About</a>
   </div>
   <div class="nav-count" id="nav-count">34 tools</div>
+</nav>
+
+<!-- CATEGORY NAV -->
+<nav class="cat-nav" id="cat-nav">
+  <a href="#cat-text" class="cat-nav-link">📝 Text</a>
+  <a href="#cat-encoding" class="cat-nav-link">🔐 Encoding</a>
+  <a href="#cat-developer" class="cat-nav-link">💻 Developer</a>
+  <a href="#cat-generator" class="cat-nav-link">⚙️ Generators</a>
+  <a href="#cat-image" class="cat-nav-link">🖼️ Image</a>
+  <a href="#cat-calculator" class="cat-nav-link">🧮 Calculator</a>
+  <a href="#cat-math" class="cat-nav-link">🔢 Math</a>
 </nav>
 
 <div class="hero">
@@ -249,8 +293,8 @@
 
   <!-- STATS -->
   <div class="stats-bar">
-    <div class="stat"><div class="stat-val">34</div><div class="stat-label">Tools Available</div></div>
-    <div class="stat"><div class="stat-val">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-val" id="stat-tools">45</div><div class="stat-label">Tools Available</div></div>
+    <div class="stat"><div class="stat-val">7</div><div class="stat-label">Categories</div></div>
     <div class="stat"><div class="stat-val">0</div><div class="stat-label">API Costs</div></div>
     <div class="stat"><div class="stat-val">∞</div><div class="stat-label">Free Uses</div></div>
   </div>
@@ -258,7 +302,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 1: TEXT TOOLS
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="text">
+  <div class="category" id="cat-text" data-category="text">
     <div class="cat-header">
       <span class="cat-icon">📝</span>
       <span class="cat-name">Text Tools</span>
@@ -319,7 +363,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 2: ENCODING / DECODING
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="encoding">
+  <div class="category" id="cat-encoding" data-category="encoding">
     <div class="cat-header">
       <span class="cat-icon">🔐</span>
       <span class="cat-name">Encoding & Decoding</span>
@@ -368,7 +412,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 3: DEVELOPER TOOLS
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="developer">
+  <div class="category" id="cat-developer" data-category="developer">
     <div class="cat-header">
       <span class="cat-icon">💻</span>
       <span class="cat-name">Developer Tools</span>
@@ -417,7 +461,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 4: GENERATOR TOOLS
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="generator">
+  <div class="category" id="cat-generator" data-category="generator">
     <div class="cat-header">
       <span class="cat-icon">⚙️</span>
       <span class="cat-name">Generator Tools</span>
@@ -478,7 +522,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 5: IMAGE TOOLS
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="image">
+  <div class="category" id="cat-image" data-category="image">
     <div class="cat-header">
       <span class="cat-icon">🖼️</span>
       <span class="cat-name">Image Tools</span>
@@ -527,7 +571,7 @@
   <!-- ═══════════════════════════════════════════
        CATEGORY 6: CALCULATOR TOOLS  ← Week 6
   ════════════════════════════════════════════ -->
-  <div class="category" data-category="calculator">
+  <div class="category" id="cat-calculator" data-category="calculator">
     <div class="cat-header">
       <span class="cat-icon">🧮</span>
       <span class="cat-name">Calculator Tools</span>
@@ -581,6 +625,68 @@
         <div class="tool-card-name">Discount Calculator</div>
         <div class="tool-card-desc">Find final sale price, savings amount, and effective discount percentage.</div>
         <div class="tool-card-tag">Calculator</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CATEGORY 7: MATH & NUMBER TOOLS  ← Week 7
+  ════════════════════════════════════════════ -->
+  <div class="category" id="cat-math" data-category="math">
+    <div class="cat-header">
+      <span class="cat-icon">🔢</span>
+      <span class="cat-name">Math & Number Tools</span>
+      <span class="cat-count">6 tools</span>
+    </div>
+    <div class="tools-grid">
+
+      <a href="/tools/percentage-calculator" class="tool-card" style="--card-accent:#f59e0b" data-tags="percentage calculator percent increase decrease change reverse">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">%</div>
+        <div class="tool-card-name">Percentage Calculator</div>
+        <div class="tool-card-desc">Find X% of Y, percentage increase/decrease, and reverse percentage.</div>
+        <div class="tool-card-tag">Math</div>
+      </a>
+
+      <a href="/tools/fraction-calculator" class="tool-card" style="--card-accent:#14b8a6" data-tags="fraction calculator add subtract multiply divide simplify fractions">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">½</div>
+        <div class="tool-card-name">Fraction Calculator</div>
+        <div class="tool-card-desc">Add, subtract, multiply and divide fractions with step-by-step solutions.</div>
+        <div class="tool-card-tag">Math</div>
+      </a>
+
+      <a href="/tools/number-base-converter" class="tool-card" style="--card-accent:#818cf8" data-tags="number base converter binary octal decimal hex hexadecimal radix">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">⬡</div>
+        <div class="tool-card-name">Number Base Converter</div>
+        <div class="tool-card-desc">Convert between binary, octal, decimal, and hex instantly.</div>
+        <div class="tool-card-tag">Math</div>
+      </a>
+
+      <a href="/tools/random-number-generator" class="tool-card" style="--card-accent:#a855f7" data-tags="random number generator dice roller range picker unique lottery">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🎲</div>
+        <div class="tool-card-name">Random Number Generator</div>
+        <div class="tool-card-desc">Generate random numbers in any range, roll dice, or pick unique sets.</div>
+        <div class="tool-card-tag">Math</div>
+      </a>
+
+      <a href="/tools/prime-checker" class="tool-card" style="--card-accent:#10b981" data-tags="prime number checker is prime factorization sieve primes list">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🔍</div>
+        <div class="tool-card-name">Prime Number Checker</div>
+        <div class="tool-card-desc">Check if a number is prime, list primes up to N, and factorize any number.</div>
+        <div class="tool-card-tag">Math</div>
+      </a>
+
+      <a href="/tools/roman-numeral-converter" class="tool-card" style="--card-accent:#f97316" data-tags="roman numeral converter decimal to roman roman to decimal XIV XLII">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">Ⅻ</div>
+        <div class="tool-card-name">Roman Numeral Converter</div>
+        <div class="tool-card-desc">Convert decimal numbers to Roman numerals and back, with reference table.</div>
+        <div class="tool-card-tag">Math</div>
       </a>
 
     </div>
@@ -643,7 +749,38 @@ function filterTools(query) {
 }
 
 // Update nav count dynamically
-document.getElementById('nav-count').textContent = document.querySelectorAll('.tool-card').length + ' tools';
+const totalTools = document.querySelectorAll('.tool-card').length;
+document.getElementById('nav-count').textContent = totalTools + ' tools';
+
+// Category nav smooth scroll with header offset
+document.querySelectorAll('.cat-nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      const offset = 60 + 44 + 12; // main nav + cat-nav + gap
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Category nav active state on scroll
+const catSections = document.querySelectorAll('.category[id]');
+const catLinks = document.querySelectorAll('.cat-nav-link');
+const catObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      catLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.cat-nav-link[href="#${entry.target.id}"]`);
+      if (link) {
+        link.classList.add('active');
+        link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-104px 0px -55% 0px' });
+catSections.forEach(s => catObserver.observe(s));
 </script>
 </body>
 </html>

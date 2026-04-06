@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Number Generator – Dice Roller, Range Picker & More | Sakure.online</title>
+<meta name="description" content="Free random number generator. Generate single or multiple random numbers in any range. Includes dice roller, unique number mode, and generation history. No signup.">
+<meta name="keywords" content="random number generator, random number, dice roller, random integer, number picker, lottery number, unique random numbers">
+<meta property="og:title" content="Random Number Generator – Sakure.online">
+<meta property="og:description" content="Generate random numbers in any range, roll dice, or pick unique numbers. Free, instant, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/random-number-generator">
+<link rel="canonical" href="https://sakure.online/tools/random-number-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Random Number Generator",
+  "url": "https://sakure.online/tools/random-number-generator",
+  "description": "Free online random number generator. Generate numbers in any range, roll virtual dice, or pick unique lottery-style numbers.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #21263a;
+  --border: #2e3345;
+  --text: #e4e6ef;
+  --muted: #7a8499;
+  --accent: #a855f7;
+  --accent-glow: rgba(168,85,247,0.12);
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:0.85rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(168,85,247,0.3);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
+.mode-tabs{display:flex;gap:8px;margin:28px 0 18px;flex-wrap:wrap}
+.tab-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--font);font-size:0.84rem;font-weight:500;cursor:pointer;transition:all .18s}
+.tab-btn:hover{border-color:var(--accent);color:var(--text)}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.pane{display:none}
+.pane.active{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.form-group label{font-size:0.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);display:block;margin-bottom:6px}
+input[type=number]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:0.97rem;width:100%;transition:border-color .2s;outline:none;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type=number]:focus{border-color:var(--accent)}
+.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.toggle-label{font-size:0.84rem;color:var(--muted)}
+.toggle{position:relative;display:inline-flex;width:42px;height:24px;cursor:pointer}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--surface2);border:1px solid var(--border);border-radius:12px;transition:.2s}
+.toggle-slider::before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:var(--muted);border-radius:50%;transition:.2s}
+.toggle input:checked + .toggle-slider{background:var(--accent);border-color:var(--accent)}
+.toggle input:checked + .toggle-slider::before{transform:translateX(18px);background:#fff}
+.gen-btn{background:var(--accent);color:#fff;font-family:var(--font);font-size:1rem;font-weight:700;padding:13px 32px;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;letter-spacing:.3px}
+.gen-btn:hover{opacity:.88}
+.big-result{font-family:var(--mono);font-size:4rem;font-weight:700;color:var(--accent);text-align:center;padding:32px 0 16px;line-height:1;animation:popIn .25s ease-out}
+@keyframes popIn{from{transform:scale(.7);opacity:.4}to{transform:scale(1);opacity:1}}
+.multi-results{display:flex;flex-wrap:wrap;gap:10px;padding:16px 0;min-height:60px}
+.num-chip{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-family:var(--mono);font-size:1rem;font-weight:600;color:var(--accent);transition:all .15s}
+.num-chip:hover{border-color:var(--accent)}
+/* Dice */
+.dice-grid{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.die-btn{width:72px;height:72px;border:2px solid var(--border);border-radius:12px;background:var(--surface2);font-size:1.3rem;font-weight:700;cursor:pointer;font-family:var(--mono);color:var(--muted);transition:all .18s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px}
+.die-btn:hover{border-color:var(--accent);color:var(--accent)}
+.die-btn .die-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:.6px}
+.dice-results{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;min-height:50px}
+.die-result{background:var(--surface2);border:2px solid var(--accent);border-radius:10px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.3rem;font-weight:700;color:var(--accent);animation:popIn .2s ease-out}
+/* History */
+.history-list{margin-top:16px}
+.history-title{font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:8px;font-family:var(--mono);font-size:0.88rem}
+.history-item:nth-child(odd){background:var(--surface2)}
+.history-num{color:var(--accent);font-weight:600}
+.history-ts{color:var(--muted);font-size:0.72rem}
+.clear-btn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);padding:2px 8px;font-size:0.72rem;cursor:pointer;font-family:var(--font)}
+.clear-btn:hover{border-color:#f87171;color:#f87171}
+.faq{margin:48px 0 32px}
+.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:0.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:0.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}
+.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:0.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}
+.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:0.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:0.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}nav .nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🎲 Math & Number Tools</div>
+  <h1>Random Number <span>Generator</span></h1>
+  <p class="hero-sub">Generate truly random numbers in any range, roll virtual dice, or pick multiple unique numbers — all in one tool.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('single')">Single Number</button>
+    <button class="tab-btn" onclick="switchTab('multi')">Multiple Numbers</button>
+    <button class="tab-btn" onclick="switchTab('dice')">🎲 Dice Roller</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- SINGLE -->
+    <div class="pane active" id="pane-single">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Minimum</label>
+          <input type="number" id="s-min" value="1">
+        </div>
+        <div class="form-group">
+          <label>Maximum</label>
+          <input type="number" id="s-max" value="100">
+        </div>
+      </div>
+      <div class="toggle-row">
+        <label class="toggle"><input type="checkbox" id="s-float"><span class="toggle-slider"></span></label>
+        <span class="toggle-label">Include decimals</span>
+      </div>
+      <div id="s-result" class="big-result">—</div>
+      <div style="text-align:center">
+        <button class="gen-btn" onclick="generateSingle()">Generate</button>
+      </div>
+      <div class="history-list" id="s-history-wrap" style="display:none">
+        <div class="history-title">
+          <span>History</span>
+          <button class="clear-btn" onclick="clearHistory('single')">Clear</button>
+        </div>
+        <div id="s-history"></div>
+      </div>
+    </div>
+
+    <!-- MULTI -->
+    <div class="pane" id="pane-multi">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Minimum</label>
+          <input type="number" id="m-min" value="1">
+        </div>
+        <div class="form-group">
+          <label>Maximum</label>
+          <input type="number" id="m-max" value="100">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>How many numbers</label>
+          <input type="number" id="m-count" value="6" min="1" max="500">
+        </div>
+        <div class="form-group" style="display:flex;flex-direction:column;justify-content:flex-end">
+          <div class="toggle-row" style="margin:0 0 6px">
+            <label class="toggle"><input type="checkbox" id="m-unique" checked><span class="toggle-slider"></span></label>
+            <span class="toggle-label">No duplicates</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <button class="gen-btn" onclick="generateMulti()">Generate Numbers</button>
+      </div>
+      <div class="multi-results" id="m-results"></div>
+      <div id="m-error" style="color:#f87171;font-size:0.85rem;min-height:20px"></div>
+    </div>
+
+    <!-- DICE -->
+    <div class="pane" id="pane-dice">
+      <div style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">Select a die to roll. Click again to roll another.</div>
+      <div class="dice-grid">
+        <button class="die-btn" onclick="rollDie(4)"><span>d4</span><span class="die-label">tetra</span></button>
+        <button class="die-btn" onclick="rollDie(6)"><span>d6</span><span class="die-label">cube</span></button>
+        <button class="die-btn" onclick="rollDie(8)"><span>d8</span><span class="die-label">octa</span></button>
+        <button class="die-btn" onclick="rollDie(10)"><span>d10</span><span class="die-label">deca</span></button>
+        <button class="die-btn" onclick="rollDie(12)"><span>d12</span><span class="die-label">dodeca</span></button>
+        <button class="die-btn" onclick="rollDie(20)"><span>d20</span><span class="die-label">icosa</span></button>
+        <button class="die-btn" onclick="rollDie(100)"><span>d100</span><span class="die-label">percent</span></button>
+      </div>
+      <div class="history-title" style="margin-top:8px">
+        <span>Rolls</span>
+        <button class="clear-btn" onclick="clearDice()">Clear</button>
+      </div>
+      <div class="dice-results" id="dice-results"></div>
+      <div id="dice-sum" style="margin-top:12px;font-size:0.85rem;color:var(--muted);font-family:var(--mono)"></div>
+    </div>
+
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is this generator truly random? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">This tool uses the browser's built-in <code>Math.random()</code>, which is a pseudo-random number generator (PRNG). It is cryptographically unpredictable for casual use. For cryptographic security, use <code>crypto.getRandomValues()</code> — not needed for games or statistics.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does "no duplicates" mean? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">When enabled, each generated number will appear only once in the list — like drawing numbers from a hat without replacement. The range must be large enough to contain the requested count of unique numbers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many numbers can I generate at once? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Up to 500 numbers per batch. For unique mode, the range (max − min + 1) must be at least equal to the count requested.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What dice sides are available? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">The dice roller includes d4, d6, d8, d10, d12, d20, and d100 — the standard polyhedral dice set used in tabletop RPGs like D&D, Pathfinder, and more.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/prime-checker" class="rel-chip">🔍 Prime Checker</a>
+      <a href="/tools/fraction-calculator" class="rel-chip">½ Fraction Calculator</a>
+      <a href="/tools/password-generator" class="rel-chip">🔑 Password Generator</a>
+      <a href="/tools/uuid-generator" class="rel-chip">🪪 UUID Generator</a>
+      <a href="/tools/percentage-calculator" class="rel-chip">% Percentage Calc</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let sHistory = [];
+let diceRolls = [];
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['single','multi','dice'][i] === tab);
+  });
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + tab).classList.add('active');
+}
+
+function getRandInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function getRandFloat(min, max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(4));
+}
+
+function generateSingle() {
+  const min = parseInt(document.getElementById('s-min').value) || 1;
+  const max = parseInt(document.getElementById('s-max').value) || 100;
+  if (min >= max) { document.getElementById('s-result').textContent = 'Min < Max!'; return; }
+  const useFloat = document.getElementById('s-float').checked;
+  const num = useFloat ? getRandFloat(min, max) : getRandInt(min, max);
+  const el = document.getElementById('s-result');
+  el.style.animation = 'none';
+  el.offsetHeight;
+  el.style.animation = '';
+  el.textContent = num;
+  sHistory.unshift({ num, time: new Date().toLocaleTimeString() });
+  if (sHistory.length > 12) sHistory.pop();
+  renderSHistory();
+}
+
+function renderSHistory() {
+  const wrap = document.getElementById('s-history-wrap');
+  const list = document.getElementById('s-history');
+  if (sHistory.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = sHistory.map(h =>
+    `<div class="history-item"><span class="history-num">${h.num}</span><span class="history-ts">${h.time}</span></div>`
+  ).join('');
+}
+
+function clearHistory(type) {
+  sHistory = [];
+  renderSHistory();
+}
+
+function generateMulti() {
+  const min = parseInt(document.getElementById('m-min').value) || 1;
+  const max = parseInt(document.getElementById('m-max').value) || 100;
+  const count = Math.min(500, Math.max(1, parseInt(document.getElementById('m-count').value) || 6));
+  const unique = document.getElementById('m-unique').checked;
+  const err = document.getElementById('m-error');
+
+  if (min >= max) { err.textContent = 'Minimum must be less than maximum.'; return; }
+  if (unique && count > (max - min + 1)) {
+    err.textContent = `Cannot generate ${count} unique numbers in range [${min}, ${max}].`;
+    return;
+  }
+  err.textContent = '';
+
+  let nums = [];
+  if (unique) {
+    const pool = [];
+    for (let i = min; i <= max; i++) pool.push(i);
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    nums = pool.slice(0, count);
+  } else {
+    for (let i = 0; i < count; i++) nums.push(getRandInt(min, max));
+  }
+
+  document.getElementById('m-results').innerHTML = nums.map(n =>
+    `<span class="num-chip">${n}</span>`
+  ).join('');
+}
+
+function rollDie(sides) {
+  const roll = getRandInt(1, sides);
+  diceRolls.push({ sides, roll });
+  renderDice();
+}
+
+function renderDice() {
+  const container = document.getElementById('dice-results');
+  container.innerHTML = diceRolls.map(d =>
+    `<div class="die-result" title="d${d.sides}">${d.roll}</div>`
+  ).join('');
+  const sum = diceRolls.reduce((a, d) => a + d.roll, 0);
+  document.getElementById('dice-sum').textContent = diceRolls.length > 1
+    ? `Sum: ${sum}  |  Count: ${diceRolls.length}`
+    : '';
+}
+
+function clearDice() {
+  diceRolls = [];
+  document.getElementById('dice-results').innerHTML = '';
+  document.getElementById('dice-sum').textContent = '';
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

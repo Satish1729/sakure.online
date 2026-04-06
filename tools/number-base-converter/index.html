@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Base Converter – Binary, Octal, Decimal, Hex | Sakure.online</title>
+<meta name="description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly. Free online number base converter — no signup required.">
+<meta name="keywords" content="number base converter, binary to decimal, hex to decimal, octal converter, decimal to binary, base conversion, hexadecimal">
+<meta property="og:title" content="Number Base Converter – Sakure.online">
+<meta property="og:description" content="Convert between binary, octal, decimal, and hex instantly. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/number-base-converter">
+<link rel="canonical" href="https://sakure.online/tools/number-base-converter">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Number Base Converter",
+  "url": "https://sakure.online/tools/number-base-converter",
+  "description": "Free online number base converter. Convert numbers between binary (base 2), octal (base 8), decimal (base 10), and hexadecimal (base 16).",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #21263a;
+  --border: #2e3345;
+  --text: #e4e6ef;
+  --muted: #7a8499;
+  --accent: #818cf8;
+  --accent-glow: rgba(129,140,248,0.12);
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:0.85rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(129,140,248,0.3);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:540px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.input-label{font-size:0.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:6px}
+.base-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-bottom:20px}
+.base-selector{display:flex;gap:8px;flex-wrap:wrap}
+.base-chip{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all .15s;font-family:var(--mono)}
+.base-chip.active{border-color:var(--accent);color:var(--accent);background:rgba(129,140,248,0.08)}
+input[type=text]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--mono);font-size:1.1rem;width:100%;transition:border-color .2s;outline:none;letter-spacing:1px}
+input[type=text]:focus{border-color:var(--accent)}
+.conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.conv-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;cursor:pointer;transition:border-color .18s}
+.conv-box:hover{border-color:var(--accent)}
+.conv-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.conv-base-badge{background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.2);color:var(--accent);padding:1px 7px;border-radius:4px;font-size:0.65rem}
+.conv-value{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:var(--text);word-break:break-all}
+.conv-value.bin{font-size:0.88rem;letter-spacing:2px;line-height:1.6}
+.copy-hint{position:absolute;bottom:8px;right:12px;font-size:0.65rem;color:var(--muted);opacity:0;transition:opacity .2s}
+.conv-box:hover .copy-hint{opacity:1}
+.error-msg{color:#f87171;font-size:0.85rem;margin-top:10px;min-height:20px}
+.bit-groups{margin-top:8px;font-size:0.72rem;color:var(--muted);font-family:var(--mono);letter-spacing:2px;word-break:break-all;line-height:1.8}
+.quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.quick-btn{padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--muted);font-size:0.78rem;font-family:var(--mono);cursor:pointer;transition:all .15s}
+.quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* reference table */
+.ref-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.82rem;margin-top:16px}
+.ref-table th{text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:.6px}
+.ref-table td{padding:7px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.ref-table tr:last-child td{border-bottom:none}
+.ref-table tr:hover td{background:var(--surface2)}
+/* FAQ */
+.faq{margin:48px 0 32px}
+.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:0.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:0.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}
+.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:0.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}
+.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:0.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:0.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){.conv-grid{grid-template-columns:1fr}.base-row{grid-template-columns:1fr}nav .nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔢 Math & Number Tools</div>
+  <h1>Number <span>Base Converter</span></h1>
+  <p class="hero-sub">Convert between binary, octal, decimal, and hexadecimal instantly. Type in any base and see all results live.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="calc-card">
+    <div class="input-label">Enter your number</div>
+    <div class="base-row">
+      <input type="text" id="input-val" placeholder="Enter a number…" oninput="convertFrom(activeBase)" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="input-label" style="margin-bottom:10px">Input base</div>
+    <div class="base-selector" id="base-selector">
+      <button class="base-chip" onclick="setBase(2)">Base 2 (Binary)</button>
+      <button class="base-chip" onclick="setBase(8)">Base 8 (Octal)</button>
+      <button class="base-chip active" onclick="setBase(10)">Base 10 (Decimal)</button>
+      <button class="base-chip" onclick="setBase(16)">Base 16 (Hex)</button>
+    </div>
+    <div class="error-msg" id="err-msg"></div>
+
+    <div class="conv-grid" style="margin-top:20px">
+      <div class="conv-box" onclick="copyVal('out-bin')">
+        <div class="conv-label">Binary <span class="conv-base-badge">Base 2</span></div>
+        <div class="conv-value bin" id="out-bin">—</div>
+        <span class="copy-hint">click to copy</span>
+      </div>
+      <div class="conv-box" onclick="copyVal('out-oct')">
+        <div class="conv-label">Octal <span class="conv-base-badge">Base 8</span></div>
+        <div class="conv-value" id="out-oct">—</div>
+        <span class="copy-hint">click to copy</span>
+      </div>
+      <div class="conv-box" onclick="copyVal('out-dec')">
+        <div class="conv-label">Decimal <span class="conv-base-badge">Base 10</span></div>
+        <div class="conv-value" id="out-dec">—</div>
+        <span class="copy-hint">click to copy</span>
+      </div>
+      <div class="conv-box" onclick="copyVal('out-hex')">
+        <div class="conv-label">Hexadecimal <span class="conv-base-badge">Base 16</span></div>
+        <div class="conv-value" id="out-hex">—</div>
+        <span class="copy-hint">click to copy</span>
+      </div>
+    </div>
+
+    <div id="bit-groups" class="bit-groups"></div>
+
+    <div class="quick-btns">
+      <span style="font-size:0.78rem;color:var(--muted);align-self:center">Quick:</span>
+      <button class="quick-btn" onclick="setQuick(255)">255</button>
+      <button class="quick-btn" onclick="setQuick(1024)">1024</button>
+      <button class="quick-btn" onclick="setQuick(65535)">65535</button>
+      <button class="quick-btn" onclick="setQuick(16777215)">16777215</button>
+    </div>
+  </div>
+
+  <!-- Reference Table -->
+  <div class="calc-card">
+    <div style="font-size:1rem;font-weight:600;margin-bottom:4px">Base Reference Table</div>
+    <div style="font-size:0.84rem;color:var(--muted);margin-bottom:16px">Common values across all four bases</div>
+    <table class="ref-table">
+      <thead>
+        <tr><th>Decimal</th><th>Binary</th><th>Octal</th><th>Hex</th></tr>
+      </thead>
+      <tbody id="ref-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is a number base (radix)? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">A number base (or radix) determines how many unique digits are used to represent numbers. Base 10 uses digits 0–9, binary (base 2) uses only 0 and 1, octal (base 8) uses 0–7, and hexadecimal (base 16) uses 0–9 and A–F.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why do programmers use hexadecimal? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Hex is a compact representation of binary data. Each hex digit represents exactly 4 bits, so a byte (8 bits) fits in just 2 hex digits. This makes it much easier to read memory addresses, color codes, and other binary data.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I convert decimal 255 to binary? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Repeatedly divide 255 by 2 and record remainders from bottom to top: 255 = 11111111 in binary. This is 8 bits all set to 1, which equals FF in hex and 377 in octal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the largest number this converter handles? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">This tool uses JavaScript's safe integer range (up to 2^53 − 1, or 9,007,199,254,740,991 in decimal). For most programming and education purposes this is more than sufficient.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/binary-converter" class="rel-chip">01 Binary Converter</a>
+      <a href="/tools/fraction-calculator" class="rel-chip">½ Fraction Calculator</a>
+      <a href="/tools/prime-checker" class="rel-chip">🔍 Prime Checker</a>
+      <a href="/tools/roman-numeral-converter" class="rel-chip">Ⅻ Roman Numerals</a>
+      <a href="/tools/hash-generator" class="rel-chip"># Hash Generator</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let activeBase = 10;
+
+function setBase(base) {
+  activeBase = base;
+  document.querySelectorAll('.base-chip').forEach((c, i) => {
+    c.classList.toggle('active', [2,8,10,16][i] === base);
+  });
+  const inputEl = document.getElementById('input-val');
+  inputEl.placeholder = base === 2 ? 'e.g. 11010110' : base === 8 ? 'e.g. 377' : base === 16 ? 'e.g. FF or 1A3' : 'e.g. 255';
+  convertFrom(base);
+}
+
+function setQuick(dec) {
+  activeBase = 10;
+  document.querySelectorAll('.base-chip').forEach((c, i) => c.classList.toggle('active', i === 2));
+  document.getElementById('input-val').value = dec;
+  convertFrom(10);
+}
+
+function convertFrom(base) {
+  const raw = document.getElementById('input-val').value.trim().toUpperCase();
+  const err = document.getElementById('err-msg');
+  if (!raw) { clearOutputs(); err.textContent = ''; return; }
+
+  const validChars = { 2: /^[01]+$/, 8: /^[0-7]+$/, 10: /^[0-9]+$/, 16: /^[0-9A-F]+$/ };
+  if (!validChars[base].test(raw)) {
+    err.textContent = `Invalid ${base === 2 ? 'binary' : base === 8 ? 'octal' : base === 16 ? 'hex' : 'decimal'} value.`;
+    clearOutputs();
+    return;
+  }
+  err.textContent = '';
+
+  const dec = parseInt(raw, base);
+  if (!isFinite(dec) || dec < 0) { err.textContent = 'Number out of range.'; return; }
+
+  document.getElementById('out-bin').textContent = dec.toString(2);
+  document.getElementById('out-oct').textContent = dec.toString(8);
+  document.getElementById('out-dec').textContent = dec.toString(10);
+  document.getElementById('out-hex').textContent = dec.toString(16).toUpperCase();
+
+  // Bit groups
+  const bin = dec.toString(2).padStart(Math.ceil(dec.toString(2).length / 4) * 4, '0');
+  const grouped = bin.match(/.{1,4}/g).join(' ');
+  document.getElementById('bit-groups').textContent = grouped ? 'Grouped: ' + grouped : '';
+}
+
+function clearOutputs() {
+  ['out-bin','out-oct','out-dec','out-hex'].forEach(id => document.getElementById(id).textContent = '—');
+  document.getElementById('bit-groups').textContent = '';
+}
+
+function copyVal(id) {
+  const val = document.getElementById(id).textContent;
+  if (val === '—') return;
+  navigator.clipboard.writeText(val).then(() => {
+    const el = document.getElementById(id);
+    const old = el.textContent;
+    el.textContent = 'Copied!';
+    setTimeout(() => el.textContent = old, 1200);
+  });
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+// Build reference table
+const vals = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,32,64,128,255,256,512,1024];
+const tbody = document.getElementById('ref-tbody');
+vals.forEach(v => {
+  tbody.innerHTML += `<tr>
+    <td>${v}</td>
+    <td>${v.toString(2)}</td>
+    <td>${v.toString(8)}</td>
+    <td>${v.toString(16).toUpperCase()}</td>
+  </tr>`;
+});
+</script>
+</body>
+</html>

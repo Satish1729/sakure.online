@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Number Checker – Is It Prime? Factorization & Prime List | Sakure.online</title>
+<meta name="description" content="Check if any number is prime, find all prime numbers up to N, and get prime factorization. Free online prime number checker — fast, accurate, no signup.">
+<meta name="keywords" content="prime number checker, is prime, prime factorization, prime numbers list, sieve of eratosthenes, prime calculator">
+<meta property="og:title" content="Prime Number Checker – Sakure.online">
+<meta property="og:description" content="Check if a number is prime, list all primes up to N, and find prime factorization. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/prime-checker">
+<link rel="canonical" href="https://sakure.online/tools/prime-checker">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Prime Number Checker",
+  "url": "https://sakure.online/tools/prime-checker",
+  "description": "Free online prime number checker. Check if a number is prime, list all primes up to any limit, and calculate prime factorization.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #21263a;
+  --border: #2e3345;
+  --text: #e4e6ef;
+  --muted: #7a8499;
+  --accent: #10b981;
+  --accent-glow: rgba(16,185,129,0.12);
+  --yes: #10b981;
+  --no: #f87171;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:0.85rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(16,185,129,0.3);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
+.mode-tabs{display:flex;gap:8px;margin:28px 0 18px;flex-wrap:wrap}
+.tab-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--font);font-size:0.84rem;font-weight:500;cursor:pointer;transition:all .18s}
+.tab-btn:hover{border-color:var(--accent);color:var(--text)}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#000;font-weight:700}
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.pane{display:none}
+.pane.active{display:block}
+.input-label{font-size:0.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:6px;display:block}
+.input-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:20px}
+input[type=number]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--mono);font-size:1.1rem;flex:1;transition:border-color .2s;outline:none;-moz-appearance:textfield}
+input[type=number]:focus{border-color:var(--accent)}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.calc-btn{background:var(--accent);color:#000;font-family:var(--font);font-size:0.9rem;font-weight:700;padding:12px 24px;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;white-space:nowrap}
+.calc-btn:hover{opacity:.88}
+.verdict-box{border-radius:14px;padding:24px 28px;margin-bottom:20px;display:none}
+.verdict-box.prime{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3)}
+.verdict-box.not-prime{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3)}
+.verdict-label{font-size:0.74rem;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;font-weight:600}
+.verdict-label.prime{color:var(--yes)}
+.verdict-label.not-prime{color:var(--no)}
+.verdict-num{font-size:3rem;font-weight:700;font-family:var(--mono);line-height:1;margin-bottom:6px}
+.verdict-num.prime{color:var(--yes)}
+.verdict-num.not-prime{color:var(--no)}
+.verdict-msg{font-size:0.92rem;color:var(--muted)}
+.factors-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.factor-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:var(--mono);font-size:0.88rem;color:var(--text)}
+.factor-chip.prime-f{border-color:var(--accent);color:var(--accent)}
+.steps{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.step{font-size:0.84rem;font-family:var(--mono);color:var(--muted);margin-bottom:5px;padding-left:12px;border-left:2px solid var(--border)}
+/* Primes grid */
+.primes-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;max-height:400px;overflow-y:auto}
+.prime-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:0.82rem;color:var(--accent)}
+.prime-stats{font-size:0.84rem;color:var(--muted);margin-bottom:12px}
+.faq{margin:48px 0 32px}
+.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:0.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:0.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:220px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}
+.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:0.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}
+.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:0.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:0.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){.input-row{flex-direction:column}nav .nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 Math & Number Tools</div>
+  <h1>Prime Number <span>Checker</span></h1>
+  <p class="hero-sub">Check if any number is prime, list all primes up to N, and find prime factorization — with step-by-step explanations.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('check')">Is It Prime?</button>
+    <button class="tab-btn" onclick="switchTab('list')">List Primes ≤ N</button>
+    <button class="tab-btn" onclick="switchTab('factor')">Factorize</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- IS PRIME -->
+    <div class="pane active" id="pane-check">
+      <label class="input-label">Enter a number to check</label>
+      <div class="input-row">
+        <input type="number" id="chk-num" value="97" min="0" oninput="checkPrime()">
+      </div>
+      <div id="chk-verdict" class="verdict-box"></div>
+      <div id="chk-steps"></div>
+    </div>
+
+    <!-- LIST PRIMES -->
+    <div class="pane" id="pane-list">
+      <label class="input-label">Find all primes up to</label>
+      <div class="input-row">
+        <input type="number" id="lst-num" value="100" min="2" max="100000">
+        <button class="calc-btn" onclick="listPrimes()">Find Primes</button>
+      </div>
+      <div id="lst-stats" class="prime-stats"></div>
+      <div id="lst-primes" class="primes-wrap"></div>
+    </div>
+
+    <!-- FACTORIZE -->
+    <div class="pane" id="pane-factor">
+      <label class="input-label">Enter a number to factorize</label>
+      <div class="input-row">
+        <input type="number" id="fac-num" value="360" min="2" oninput="factorize()">
+      </div>
+      <div id="fac-result"></div>
+    </div>
+
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is a prime number? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Examples: 2, 3, 5, 7, 11, 13… The number 2 is the only even prime. 1 is not considered prime by convention.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do you check if a number is prime? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">To test if n is prime, check if any integer from 2 up to √n divides n evenly. If none do, n is prime. This works because if n has a factor greater than √n, it must also have one smaller than √n.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is prime factorization? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Prime factorization breaks a number down into a product of prime numbers. For example, 360 = 2³ × 3² × 5. Every integer greater than 1 has a unique prime factorization (Fundamental Theorem of Arithmetic).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the Sieve of Eratosthenes? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">An ancient algorithm for finding all primes up to a given limit. It works by iteratively marking multiples of each prime as composite, starting from 2. The tool uses this method for listing primes efficiently.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are there infinitely many primes? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Yes! Euclid proved this around 300 BC. Suppose there are finite primes — multiply them all and add 1. That number is either prime itself or has a prime factor not in the original list. Either way, a new prime exists. Contradiction.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/fraction-calculator" class="rel-chip">½ Fraction Calculator</a>
+      <a href="/tools/number-base-converter" class="rel-chip">🔢 Base Converter</a>
+      <a href="/tools/roman-numeral-converter" class="rel-chip">Ⅻ Roman Numerals</a>
+      <a href="/tools/percentage-calculator" class="rel-chip">% Percentage Calc</a>
+      <a href="/tools/random-number-generator" class="rel-chip">🎲 Random Numbers</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) =>
+    b.classList.toggle('active', ['check','list','factor'][i] === tab));
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + tab).classList.add('active');
+  if (tab === 'check') checkPrime();
+  if (tab === 'factor') factorize();
+}
+
+function isPrime(n) {
+  n = parseInt(n);
+  if (!isFinite(n) || n < 2) return false;
+  if (n === 2) return true;
+  if (n % 2 === 0) return false;
+  for (let i = 3; i <= Math.sqrt(n); i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+
+function getFactors(n) {
+  const factors = [];
+  for (let i = 2; i * i <= n; i++) {
+    while (n % i === 0) { factors.push(i); n = Math.floor(n / i); }
+  }
+  if (n > 1) factors.push(n);
+  return factors;
+}
+
+function checkPrime() {
+  const raw = document.getElementById('chk-num').value;
+  const n = parseInt(raw);
+  const box = document.getElementById('chk-verdict');
+  const stepsEl = document.getElementById('chk-steps');
+
+  if (!raw || !isFinite(n) || n < 0) {
+    box.style.display = 'none'; stepsEl.innerHTML = ''; return;
+  }
+
+  const prime = isPrime(n);
+  box.style.display = 'block';
+  box.className = 'verdict-box ' + (prime ? 'prime' : 'not-prime');
+
+  let steps = [];
+  let msg = '';
+
+  if (n < 2) {
+    msg = `${n} is neither prime nor composite (by definition).`;
+    steps = ['Numbers less than 2 are not prime by convention.'];
+  } else if (prime) {
+    msg = `${n} has no divisors other than 1 and itself.`;
+    const sq = Math.floor(Math.sqrt(n));
+    steps = [
+      `Check divisors from 2 to √${n} ≈ ${sq}`,
+      ...(() => {
+        const checked = [];
+        for (let i = 2; i <= Math.min(sq, 20); i += (i === 2 ? 1 : 2)) {
+          checked.push(`${n} ÷ ${i} = ${(n/i).toFixed(2)} — not divisible`);
+        }
+        if (sq > 20) checked.push('... all remaining divisors tested — none divide evenly');
+        return checked;
+      })(),
+      `✓ ${n} is PRIME`
+    ];
+  } else {
+    const factors = getFactors(n);
+    const firstFactor = factors[0];
+    msg = `${n} = ${factors.join(' × ')} (has factors other than 1 and ${n}).`;
+    steps = [
+      `Check divisors from 2 to √${n} ≈ ${Math.floor(Math.sqrt(n))}`,
+      `${n} ÷ ${firstFactor} = ${n / firstFactor} — divisible!`,
+      `✗ ${n} is NOT PRIME`,
+      `Prime factors: ${factors.join(' × ')}`
+    ];
+  }
+
+  box.innerHTML = `
+    <div class="verdict-label ${prime ? 'prime' : 'not-prime'}">${prime ? '✓ Prime Number' : n < 2 ? '⚠ Special Case' : '✗ Not Prime'}</div>
+    <div class="verdict-num ${prime ? 'prime' : 'not-prime'}">${n}</div>
+    <div class="verdict-msg">${msg}</div>`;
+
+  stepsEl.innerHTML = `<div class="steps" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:0">
+    <div style="font-size:0.74rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:10px">How we checked</div>
+    ${steps.map(s => `<div class="step">${s}</div>`).join('')}
+  </div>`;
+}
+
+function listPrimes() {
+  const limit = Math.min(100000, Math.max(2, parseInt(document.getElementById('lst-num').value) || 100));
+  document.getElementById('lst-num').value = limit;
+
+  // Sieve
+  const sieve = new Uint8Array(limit + 1).fill(1);
+  sieve[0] = sieve[1] = 0;
+  for (let i = 2; i * i <= limit; i++) {
+    if (sieve[i]) for (let j = i * i; j <= limit; j += i) sieve[j] = 0;
+  }
+
+  const primes = [];
+  for (let i = 2; i <= limit; i++) { if (sieve[i]) primes.push(i); }
+
+  document.getElementById('lst-stats').textContent =
+    `Found ${primes.length.toLocaleString()} prime${primes.length !== 1 ? 's' : ''} ≤ ${limit.toLocaleString()}`;
+
+  const wrap = document.getElementById('lst-primes');
+  if (primes.length > 2000) {
+    wrap.innerHTML = primes.slice(0, 2000).map(p =>
+      `<span class="prime-chip">${p}</span>`).join('') +
+      `<span style="color:var(--muted);font-size:0.82rem;align-self:center;margin-left:6px">+${(primes.length-2000).toLocaleString()} more…</span>`;
+  } else {
+    wrap.innerHTML = primes.map(p => `<span class="prime-chip">${p}</span>`).join('');
+  }
+}
+
+function factorize() {
+  const raw = document.getElementById('fac-num').value;
+  const n = parseInt(raw);
+  const el = document.getElementById('fac-result');
+  if (!raw || !isFinite(n) || n < 2) { el.innerHTML = ''; return; }
+
+  const factors = getFactors(n);
+
+  // Build exponent form
+  const counts = {};
+  factors.forEach(f => counts[f] = (counts[f] || 0) + 1);
+  const expForm = Object.entries(counts).map(([base, exp]) =>
+    exp > 1 ? `${base}<sup>${exp}</sup>` : base).join(' × ');
+  const flatForm = factors.join(' × ');
+
+  const steps = [];
+  let rem = n;
+  for (let i = 2; rem > 1; i += (i === 2 ? 1 : 2)) {
+    while (rem % i === 0) {
+      steps.push(`${rem} ÷ ${i} = ${rem / i}`);
+      rem = rem / i;
+    }
+    if (i > Math.sqrt(n) + 1) break;
+  }
+
+  el.innerHTML = `
+    <div class="verdict-box prime" style="display:block">
+      <div class="verdict-label prime">Prime Factorization</div>
+      <div style="font-size:1.5rem;font-weight:700;font-family:var(--mono);color:var(--accent);margin-bottom:8px">${n} = ${expForm}</div>
+      <div style="font-size:0.88rem;color:var(--muted)">Expanded: ${flatForm}</div>
+      <div style="font-size:0.88rem;color:var(--muted);margin-top:4px">Number of prime factors: ${factors.length} (with repetition)</div>
+    </div>
+    <div class="steps" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:0">
+      <div style="font-size:0.74rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:10px">Step-by-step division</div>
+      ${steps.map(s => `<div class="step">${s}</div>`).join('')}
+    </div>`;
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+// Init
+checkPrime();
+</script>
+</body>
+</html>

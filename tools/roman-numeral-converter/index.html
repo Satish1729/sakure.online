@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roman Numeral Converter – Decimal to Roman & Back | Sakure.online</title>
+<meta name="description" content="Convert decimal numbers to Roman numerals and Roman numerals back to decimal. Free online Roman numeral converter with reference table and rules. No signup required.">
+<meta name="keywords" content="roman numeral converter, decimal to roman, roman to decimal, roman numbers, numeral converter, XLII, roman numeral chart">
+<meta property="og:title" content="Roman Numeral Converter – Sakure.online">
+<meta property="og:description" content="Convert between decimal numbers and Roman numerals instantly. Includes reference table and conversion rules. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/roman-numeral-converter">
+<link rel="canonical" href="https://sakure.online/tools/roman-numeral-converter">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Roman Numeral Converter",
+  "url": "https://sakure.online/tools/roman-numeral-converter",
+  "description": "Free online Roman numeral converter. Convert decimal numbers to Roman numerals and Roman numerals back to decimal. Includes reference table.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #21263a;
+  --border: #2e3345;
+  --text: #e4e6ef;
+  --muted: #7a8499;
+  --accent: #f97316;
+  --accent-glow: rgba(249,115,22,0.12);
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:0.85rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(249,115,22,0.3);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
+.mode-tabs{display:flex;gap:8px;margin:28px 0 18px}
+.tab-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--font);font-size:0.84rem;font-weight:500;cursor:pointer;transition:all .18s}
+.tab-btn:hover{border-color:var(--accent);color:var(--text)}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.pane{display:none}
+.pane.active{display:block}
+.input-label{font-size:0.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:6px;display:block}
+input[type=number],input[type=text]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--mono);font-size:1.2rem;width:100%;transition:border-color .2s;outline:none;letter-spacing:2px}
+input[type=number]:focus,input[type=text]:focus{border-color:var(--accent)}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;-moz-appearance:none;margin:0}
+.result-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-top:20px}
+.result-main{font-size:3.5rem;font-weight:700;font-family:var(--mono);color:var(--accent);line-height:1;margin-bottom:8px;letter-spacing:4px;animation:popIn .25s ease}
+@keyframes popIn{from{opacity:.3;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.result-sub{font-size:0.84rem;color:var(--muted)}
+.breakdown{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.breakdown-title{font-size:0.72rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:10px}
+.breakdown-parts{display:flex;flex-wrap:wrap;gap:8px}
+.bd-part{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;text-align:center}
+.bd-dec{font-size:0.9rem;font-family:var(--mono);color:var(--accent);font-weight:600}
+.bd-rom{font-size:0.72rem;color:var(--muted);margin-top:2px}
+.error-msg{color:#f87171;font-size:0.85rem;margin-top:10px;min-height:20px}
+/* Reference table */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:16px}
+.ref-cell{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center}
+.ref-rom{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--accent)}
+.ref-dec{font-size:0.78rem;color:var(--muted);margin-top:2px;font-family:var(--mono)}
+/* Quick examples */
+.examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ex-chip{padding:6px 12px;border:1px solid var(--border);border-radius:6px;font-family:var(--mono);font-size:0.82rem;color:var(--muted);cursor:pointer;transition:all .15s;background:transparent}
+.ex-chip:hover{border-color:var(--accent);color:var(--accent)}
+.faq{margin:48px 0 32px}
+.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:0.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:0.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:220px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}
+.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:0.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}
+.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:0.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:0.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){nav .nav-links{display:none}.result-main{font-size:2.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Ⅻ Math & Number Tools</div>
+  <h1>Roman Numeral <span>Converter</span></h1>
+  <p class="hero-sub">Convert decimal numbers to Roman numerals and Roman numerals back to decimal. Supports 1 to 3,999 with step-by-step breakdown.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" onclick="switchTab('to-roman')">Decimal → Roman</button>
+    <button class="tab-btn" onclick="switchTab('to-dec')">Roman → Decimal</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- DECIMAL TO ROMAN -->
+    <div class="pane active" id="pane-to-roman">
+      <label class="input-label">Enter a decimal number (1 – 3999)</label>
+      <input type="number" id="dec-input" value="2024" min="1" max="3999" oninput="toRoman()">
+      <div class="error-msg" id="dec-err"></div>
+      <div id="dec-result" style="display:none" class="result-box">
+        <div class="result-main" id="roman-out"></div>
+        <div class="result-sub" id="roman-sub"></div>
+        <div class="breakdown">
+          <div class="breakdown-title">Breakdown</div>
+          <div class="breakdown-parts" id="roman-parts"></div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:16px">Try an example:</div>
+      <div class="examples">
+        <button class="ex-chip" onclick="setDec(42)">42</button>
+        <button class="ex-chip" onclick="setDec(399)">399</button>
+        <button class="ex-chip" onclick="setDec(1066)">1066</button>
+        <button class="ex-chip" onclick="setDec(1776)">1776</button>
+        <button class="ex-chip" onclick="setDec(2024)">2024</button>
+        <button class="ex-chip" onclick="setDec(3999)">3999</button>
+      </div>
+    </div>
+
+    <!-- ROMAN TO DECIMAL -->
+    <div class="pane" id="pane-to-dec">
+      <label class="input-label">Enter Roman numerals (e.g. MMXXIV)</label>
+      <input type="text" id="rom-input" value="MMXXIV" oninput="fromRoman()" style="text-transform:uppercase" placeholder="e.g. XIV" autocomplete="off" spellcheck="false">
+      <div class="error-msg" id="rom-err"></div>
+      <div id="rom-result" style="display:none" class="result-box">
+        <div class="result-main" id="dec-out" style="letter-spacing:0.5px"></div>
+        <div class="result-sub" id="dec-sub"></div>
+        <div class="breakdown">
+          <div class="breakdown-title">Symbol values</div>
+          <div class="breakdown-parts" id="dec-parts"></div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:16px">Try an example:</div>
+      <div class="examples">
+        <button class="ex-chip" onclick="setRom('XIV')">XIV</button>
+        <button class="ex-chip" onclick="setRom('XLII')">XLII</button>
+        <button class="ex-chip" onclick="setRom('MCMXCIX')">MCMXCIX</button>
+        <button class="ex-chip" onclick="setRom('MMXXIV')">MMXXIV</button>
+        <button class="ex-chip" onclick="setRom('MMMCMXCIX')">MMMCMXCIX</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Reference table -->
+  <div class="calc-card">
+    <div style="font-size:1rem;font-weight:600;margin-bottom:4px">Roman Numeral Reference</div>
+    <div style="font-size:0.84rem;color:var(--muted);margin-bottom:4px">The 13 core symbols and their values</div>
+    <div class="ref-grid">
+      <div class="ref-cell"><div class="ref-rom">I</div><div class="ref-dec">1</div></div>
+      <div class="ref-cell"><div class="ref-rom">IV</div><div class="ref-dec">4</div></div>
+      <div class="ref-cell"><div class="ref-rom">V</div><div class="ref-dec">5</div></div>
+      <div class="ref-cell"><div class="ref-rom">IX</div><div class="ref-dec">9</div></div>
+      <div class="ref-cell"><div class="ref-rom">X</div><div class="ref-dec">10</div></div>
+      <div class="ref-cell"><div class="ref-rom">XL</div><div class="ref-dec">40</div></div>
+      <div class="ref-cell"><div class="ref-rom">L</div><div class="ref-dec">50</div></div>
+      <div class="ref-cell"><div class="ref-rom">XC</div><div class="ref-dec">90</div></div>
+      <div class="ref-cell"><div class="ref-rom">C</div><div class="ref-dec">100</div></div>
+      <div class="ref-cell"><div class="ref-rom">CD</div><div class="ref-dec">400</div></div>
+      <div class="ref-cell"><div class="ref-rom">D</div><div class="ref-dec">500</div></div>
+      <div class="ref-cell"><div class="ref-rom">CM</div><div class="ref-dec">900</div></div>
+      <div class="ref-cell"><div class="ref-rom">M</div><div class="ref-dec">1000</div></div>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do Roman numerals work? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Roman numerals use letters to represent values: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. When a smaller value precedes a larger one (like IV), it is subtracted. When it follows (like VI), it is added. This subtractive notation allows compact representation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the largest Roman numeral? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Using standard notation, the largest Roman numeral is MMMCMXCIX = 3,999. The symbol M can repeat up to 3 times. Numbers beyond 3,999 require special extensions like a vinculum (bar over a numeral, multiplying it by 1,000).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why is 4 written as IV and not IIII? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">The subtractive notation (IV for 4, IX for 9, etc.) became the standard form to avoid repetitive sequences and keep numerals compact. However, IIII was historically used — you may still see it on clock faces.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Where are Roman numerals used today? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Roman numerals are still used for clock faces, book chapters and volume numbers, movie sequels (Rocky IV), year dates on buildings and films, Super Bowl numbering, and formal outlines and lists.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do you write the year 2024 in Roman numerals? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">2024 = MMXXIV. Breaking it down: MM=2000, XX=20, IV=4. So 2000 + 20 + 4 = 2024.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/number-base-converter" class="rel-chip">🔢 Base Converter</a>
+      <a href="/tools/fraction-calculator" class="rel-chip">½ Fraction Calculator</a>
+      <a href="/tools/prime-checker" class="rel-chip">🔍 Prime Checker</a>
+      <a href="/tools/percentage-calculator" class="rel-chip">% Percentage Calc</a>
+      <a href="/tools/binary-converter" class="rel-chip">01 Binary Converter</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-math">Math Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const VALS = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
+const SYMS = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];
+
+function decToRoman(num) {
+  let result = '', parts = [];
+  for (let i = 0; i < VALS.length; i++) {
+    while (num >= VALS[i]) {
+      result += SYMS[i];
+      parts.push({ dec: VALS[i], rom: SYMS[i] });
+      num -= VALS[i];
+    }
+  }
+  return { result, parts };
+}
+
+function romanToDec(s) {
+  const map = {I:1,V:5,X:10,L:50,C:100,D:500,M:1000};
+  s = s.toUpperCase();
+  let total = 0, parts = [];
+  for (let i = 0; i < s.length; i++) {
+    const cur = map[s[i]], next = map[s[i+1]];
+    if (!cur) return null;
+    if (next && next > cur) {
+      parts.push({ sym: s[i] + s[i+1], val: next - cur });
+      total += next - cur; i++;
+    } else {
+      parts.push({ sym: s[i], val: cur });
+      total += cur;
+    }
+  }
+  return { total, parts };
+}
+
+function validateRoman(s) {
+  return /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(s.toUpperCase()) && s.length > 0;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) =>
+    b.classList.toggle('active', ['to-roman','to-dec'][i] === tab));
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + tab).classList.add('active');
+  if (tab === 'to-roman') toRoman();
+  if (tab === 'to-dec') fromRoman();
+}
+
+function toRoman() {
+  const val = parseInt(document.getElementById('dec-input').value);
+  const err = document.getElementById('dec-err');
+  const res = document.getElementById('dec-result');
+  if (!val || val < 1 || val > 3999) {
+    err.textContent = val ? 'Enter a number between 1 and 3,999.' : '';
+    res.style.display = 'none'; return;
+  }
+  err.textContent = '';
+  const { result, parts } = decToRoman(val);
+  const out = document.getElementById('roman-out');
+  out.style.animation = 'none'; out.offsetHeight; out.style.animation = '';
+  out.textContent = result;
+  document.getElementById('roman-sub').textContent = `${val.toLocaleString()} in decimal`;
+  document.getElementById('roman-parts').innerHTML = parts.map(p =>
+    `<div class="bd-part"><div class="bd-dec">${p.rom}</div><div class="bd-rom">${p.dec}</div></div>`
+  ).join('');
+  res.style.display = 'block';
+}
+
+function fromRoman() {
+  const raw = document.getElementById('rom-input').value.trim().toUpperCase();
+  const err = document.getElementById('rom-err');
+  const res = document.getElementById('rom-result');
+  if (!raw) { err.textContent = ''; res.style.display = 'none'; return; }
+  if (!validateRoman(raw)) {
+    err.textContent = 'Invalid Roman numeral. Use I, V, X, L, C, D, M only.';
+    res.style.display = 'none'; return;
+  }
+  err.textContent = '';
+  const parsed = romanToDec(raw);
+  if (!parsed) { err.textContent = 'Could not parse this Roman numeral.'; return; }
+  const { total, parts } = parsed;
+  const out = document.getElementById('dec-out');
+  out.style.animation = 'none'; out.offsetHeight; out.style.animation = '';
+  out.textContent = total.toLocaleString();
+  document.getElementById('dec-sub').textContent = `${raw} in decimal`;
+  document.getElementById('dec-parts').innerHTML = parts.map(p =>
+    `<div class="bd-part"><div class="bd-dec">${p.sym}</div><div class="bd-rom">${p.val > 0 ? '+' + p.val : p.val}</div></div>`
+  ).join('');
+  res.style.display = 'block';
+}
+
+function setDec(n) {
+  document.getElementById('dec-input').value = n;
+  toRoman();
+}
+
+function setRom(s) {
+  document.getElementById('rom-input').value = s;
+  fromRoman();
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+// Init
+toRoman();
+</script>
+</body>
+</html>

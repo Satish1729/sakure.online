@@ -229,6 +229,38 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- ── Math & Number Tools (Week 7) ── -->
+  <url>
+    <loc>https://sakure.online/tools/fraction-calculator</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/number-base-converter</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/random-number-generator</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/prime-checker</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/roman-numeral-converter</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- ── Calculator Tools (Week 6) ── -->
   <url>
     <loc>https://sakure.online/tools/percentage-calculator</loc>
