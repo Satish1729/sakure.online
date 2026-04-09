@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Difference Calculator – Days Between Dates | Sakure.online</title>
+<meta name="description" content="Calculate the exact number of days, weeks, months and years between any two dates. Includes business day calculator. Free, instant, no signup required.">
+<meta name="keywords" content="date difference calculator, days between dates, how many days between, business days calculator, date duration, date interval calculator">
+<meta property="og:title" content="Date Difference Calculator – Sakure.online">
+<meta property="og:description" content="Find exact days, weeks, months and years between any two dates. Business days included. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/date-difference">
+<link rel="canonical" href="https://sakure.online/tools/date-difference">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Date Difference Calculator",
+  "url": "https://sakure.online/tools/date-difference",
+  "description": "Free online date difference calculator. Calculate exact days, weeks, months, years and business days between any two dates.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#38bdf8;--accent-glow:rgba(56,189,248,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(56,189,248,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.dates-row{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:end;margin-bottom:20px}
+.date-group label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);display:block;margin-bottom:6px}
+input[type=date]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:1rem;width:100%;transition:border-color .2s;outline:none;cursor:pointer}
+input[type=date]:focus{border-color:var(--accent)}
+input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5);cursor:pointer}
+.swap-btn{background:var(--surface2);border:1px solid var(--border);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:1.1rem;transition:all .15s;flex-shrink:0}
+.swap-btn:hover{border-color:var(--accent);color:var(--accent)}
+.options-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.opt{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.opt input[type=checkbox]{display:none}
+.opt-box{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.opt input:checked+.opt-box{background:var(--accent);border-color:var(--accent)}
+.opt input:checked+.opt-box::after{content:'✓';font-size:.7rem;color:#000;font-weight:700}
+.opt-label{font-size:.85rem;color:var(--muted)}
+/* Results */
+.result-hero{text-align:center;padding:24px 0 20px}
+.result-primary{font-size:4rem;font-weight:700;font-family:var(--mono);color:var(--accent);line-height:1;animation:popIn .3s ease}
+@keyframes popIn{from{opacity:.3;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.result-primary-label{font-size:.85rem;color:var(--muted);margin-top:4px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:20px}
+.res-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-align:center}
+.res-val{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--text)}
+.res-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+.direction-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:600;margin-top:10px}
+.direction-badge.future{background:rgba(56,189,248,.12);color:var(--accent);border:1px solid rgba(56,189,248,.25)}
+.direction-badge.past{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.direction-badge.same{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.25)}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.preset-btn{padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* FAQ */
+.faq{margin:48px 0 32px}.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+@media(max-width:640px){.dates-row{grid-template-columns:1fr;}.swap-btn{display:none}nav .nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-datetime">Date & Time</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">⏰ Date & Time Tools</div>
+  <h1>Date Difference <span>Calculator</span></h1>
+  <p class="hero-sub">Calculate the exact number of days, weeks, months, and years between any two dates — including business days.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Quick presets:</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPreset(0,30)">+30 days</button>
+      <button class="preset-btn" onclick="setPreset(0,90)">+90 days</button>
+      <button class="preset-btn" onclick="setPreset(0,180)">+6 months</button>
+      <button class="preset-btn" onclick="setPreset(0,365)">+1 year</button>
+      <button class="preset-btn" onclick="setPreset(-365,0)">−1 year</button>
+      <button class="preset-btn" onclick="setNewYear()">This year start</button>
+    </div>
+
+    <div class="dates-row">
+      <div class="date-group">
+        <label>Start Date</label>
+        <input type="date" id="date1" oninput="calculate()">
+      </div>
+      <div style="display:flex;align-items:flex-end;padding-bottom:2px">
+        <button class="swap-btn" onclick="swapDates()" title="Swap dates">⇄</button>
+      </div>
+      <div class="date-group">
+        <label>End Date</label>
+        <input type="date" id="date2" oninput="calculate()">
+      </div>
+    </div>
+
+    <div class="options-row">
+      <label class="opt">
+        <input type="checkbox" id="includeEnd" onchange="calculate()">
+        <span class="opt-box"></span>
+        <span class="opt-label">Include end date</span>
+      </label>
+      <label class="opt">
+        <input type="checkbox" id="bizDays" onchange="calculate()">
+        <span class="opt-box"></span>
+        <span class="opt-label">Show business days</span>
+      </label>
+    </div>
+
+    <div id="result" style="display:none">
+      <div class="result-hero">
+        <div class="result-primary" id="total-days">—</div>
+        <div class="result-primary-label" id="days-label">calendar days</div>
+        <div id="direction-badge"></div>
+      </div>
+      <div class="result-grid" id="result-grid"></div>
+    </div>
+    <div id="empty-msg" style="text-align:center;padding:32px;color:var(--muted);font-size:.9rem">Select both dates to see the difference</div>
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do you count days between dates? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Subtract the earlier date from the later date to get the total number of milliseconds, then divide by 86,400,000 (milliseconds per day). The "include end date" option adds 1 to count both the start and end days — useful for counting inclusive durations like "how many days of vacation".</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What counts as a business day? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Business days are Monday through Friday, excluding weekends. This calculator does not subtract public holidays since they vary by country and region. For deadline calculations, always double-check for any holidays in your jurisdiction.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why might the months count seem off? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Months vary in length (28–31 days), so "2 months" from January 31 is different from "2 months" from February 28. This calculator computes calendar months by tracking year/month/day positions, not by dividing total days by 30.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I calculate how old someone is? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Yes — set the start date to a birthdate and the end date to today. For a dedicated age calculator with birthday countdown and more details, try our Age Calculator tool.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the maximum date range this supports? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">This tool uses JavaScript's built-in Date object which supports dates from roughly 271,821 BCE to 275,760 CE — far more than any practical use case requires.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/age-calculator" class="rel-chip">🎂 Age Calculator</a>
+      <a href="/tools/countdown-timer" class="rel-chip">⏱️ Countdown Timer</a>
+      <a href="/tools/timezone-converter" class="rel-chip">🌍 Timezone Converter</a>
+      <a href="/tools/date-formatter" class="rel-chip">📅 Date Formatter</a>
+      <a href="/tools/stopwatch" class="rel-chip">⏲️ Stopwatch</a>
+      <a href="/tools/unix-timestamp" class="rel-chip">⏱️ Unix Timestamp</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/#cat-datetime">Date & Time</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+// Init dates: today and +30 days
+const today = new Date();
+const fmt = d => d.toISOString().split('T')[0];
+document.getElementById('date1').value = fmt(today);
+const d2 = new Date(today); d2.setDate(d2.getDate() + 30);
+document.getElementById('date2').value = fmt(d2);
+
+function setPreset(d1offset, d2offset) {
+  const t = new Date();
+  const a = new Date(t); a.setDate(a.getDate() + d1offset);
+  const b = new Date(t); b.setDate(b.getDate() + d2offset);
+  document.getElementById('date1').value = fmt(a);
+  document.getElementById('date2').value = fmt(b);
+  calculate();
+}
+function setNewYear() {
+  const y = new Date().getFullYear();
+  document.getElementById('date1').value = `${y}-01-01`;
+  document.getElementById('date2').value = fmt(new Date());
+  calculate();
+}
+function swapDates() {
+  const a = document.getElementById('date1').value;
+  const b = document.getElementById('date2').value;
+  document.getElementById('date1').value = b;
+  document.getElementById('date2').value = a;
+  calculate();
+}
+
+function businessDays(start, end) {
+  let count = 0, curr = new Date(start);
+  const endTime = end.getTime();
+  while (curr.getTime() <= endTime) {
+    const d = curr.getDay();
+    if (d !== 0 && d !== 6) count++;
+    curr.setDate(curr.getDate() + 1);
+  }
+  return count;
+}
+
+function dateDiff(d1, d2) {
+  let y1 = d1.getFullYear(), m1 = d1.getMonth(), day1 = d1.getDate();
+  let y2 = d2.getFullYear(), m2 = d2.getMonth(), day2 = d2.getDate();
+  let years = y2 - y1, months = m2 - m1, days = day2 - day1;
+  if (days < 0) { months--; const prev = new Date(y2, m2, 0); days += prev.getDate(); }
+  if (months < 0) { years--; months += 12; }
+  return { years, months, days };
+}
+
+function calculate() {
+  const v1 = document.getElementById('date1').value;
+  const v2 = document.getElementById('date2').value;
+  if (!v1 || !v2) { document.getElementById('result').style.display='none'; document.getElementById('empty-msg').style.display='block'; return; }
+
+  let d1 = new Date(v1 + 'T00:00:00');
+  let d2 = new Date(v2 + 'T00:00:00');
+  const includeEnd = document.getElementById('includeEnd').checked;
+  const showBiz = document.getElementById('bizDays').checked;
+
+  const swapped = d1 > d2;
+  if (swapped) { [d1, d2] = [d2, d1]; }
+
+  let totalDays = Math.round((d2 - d1) / 86400000) + (includeEnd ? 1 : 0);
+  const { years, months, days } = dateDiff(d1, new Date(d2.getTime() + (includeEnd ? 86400000 : 0)));
+
+  const totalWeeks = Math.floor(totalDays / 7);
+  const remDays = totalDays % 7;
+  const totalMonths = years * 12 + months;
+  const bizCount = showBiz ? businessDays(d1, new Date(d2.getTime() + (includeEnd ? 86400000 : 0))) : 0;
+
+  document.getElementById('empty-msg').style.display = 'none';
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+
+  const td = document.getElementById('total-days');
+  td.style.animation = 'none'; td.offsetHeight; td.style.animation = '';
+  td.textContent = totalDays.toLocaleString();
+  document.getElementById('days-label').textContent = 'calendar days' + (includeEnd ? ' (inclusive)' : '');
+
+  const badge = document.getElementById('direction-badge');
+  if (totalDays === 0) badge.innerHTML = '<span class="direction-badge same">📅 Same day</span>';
+  else if (swapped) badge.innerHTML = '<span class="direction-badge past">◀ Date 1 is after Date 2</span>';
+  else badge.innerHTML = `<span class="direction-badge future">▶ ${v1 === fmt(today) ? 'Today → Future' : 'Past → Future'}</span>`;
+
+  const parts = [
+    { val: years, label: 'Years' },
+    { val: months, label: 'Months' },
+    { val: days, label: 'Days' },
+    { val: totalWeeks, label: 'Total Weeks' },
+    { val: remDays, label: 'Remaining Days' },
+    { val: totalMonths, label: 'Total Months' },
+  ];
+  if (showBiz) parts.push({ val: bizCount, label: 'Business Days' });
+
+  document.getElementById('result-grid').innerHTML = parts.map(p =>
+    `<div class="res-card"><div class="res-val">${p.val.toLocaleString()}</div><div class="res-label">${p.label}</div></div>`
+  ).join('');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+calculate();
+</script>
+</body>
+</html>

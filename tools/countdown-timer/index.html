@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer – Count Down to Any Date & Event | Sakure.online</title>
+<meta name="description" content="Free online countdown timer. Count down to any date, event, deadline, or birthday. Save multiple countdowns with custom names. No signup required.">
+<meta name="keywords" content="countdown timer, count down to date, event countdown, deadline countdown, days until, birthday countdown, new year countdown">
+<meta property="og:title" content="Countdown Timer – Sakure.online">
+<meta property="og:description" content="Count down to any date or event. Save multiple named countdowns. Free online tool with live display.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/countdown-timer">
+<link rel="canonical" href="https://sakure.online/tools/countdown-timer">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Countdown Timer",
+  "url": "https://sakure.online/tools/countdown-timer",
+  "description": "Free online countdown timer. Count down to any date, event, or deadline. Save multiple named countdowns.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#f43f5e;--accent-glow:rgba(244,63,94,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(244,63,94,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.form-group label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);display:block;margin-bottom:6px}
+input[type=text],input[type=datetime-local]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.95rem;width:100%;transition:border-color .2s;outline:none}
+input[type=datetime-local]{font-family:var(--mono)}
+input:focus{border-color:var(--accent)}
+input[type=datetime-local]::-webkit-calendar-picker-indicator{filter:invert(.5);cursor:pointer}
+.add-btn{background:var(--accent);color:#fff;font-family:var(--font);font-size:.9rem;font-weight:700;padding:12px 24px;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s}
+.add-btn:hover{opacity:.88}
+.presets-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.preset{padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--muted);font-size:.78rem;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.preset:hover{border-color:var(--accent);color:var(--accent)}
+/* Main countdown display */
+.main-display{text-align:center;padding:32px 0}
+.event-name{font-size:.9rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.timer-units{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.unit{text-align:center;min-width:80px}
+.unit-val{font-family:var(--mono);font-size:3.5rem;font-weight:700;color:var(--accent);line-height:1;display:block}
+.unit-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+.unit-sep{font-family:var(--mono);font-size:3rem;font-weight:700;color:var(--border);align-self:flex-start;padding-top:4px}
+.done-msg{font-size:2.5rem;font-weight:700;color:var(--accent);animation:glow 1.5s infinite alternate}
+@keyframes glow{from{text-shadow:0 0 10px rgba(244,63,94,.3)}to{text-shadow:0 0 30px rgba(244,63,94,.7)}}
+.elapsed{font-size:.82rem;color:var(--muted);margin-top:12px}
+/* Saved countdowns */
+.saved-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.saved-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s}
+.saved-item:hover{border-color:var(--accent)}
+.saved-item.active{border-color:rgba(244,63,94,.5);background:rgba(244,63,94,.04)}
+.saved-meta{flex:1}
+.saved-name{font-weight:600;font-size:.92rem;margin-bottom:2px}
+.saved-target{font-size:.75rem;color:var(--muted);font-family:var(--mono)}
+.saved-countdown{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--accent);white-space:nowrap}
+.del-btn{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);width:28px;height:28px;cursor:pointer;font-size:.8rem;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.del-btn:hover{border-color:#f87171;color:#f87171}
+.empty-saved{text-align:center;padding:24px;color:var(--muted);font-size:.88rem}
+/* FAQ */
+.faq{margin:48px 0 32px}.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.unit-val{font-size:2.5rem}.unit-sep{font-size:2.2rem}nav .nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-datetime">Date & Time</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">⏱️ Date & Time Tools</div>
+  <h1>Countdown <span>Timer</span></h1>
+  <p class="hero-sub">Count down to any event, deadline, or date. Save multiple named countdowns and watch them tick live.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <!-- Add a countdown -->
+  <div class="card">
+    <div style="font-size:1rem;font-weight:600;margin-bottom:4px">Add a Countdown</div>
+    <div style="font-size:.84rem;color:var(--muted);margin-bottom:16px">Quick presets:</div>
+    <div class="presets-row">
+      <button class="preset" onclick="setPreset('New Year',getNextNewYear())">🎉 New Year</button>
+      <button class="preset" onclick="setPreset('Christmas',getChristmas())">🎄 Christmas</button>
+      <button class="preset" onclick="setPreset('30 Days',offsetDays(30))">📅 30 Days</button>
+      <button class="preset" onclick="setPreset('90 Days',offsetDays(90))">📅 90 Days</button>
+      <button class="preset" onclick="setPreset('6 Months',offsetDays(180))">📅 6 Months</button>
+      <button class="preset" onclick="setPreset('1 Year',offsetDays(365))">📅 1 Year</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Event Name</label>
+        <input type="text" id="event-name" placeholder="e.g. Product Launch" maxlength="40">
+      </div>
+      <div class="form-group">
+        <label>Target Date & Time</label>
+        <input type="datetime-local" id="event-dt">
+      </div>
+    </div>
+    <button class="add-btn" onclick="addCountdown()">Add Countdown →</button>
+    <div id="add-err" style="color:#f87171;font-size:.82rem;margin-top:8px;min-height:18px"></div>
+  </div>
+
+  <!-- Main display -->
+  <div class="card" id="main-card">
+    <div class="main-display" id="main-display">
+      <div class="empty-saved" style="padding:40px 0">Add a countdown above to get started ↑</div>
+    </div>
+  </div>
+
+  <!-- Saved list -->
+  <div class="card" id="saved-card" style="display:none">
+    <div style="font-size:1rem;font-weight:600;margin-bottom:16px">Saved Countdowns</div>
+    <div class="saved-list" id="saved-list"></div>
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does the countdown keep running if I close the tab? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">The countdown is based on a saved target date, not an active timer. When you return to the page, it recalculates automatically — the countdown will always show the correct remaining time regardless of how long the tab was closed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many countdowns can I save? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">You can save up to 8 countdowns. They are stored in your browser's localStorage and will persist across page reloads. Clearing browser data will remove them.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What happens when a countdown reaches zero? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">The display shows a "🎉 Time's Up!" message. Past events show negative elapsed time so you can see how long ago they occurred.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this work without an internet connection? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Once the page is loaded, the countdown runs entirely in your browser using JavaScript — no internet connection required. However, refreshing the page requires the fonts to load again if you're offline.</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/stopwatch" class="rel-chip">⏲️ Stopwatch</a>
+      <a href="/tools/date-difference" class="rel-chip">📅 Date Difference</a>
+      <a href="/tools/age-calculator" class="rel-chip">🎂 Age Calculator</a>
+      <a href="/tools/timezone-converter" class="rel-chip">🌍 Timezone Converter</a>
+      <a href="/tools/unix-timestamp" class="rel-chip">🕐 Unix Timestamp</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/#cat-datetime">Date & Time</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const MAX = 8;
+let countdowns = JSON.parse(localStorage.getItem('sakure_countdowns') || '[]');
+let activeIdx = countdowns.length > 0 ? 0 : -1;
+let intervalId = null;
+
+function offsetDays(n) {
+  const d = new Date(); d.setDate(d.getDate() + n);
+  return fmtDt(d);
+}
+function getNextNewYear() {
+  const ny = new Date(new Date().getFullYear() + 1, 0, 1, 0, 0);
+  return fmtDt(ny);
+}
+function getChristmas() {
+  const now = new Date();
+  const xmas = new Date(now.getFullYear(), 11, 25, 0, 0);
+  if (xmas < now) xmas.setFullYear(xmas.getFullYear() + 1);
+  return fmtDt(xmas);
+}
+function fmtDt(d) {
+  const pad = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function setPreset(name, dt) {
+  document.getElementById('event-name').value = name;
+  document.getElementById('event-dt').value = dt;
+}
+
+function addCountdown() {
+  const name = document.getElementById('event-name').value.trim() || 'Untitled Event';
+  const dt = document.getElementById('event-dt').value;
+  const err = document.getElementById('add-err');
+  if (!dt) { err.textContent = 'Please select a target date and time.'; return; }
+  if (countdowns.length >= MAX) { err.textContent = `Max ${MAX} countdowns. Delete one first.`; return; }
+  err.textContent = '';
+  countdowns.push({ name, target: dt, id: Date.now() });
+  activeIdx = countdowns.length - 1;
+  save();
+  document.getElementById('event-name').value = '';
+  document.getElementById('event-dt').value = '';
+  render();
+}
+
+function removeCountdown(idx) {
+  countdowns.splice(idx, 1);
+  if (activeIdx >= countdowns.length) activeIdx = countdowns.length - 1;
+  save();
+  render();
+}
+
+function setActive(idx) {
+  activeIdx = idx;
+  render();
+}
+
+function save() {
+  localStorage.setItem('sakure_countdowns', JSON.stringify(countdowns));
+}
+
+function parseDiff(target) {
+  const now = new Date(), end = new Date(target);
+  const diff = end - now;
+  const abs = Math.abs(diff);
+  const past = diff < 0;
+  const total_s = Math.floor(abs / 1000);
+  const d = Math.floor(total_s / 86400);
+  const h = Math.floor((total_s % 86400) / 3600);
+  const m = Math.floor((total_s % 3600) / 60);
+  const s = total_s % 60;
+  return { d, h, m, s, past, diff };
+}
+
+function pad2(n) { return String(n).padStart(2,'0'); }
+
+function renderMain() {
+  const display = document.getElementById('main-display');
+  if (activeIdx < 0 || !countdowns[activeIdx]) {
+    display.innerHTML = '<div class="empty-saved" style="padding:40px 0">Add a countdown above to get started ↑</div>';
+    return;
+  }
+  const cd = countdowns[activeIdx];
+  const { d, h, m, s, past } = parseDiff(cd.target);
+  const targetFmt = new Date(cd.target).toLocaleString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  if (past && d === 0 && h === 0 && m === 0 && s === 0) {
+    display.innerHTML = `<div class="event-name">${cd.name}</div><div class="done-msg">🎉 Time's Up!</div><div class="elapsed" style="margin-top:16px">Target: ${targetFmt}</div>`;
+    return;
+  }
+
+  if (past) {
+    display.innerHTML = `
+      <div class="event-name">${cd.name} — <span style="color:#f87171">Elapsed</span></div>
+      <div class="timer-units">
+        <div class="unit"><span class="unit-val" style="color:#f87171">${d}</span><span class="unit-label">Days</span></div>
+        <span class="unit-sep">:</span>
+        <div class="unit"><span class="unit-val" style="color:#f87171">${pad2(h)}</span><span class="unit-label">Hours</span></div>
+        <span class="unit-sep">:</span>
+        <div class="unit"><span class="unit-val" style="color:#f87171">${pad2(m)}</span><span class="unit-label">Minutes</span></div>
+        <span class="unit-sep">:</span>
+        <div class="unit"><span class="unit-val" style="color:#f87171">${pad2(s)}</span><span class="unit-label">Seconds</span></div>
+      </div>
+      <div class="elapsed">Passed: ${targetFmt}</div>`;
+    return;
+  }
+
+  display.innerHTML = `
+    <div class="event-name">${cd.name}</div>
+    <div class="timer-units">
+      <div class="unit"><span class="unit-val">${d}</span><span class="unit-label">Days</span></div>
+      <span class="unit-sep">:</span>
+      <div class="unit"><span class="unit-val">${pad2(h)}</span><span class="unit-label">Hours</span></div>
+      <span class="unit-sep">:</span>
+      <div class="unit"><span class="unit-val">${pad2(m)}</span><span class="unit-label">Minutes</span></div>
+      <span class="unit-sep">:</span>
+      <div class="unit"><span class="unit-val">${pad2(s)}</span><span class="unit-label">Seconds</span></div>
+    </div>
+    <div class="elapsed">Target: ${targetFmt}</div>`;
+}
+
+function renderSaved() {
+  const card = document.getElementById('saved-card');
+  const list = document.getElementById('saved-list');
+  if (countdowns.length === 0) { card.style.display = 'none'; return; }
+  card.style.display = 'block';
+  list.innerHTML = countdowns.map((cd, i) => {
+    const { d, h, m, s, past } = parseDiff(cd.target);
+    const mini = past
+      ? `<span style="color:#f87171">Elapsed ${d}d ${pad2(h)}:${pad2(m)}:${pad2(s)}</span>`
+      : `${d}d ${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+    return `<div class="saved-item${i === activeIdx ? ' active' : ''}" onclick="setActive(${i})">
+      <div class="saved-meta">
+        <div class="saved-name">${cd.name}</div>
+        <div class="saved-target">${new Date(cd.target).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+      <div class="saved-countdown">${mini}</div>
+      <button class="del-btn" onclick="event.stopPropagation();removeCountdown(${i})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function render() {
+  renderMain();
+  renderSaved();
+}
+
+function tick() {
+  renderMain();
+  renderSaved();
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+render();
+clearInterval(intervalId);
+intervalId = setInterval(tick, 1000);
+</script>
+</body>
+</html>

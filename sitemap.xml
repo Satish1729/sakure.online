@@ -261,6 +261,38 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- ── Date & Time Tools (Week 8) ── -->
+  <url>
+    <loc>https://sakure.online/tools/date-difference</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/timezone-converter</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/countdown-timer</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/stopwatch</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/date-formatter</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- ── Calculator Tools (Week 6) ── -->
   <url>
     <loc>https://sakure.online/tools/percentage-calculator</loc>

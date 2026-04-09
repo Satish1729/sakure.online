@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Formatter – Convert Dates to Any Format | Sakure.online</title>
+<meta name="description" content="Format any date in ISO, US, UK, Unix timestamp, relative time, and 10+ other formats instantly. Custom format string support. Free online date formatter.">
+<meta name="keywords" content="date formatter, date format converter, ISO date format, unix timestamp, date to string, format date, date formatting online">
+<meta property="og:title" content="Date Formatter – Sakure.online">
+<meta property="og:description" content="Convert any date to ISO, US, UK, Unix, relative, and 10+ other formats. Custom format strings supported. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/date-formatter">
+<link rel="canonical" href="https://sakure.online/tools/date-formatter">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Date Formatter",
+  "url": "https://sakure.online/tools/date-formatter",
+  "description": "Free online date formatter. Convert any date to ISO, US, UK, Unix timestamp, relative time, and custom formats.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#34d399;--accent-glow:rgba(52,211,153,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(52,211,153,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.input-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:0}
+.input-group{flex:1;min-width:200px}
+.input-group label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);display:block;margin-bottom:6px}
+input[type=datetime-local]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:.95rem;width:100%;transition:border-color .2s;outline:none}
+input[type=datetime-local]:focus{border-color:var(--accent)}
+input[type=datetime-local]::-webkit-calendar-picker-indicator{filter:invert(.5);cursor:pointer}
+input[type=text]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:.92rem;width:100%;transition:border-color .2s;outline:none}
+input[type=text]:focus{border-color:var(--accent)}
+.now-btn{background:var(--accent);color:#000;font-family:var(--font);font-size:.88rem;font-weight:700;padding:11px 20px;border:none;border-radius:10px;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.now-btn:hover{opacity:.88}
+.formats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:4px}
+.fmt-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;transition:border-color .18s;position:relative}
+.fmt-card:hover{border-color:var(--accent)}
+.fmt-label{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.fmt-value{font-family:var(--mono);font-size:.95rem;font-weight:600;color:var(--text);word-break:break-all;line-height:1.4}
+.copy-hint{position:absolute;bottom:8px;right:12px;font-size:.62rem;color:var(--muted);opacity:0;transition:opacity .15s}
+.fmt-card:hover .copy-hint{opacity:1}
+/* Custom format */
+.custom-row{display:flex;gap:12px;align-items:flex-end;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+.tokens-grid{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.token{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:.74rem;font-family:var(--mono);color:var(--muted);cursor:pointer;transition:all .15s}
+.token:hover{border-color:var(--accent);color:var(--accent)}
+.custom-result{margin-top:12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-family:var(--mono);font-size:1.1rem;font-weight:600;color:var(--accent);min-height:48px}
+/* FAQ */
+.faq{margin:48px 0 32px}.faq h2{font-size:1.3rem;font-weight:700;margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:hover{background:var(--surface)}.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:.87rem;color:var(--muted);line-height:1.65}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}.faq-chevron{transition:transform .25s;font-style:normal;font-size:.8rem}
+.related{margin:32px 0}.related h2{font-size:1.1rem;font-weight:700;margin-bottom:14px}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.rel-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:.83rem;color:var(--muted);transition:all .18s}
+.rel-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.05rem;margin-bottom:6px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.footer-links{display:flex;gap:18px;justify-content:center;font-size:.8rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+@media(max-width:600px){nav .nav-links{display:none}.input-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-datetime">Date & Time</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">📅 Date & Time Tools</div>
+  <h1>Date <span>Formatter</span></h1>
+  <p class="hero-sub">Convert any date into ISO, US, UK, Unix timestamp, relative time, and more — instantly. Custom format strings included.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- AdSense: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="input-row">
+      <div class="input-group">
+        <label>Select a Date & Time</label>
+        <input type="datetime-local" id="dt-input" oninput="formatAll()">
+      </div>
+      <button class="now-btn" onclick="useNow()">Now ⟳</button>
+    </div>
+    <div style="margin-top:24px">
+      <div style="font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px">All Formats — click any to copy</div>
+      <div class="formats-grid" id="formats-grid"></div>
+    </div>
+  </div>
+
+  <!-- Custom format -->
+  <div class="card">
+    <div style="font-size:1rem;font-weight:600;margin-bottom:4px">Custom Format String</div>
+    <div style="font-size:.84rem;color:var(--muted);margin-bottom:14px">Build your own format using the tokens below. Click a token to insert it.</div>
+    <div class="custom-row">
+      <div class="input-group">
+        <label>Format String</label>
+        <input type="text" id="custom-fmt" value="MMMM D, YYYY [at] h:mm A" oninput="formatCustom()">
+      </div>
+    </div>
+    <div class="tokens-grid" id="tokens-grid"></div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:10px">Result:</div>
+    <div class="custom-result" id="custom-result">—</div>
+  </div>
+
+  <div class="ad-square"><!-- AdSense: 300×250 rectangle --></div>
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is ISO 8601 date format? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">ISO 8601 is the international standard for date and time representations, using the format YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS. It's unambiguous across locales (unlike 01/02/03 which could be January 2, March 1, or February 3 depending on region).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is a Unix timestamp? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">A Unix timestamp is the number of seconds (or milliseconds) that have elapsed since January 1, 1970 at 00:00:00 UTC (the Unix epoch). It's widely used in programming and databases because it's a simple integer unaffected by timezones.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between US and UK date formats? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">US format puts the month first: MM/DD/YYYY (e.g., 04/09/2024 = April 9). UK format puts the day first: DD/MM/YYYY (e.g., 09/04/2024 = 9 April). This ambiguity is why ISO 8601 (YYYY-MM-DD) is preferred for international communication.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is relative time format? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">Relative time expresses a date relative to now, like "3 days ago" or "in 2 weeks". This is commonly used in social media and apps for a more human-friendly display. This tool calculates it based on the current time when you load the page.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What custom format tokens are available? <i class="faq-chevron">▼</i></div>
+      <div class="faq-a">The custom formatter supports: YYYY (4-digit year), YY (2-digit year), MMMM (full month), MMM (short month), MM (2-digit month), M (month number), DD (2-digit day), D (day), dddd (full weekday), ddd (short weekday), HH (24h hour), H, hh/h (12h), mm (minute), ss (second), A (AM/PM). Use square brackets to escape literals: [at] → "at".</div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/tools/unix-timestamp" class="rel-chip">🕐 Unix Timestamp</a>
+      <a href="/tools/date-difference" class="rel-chip">📅 Date Difference</a>
+      <a href="/tools/timezone-converter" class="rel-chip">🌍 Timezone Converter</a>
+      <a href="/tools/age-calculator" class="rel-chip">🎂 Age Calculator</a>
+      <a href="/tools/countdown-timer" class="rel-chip">⏱️ Countdown Timer</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/#cat-datetime">Date & Time</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS_S = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function pad(n, l=2) { return String(n).padStart(l,'0'); }
+
+function getFormats(dt) {
+  if (!dt || isNaN(dt.getTime())) return [];
+  const Y = dt.getFullYear(), YY = String(Y).slice(-2);
+  const M = dt.getMonth(), D = dt.getDate(), H = dt.getHours();
+  const mi = dt.getMinutes(), s = dt.getSeconds();
+  const h12 = H % 12 || 12;
+  const ampm = H < 12 ? 'AM' : 'PM';
+  const unix = Math.floor(dt.getTime() / 1000);
+  const unixMs = dt.getTime();
+  const dayOfYear = Math.floor((dt - new Date(Y, 0, 0)) / 86400000);
+  const weekNum = Math.ceil(dayOfYear / 7);
+  const ordinal = n => n + (['th','st','nd','rd'][((n%100)>10&&(n%100)<20)?0:(n%10>3?0:n%10)]||'th');
+
+  return [
+    { label: 'ISO 8601 (Date)', value: `${Y}-${pad(M+1)}-${pad(D)}` },
+    { label: 'ISO 8601 (Date & Time)', value: `${Y}-${pad(M+1)}-${pad(D)}T${pad(H)}:${pad(mi)}:${pad(s)}` },
+    { label: 'US Format (MM/DD/YYYY)', value: `${pad(M+1)}/${pad(D)}/${Y}` },
+    { label: 'UK Format (DD/MM/YYYY)', value: `${pad(D)}/${pad(M+1)}/${Y}` },
+    { label: 'Long US', value: `${MONTHS[M]} ${D}, ${Y}` },
+    { label: 'Long UK', value: `${D} ${MONTHS[M]} ${Y}` },
+    { label: 'Short', value: `${MONTHS_S[M]} ${D}, ${Y}` },
+    { label: 'Full Weekday', value: `${DAYS[dt.getDay()]}, ${MONTHS[M]} ${D}, ${Y}` },
+    { label: 'Full with Time', value: `${DAYS[dt.getDay()]}, ${MONTHS[M]} ${D}, ${Y} at ${h12}:${pad(mi)} ${ampm}` },
+    { label: '12-Hour Time', value: `${h12}:${pad(mi)}:${pad(s)} ${ampm}` },
+    { label: '24-Hour Time', value: `${pad(H)}:${pad(mi)}:${pad(s)}` },
+    { label: 'Unix Timestamp (sec)', value: String(unix) },
+    { label: 'Unix Timestamp (ms)', value: String(unixMs) },
+    { label: 'RFC 2822', value: dt.toUTCString() },
+    { label: 'Relative Time', value: relativeTime(dt) },
+    { label: 'Day of Year', value: `${ordinal(dayOfYear)} day of ${Y}` },
+    { label: 'Week Number', value: `Week ${weekNum} of ${Y}` },
+    { label: 'Short Date YY', value: `${pad(M+1)}/${pad(D)}/${YY}` },
+  ];
+}
+
+function relativeTime(dt) {
+  const diff = dt - new Date(), abs = Math.abs(diff);
+  const sign = diff > 0 ? 'in ' : '', suf = diff < 0 ? ' ago' : '';
+  if (abs < 45000) return 'just now';
+  if (abs < 3600000) { const n = Math.round(abs/60000); return `${sign}${n} minute${n!==1?'s':''}${suf}`; }
+  if (abs < 86400000) { const n = Math.round(abs/3600000); return `${sign}${n} hour${n!==1?'s':''}${suf}`; }
+  if (abs < 604800000) { const n = Math.round(abs/86400000); return `${sign}${n} day${n!==1?'s':''}${suf}`; }
+  if (abs < 2592000000) { const n = Math.round(abs/604800000); return `${sign}${n} week${n!==1?'s':''}${suf}`; }
+  if (abs < 31536000000) { const n = Math.round(abs/2592000000); return `${sign}${n} month${n!==1?'s':''}${suf}`; }
+  const n = Math.round(abs/31536000000); return `${sign}${n} year${n!==1?'s':''}${suf}`;
+}
+
+function getDate() {
+  const v = document.getElementById('dt-input').value;
+  return v ? new Date(v) : null;
+}
+
+function formatAll() {
+  const dt = getDate();
+  const grid = document.getElementById('formats-grid');
+  if (!dt || isNaN(dt.getTime())) { grid.innerHTML = '<div style="color:var(--muted);font-size:.88rem;padding:8px">Select a date above</div>'; formatCustom(); return; }
+  const fmts = getFormats(dt);
+  grid.innerHTML = fmts.map(f => `
+    <div class="fmt-card" onclick="copyText('${f.value.replace(/'/g,'\\\'').replace(/"/g,'&quot;')}', this)">
+      <div class="fmt-label">${f.label}</div>
+      <div class="fmt-value">${f.value}</div>
+      <span class="copy-hint">click to copy</span>
+    </div>`).join('');
+  formatCustom();
+}
+
+// Custom format tokens
+const TOKENS = [
+  ['YYYY','4-digit year'],['YY','2-digit year'],['MMMM','Full month'],['MMM','Short month'],
+  ['MM','Month 01-12'],['M','Month 1-12'],['DD','Day 01-31'],['D','Day 1-31'],
+  ['dddd','Full weekday'],['ddd','Short weekday'],['HH','Hour 00-23'],['H','Hour 0-23'],
+  ['hh','Hour 01-12'],['h','Hour 1-12'],['mm','Minute'],['ss','Second'],['A','AM/PM']
+];
+
+function buildTokens() {
+  const container = document.getElementById('tokens-grid');
+  container.innerHTML = TOKENS.map(([t, l]) =>
+    `<span class="token" title="${l}" onclick="insertToken('${t}')">${t}</span>`
+  ).join('');
+}
+
+function insertToken(t) {
+  const input = document.getElementById('custom-fmt');
+  const pos = input.selectionStart;
+  const val = input.value;
+  input.value = val.slice(0, pos) + t + val.slice(pos);
+  input.focus();
+  input.setSelectionRange(pos + t.length, pos + t.length);
+  formatCustom();
+}
+
+function formatCustom() {
+  const dt = getDate();
+  const fmt = document.getElementById('custom-fmt').value;
+  const el = document.getElementById('custom-result');
+  if (!dt || isNaN(dt.getTime())) { el.textContent = 'Select a date above'; return; }
+  el.textContent = applyFormat(dt, fmt);
+}
+
+function applyFormat(dt, fmt) {
+  const Y = dt.getFullYear(), M = dt.getMonth(), D = dt.getDate();
+  const H = dt.getHours(), mi = dt.getMinutes(), s = dt.getSeconds();
+  const h12 = H % 12 || 12, ampm = H < 12 ? 'AM' : 'PM';
+  // Preserve literals in []
+  const parts = [], escaped = fmt.replace(/\[([^\]]+)\]/g, (_, p) => { parts.push(p); return '\x00' + (parts.length-1) + '\x00'; });
+  let result = escaped
+    .replace(/YYYY/g, Y).replace(/YY/g, String(Y).slice(-2))
+    .replace(/MMMM/g, MONTHS[M]).replace(/MMM/g, MONTHS_S[M])
+    .replace(/MM/g, pad(M+1)).replace(/M/g, M+1)
+    .replace(/DD/g, pad(D)).replace(/D/g, D)
+    .replace(/dddd/g, DAYS[dt.getDay()]).replace(/ddd/g, DAYS_S[dt.getDay()])
+    .replace(/HH/g, pad(H)).replace(/H/g, H)
+    .replace(/hh/g, pad(h12)).replace(/h/g, h12)
+    .replace(/mm/g, pad(mi)).replace(/ss/g, pad(s)).replace(/A/g, ampm);
+  return result.replace(/\x00(\d+)\x00/g, (_, i) => parts[parseInt(i)]);
+}
+
+function copyText(text, el) {
+  navigator.clipboard.writeText(text).then(() => {
+    const v = el.querySelector('.fmt-value');
+    const orig = v.textContent;
+    v.textContent = 'Copied!';
+    v.style.color = 'var(--accent)';
+    setTimeout(() => { v.textContent = orig; v.style.color = ''; }, 1200);
+  });
+}
+
+function useNow() {
+  const now = new Date();
+  const pad2 = n => String(n).padStart(2,'0');
+  document.getElementById('dt-input').value =
+    `${now.getFullYear()}-${pad2(now.getMonth()+1)}-${pad2(now.getDate())}T${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+  formatAll();
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+buildTokens();
+useNow();
+</script>
+</body>
+</html>
