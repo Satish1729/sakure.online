@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTM Link Builder – Create Trackable Campaign URLs | Sakure.online</title>
+<meta name="description" content="Build Google Analytics UTM tracking links instantly. Add source, medium, campaign, term and content parameters to any URL. Free online UTM link generator.">
+<meta name="keywords" content="utm link builder, utm generator, utm parameters, campaign url builder, google analytics tracking, utm tracker, marketing url">
+<meta property="og:title" content="UTM Link Builder – Sakure.online">
+<meta property="og:description" content="Build UTM tracking URLs for Google Analytics campaigns. Add source, medium, campaign parameters instantly. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/utm-link-builder">
+<link rel="canonical" href="https://sakure.online/tools/utm-link-builder">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UTM Link Builder",
+  "url": "https://sakure.online/tools/utm-link-builder",
+  "description": "Free UTM link builder. Create trackable campaign URLs with Google Analytics UTM parameters.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#f97316;--accent-glow:rgba(249,115,22,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(249,115,22,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field-note{font-size:.73rem;color:var(--muted);margin-top:4px}
+.field input,.field select{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.93rem;width:100%;transition:border-color .2s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.fields-row{grid-template-columns:1fr}}
+.required-star{color:var(--accent)}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.preset-btn{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.output-box{background:var(--bg);border:2px solid var(--accent);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.85rem;line-height:1.7;color:var(--text);word-break:break-all;min-height:60px}
+.output-box .param{color:var(--accent)}
+.output-box .val{color:#e4e6ef}
+.url-status{display:flex;align-items:center;gap:8px;font-size:.8rem;margin-top:10px}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.status-dot.ok{background:#10b981}.status-dot.err{background:#ef4444}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.history-list{display:flex;flex-direction:column;gap:8px}
+.hist-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hist-url{font-family:var(--mono);font-size:.78rem;color:var(--muted);flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.hist-copy{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--muted);font-size:.75rem;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.hist-copy:hover{border-color:var(--accent);color:var(--accent)}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-developer">Developer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>UTM Link <span>Builder</span></h1>
+  <p class="hero-sub">Build trackable campaign URLs with UTM parameters for Google Analytics. Never lose attribution data again.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Quick Presets</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="applyPreset('google-cpc')">📢 Google Ads</button>
+      <button class="preset-btn" onclick="applyPreset('facebook')">📘 Facebook</button>
+      <button class="preset-btn" onclick="applyPreset('instagram')">📸 Instagram</button>
+      <button class="preset-btn" onclick="applyPreset('email')">📧 Email Newsletter</button>
+      <button class="preset-btn" onclick="applyPreset('twitter')">🐦 Twitter</button>
+      <button class="preset-btn" onclick="applyPreset('linkedin')">💼 LinkedIn</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Campaign Parameters</div>
+
+    <div class="field">
+      <label>Website URL <span class="required-star">*</span></label>
+      <input type="url" id="url" placeholder="https://yoursite.com/landing-page" oninput="generate()">
+      <div class="field-note">The full URL of the page you want to track.</div>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>Campaign Source <span class="required-star">*</span></label>
+        <input type="text" id="source" placeholder="google, facebook, newsletter" oninput="generate()">
+        <div class="field-note">The referrer (e.g. google, newsletter)</div>
+      </div>
+      <div class="field">
+        <label>Campaign Medium <span class="required-star">*</span></label>
+        <input type="text" id="medium" placeholder="cpc, email, social" oninput="generate()">
+        <div class="field-note">Marketing channel (e.g. cpc, email)</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Campaign Name <span class="required-star">*</span></label>
+      <input type="text" id="campaign" placeholder="spring-sale-2026, product-launch" oninput="generate()">
+      <div class="field-note">Name your campaign to identify it in reports.</div>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>Campaign Term <span style="font-size:.7rem;color:var(--muted)">(optional)</span></label>
+        <input type="text" id="term" placeholder="running+shoes, free+seo+tools" oninput="generate()">
+        <div class="field-note">Paid keywords for search ads.</div>
+      </div>
+      <div class="field">
+        <label>Campaign Content <span style="font-size:.7rem;color:var(--muted)">(optional)</span></label>
+        <input type="text" id="content" placeholder="banner-top, email-link-2" oninput="generate()">
+        <div class="field-note">Differentiate ads or links in the same campaign.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Generated UTM URL</div>
+    <div class="output-box" id="output">Fill in the fields above to generate your UTM URL…</div>
+    <div id="url-status" class="url-status"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyUrl()">📋 Copy URL</button>
+      <button class="btn btn-secondary" onclick="saveToHistory()">💾 Save to History</button>
+      <button class="btn btn-secondary" onclick="clearAll()">🗑 Clear</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="card" id="history-card" style="display:none">
+    <div class="card-title">Saved URLs</div>
+    <div class="history-list" id="history-list"></div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related Marketing Tools</h2>
+    <div class="related">
+      <a href="/tools/meta-tag-generator" class="related-card">
+        <div class="r-icon">🏷️</div>
+        <div class="r-name">Meta Tag Generator</div>
+        <div class="r-desc">Generate complete HTML meta tags</div>
+      </a>
+      <a href="/tools/open-graph-preview" class="related-card">
+        <div class="r-icon">🖼️</div>
+        <div class="r-name">Open Graph Preview</div>
+        <div class="r-desc">Preview social media link cards</div>
+      </a>
+      <a href="/tools/slug-generator" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">Slug Generator</div>
+        <div class="r-desc">Convert titles to URL-friendly slugs</div>
+      </a>
+      <a href="/tools/url-encoder" class="related-card">
+        <div class="r-icon">🔒</div>
+        <div class="r-name">URL Encoder</div>
+        <div class="r-desc">Encode special characters in URLs</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What are UTM parameters?</summary>
+      <p>UTM (Urchin Tracking Module) parameters are tags added to a URL that tell Google Analytics exactly where your traffic came from and which campaign drove it. They appear after a "?" in the URL and let you compare the performance of different marketing campaigns, channels, and creatives.</p>
+    </details>
+    <details>
+      <summary>Which UTM parameters are required?</summary>
+      <p>Technically none are required — they're optional URL parameters. But to get useful data in Google Analytics, you should always include utm_source, utm_medium, and utm_campaign. The utm_term and utm_content parameters are optional extras that help you drill down further.</p>
+    </details>
+    <details>
+      <summary>Does UTM tracking slow down my page?</summary>
+      <p>No. UTM parameters are just text in the URL — they're stripped out by Google Analytics (via JS) before being stored. They have zero impact on page load time or server performance.</p>
+    </details>
+    <details>
+      <summary>Will UTM parameters affect my SEO?</summary>
+      <p>If your UTM URLs are indexed by search engines, they could create duplicate content. To prevent this, use canonical tags on your landing pages pointing to the clean URL (without UTM params). Google is generally smart enough to strip UTM parameters, but it's best practice to canonicalize.</p>
+    </details>
+    <details>
+      <summary>Can I use spaces in UTM values?</summary>
+      <p>It's best practice to use hyphens or underscores instead of spaces. This tool automatically converts spaces to hyphens. Some systems also accept "+" as a space encoder in query strings.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const PRESETS = {
+  'google-cpc': { source:'google', medium:'cpc', campaign:'google-ads' },
+  'facebook':   { source:'facebook', medium:'social', campaign:'facebook-campaign' },
+  'instagram':  { source:'instagram', medium:'social', campaign:'instagram-campaign' },
+  'email':      { source:'newsletter', medium:'email', campaign:'weekly-newsletter' },
+  'twitter':    { source:'twitter', medium:'social', campaign:'twitter-campaign' },
+  'linkedin':   { source:'linkedin', medium:'social', campaign:'linkedin-campaign' },
+};
+const history = [];
+
+function applyPreset(key) {
+  const p = PRESETS[key];
+  if (!p) return;
+  Object.entries(p).forEach(([k,v]) => {
+    const el = document.getElementById(k);
+    if (el) el.value = v;
+  });
+  generate();
+}
+
+function slug(s) { return s.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9._~-]/g, ''); }
+
+function generate() {
+  const url      = document.getElementById('url').value.trim();
+  const source   = slug(document.getElementById('source').value);
+  const medium   = slug(document.getElementById('medium').value);
+  const campaign = slug(document.getElementById('campaign').value);
+  const term     = document.getElementById('term').value.trim().replace(/\s+/g,'+');
+  const content  = slug(document.getElementById('content').value);
+
+  const status = document.getElementById('url-status');
+
+  if (!url) {
+    document.getElementById('output').textContent = 'Fill in the fields above to generate your UTM URL…';
+    status.innerHTML = '';
+    return;
+  }
+
+  let isValid = true;
+  try { new URL(url); } catch(e) { isValid = false; }
+  status.innerHTML = isValid
+    ? '<div class="status-dot ok"></div> Valid URL'
+    : '<div class="status-dot err"></div> Invalid URL — include https://';
+
+  if (!isValid) { document.getElementById('output').textContent = 'Please enter a valid URL starting with https://'; return; }
+
+  const params = [];
+  if (source)   params.push(['utm_source', source]);
+  if (medium)   params.push(['utm_medium', medium]);
+  if (campaign) params.push(['utm_campaign', campaign]);
+  if (term)     params.push(['utm_term', term]);
+  if (content)  params.push(['utm_content', content]);
+
+  const sep = url.includes('?') ? '&' : '?';
+  const qs  = params.map(([k,v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+  const result = params.length ? url + sep + qs : url;
+  document.getElementById('output').textContent = result;
+}
+
+function copyUrl() {
+  const text = document.getElementById('output').textContent;
+  if (!text || text.startsWith('Fill') || text.startsWith('Please')) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const m = document.getElementById('copy-msg');
+    m.classList.add('show');
+    setTimeout(() => m.classList.remove('show'), 2000);
+  });
+}
+
+function saveToHistory() {
+  const url = document.getElementById('output').textContent;
+  if (!url || url.startsWith('Fill') || url.startsWith('Please')) return;
+  if (history.includes(url)) return;
+  history.unshift(url);
+  renderHistory();
+}
+
+function renderHistory() {
+  const card = document.getElementById('history-card');
+  const list = document.getElementById('history-list');
+  if (!history.length) { card.style.display='none'; return; }
+  card.style.display='block';
+  list.innerHTML = history.map((u,i) => `
+    <div class="hist-item">
+      <span class="hist-url" title="${escH(u)}">${escH(u)}</span>
+      <button class="hist-copy" onclick="copyHist('${escA(u)}',this)">Copy</button>
+    </div>`).join('');
+}
+
+function copyHist(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent='Copy', 1500);
+  });
+}
+
+function clearAll() {
+  ['url','source','medium','campaign','term','content'].forEach(id => document.getElementById(id).value='');
+  generate();
+}
+
+function escH(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escA(s){ return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+generate();
+</script>
+</body>
+</html>

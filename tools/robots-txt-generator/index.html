@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robots.txt Generator – Build Robots.txt Rules Instantly | Sakure.online</title>
+<meta name="description" content="Generate a valid robots.txt file for your website. Add bot rules, allow/disallow paths, sitemap URL and crawl delay. Free online robots.txt builder with live preview.">
+<meta name="keywords" content="robots.txt generator, robots.txt builder, robots txt file, seo robots, disallow bot, crawl delay, sitemap robots txt">
+<meta property="og:title" content="Robots.txt Generator – Sakure.online">
+<meta property="og:description" content="Build a valid robots.txt for your website with custom bot rules, allow/disallow paths, and sitemap URL. Free online generator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/robots-txt-generator">
+<link rel="canonical" href="https://sakure.online/tools/robots-txt-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Robots.txt Generator",
+  "url": "https://sakure.online/tools/robots-txt-generator",
+  "description": "Free online robots.txt generator. Create custom robot directives, disallow paths, and sitemap references.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#8b5cf6;--accent-glow:rgba(139,92,246,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field select{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.93rem;width:100%;transition:border-color .2s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.fields-row{grid-template-columns:1fr}}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.preset-btn{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.rules-builder{margin-bottom:16px}
+.rule-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.rule-type{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-size:.85rem;outline:none;transition:border-color .2s;min-width:120px}
+.rule-type:focus{border-color:var(--accent)}
+.rule-path{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:var(--mono);font-size:.85rem;width:100%;outline:none;transition:border-color .2s}
+.rule-path:focus{border-color:var(--accent)}
+.del-btn{background:none;border:1px solid var(--border);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:1rem;transition:all .15s;flex-shrink:0}
+.del-btn:hover{border-color:#ef4444;color:#ef4444}
+.add-btn{background:none;border:1px dashed var(--border);border-radius:8px;padding:9px 16px;color:var(--muted);cursor:pointer;font-size:.85rem;width:100%;transition:all .15s;font-family:var(--font)}
+.add-btn:hover{border-color:var(--accent);color:var(--accent)}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.85rem;line-height:1.9;color:#e4e6ef;white-space:pre;overflow-x:auto;min-height:150px}
+.output-box .comment{color:var(--muted)}
+.output-box .directive{color:var(--accent)}
+.output-box .val{color:#e4e6ef}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-developer">Developer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>Robots.txt <span>Generator</span></h1>
+  <p class="hero-sub">Build a valid robots.txt file with custom bot rules, allow/disallow paths, crawl delay, and sitemap URL.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Quick Templates</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="applyTemplate('allow-all')">✅ Allow All Bots</button>
+      <button class="preset-btn" onclick="applyTemplate('block-all')">🚫 Block All Bots</button>
+      <button class="preset-btn" onclick="applyTemplate('google-only')">🟢 Google Only</button>
+      <button class="preset-btn" onclick="applyTemplate('block-bad-bots')">🛡️ Block Bad Bots</button>
+      <button class="preset-btn" onclick="applyTemplate('wordpress')">📝 WordPress</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bot Configuration</div>
+    <div id="bot-groups"></div>
+    <button class="add-btn" onclick="addBotGroup()">+ Add Bot Group</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Global Settings</div>
+    <div class="fields-row">
+      <div class="field">
+        <label>Sitemap URL</label>
+        <input type="url" id="sitemap-url" placeholder="https://yoursite.com/sitemap.xml" oninput="generate()">
+      </div>
+      <div class="field">
+        <label>Crawl Delay (seconds)</label>
+        <input type="number" id="crawl-delay" placeholder="10" min="0" max="3600" oninput="generate()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">robots.txt Preview</div>
+    <div class="output-box" id="output"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyOutput()">📋 Copy robots.txt</button>
+      <button class="btn btn-secondary" onclick="downloadOutput()">⬇️ Download robots.txt</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related SEO Tools</h2>
+    <div class="related">
+      <a href="/tools/sitemap-generator" class="related-card">
+        <div class="r-icon">🗺️</div>
+        <div class="r-name">Sitemap Generator</div>
+        <div class="r-desc">Generate XML sitemaps for your site</div>
+      </a>
+      <a href="/tools/meta-tag-generator" class="related-card">
+        <div class="r-icon">🏷️</div>
+        <div class="r-name">Meta Tag Generator</div>
+        <div class="r-desc">Generate complete HTML meta tags</div>
+      </a>
+      <a href="/tools/slug-generator" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">Slug Generator</div>
+        <div class="r-desc">Convert titles to SEO-friendly slugs</div>
+      </a>
+      <a href="/tools/utm-link-builder" class="related-card">
+        <div class="r-icon">📊</div>
+        <div class="r-name">UTM Link Builder</div>
+        <div class="r-desc">Build trackable campaign URLs</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What is robots.txt and where should it go?</summary>
+      <p>robots.txt is a plain text file placed at the root of your website (e.g. https://example.com/robots.txt) that tells web crawlers which pages they can or cannot access. Search engines read this file before crawling your site. It must be exactly at the root — not in a subfolder.</p>
+    </details>
+    <details>
+      <summary>Does robots.txt block pages from search results?</summary>
+      <p>Disallowing a page in robots.txt prevents crawlers from visiting it, but it does not guarantee the page won't appear in search results. If other sites link to the disallowed page, search engines may still index the URL (without crawling the content). To guarantee removal, use a "noindex" meta tag or the HTTP X-Robots-Tag header instead.</p>
+    </details>
+    <details>
+      <summary>What does "User-agent: *" mean?</summary>
+      <p>The asterisk (*) is a wildcard that matches all bots. A rule under "User-agent: *" applies to every crawler that doesn't have its own specific block in the file. You can also target individual bots like Googlebot, Bingbot, or GPTBot by name.</p>
+    </details>
+    <details>
+      <summary>Is crawl-delay supported by Google?</summary>
+      <p>Google does not honor the Crawl-delay directive in robots.txt. To control Googlebot's crawl rate, use Google Search Console's crawl rate settings instead. Bing and some other crawlers do respect Crawl-delay.</p>
+    </details>
+    <details>
+      <summary>Can I have multiple User-agent groups?</summary>
+      <p>Yes. You can define separate blocks for different bots, each with their own allow/disallow rules. The most specific match wins. Bots process only the first matching group that applies to them.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let groups = [];
+let groupId = 0;
+
+function addBotGroup(agent='*', rules=[]) {
+  const id = ++groupId;
+  groups.push({ id, agent, rules: rules.length ? rules : [{ type:'Disallow', path:'' }] });
+  renderGroups();
+  generate();
+}
+
+function removeGroup(id) {
+  groups = groups.filter(g => g.id !== id);
+  renderGroups();
+  generate();
+}
+
+function addRule(groupIdx) {
+  groups[groupIdx].rules.push({ type:'Disallow', path:'' });
+  renderGroups();
+  generate();
+}
+
+function removeRule(groupIdx, ruleIdx) {
+  groups[groupIdx].rules.splice(ruleIdx, 1);
+  renderGroups();
+  generate();
+}
+
+function renderGroups() {
+  const container = document.getElementById('bot-groups');
+  container.innerHTML = groups.map((g, gi) => `
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);white-space:nowrap">User-agent:</span>
+        <input type="text" value="${escA(g.agent)}" placeholder="* or Googlebot"
+          oninput="groups[${gi}].agent=this.value;generate()"
+          style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:var(--mono);font-size:.9rem;flex:1;outline:none">
+        <button class="del-btn" onclick="removeGroup(${g.id})" title="Remove bot group">✕</button>
+      </div>
+      ${g.rules.map((r, ri) => `
+        <div class="rule-row">
+          <select class="rule-type" onchange="groups[${gi}].rules[${ri}].type=this.value;generate()">
+            <option value="Disallow" ${r.type==='Disallow'?'selected':''}>Disallow</option>
+            <option value="Allow" ${r.type==='Allow'?'selected':''}>Allow</option>
+          </select>
+          <input type="text" class="rule-path" value="${escA(r.path)}" placeholder="/path/to/block"
+            oninput="groups[${gi}].rules[${ri}].path=this.value;generate()">
+          <button class="del-btn" onclick="removeRule(${gi},${ri})" title="Remove rule">✕</button>
+        </div>`).join('')}
+      <button class="add-btn" style="margin-top:8px" onclick="addRule(${gi})">+ Add Rule</button>
+    </div>`).join('');
+}
+
+function generate() {
+  const lines = [];
+  lines.push('# Generated by sakure.online/tools/robots-txt-generator');
+  lines.push('# ' + new Date().toISOString().slice(0,10));
+  lines.push('');
+
+  groups.forEach(g => {
+    lines.push(`User-agent: ${g.agent || '*'}`);
+    g.rules.forEach(r => lines.push(`${r.type}: ${r.path}`));
+    const cd = document.getElementById('crawl-delay').value.trim();
+    if (cd) lines.push(`Crawl-delay: ${cd}`);
+    lines.push('');
+  });
+
+  const sitemap = document.getElementById('sitemap-url').value.trim();
+  if (sitemap) lines.push(`Sitemap: ${sitemap}`);
+
+  document.getElementById('output').textContent = lines.join('\n').trim();
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(document.getElementById('output').textContent).then(() => {
+    const m = document.getElementById('copy-msg');
+    m.classList.add('show');
+    setTimeout(() => m.classList.remove('show'), 2000);
+  });
+}
+
+function downloadOutput() {
+  const blob = new Blob([document.getElementById('output').textContent], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'robots.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+const TEMPLATES = {
+  'allow-all':   [{ agent:'*', rules:[{type:'Allow',path:'/'}] }],
+  'block-all':   [{ agent:'*', rules:[{type:'Disallow',path:'/'}] }],
+  'google-only': [
+    { agent:'*',         rules:[{type:'Disallow',path:'/'}] },
+    { agent:'Googlebot', rules:[{type:'Allow',path:'/'},{type:'Disallow',path:'/admin/'},{type:'Disallow',path:'/private/'}] },
+  ],
+  'block-bad-bots': [
+    { agent:'*',         rules:[{type:'Disallow',path:''}] },
+    { agent:'AhrefsBot', rules:[{type:'Disallow',path:'/'}] },
+    { agent:'SemrushBot', rules:[{type:'Disallow',path:'/'}] },
+    { agent:'MJ12bot',  rules:[{type:'Disallow',path:'/'}] },
+  ],
+  'wordpress': [
+    { agent:'*', rules:[
+      {type:'Disallow',path:'/wp-admin/'},
+      {type:'Allow',path:'/wp-admin/admin-ajax.php'},
+      {type:'Disallow',path:'/wp-content/plugins/'},
+      {type:'Disallow',path:'/readme.html'},
+    ]},
+  ],
+};
+
+function applyTemplate(key) {
+  const tmpl = TEMPLATES[key];
+  if (!tmpl) return;
+  groups = [];
+  groupId = 0;
+  tmpl.forEach(g => { groups.push({ id:++groupId, agent:g.agent, rules:[...g.rules] }); });
+  renderGroups();
+  generate();
+}
+
+function escA(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Init
+applyTemplate('allow-all');
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slug Generator – Convert Text to SEO-Friendly URL Slugs | Sakure.online</title>
+<meta name="description" content="Convert any title or phrase into a clean, SEO-friendly URL slug instantly. Supports batch mode, custom separator, and stops word removal. Free online slug generator.">
+<meta name="keywords" content="slug generator, url slug, seo slug, title to url, permalink generator, url friendly text, blog slug">
+<meta property="og:title" content="Slug Generator – Sakure.online">
+<meta property="og:description" content="Turn any title into a clean URL slug instantly. Batch mode, custom separator, stop-word removal. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/slug-generator">
+<link rel="canonical" href="https://sakure.online/tools/slug-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Slug Generator",
+  "url": "https://sakure.online/tools/slug-generator",
+  "description": "Free online slug generator. Convert any title or phrase to a clean, SEO-friendly URL slug.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#6366f1;--accent-glow:rgba(99,102,241,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(99,102,241,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+textarea{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-family:var(--mono);font-size:.93rem;width:100%;transition:border-color .2s;outline:none;resize:vertical;min-height:120px}
+textarea:focus{border-color:var(--accent)}
+.options-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px}
+.opt-group{display:flex;align-items:center;gap:8px}
+.opt-group label{font-size:.82rem;color:var(--muted);font-weight:500}
+select,input[type=text].short{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--text);font-size:.85rem;outline:none;transition:border-color .2s}
+select:focus,input[type=text].short:focus{border-color:var(--accent)}
+input[type=text].short{width:100px;font-family:var(--mono)}
+.toggle{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.82rem;color:var(--muted);font-weight:500;user-select:none}
+.toggle input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.output-area{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.9rem;line-height:2;color:var(--accent);white-space:pre-wrap;word-break:break-all;min-height:80px;max-height:300px;overflow-y:auto}
+.slug-item{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;background:var(--surface2);border-radius:8px;margin-bottom:6px;gap:10px}
+.slug-text{font-family:var(--mono);font-size:.88rem;color:var(--accent);flex:1;word-break:break-all}
+.copy-one{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--muted);font-size:.75rem;cursor:pointer;transition:all .15s;font-family:var(--font);font-weight:500}
+.copy-one:hover{border-color:var(--accent);color:var(--accent)}
+.copy-one.done{border-color:var(--accent);color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-text">Text Tools</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>Slug <span>Generator</span></h1>
+  <p class="hero-sub">Convert any title or phrase into a clean, SEO-friendly URL slug. Batch mode supported.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Input Text (one per line for batch mode)</div>
+    <div class="field">
+      <textarea id="input" placeholder="How to Build a React App in 2024&#10;10 Best SEO Tips for Beginners&#10;The Ultimate Guide to URL Slugs" oninput="generate()"></textarea>
+    </div>
+
+    <div class="options-row">
+      <div class="opt-group">
+        <label>Separator</label>
+        <select id="separator" onchange="generate()">
+          <option value="-">Hyphen  (-)  ← recommended</option>
+          <option value="_">Underscore (_)</option>
+          <option value=".">Dot (.)</option>
+        </select>
+      </div>
+      <div class="opt-group">
+        <label>Max length</label>
+        <input type="text" class="short" id="maxlen" value="80" oninput="generate()">
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="remove-stops" checked onchange="generate()">
+        Remove stop words
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="lowercase" checked onchange="generate()">
+        Lowercase
+      </label>
+    </div>
+
+    <div id="output-area"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyAll()">📋 Copy All Slugs</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('input').value='';generate()">🗑 Clear</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related SEO Tools</h2>
+    <div class="related">
+      <a href="/tools/meta-tag-generator" class="related-card">
+        <div class="r-icon">🏷️</div>
+        <div class="r-name">Meta Tag Generator</div>
+        <div class="r-desc">Generate complete HTML meta tags</div>
+      </a>
+      <a href="/tools/utm-link-builder" class="related-card">
+        <div class="r-icon">📊</div>
+        <div class="r-name">UTM Link Builder</div>
+        <div class="r-desc">Build trackable marketing URLs</div>
+      </a>
+      <a href="/tools/url-encoder" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">URL Encoder / Decoder</div>
+        <div class="r-desc">Percent-encode URLs for safe transmission</div>
+      </a>
+      <a href="/tools/case-converter" class="related-card">
+        <div class="r-icon">🔡</div>
+        <div class="r-name">Case Converter</div>
+        <div class="r-desc">UPPER, lower, kebab-case & more</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What is a URL slug?</summary>
+      <p>A URL slug is the part of a URL that identifies a particular page in a human-readable form. For example, in <code>https://example.com/blog/my-awesome-post</code>, the slug is <code>my-awesome-post</code>. Good slugs are short, lowercase, hyphen-separated, and free of special characters.</p>
+    </details>
+    <details>
+      <summary>Should I use hyphens or underscores in slugs?</summary>
+      <p>Use hyphens. Google treats hyphens as word separators, making "my-great-post" read as three separate words. Underscores are treated as connectors, so "my_great_post" is read as one word. Hyphens are the universal SEO standard.</p>
+    </details>
+    <details>
+      <summary>What are stop words and should I remove them?</summary>
+      <p>Stop words are common words like "a", "the", "and", "is", "of" that add little SEO value to a URL. Removing them keeps slugs shorter and more keyword-rich. For example, "The Best Guide to SEO" becomes "best-guide-seo" instead of "the-best-guide-to-seo".</p>
+    </details>
+    <details>
+      <summary>How long should a URL slug be?</summary>
+      <p>Keep slugs under 60–75 characters. Shorter slugs are easier to share, remember, and are typically preferred by search engines. This tool includes a configurable max-length option that auto-truncates at a word boundary.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const STOP_WORDS = new Set(['a','an','the','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','that','this','these','those','it','its','as','up','out','not','so','if','about','above','after','before','between','into','through','during','then','than','too','very','can']);
+
+function slugify(text) {
+  const sep = document.getElementById('separator').value;
+  const maxLen = parseInt(document.getElementById('maxlen').value) || 80;
+  const rmStops = document.getElementById('remove-stops').checked;
+  const lower = document.getElementById('lowercase').checked;
+
+  let s = text;
+  // Normalize accents
+  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (lower) s = s.toLowerCase();
+  // Replace non-alphanumeric with space
+  s = s.replace(/[^a-zA-Z0-9\s]/g, ' ');
+  // Split words
+  let words = s.split(/\s+/).filter(Boolean);
+  if (rmStops) words = words.filter(w => !STOP_WORDS.has(w.toLowerCase()));
+  // Join
+  s = words.join(sep);
+  // Truncate at word boundary
+  if (s.length > maxLen) {
+    let cut = s.lastIndexOf(sep, maxLen);
+    if (cut < 1) cut = maxLen;
+    s = s.slice(0, cut);
+  }
+  return s;
+}
+
+function generate() {
+  const lines = document.getElementById('input').value.split('\n').filter(l => l.trim());
+  const area = document.getElementById('output-area');
+  if (!lines.length) { area.innerHTML = ''; return; }
+  area.innerHTML = lines.map((line, i) => {
+    const slug = slugify(line.trim());
+    return `<div class="slug-item">
+      <span class="slug-text">${escH(slug || '—')}</span>
+      <button class="copy-one" onclick="copyOne(this,'${escA(slug)}')" ${!slug ? 'disabled' : ''}>Copy</button>
+    </div>`;
+  }).join('');
+}
+
+function escH(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escA(s){ return s.replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+
+function copyOne(btn, slug) {
+  navigator.clipboard.writeText(slug).then(() => {
+    btn.textContent = '✓'; btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1500);
+  });
+}
+
+function copyAll() {
+  const lines = document.getElementById('input').value.split('\n').filter(l => l.trim());
+  const slugs = lines.map(l => slugify(l.trim())).join('\n');
+  navigator.clipboard.writeText(slugs).then(() => {
+    const m = document.getElementById('copy-msg');
+    m.classList.add('show');
+    setTimeout(() => m.classList.remove('show'), 2000);
+  });
+}
+
+generate();
+</script>
+</body>
+</html>

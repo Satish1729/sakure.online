@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Tag Generator – Create HTML Meta Tags Instantly | Sakure.online</title>
+<meta name="description" content="Generate HTML meta tags for SEO, Open Graph, Twitter Cards, and robots directives. Preview and copy all tags with one click. Free online meta tag generator.">
+<meta name="keywords" content="meta tag generator, SEO meta tags, open graph tags, twitter card tags, html meta tags, robots meta, canonical tag">
+<meta property="og:title" content="Meta Tag Generator – Sakure.online">
+<meta property="og:description" content="Generate complete HTML meta tags for SEO, Open Graph and Twitter Cards. Free online tool — no signup required.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/meta-tag-generator">
+<link rel="canonical" href="https://sakure.online/tools/meta-tag-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Meta Tag Generator",
+  "url": "https://sakure.online/tools/meta-tag-generator",
+  "description": "Free online meta tag generator. Create SEO, Open Graph, and Twitter Card meta tags for any webpage.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#10b981;--accent-glow:rgba(16,185,129,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(16,185,129,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.93rem;width:100%;transition:border-color .2s;outline:none;resize:vertical}
+.field textarea{font-family:var(--font);min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.field select option{background:var(--surface2)}
+.char-count{font-size:.72rem;color:var(--muted);text-align:right;margin-top:4px}
+.char-count.warn{color:#f59e0b}.char-count.over{color:#ef4444}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.fields-row{grid-template-columns:1fr}}
+.section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);margin:24px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.tabs{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:10px;margin-bottom:20px}
+.tab-btn{flex:1;padding:8px;border:none;background:none;color:var(--muted);font-size:.82rem;font-weight:600;border-radius:7px;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.tab-btn.active{background:var(--accent);color:#fff}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.8rem;line-height:1.8;color:#a5b4fc;white-space:pre-wrap;word-break:break-all;min-height:120px;max-height:400px;overflow-y:auto}
+.output-box .tag-name{color:var(--accent)}
+.output-box .attr{color:#f59e0b}
+.output-box .val{color:#e4e6ef}
+.output-box .comment{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+.faq{margin-top:0}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem;transition:transform .2s}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-developer">Developer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>Meta Tag <span>Generator</span></h1>
+  <p class="hero-sub">Generate complete HTML meta tags for SEO, Open Graph & Twitter Cards. Preview and copy with one click.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Basic SEO Tags</div>
+
+    <div class="field">
+      <label>Page Title</label>
+      <input type="text" id="title" placeholder="My Awesome Page – Brand Name" maxlength="70" oninput="generate();updateCount(this,'title-count',60,70)">
+      <div class="char-count" id="title-count">0 / 70</div>
+    </div>
+
+    <div class="field">
+      <label>Meta Description</label>
+      <textarea id="desc" placeholder="A concise description of this page for search engines…" maxlength="165" oninput="generate();updateCount(this,'desc-count',150,165)"></textarea>
+      <div class="char-count" id="desc-count">0 / 165</div>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>Keywords (comma-separated)</label>
+        <input type="text" id="keywords" placeholder="seo, tools, generator" oninput="generate()">
+      </div>
+      <div class="field">
+        <label>Author</label>
+        <input type="text" id="author" placeholder="Sakure Team" oninput="generate()">
+      </div>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>Canonical URL</label>
+        <input type="url" id="canonical" placeholder="https://example.com/page" oninput="generate()">
+      </div>
+      <div class="field">
+        <label>Robots Directive</label>
+        <select id="robots" onchange="generate()">
+          <option value="index, follow">index, follow (default)</option>
+          <option value="noindex, follow">noindex, follow</option>
+          <option value="index, nofollow">index, nofollow</option>
+          <option value="noindex, nofollow">noindex, nofollow</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-label">Open Graph (Facebook / LinkedIn)</div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>OG Title</label>
+        <input type="text" id="og-title" placeholder="Same as page title or custom" oninput="generate()">
+      </div>
+      <div class="field">
+        <label>OG Type</label>
+        <select id="og-type" onchange="generate()">
+          <option value="website">website</option>
+          <option value="article">article</option>
+          <option value="product">product</option>
+          <option value="profile">profile</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>OG Description</label>
+      <textarea id="og-desc" placeholder="Description for social share previews…" oninput="generate()" style="min-height:60px"></textarea>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>OG Image URL</label>
+        <input type="url" id="og-image" placeholder="https://example.com/og-image.jpg" oninput="generate()">
+      </div>
+      <div class="field">
+        <label>OG Site Name</label>
+        <input type="text" id="og-site" placeholder="My Site" oninput="generate()">
+      </div>
+    </div>
+
+    <div class="section-label">Twitter Card</div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label>Card Type</label>
+        <select id="tw-card" onchange="generate()">
+          <option value="summary_large_image">summary_large_image</option>
+          <option value="summary">summary</option>
+          <option value="app">app</option>
+          <option value="player">player</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Twitter @Username</label>
+        <input type="text" id="tw-site" placeholder="@sakure_online" oninput="generate()">
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="card">
+    <div class="card-title">Generated Meta Tags</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('all',this)">All Tags</button>
+      <button class="tab-btn" onclick="switchTab('seo',this)">SEO Only</button>
+      <button class="tab-btn" onclick="switchTab('og',this)">Open Graph</button>
+      <button class="tab-btn" onclick="switchTab('twitter',this)">Twitter</button>
+    </div>
+    <div class="output-box" id="output"><!-- generated --></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyTags()">📋 Copy All Tags</button>
+      <button class="btn btn-secondary" onclick="clearForm()">🗑 Clear</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <!-- RELATED TOOLS -->
+  <div class="card">
+    <h2>Related SEO Tools</h2>
+    <div class="related">
+      <a href="/tools/open-graph-preview" class="related-card">
+        <div class="r-icon">🖼️</div>
+        <div class="r-name">Open Graph Preview</div>
+        <div class="r-desc">Preview how your page looks on social media</div>
+      </a>
+      <a href="/tools/slug-generator" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">Slug Generator</div>
+        <div class="r-desc">Convert titles to SEO-friendly URL slugs</div>
+      </a>
+      <a href="/tools/robots-txt-generator" class="related-card">
+        <div class="r-icon">🤖</div>
+        <div class="r-name">Robots.txt Generator</div>
+        <div class="r-desc">Build robots.txt rules for search bots</div>
+      </a>
+      <a href="/tools/sitemap-generator" class="related-card">
+        <div class="r-icon">🗺️</div>
+        <div class="r-name">Sitemap Generator</div>
+        <div class="r-desc">Generate XML sitemaps for your site</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card faq">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What are meta tags and why do they matter?</summary>
+      <p>Meta tags are HTML snippets placed in your page's &lt;head&gt; that tell search engines and social media platforms what your page is about. Good meta tags improve click-through rates from search results and control how your link looks when shared on platforms like Facebook or Twitter.</p>
+    </details>
+    <details>
+      <summary>What is the ideal length for a meta title and description?</summary>
+      <p>Keep your title under 60 characters (ideal: 50–60) and your description between 150–160 characters. This tool shows a live character counter with colour-coded warnings to help you stay within the optimal range.</p>
+    </details>
+    <details>
+      <summary>What is an Open Graph image and what size should it be?</summary>
+      <p>The Open Graph image is the thumbnail shown when your link is shared on social media. The recommended size is 1200×630 pixels (1.91:1 ratio). For Twitter's summary_large_image card, the same dimensions work perfectly.</p>
+    </details>
+    <details>
+      <summary>Do I need a robots meta tag if I want my page indexed?</summary>
+      <p>No. The default behaviour for search engines is "index, follow", so you only need a robots meta tag if you want to opt out of indexing or following links. Adding "index, follow" explicitly is redundant but not harmful.</p>
+    </details>
+    <details>
+      <summary>Is the canonical tag the same as the URL meta tag?</summary>
+      <p>No. The canonical tag is a &lt;link rel="canonical"&gt; element — not a &lt;meta&gt; tag — that tells search engines which URL is the primary version of a page when duplicate content exists. This tool generates the canonical link element correctly.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let currentTab = 'all';
+
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  generate();
+}
+
+function v(id) { return document.getElementById(id).value.trim(); }
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function generate() {
+  const title    = v('title');
+  const desc     = v('desc');
+  const keywords = v('keywords');
+  const author   = v('author');
+  const canonical = v('canonical');
+  const robots   = v('robots');
+  const ogTitle  = v('og-title') || title;
+  const ogType   = v('og-type');
+  const ogDesc   = v('og-desc') || desc;
+  const ogImage  = v('og-image');
+  const ogSite   = v('og-site');
+  const twCard   = v('tw-card');
+  const twSite   = v('tw-site');
+
+  const lines = [];
+
+  if (currentTab === 'all' || currentTab === 'seo') {
+    lines.push('<!-- ═══ SEO Meta Tags ═══ -->');
+    if (title)    lines.push(`<title>${esc(title)}</title>`);
+    if (desc)     lines.push(`<meta name="description" content="${esc(desc)}">`);
+    if (keywords) lines.push(`<meta name="keywords" content="${esc(keywords)}">`);
+    if (author)   lines.push(`<meta name="author" content="${esc(author)}">`);
+                  lines.push(`<meta name="robots" content="${esc(robots)}">`);
+    if (canonical)lines.push(`<link rel="canonical" href="${esc(canonical)}">`);
+    lines.push('');
+  }
+
+  if (currentTab === 'all' || currentTab === 'og') {
+    lines.push('<!-- ═══ Open Graph Tags ═══ -->');
+    if (ogTitle)  lines.push(`<meta property="og:title" content="${esc(ogTitle)}">`);
+    if (ogDesc)   lines.push(`<meta property="og:description" content="${esc(ogDesc)}">`);
+    if (ogType)   lines.push(`<meta property="og:type" content="${esc(ogType)}">`);
+    if (canonical)lines.push(`<meta property="og:url" content="${esc(canonical)}">`);
+    if (ogImage)  lines.push(`<meta property="og:image" content="${esc(ogImage)}">`);
+    if (ogSite)   lines.push(`<meta property="og:site_name" content="${esc(ogSite)}">`);
+    lines.push('');
+  }
+
+  if (currentTab === 'all' || currentTab === 'twitter') {
+    lines.push('<!-- ═══ Twitter Card Tags ═══ -->');
+    if (twCard)   lines.push(`<meta name="twitter:card" content="${esc(twCard)}">`);
+    if (ogTitle)  lines.push(`<meta name="twitter:title" content="${esc(ogTitle)}">`);
+    if (ogDesc)   lines.push(`<meta name="twitter:description" content="${esc(ogDesc)}">`);
+    if (ogImage)  lines.push(`<meta name="twitter:image" content="${esc(ogImage)}">`);
+    if (twSite)   lines.push(`<meta name="twitter:site" content="${esc(twSite)}">`);
+  }
+
+  const html = lines.join('\n').trim() || '<!-- Fill in the form above to generate your meta tags -->';
+  document.getElementById('output').textContent = html;
+}
+
+function updateCount(el, countId, warn, max) {
+  const n = el.value.length;
+  const el2 = document.getElementById(countId);
+  el2.textContent = n + ' / ' + max;
+  el2.className = 'char-count' + (n > max ? ' over' : n > warn ? ' warn' : '');
+}
+
+function copyTags() {
+  const text = document.getElementById('output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = document.getElementById('copy-msg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+  });
+}
+
+function clearForm() {
+  ['title','desc','keywords','author','canonical','og-title','og-desc','og-image','og-site','tw-site'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  generate();
+}
+
+generate();
+</script>
+</body>
+</html>

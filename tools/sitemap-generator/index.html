@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitemap Generator – Create XML Sitemaps for SEO | Sakure.online</title>
+<meta name="description" content="Generate a valid XML sitemap for your website. Add URLs with priority, change frequency, and last modified date. Download as sitemap.xml. Free online sitemap builder.">
+<meta name="keywords" content="sitemap generator, xml sitemap, sitemap builder, sitemap.xml generator, seo sitemap, website sitemap creator, google sitemap">
+<meta property="og:title" content="Sitemap Generator – Sakure.online">
+<meta property="og:description" content="Generate a valid XML sitemap with custom priority, changefreq, and lastmod dates. Download as sitemap.xml. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/sitemap-generator">
+<link rel="canonical" href="https://sakure.online/tools/sitemap-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sitemap Generator",
+  "url": "https://sakure.online/tools/sitemap-generator",
+  "description": "Free online XML sitemap generator. Create sitemaps with priority, changefreq and lastmod for any website.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#06b6d4;--accent-glow:rgba(6,182,212,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(6,182,212,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.93rem;width:100%;transition:border-color .2s;outline:none;resize:vertical}
+.field textarea{font-family:var(--mono);font-size:.85rem;min-height:140px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.defaults-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:640px){.defaults-row{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.defaults-row{grid-template-columns:1fr}}
+.url-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+.url-table th{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.url-table td{padding:6px 4px;vertical-align:middle}
+.url-table td input,.url-table td select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:.83rem;width:100%;outline:none;transition:border-color .2s}
+.url-table td input:focus,.url-table td select:focus{border-color:var(--accent)}
+.url-table td input[type=url]{font-family:var(--mono)}
+.url-table tr.odd{background:rgba(255,255,255,.01)}
+.del-btn{background:none;border:1px solid var(--border);border-radius:6px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.9rem;transition:all .15s}
+.del-btn:hover{border-color:#ef4444;color:#ef4444}
+.add-btn{background:none;border:1px dashed var(--border);border-radius:8px;padding:9px 16px;color:var(--muted);cursor:pointer;font-size:.85rem;width:100%;transition:all .15s;font-family:var(--font);margin-bottom:8px}
+.add-btn:hover{border-color:var(--accent);color:var(--accent)}
+.url-count{font-size:.78rem;color:var(--muted);font-family:var(--mono);text-align:right;margin-bottom:8px}
+.import-area{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px}
+.import-area label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:8px}
+.import-area textarea{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:var(--mono);font-size:.82rem;width:100%;min-height:80px;outline:none;resize:vertical}
+.import-area textarea:focus{border-color:var(--accent)}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.78rem;line-height:1.8;color:#e4e6ef;white-space:pre;overflow:auto;max-height:400px}
+.stats-strip{display:flex;gap:20px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--border);margin-top:16px}
+.stat-item{text-align:center}
+.stat-val{font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--accent);display:block}
+.stat-label{font-size:.72rem;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-developer">Developer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>Sitemap <span>Generator</span></h1>
+  <p class="hero-sub">Build a valid XML sitemap for your website with priority, change frequency, and lastmod dates. Download ready to upload.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <!-- IMPORT -->
+  <div class="card">
+    <div class="card-title">Quick Import (paste URLs)</div>
+    <div class="import-area">
+      <label>Paste one URL per line to bulk-import</label>
+      <textarea id="bulk-import" placeholder="https://example.com/&#10;https://example.com/about&#10;https://example.com/blog&#10;https://example.com/contact"></textarea>
+    </div>
+    <button class="btn btn-secondary" onclick="bulkImport()" style="margin-bottom:4px">⬆️ Import URLs</button>
+  </div>
+
+  <!-- DEFAULTS -->
+  <div class="card">
+    <div class="card-title">Default Settings (applied to new rows)</div>
+    <div class="defaults-row">
+      <div class="field">
+        <label>Change Frequency</label>
+        <select id="def-freq" onchange="generate()">
+          <option value="monthly" selected>monthly</option>
+          <option value="always">always</option>
+          <option value="hourly">hourly</option>
+          <option value="daily">daily</option>
+          <option value="weekly">weekly</option>
+          <option value="yearly">yearly</option>
+          <option value="never">never</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Priority</label>
+        <select id="def-pri" onchange="generate()">
+          <option value="0.8" selected>0.8</option>
+          <option value="1.0">1.0 (Homepage)</option>
+          <option value="0.9">0.9</option>
+          <option value="0.7">0.7</option>
+          <option value="0.6">0.6</option>
+          <option value="0.5">0.5</option>
+          <option value="0.4">0.4</option>
+          <option value="0.3">0.3</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Last Modified</label>
+        <input type="date" id="def-date" value="">
+      </div>
+    </div>
+  </div>
+
+  <!-- URL TABLE -->
+  <div class="card">
+    <div class="card-title">URLs</div>
+    <div class="url-count" id="url-count">0 URLs</div>
+    <div style="overflow-x:auto">
+      <table class="url-table">
+        <thead>
+          <tr>
+            <th style="width:45%">URL</th>
+            <th style="width:18%">Change Freq</th>
+            <th style="width:12%">Priority</th>
+            <th style="width:18%">Last Modified</th>
+            <th style="width:7%"></th>
+          </tr>
+        </thead>
+        <tbody id="url-body"></tbody>
+      </table>
+    </div>
+    <button class="add-btn" onclick="addRow()">+ Add URL</button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="card">
+    <div class="card-title">Generated sitemap.xml</div>
+    <div class="output-box" id="output"></div>
+    <div class="stats-strip" id="stats-strip"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyOutput()">📋 Copy XML</button>
+      <button class="btn btn-secondary" onclick="downloadOutput()">⬇️ Download sitemap.xml</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related SEO Tools</h2>
+    <div class="related">
+      <a href="/tools/robots-txt-generator" class="related-card">
+        <div class="r-icon">🤖</div>
+        <div class="r-name">Robots.txt Generator</div>
+        <div class="r-desc">Build robots.txt rules for crawlers</div>
+      </a>
+      <a href="/tools/meta-tag-generator" class="related-card">
+        <div class="r-icon">🏷️</div>
+        <div class="r-name">Meta Tag Generator</div>
+        <div class="r-desc">Generate complete HTML meta tags</div>
+      </a>
+      <a href="/tools/slug-generator" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">Slug Generator</div>
+        <div class="r-desc">Convert titles to SEO-friendly slugs</div>
+      </a>
+      <a href="/tools/utm-link-builder" class="related-card">
+        <div class="r-icon">📊</div>
+        <div class="r-name">UTM Link Builder</div>
+        <div class="r-desc">Build trackable campaign URLs</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What is an XML sitemap and do I need one?</summary>
+      <p>An XML sitemap is a file that lists all important URLs on your site so search engines can find and index them efficiently. While not strictly required, a sitemap is strongly recommended for sites with more than a handful of pages, new sites with few inbound links, or sites with large amounts of content.</p>
+    </details>
+    <details>
+      <summary>Where should I put my sitemap.xml?</summary>
+      <p>Place sitemap.xml at the root of your domain (e.g. https://example.com/sitemap.xml). Then reference it in your robots.txt file using "Sitemap: https://example.com/sitemap.xml", and submit it to Google Search Console and Bing Webmaster Tools for faster indexing.</p>
+    </details>
+    <details>
+      <summary>What is the "priority" field in a sitemap?</summary>
+      <p>Priority (0.0 to 1.0) signals which pages you consider most important relative to other pages on your own site. It does not affect how you rank compared to other websites. Search engines often ignore this field, but it's still good practice to set your homepage to 1.0 and less important pages lower.</p>
+    </details>
+    <details>
+      <summary>How many URLs can a sitemap file contain?</summary>
+      <p>A single sitemap file can contain a maximum of 50,000 URLs and must be under 50 MB uncompressed. If your site has more URLs, you'll need a sitemap index file that references multiple sitemap files. This generator is intended for sites up to ~1,000 URLs.</p>
+    </details>
+    <details>
+      <summary>What does changefreq mean?</summary>
+      <p>The changefreq hint tells search engines how often a page's content changes — from "always" (changes with every visit) to "never" (archived content). This is only a hint; search engines may crawl at their own discretion regardless of what you specify.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let rows = [];
+let rowId = 0;
+const FREQS = ['always','hourly','daily','weekly','monthly','yearly','never'];
+const PRIS  = ['1.0','0.9','0.8','0.7','0.6','0.5','0.4','0.3','0.2','0.1'];
+
+// Init default date
+document.getElementById('def-date').value = new Date().toISOString().slice(0,10);
+
+function defFreq(){ return document.getElementById('def-freq').value; }
+function defPri(){ return document.getElementById('def-pri').value; }
+function defDate(){ return document.getElementById('def-date').value; }
+
+function addRow(url='', freq='', pri='', date='') {
+  const id = ++rowId;
+  rows.push({ id, url, freq: freq||defFreq(), pri: pri||defPri(), date: date||defDate() });
+  renderTable();
+  generate();
+}
+
+function removeRow(id) {
+  rows = rows.filter(r => r.id !== id);
+  renderTable();
+  generate();
+}
+
+function freqOpts(selected) {
+  return FREQS.map(f => `<option value="${f}"${f===selected?' selected':''}>${f}</option>`).join('');
+}
+function priOpts(selected) {
+  return PRIS.map(p => `<option value="${p}"${p===selected?' selected':''}>${p}</option>`).join('');
+}
+
+function renderTable() {
+  document.getElementById('url-count').textContent = rows.length + ' URL' + (rows.length!==1?'s':'');
+  document.getElementById('url-body').innerHTML = rows.map((r,i) => `
+    <tr class="${i%2===0?'odd':''}">
+      <td><input type="url" value="${escA(r.url)}" placeholder="https://example.com/page"
+        oninput="rows[${i}].url=this.value;generate()"></td>
+      <td><select onchange="rows[${i}].freq=this.value;generate()">${freqOpts(r.freq)}</select></td>
+      <td><select onchange="rows[${i}].pri=this.value;generate()">${priOpts(r.pri)}</select></td>
+      <td><input type="date" value="${escA(r.date)}" oninput="rows[${i}].date=this.value;generate()"></td>
+      <td><button class="del-btn" onclick="removeRow(${r.id})">✕</button></td>
+    </tr>`).join('');
+}
+
+function generate() {
+  const validRows = rows.filter(r => r.url.trim());
+  const lines = ['<?xml version="1.0" encoding="UTF-8"?>'];
+  lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+  lines.push('');
+  validRows.forEach(r => {
+    lines.push('  <url>');
+    lines.push(`    <loc>${escX(r.url.trim())}</loc>`);
+    if (r.date)  lines.push(`    <lastmod>${r.date}</lastmod>`);
+    if (r.freq)  lines.push(`    <changefreq>${r.freq}</changefreq>`);
+    if (r.pri)   lines.push(`    <priority>${r.pri}</priority>`);
+    lines.push('  </url>');
+  });
+  lines.push('</urlset>');
+  document.getElementById('output').textContent = lines.join('\n');
+
+  // Stats
+  const freqCount = {};
+  validRows.forEach(r => freqCount[r.freq] = (freqCount[r.freq]||0)+1);
+  const topFreq = Object.entries(freqCount).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('stats-strip').innerHTML = `
+    <div class="stat-item"><span class="stat-val">${validRows.length}</span><span class="stat-label">Total URLs</span></div>
+    <div class="stat-item"><span class="stat-val">${Math.round(new TextEncoder().encode(lines.join('\n')).length/1024*10)/10} KB</span><span class="stat-label">File Size</span></div>
+    <div class="stat-item"><span class="stat-val">${topFreq?topFreq[0]:'—'}</span><span class="stat-label">Most Common Freq</span></div>`;
+}
+
+function bulkImport() {
+  const text = document.getElementById('bulk-import').value;
+  const urls = text.split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
+  urls.forEach(u => addRow(u));
+  document.getElementById('bulk-import').value = '';
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(document.getElementById('output').textContent).then(() => {
+    const m = document.getElementById('copy-msg');
+    m.classList.add('show');
+    setTimeout(() => m.classList.remove('show'), 2000);
+  });
+}
+
+function downloadOutput() {
+  const blob = new Blob([document.getElementById('output').textContent], {type:'application/xml'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'sitemap.xml';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function escA(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escX(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Init with 3 starter rows
+addRow('https://example.com/', 'monthly', '1.0', new Date().toISOString().slice(0,10));
+addRow('https://example.com/about', 'yearly', '0.7', new Date().toISOString().slice(0,10));
+addRow('https://example.com/blog', 'weekly', '0.8', new Date().toISOString().slice(0,10));
+</script>
+</body>
+</html>

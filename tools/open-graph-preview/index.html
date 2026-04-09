@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Graph Preview – See How Links Look on Social Media | Sakure.online</title>
+<meta name="description" content="Preview how your webpage appears when shared on Facebook, Twitter, LinkedIn, and WhatsApp. Test Open Graph tags and generate correct meta tags instantly.">
+<meta name="keywords" content="open graph preview, og preview, social media preview, facebook link preview, twitter card preview, og image preview, meta tag tester">
+<meta property="og:title" content="Open Graph Preview – Sakure.online">
+<meta property="og:description" content="Preview how your link looks on Facebook, Twitter, LinkedIn, and WhatsApp before publishing. Free OG preview tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/open-graph-preview">
+<link rel="canonical" href="https://sakure.online/tools/open-graph-preview">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Open Graph Preview",
+  "url": "https://sakure.online/tools/open-graph-preview",
+  "description": "Preview how your page looks when shared on Facebook, Twitter, LinkedIn and WhatsApp using Open Graph tags.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#f59e0b;--accent-glow:rgba(245,158,11,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(245,158,11,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:960px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:16px}
+.field label{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.93rem;width:100%;transition:border-color .2s;outline:none;resize:vertical}
+.field textarea{min-height:68px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.fields-row{grid-template-columns:1fr}}
+.preview-tabs{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:10px;margin-bottom:24px}
+.ptab{flex:1;padding:9px 4px;border:none;background:none;color:var(--muted);font-size:.82rem;font-weight:600;border-radius:7px;cursor:pointer;transition:all .18s;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:6px}
+.ptab.active{background:var(--accent);color:#fff}
+/* ── FACEBOOK CARD ── */
+.fb-card{background:#1c1e21;border:1px solid #3a3b3c;border-radius:8px;overflow:hidden;max-width:500px;margin:0 auto;font-family:Helvetica,Arial,sans-serif}
+.fb-img{width:100%;aspect-ratio:1.91;background:var(--surface2);object-fit:cover;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+.fb-img img{width:100%;height:100%;object-fit:cover}
+.fb-body{padding:12px 16px 14px}
+.fb-domain{font-size:.75rem;color:#b0b3b8;text-transform:uppercase;margin-bottom:4px}
+.fb-title{font-size:1rem;font-weight:600;color:#e4e6eb;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fb-desc{font-size:.85rem;color:#b0b3b8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* ── TWITTER CARD ── */
+.tw-card{background:#000;border:1px solid #2f3336;border-radius:16px;overflow:hidden;max-width:500px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.tw-img{width:100%;aspect-ratio:1.91;background:var(--surface2);object-fit:cover;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+.tw-img img{width:100%;height:100%;object-fit:cover}
+.tw-body{padding:12px 14px 14px}
+.tw-domain{font-size:.8rem;color:#71767b;margin-bottom:4px}
+.tw-title{font-size:.95rem;font-weight:700;color:#e7e9ea;margin-bottom:3px}
+.tw-desc{font-size:.85rem;color:#71767b;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* ── LINKEDIN CARD ── */
+.li-card{background:#1d2226;border:1px solid #283339;border-radius:2px;overflow:hidden;max-width:500px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.li-img{width:100%;aspect-ratio:1.91;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+.li-img img{width:100%;height:100%;object-fit:cover}
+.li-body{padding:12px 16px 14px;background:#1d2226;border-top:1px solid #283339}
+.li-title{font-size:.95rem;font-weight:600;color:#e9e9e9;margin-bottom:4px}
+.li-domain{font-size:.78rem;color:#a3a3a3}
+/* ── WHATSAPP CARD ── */
+.wa-card{background:#005c4b;border-radius:8px;overflow:hidden;max-width:400px;margin:0 auto;padding:2px;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.wa-inner{background:#0d1418;border-radius:6px;overflow:hidden}
+.wa-img{width:100%;aspect-ratio:1.91;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem}
+.wa-img img{width:100%;height:100%;object-fit:cover}
+.wa-body{padding:10px 14px 12px;background:#202c33}
+.wa-title{font-size:.9rem;font-weight:600;color:#e9edef;margin-bottom:3px}
+.wa-desc{font-size:.8rem;color:#8696a0;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wa-domain{font-size:.75rem;color:#8696a0;text-transform:uppercase}
+
+.placeholder-img{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);font-size:.8rem}
+.placeholder-img span{font-size:2rem}
+
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--mono);font-size:.8rem;line-height:1.8;color:#a5b4fc;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/#cat-developer">Developer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔍 SEO & Marketing</div>
+  <h1>Open Graph <span>Preview</span></h1>
+  <p class="hero-sub">See exactly how your link appears on Facebook, Twitter, LinkedIn & WhatsApp before you publish.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Open Graph Details</div>
+    <div class="field">
+      <label>OG Title</label>
+      <input type="text" id="og-title" placeholder="Your page title" oninput="renderPreview()">
+    </div>
+    <div class="field">
+      <label>OG Description</label>
+      <textarea id="og-desc" placeholder="A short description shown in social cards…" oninput="renderPreview()"></textarea>
+    </div>
+    <div class="fields-row">
+      <div class="field">
+        <label>OG Image URL</label>
+        <input type="url" id="og-image" placeholder="https://example.com/og.jpg" oninput="renderPreview()">
+      </div>
+      <div class="field">
+        <label>Site Name / Domain</label>
+        <input type="text" id="og-site" placeholder="example.com" oninput="renderPreview()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Live Social Preview</div>
+    <div class="preview-tabs">
+      <button class="ptab active" onclick="switchPlatform('facebook',this)">📘 Facebook</button>
+      <button class="ptab" onclick="switchPlatform('twitter',this)">🐦 Twitter</button>
+      <button class="ptab" onclick="switchPlatform('linkedin',this)">💼 LinkedIn</button>
+      <button class="ptab" onclick="switchPlatform('whatsapp',this)">💬 WhatsApp</button>
+    </div>
+    <div id="preview-area"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Generated Tags</div>
+    <div class="output-box" id="output-tags"><!-- tags --></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyTags()">📋 Copy Tags</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related SEO Tools</h2>
+    <div class="related">
+      <a href="/tools/meta-tag-generator" class="related-card">
+        <div class="r-icon">🏷️</div>
+        <div class="r-name">Meta Tag Generator</div>
+        <div class="r-desc">Generate complete HTML meta tags</div>
+      </a>
+      <a href="/tools/slug-generator" class="related-card">
+        <div class="r-icon">🔗</div>
+        <div class="r-name">Slug Generator</div>
+        <div class="r-desc">Convert titles to URL-friendly slugs</div>
+      </a>
+      <a href="/tools/utm-link-builder" class="related-card">
+        <div class="r-icon">📊</div>
+        <div class="r-name">UTM Link Builder</div>
+        <div class="r-desc">Build trackable marketing URLs</div>
+      </a>
+      <a href="/tools/sitemap-generator" class="related-card">
+        <div class="r-icon">🗺️</div>
+        <div class="r-name">Sitemap Generator</div>
+        <div class="r-desc">Generate XML sitemaps for SEO</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open>
+      <summary>What is an Open Graph tag?</summary>
+      <p>Open Graph (OG) tags are HTML meta tags originally developed by Facebook that control how your URL is displayed when shared on social platforms. They define the title, description, image, and type of your content so platforms can generate rich link previews.</p>
+    </details>
+    <details>
+      <summary>Why does my image not show in the preview?</summary>
+      <p>Most issues come from the image URL not being publicly accessible, or the image dimensions being too small. Use an image at least 1200×630 pixels (1.91:1 aspect ratio). Make sure the URL is absolute (starts with https://) and returns a valid image content-type.</p>
+    </details>
+    <details>
+      <summary>How is a Twitter Card different from Open Graph?</summary>
+      <p>Twitter has its own set of meta tags (twitter:card, twitter:title, etc.). However, when Twitter Card tags are absent, Twitter falls back to Open Graph tags — so having correct OG tags usually gives you good previews on both platforms.</p>
+    </details>
+    <details>
+      <summary>How do I update the cached social preview of my page?</summary>
+      <p>Each platform has a scraping/cache tool: Facebook has the Sharing Debugger, Twitter has the Card Validator, and LinkedIn has the Post Inspector. Use these to force a re-scrape after you update your tags.</p>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-seo">SEO Tools</a>
+    <a href="/sitemap.xml">Sitemap</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let platform = 'facebook';
+
+function v(id){ return document.getElementById(id).value.trim(); }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function switchPlatform(p, btn) {
+  platform = p;
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPreview();
+}
+
+function imgSlot(url) {
+  if (!url) return `<div class="placeholder-img"><span>🖼️</span>No image URL provided (1200×630 recommended)</div>`;
+  return `<img src="${esc(url)}" alt="OG Preview" onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img\\'><span>⚠️</span>Image failed to load</div>'">`;
+}
+
+function renderPreview() {
+  const title = v('og-title') || 'Your Page Title';
+  const desc  = v('og-desc')  || 'Your page description will appear here…';
+  const img   = v('og-image');
+  const site  = v('og-site')  || 'example.com';
+  const area  = document.getElementById('preview-area');
+
+  let html = '';
+  if (platform === 'facebook') {
+    html = `<div class="fb-card">
+      <div class="fb-img">${imgSlot(img)}</div>
+      <div class="fb-body">
+        <div class="fb-domain">${esc(site.toUpperCase())}</div>
+        <div class="fb-title">${esc(title)}</div>
+        <div class="fb-desc">${esc(desc)}</div>
+      </div>
+    </div>`;
+  } else if (platform === 'twitter') {
+    html = `<div class="tw-card">
+      <div class="tw-img">${imgSlot(img)}</div>
+      <div class="tw-body">
+        <div class="tw-domain">${esc(site)}</div>
+        <div class="tw-title">${esc(title)}</div>
+        <div class="tw-desc">${esc(desc)}</div>
+      </div>
+    </div>`;
+  } else if (platform === 'linkedin') {
+    html = `<div class="li-card">
+      <div class="li-img">${imgSlot(img)}</div>
+      <div class="li-body">
+        <div class="li-title">${esc(title)}</div>
+        <div class="li-domain">${esc(site)}</div>
+      </div>
+    </div>`;
+  } else {
+    html = `<div class="wa-card"><div class="wa-inner">
+      <div class="wa-img">${imgSlot(img)}</div>
+      <div class="wa-body">
+        <div class="wa-title">${esc(title)}</div>
+        <div class="wa-desc">${esc(desc)}</div>
+        <div class="wa-domain">${esc(site)}</div>
+      </div>
+    </div></div>`;
+  }
+  area.innerHTML = html;
+
+  // Generate tags
+  const ti = v('og-title'); const de = v('og-desc'); const im = v('og-image'); const si = v('og-site');
+  const tags = [
+    '<!-- Open Graph Tags -->',
+    ti ? `<meta property="og:title" content="${esc(ti)}">` : '',
+    de ? `<meta property="og:description" content="${esc(de)}">` : '',
+    im ? `<meta property="og:image" content="${esc(im)}">` : '',
+    si ? `<meta property="og:site_name" content="${esc(si)}">` : '',
+    '<meta property="og:type" content="website">',
+    '',
+    '<!-- Twitter Card Tags -->',
+    '<meta name="twitter:card" content="summary_large_image">',
+    ti ? `<meta name="twitter:title" content="${esc(ti)}">` : '',
+    de ? `<meta name="twitter:description" content="${esc(de)}">` : '',
+    im ? `<meta name="twitter:image" content="${esc(im)}">` : '',
+  ].filter(Boolean).join('\n');
+  document.getElementById('output-tags').textContent = tags;
+}
+
+function copyTags() {
+  navigator.clipboard.writeText(document.getElementById('output-tags').textContent).then(() => {
+    const m = document.getElementById('copy-msg');
+    m.classList.add('show');
+    setTimeout(() => m.classList.remove('show'), 2000);
+  });
+}
+
+renderPreview();
+</script>
+</body>
+</html>
