@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Playground – Interactive CSS Flexbox Builder | Sakure.online</title>
+<meta name="description" content="Learn and build CSS Flexbox layouts interactively. Control flex-direction, justify-content, align-items, flex-wrap and individual item properties. Copy CSS instantly.">
+<meta name="keywords" content="flexbox playground, css flexbox, flexbox generator, flex layout builder, justify-content, align-items, flexbox tutorial, css flex">
+<meta property="og:title" content="Flexbox Playground – Sakure.online">
+<meta property="og:description" content="Interactive CSS Flexbox builder. Control all container and item properties with live visual feedback. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/flexbox-playground">
+<link rel="canonical" href="https://sakure.online/tools/flexbox-playground">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Flexbox Playground","url":"https://sakure.online/tools/flexbox-playground","description":"Interactive CSS Flexbox builder with live preview, container and item property controls.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#f59e0b;--accent-glow:rgba(245,158,11,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(245,158,11,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1100px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.main-grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+@media(max-width:800px){.main-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.prop-group{margin-bottom:18px}
+.prop-label{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:8px;display:block}
+.btn-group{display:flex;flex-wrap:wrap;gap:6px}
+.opt-btn{padding:7px 10px;border:1px solid var(--border);border-radius:7px;background:var(--surface2);color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--mono)}
+.opt-btn.active,.opt-btn:hover{border-color:var(--accent);color:var(--accent)}
+.opt-btn.active{background:rgba(245,158,11,.1)}
+.num-input{display:flex;align-items:center;gap:8px}
+.num-input input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--text);font-family:var(--mono);font-size:.85rem;width:70px;text-align:center;outline:none}
+.num-input input:focus{border-color:var(--accent)}
+.num-input label{font-size:.82rem;color:var(--muted)}
+/* PREVIEW */
+.flex-container{min-height:250px;border:2px solid var(--accent);border-radius:12px;padding:12px;gap:8px;transition:all .2s;position:relative}
+.flex-container::before{content:'FLEX CONTAINER';position:absolute;top:-10px;left:12px;background:var(--surface);padding:0 8px;font-size:.65rem;font-weight:700;color:var(--accent);letter-spacing:.8px}
+.flex-item{min-width:60px;min-height:60px;background:var(--accent);opacity:.8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#000;cursor:pointer;transition:all .2s;user-select:none;position:relative}
+.flex-item.selected{outline:3px solid #fff;opacity:1}
+.item-label{font-size:.68rem}
+/* ITEM CONTROLS */
+.item-controls{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.item-selector{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.item-sel-btn{padding:6px 14px;border:1px solid var(--border);border-radius:7px;background:none;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.item-sel-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(245,158,11,.1)}
+.item-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.item-row label{font-size:.73rem;font-weight:600;color:var(--muted);min-width:80px}
+.item-row input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-family:var(--mono);font-size:.82rem;width:80px;text-align:center;outline:none}
+.item-row input:focus{border-color:var(--accent)}
+.add-del-row{display:flex;gap:8px;margin-top:8px}
+.sm-btn{padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.sm-btn:hover{border-color:var(--accent);color:var(--accent)}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;font-family:var(--mono);font-size:.78rem;line-height:1.8;color:#a5b4fc;white-space:pre-wrap;word-break:break-all;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#000}.btn-primary:hover{opacity:.85}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/#cat-developer">Developer</a></div>
+</nav>
+<div class="hero">
+  <div class="hero-badge">🎨 CSS Tools</div>
+  <h1>Flexbox <span>Playground</span></h1>
+  <p class="hero-sub">Experiment with every CSS Flexbox property in real time. Click items to control individual flex properties.</p>
+</div>
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+  <div class="main-grid">
+    <!-- LEFT CONTROLS -->
+    <div>
+      <div class="card">
+        <div class="card-title">Container Properties</div>
+        <div class="prop-group">
+          <span class="prop-label">flex-direction</span>
+          <div class="btn-group" id="direction-btns">
+            <button class="opt-btn active" onclick="setProp('direction','row',this)">row</button>
+            <button class="opt-btn" onclick="setProp('direction','row-reverse',this)">row-reverse</button>
+            <button class="opt-btn" onclick="setProp('direction','column',this)">column</button>
+            <button class="opt-btn" onclick="setProp('direction','column-reverse',this)">column-reverse</button>
+          </div>
+        </div>
+        <div class="prop-group">
+          <span class="prop-label">flex-wrap</span>
+          <div class="btn-group">
+            <button class="opt-btn active" onclick="setProp('wrap','nowrap',this)">nowrap</button>
+            <button class="opt-btn" onclick="setProp('wrap','wrap',this)">wrap</button>
+            <button class="opt-btn" onclick="setProp('wrap','wrap-reverse',this)">wrap-reverse</button>
+          </div>
+        </div>
+        <div class="prop-group">
+          <span class="prop-label">justify-content</span>
+          <div class="btn-group">
+            <button class="opt-btn active" onclick="setProp('jc','flex-start',this)">flex-start</button>
+            <button class="opt-btn" onclick="setProp('jc','flex-end',this)">flex-end</button>
+            <button class="opt-btn" onclick="setProp('jc','center',this)">center</button>
+            <button class="opt-btn" onclick="setProp('jc','space-between',this)">space-between</button>
+            <button class="opt-btn" onclick="setProp('jc','space-around',this)">space-around</button>
+            <button class="opt-btn" onclick="setProp('jc','space-evenly',this)">space-evenly</button>
+          </div>
+        </div>
+        <div class="prop-group">
+          <span class="prop-label">align-items</span>
+          <div class="btn-group">
+            <button class="opt-btn active" onclick="setProp('ai','stretch',this)">stretch</button>
+            <button class="opt-btn" onclick="setProp('ai','flex-start',this)">flex-start</button>
+            <button class="opt-btn" onclick="setProp('ai','flex-end',this)">flex-end</button>
+            <button class="opt-btn" onclick="setProp('ai','center',this)">center</button>
+            <button class="opt-btn" onclick="setProp('ai','baseline',this)">baseline</button>
+          </div>
+        </div>
+        <div class="prop-group">
+          <span class="prop-label">align-content</span>
+          <div class="btn-group">
+            <button class="opt-btn active" onclick="setProp('ac','normal',this)">normal</button>
+            <button class="opt-btn" onclick="setProp('ac','flex-start',this)">flex-start</button>
+            <button class="opt-btn" onclick="setProp('ac','flex-end',this)">flex-end</button>
+            <button class="opt-btn" onclick="setProp('ac','center',this)">center</button>
+            <button class="opt-btn" onclick="setProp('ac','space-between',this)">space-between</button>
+            <button class="opt-btn" onclick="setProp('ac','space-around',this)">space-around</button>
+          </div>
+        </div>
+        <div class="prop-group">
+          <span class="prop-label">gap</span>
+          <div class="num-input">
+            <input type="number" id="gap-val" value="8" min="0" max="60" oninput="generate()">
+            <label>px</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Item Properties (click item to select)</div>
+        <div class="item-controls">
+          <div class="item-selector" id="item-selector"></div>
+          <div class="item-row">
+            <label>flex-grow</label>
+            <input type="number" id="item-grow" value="0" min="0" max="10" oninput="updateItem()">
+          </div>
+          <div class="item-row">
+            <label>flex-shrink</label>
+            <input type="number" id="item-shrink" value="1" min="0" max="10" oninput="updateItem()">
+          </div>
+          <div class="item-row">
+            <label>flex-basis</label>
+            <input type="text" id="item-basis" value="auto" oninput="updateItem()">
+          </div>
+          <div class="item-row">
+            <label>align-self</label>
+            <select id="item-alignself" onchange="updateItem()" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 10px;color:var(--text);font-family:var(--mono);font-size:.82rem;outline:none">
+              <option>auto</option><option>flex-start</option><option>flex-end</option><option>center</option><option>stretch</option><option>baseline</option>
+            </select>
+          </div>
+          <div class="item-row">
+            <label>order</label>
+            <input type="number" id="item-order" value="0" min="-10" max="10" oninput="updateItem()">
+          </div>
+        </div>
+        <div class="add-del-row">
+          <button class="sm-btn" onclick="addItem()">+ Add Item</button>
+          <button class="sm-btn" onclick="removeItem()">- Remove Item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+      <div class="card">
+        <div class="card-title">Live Preview (click items to select)</div>
+        <div class="flex-container" id="flex-container"></div>
+        <div class="output-box" id="output"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="copyCSS()">📋 Copy CSS</button>
+          <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related CSS Tools</h2>
+    <div class="related">
+      <a href="/tools/css-grid-generator" class="related-card"><div class="r-icon">⊞</div><div class="r-name">CSS Grid Generator</div><div class="r-desc">Visual grid layout builder</div></a>
+      <a href="/tools/css-gradient-generator" class="related-card"><div class="r-icon">🌈</div><div class="r-name">CSS Gradient Generator</div><div class="r-desc">Linear, radial & conic gradients</div></a>
+      <a href="/tools/box-shadow-generator" class="related-card"><div class="r-icon">🌑</div><div class="r-name">Box Shadow Generator</div><div class="r-desc">Visual CSS box shadow builder</div></a>
+      <a href="/tools/css-animation-generator" class="related-card"><div class="r-icon">✨</div><div class="r-name">CSS Animation Generator</div><div class="r-desc">Build keyframe animations visually</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open><summary>What is CSS Flexbox?</summary><p>Flexbox (Flexible Box Layout) is a CSS layout model that allows elements inside a container to be automatically arranged, aligned, and distributed along one axis (row or column). It's ideal for 1-dimensional layouts — navigation bars, card rows, centred content — and is now supported in all modern browsers.</p></details>
+    <details><summary>What is the difference between justify-content and align-items?</summary><p>justify-content controls alignment along the main axis (the direction flex items flow). align-items controls alignment along the cross axis (perpendicular to the main axis). When flex-direction is row, justify-content is horizontal and align-items is vertical — and vice versa when column.</p></details>
+    <details><summary>When should I use Flexbox vs CSS Grid?</summary><p>Use Flexbox for 1-dimensional layouts where items flow in a single direction (e.g. navigation bars, toolbars, centred content). Use CSS Grid for 2-dimensional layouts where you need to control both rows and columns simultaneously (e.g. page layouts, card grids, dashboards).</p></details>
+    <details><summary>What does flex: 1 mean?</summary><p>flex: 1 is shorthand for flex-grow: 1; flex-shrink: 1; flex-basis: 0%. It tells an item to grow and shrink proportionally to fill available space. Multiple items each with flex: 1 will share the container space equally.</p></details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+const COLORS = ['#f59e0b','#10b981','#6366f1','#e879f9','#38bdf8','#f97316','#ef4444','#34d399'];
+const containerProps = { direction:'row', wrap:'nowrap', jc:'flex-start', ai:'stretch', ac:'normal' };
+let items = [];
+let selectedItem = 0;
+let itemId = 0;
+
+function setProp(key, val, btn) {
+  containerProps[key] = val;
+  btn.closest('.btn-group').querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  generate();
+}
+
+function addItem() {
+  const i = ++itemId;
+  items.push({ id:i, grow:0, shrink:1, basis:'auto', alignSelf:'auto', order:0 });
+  selectedItem = items.length - 1;
+  renderItems();
+  syncItemControls();
+  generate();
+}
+
+function removeItem() {
+  if (items.length <= 1) return;
+  items.splice(selectedItem, 1);
+  selectedItem = Math.min(selectedItem, items.length - 1);
+  renderItems();
+  syncItemControls();
+  generate();
+}
+
+function selectItem(idx) {
+  selectedItem = idx;
+  document.querySelectorAll('.item-sel-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.flex-item').forEach((el,i)=>el.classList.toggle('selected',i===idx));
+  syncItemControls();
+}
+
+function syncItemControls() {
+  const it = items[selectedItem];
+  if (!it) return;
+  document.getElementById('item-grow').value    = it.grow;
+  document.getElementById('item-shrink').value  = it.shrink;
+  document.getElementById('item-basis').value   = it.basis;
+  document.getElementById('item-alignself').value = it.alignSelf;
+  document.getElementById('item-order').value   = it.order;
+}
+
+function updateItem() {
+  const it = items[selectedItem];
+  if (!it) return;
+  it.grow      = document.getElementById('item-grow').value;
+  it.shrink    = document.getElementById('item-shrink').value;
+  it.basis     = document.getElementById('item-basis').value;
+  it.alignSelf = document.getElementById('item-alignself').value;
+  it.order     = document.getElementById('item-order').value;
+  generate();
+}
+
+function renderItems() {
+  const fc = document.getElementById('flex-container');
+  fc.innerHTML = items.map((it, i)=>`
+    <div class="flex-item${i===selectedItem?' selected':''}"
+      style="background:${COLORS[i%COLORS.length]};flex-grow:${it.grow};flex-shrink:${it.shrink};flex-basis:${it.basis};align-self:${it.alignSelf};order:${it.order}"
+      onclick="selectItem(${i})">
+      <span class="item-label">${i+1}</span>
+    </div>`).join('');
+
+  document.getElementById('item-selector').innerHTML = items.map((it,i)=>`
+    <button class="item-sel-btn${i===selectedItem?' active':''}" onclick="selectItem(${i})">Item ${i+1}</button>`).join('');
+}
+
+function generate() {
+  const gap = document.getElementById('gap-val').value;
+  const fc = document.getElementById('flex-container');
+  fc.style.display          = 'flex';
+  fc.style.flexDirection    = containerProps.direction;
+  fc.style.flexWrap         = containerProps.wrap;
+  fc.style.justifyContent   = containerProps.jc;
+  fc.style.alignItems       = containerProps.ai;
+  fc.style.alignContent     = containerProps.ac;
+  fc.style.gap              = gap+'px';
+
+  // Re-sync item styles
+  fc.querySelectorAll('.flex-item').forEach((el, i)=>{
+    const it = items[i];
+    if (!it) return;
+    el.style.flexGrow   = it.grow;
+    el.style.flexShrink = it.shrink;
+    el.style.flexBasis  = it.basis;
+    el.style.alignSelf  = it.alignSelf;
+    el.style.order      = it.order;
+  });
+
+  const lines = [
+    '.container {',
+    '  display: flex;',
+    `  flex-direction: ${containerProps.direction};`,
+    `  flex-wrap: ${containerProps.wrap};`,
+    `  justify-content: ${containerProps.jc};`,
+    `  align-items: ${containerProps.ai};`,
+    `  align-content: ${containerProps.ac};`,
+    `  gap: ${gap}px;`,
+    '}',
+    '',
+    ...items.map((it,i)=>[
+      `.item-${i+1} {`,
+      `  flex: ${it.grow} ${it.shrink} ${it.basis};`,
+      it.alignSelf!=='auto'?`  align-self: ${it.alignSelf};`:'',
+      it.order!='0'?`  order: ${it.order};`:'',
+      '}',
+    ].filter(Boolean).join('\n')),
+  ];
+  document.getElementById('output').textContent = lines.join('\n');
+}
+
+function copyCSS() {
+  navigator.clipboard.writeText(document.getElementById('output').textContent).then(()=>{
+    const m=document.getElementById('copy-msg');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2000);
+  });
+}
+
+// Init
+for(let i=0;i<4;i++) addItem();
+selectedItem=0;
+renderItems();
+syncItemControls();
+generate();
+</script>
+</body>
+</html>

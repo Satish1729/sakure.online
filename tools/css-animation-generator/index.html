@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Animation Generator – Build @keyframes Animations Visually | Sakure.online</title>
+<meta name="description" content="Generate CSS @keyframe animations visually. Set duration, timing function, delay, iteration, keyframe properties. Live preview on a test element. Copy CSS instantly.">
+<meta name="keywords" content="css animation generator, keyframe animation, css keyframes, animation builder, css transitions, css animation tool, @keyframes generator">
+<meta property="og:title" content="CSS Animation Generator – Sakure.online">
+<meta property="og:description" content="Build CSS @keyframe animations visually with live preview. Duration, easing, keyframes, and copy-ready output. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/css-animation-generator">
+<link rel="canonical" href="https://sakure.online/tools/css-animation-generator">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSS Animation Generator","url":"https://sakure.online/tools/css-animation-generator","description":"Free CSS animation generator with visual keyframe editor, live preview and instant CSS output.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#f97316;--accent-glow:rgba(249,115,22,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(249,115,22,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1100px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.main-grid{display:grid;grid-template-columns:360px 1fr;gap:20px}
+@media(max-width:800px){.main-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:14px}
+.field label{font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:var(--mono);font-size:.9rem;width:100%;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* KEYFRAME EDITOR */
+.kf-list{margin-bottom:10px}
+.kf-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+.kf-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.kf-pct{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--accent);font-family:var(--mono);font-size:.85rem;width:70px;text-align:center;outline:none}
+.kf-pct:focus{border-color:var(--accent)}
+.kf-pct-label{font-size:.8rem;color:var(--muted)}
+.kf-del{background:none;border:1px solid var(--border);border-radius:6px;width:30px;height:30px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:.85rem;margin-left:auto}
+.kf-del:hover{border-color:#ef4444;color:#ef4444}
+.kf-props{display:flex;flex-direction:column;gap:6px}
+.kf-prop-row{display:flex;gap:6px;align-items:center}
+.kf-prop-name{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 8px;color:var(--text);font-family:var(--mono);font-size:.8rem;width:140px;outline:none}
+.kf-prop-name:focus{border-color:var(--accent)}
+.kf-prop-val{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 8px;color:var(--text);font-family:var(--mono);font-size:.8rem;flex:1;outline:none}
+.kf-prop-val:focus{border-color:var(--accent)}
+.kf-prop-del{background:none;border:none;color:var(--muted);cursor:pointer;padding:4px 6px;font-size:.85rem;transition:color .15s}
+.kf-prop-del:hover{color:#ef4444}
+.add-prop-btn{background:none;border:1px dashed var(--border);border-radius:6px;padding:6px;color:var(--muted);cursor:pointer;width:100%;font-size:.78rem;transition:all .15s;font-family:var(--font);margin-top:4px}
+.add-prop-btn:hover{border-color:var(--accent);color:var(--accent)}
+.add-kf-btn{background:none;border:1px dashed var(--border);border-radius:8px;padding:9px;color:var(--muted);cursor:pointer;width:100%;font-size:.82rem;transition:all .15s;font-family:var(--font)}
+.add-kf-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* PREVIEW */
+.preview-canvas{display:flex;align-items:center;justify-content:center;min-height:220px;background:repeating-conic-gradient(#1e2535 0% 25%,#21263a 0% 50%) 0 0/20px 20px;border-radius:12px;border:1px solid var(--border);overflow:hidden;position:relative}
+#preview-el{width:80px;height:80px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff}
+.play-btn-row{display:flex;gap:8px;margin-bottom:12px}
+.play-btn{padding:9px 18px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.play-btn:hover{border-color:var(--accent);color:var(--accent)}
+.play-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.presets-list{display:flex;flex-wrap:wrap;gap:8px}
+.preset-tag{padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.8rem;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.preset-tag:hover{border-color:var(--accent);color:var(--accent)}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;font-family:var(--mono);font-size:.78rem;line-height:1.8;color:#a5b4fc;white-space:pre-wrap;word-break:break-all;margin-top:14px;max-height:350px;overflow-y:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/#cat-developer">Developer</a></div>
+</nav>
+<div class="hero">
+  <div class="hero-badge">🎨 CSS Tools</div>
+  <h1>CSS Animation <span>Generator</span></h1>
+  <p class="hero-sub">Build @keyframe animations visually. Set timing, easing, keyframe properties, and preview live. Copy the CSS instantly.</p>
+</div>
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+  <div class="main-grid">
+    <div>
+      <div class="card">
+        <div class="card-title">Animation Settings</div>
+        <div class="field">
+          <label>Animation Name</label>
+          <input type="text" id="anim-name" value="myAnimation" oninput="generate()">
+        </div>
+        <div class="fields-row">
+          <div class="field">
+            <label>Duration</label>
+            <input type="text" id="duration" value="1s" oninput="generate()">
+          </div>
+          <div class="field">
+            <label>Delay</label>
+            <input type="text" id="delay" value="0s" oninput="generate()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Timing Function</label>
+          <select id="easing" onchange="generate()">
+            <option>ease</option><option>ease-in</option><option>ease-out</option><option>ease-in-out</option>
+            <option>linear</option><option>step-start</option><option>step-end</option>
+            <option value="cubic-bezier(0.34,1.56,0.64,1)">Spring (custom)</option>
+            <option value="cubic-bezier(0.68,-0.55,0.27,1.55)">Bounce</option>
+          </select>
+        </div>
+        <div class="fields-row">
+          <div class="field">
+            <label>Iteration Count</label>
+            <input type="text" id="iteration" value="infinite" oninput="generate()">
+          </div>
+          <div class="field">
+            <label>Direction</label>
+            <select id="direction" onchange="generate()">
+              <option>normal</option><option>reverse</option><option>alternate</option><option>alternate-reverse</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Fill Mode</label>
+          <select id="fill-mode" onchange="generate()">
+            <option>none</option><option>forwards</option><option>backwards</option><option>both</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Keyframes</div>
+        <div class="kf-list" id="kf-list"></div>
+        <button class="add-kf-btn" onclick="addKeyframe()">+ Add Keyframe</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Presets</div>
+        <div class="presets-list">
+          <button class="preset-tag" onclick="applyPreset('fadeIn')">Fade In</button>
+          <button class="preset-tag" onclick="applyPreset('slideUp')">Slide Up</button>
+          <button class="preset-tag" onclick="applyPreset('bounce')">Bounce</button>
+          <button class="preset-tag" onclick="applyPreset('pulse')">Pulse</button>
+          <button class="preset-tag" onclick="applyPreset('spin')">Spin</button>
+          <button class="preset-tag" onclick="applyPreset('shake')">Shake</button>
+          <button class="preset-tag" onclick="applyPreset('flip')">Flip</button>
+          <button class="preset-tag" onclick="applyPreset('rubberBand')">Rubber Band</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Live Preview</div>
+        <div class="play-btn-row">
+          <button class="play-btn active" id="play-btn" onclick="togglePlay()">▶ Play</button>
+          <button class="play-btn" onclick="restartAnim()">↺ Restart</button>
+        </div>
+        <div class="preview-canvas">
+          <div id="preview-el">✦</div>
+        </div>
+        <div class="output-box" id="output"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="copyCSS()">📋 Copy CSS</button>
+          <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related CSS Tools</h2>
+    <div class="related">
+      <a href="/tools/css-gradient-generator" class="related-card"><div class="r-icon">🌈</div><div class="r-name">CSS Gradient Generator</div><div class="r-desc">Linear, radial & conic gradients</div></a>
+      <a href="/tools/box-shadow-generator" class="related-card"><div class="r-icon">🌑</div><div class="r-name">Box Shadow Generator</div><div class="r-desc">Visual CSS box shadow builder</div></a>
+      <a href="/tools/flexbox-playground" class="related-card"><div class="r-icon">📦</div><div class="r-name">Flexbox Playground</div><div class="r-desc">Interactive CSS Flexbox builder</div></a>
+      <a href="/tools/css-grid-generator" class="related-card"><div class="r-icon">⊞</div><div class="r-name">CSS Grid Generator</div><div class="r-desc">Visual CSS Grid layout builder</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open><summary>What is a CSS @keyframes animation?</summary><p>CSS @keyframes lets you define the intermediate steps of an animation sequence. You specify CSS properties at different percentage points (0% = start, 100% = end) and the browser smoothly interpolates between them. The animation is then applied to an element using the animation property.</p></details>
+    <details><summary>What is the difference between CSS animation and CSS transition?</summary><p>CSS transitions animate a property when it changes from one value to another (typically triggered by a state change like :hover). CSS animations use @keyframes and can run automatically, loop, alternate directions, and involve multiple steps — making them more powerful for complex or continuous effects.</p></details>
+    <details><summary>What does animation-fill-mode do?</summary><p>fill-mode controls what happens before and after an animation plays. "forwards" keeps the final keyframe state after the animation ends. "backwards" applies the first keyframe state during the delay. "both" applies both behaviours. "none" (default) reverts to the original style before and after.</p></details>
+    <details><summary>What is animation-timing-function?</summary><p>The timing function controls the speed curve of the animation — how fast or slow it moves through its keyframes at different points. Common values: ease (slow-fast-slow), linear (constant speed), ease-in (starts slow), ease-out (ends slow), and cubic-bezier() for custom curves.</p></details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let kfs = [];
+let kfId = 0;
+let playing = true;
+let styleTag = document.createElement('style');
+document.head.appendChild(styleTag);
+
+function g(id){ return document.getElementById(id).value.trim(); }
+
+function addKeyframe(pct=0, props=[]) {
+  const id = ++kfId;
+  kfs.push({ id, pct, props: props.length ? props : [{name:'opacity',val:'1'}] });
+  kfs.sort((a,b)=>a.pct-b.pct);
+  renderKFs();
+  generate();
+}
+
+function removeKF(id) {
+  if(kfs.length<=1) return;
+  kfs = kfs.filter(k=>k.id!==id);
+  renderKFs(); generate();
+}
+
+function addProp(kfIdx) {
+  kfs[kfIdx].props.push({name:'',val:''});
+  renderKFs(); generate();
+}
+
+function removeProp(kfIdx,pi) {
+  kfs[kfIdx].props.splice(pi,1);
+  renderKFs(); generate();
+}
+
+function renderKFs() {
+  document.getElementById('kf-list').innerHTML = kfs.map((k,ki)=>`
+    <div class="kf-item">
+      <div class="kf-header">
+        <input class="kf-pct" type="number" value="${k.pct}" min="0" max="100" oninput="kfs[${ki}].pct=parseInt(this.value)||0;kfs.sort((a,b)=>a.pct-b.pct);generate()">
+        <span class="kf-pct-label">%</span>
+        <button class="kf-del" onclick="removeKF(${k.id})">✕</button>
+      </div>
+      <div class="kf-props">
+        ${k.props.map((p,pi)=>`
+          <div class="kf-prop-row">
+            <input class="kf-prop-name" value="${escA(p.name)}" placeholder="transform" oninput="kfs[${ki}].props[${pi}].name=this.value;generate()">
+            <input class="kf-prop-val" value="${escA(p.val)}" placeholder="translateY(0)" oninput="kfs[${ki}].props[${pi}].val=this.value;generate()">
+            <button class="kf-prop-del" onclick="removeProp(${ki},${pi})">✕</button>
+          </div>`).join('')}
+        <button class="add-prop-btn" onclick="addProp(${ki})">+ Add Property</button>
+      </div>
+    </div>`).join('');
+}
+
+function buildKeyframesCSS(name) {
+  return `@keyframes ${name} {\n${kfs.map(k=>{
+    const props = k.props.filter(p=>p.name&&p.val).map(p=>`    ${p.name}: ${p.val};`).join('\n');
+    return `  ${k.pct}% {\n${props}\n  }`;
+  }).join('\n')}\n}`;
+}
+
+function generate() {
+  const name = g('anim-name')||'myAnimation';
+  const dur  = g('duration')||'1s';
+  const delay= g('delay')||'0s';
+  const ease = g('easing')||'ease';
+  const iter = g('iteration')||'infinite';
+  const dir  = g('direction')||'normal';
+  const fill = g('fill-mode')||'none';
+
+  const kfCSS = buildKeyframesCSS(name);
+  const animCSS = `animation: ${name} ${dur} ${ease} ${delay} ${iter} ${dir} ${fill};`;
+  const full = kfCSS + '\n\n.element {\n  ' + animCSS + '\n}';
+
+  document.getElementById('output').textContent = full;
+
+  // Inject into page for live preview
+  styleTag.textContent = kfCSS + '\n#preview-el { ' + animCSS + ' }';
+}
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('play-btn');
+  if (playing) {
+    btn.textContent = '▶ Play';
+    btn.classList.add('active');
+    document.getElementById('preview-el').style.animationPlayState = 'running';
+  } else {
+    btn.textContent = '⏸ Pause';
+    btn.classList.remove('active');
+    document.getElementById('preview-el').style.animationPlayState = 'paused';
+  }
+}
+
+function restartAnim() {
+  const el = document.getElementById('preview-el');
+  el.style.animation = 'none';
+  el.offsetHeight; // reflow
+  el.style.animation = '';
+  generate();
+}
+
+function copyCSS() {
+  navigator.clipboard.writeText(document.getElementById('output').textContent).then(()=>{
+    const m=document.getElementById('copy-msg');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2000);
+  });
+}
+
+function escA(s){ return (s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+const PRESETS = {
+  fadeIn:     { dur:'0.6s', ease:'ease', kfs:[{pct:0,p:[{n:'opacity',v:'0'},{n:'transform',v:'translateY(10px)'}]},{pct:100,p:[{n:'opacity',v:'1'},{n:'transform',v:'translateY(0)'}]}] },
+  slideUp:    { dur:'0.5s', ease:'ease-out', kfs:[{pct:0,p:[{n:'transform',v:'translateY(30px)'},{n:'opacity',v:'0'}]},{pct:100,p:[{n:'transform',v:'translateY(0)'},{n:'opacity',v:'1'}]}] },
+  bounce:     { dur:'0.8s', ease:'cubic-bezier(0.28,0.84,0.42,1)', kfs:[{pct:0,p:[{n:'transform',v:'translateY(0)'}]},{pct:40,p:[{n:'transform',v:'translateY(-30px)'}]},{pct:100,p:[{n:'transform',v:'translateY(0)'}]}] },
+  pulse:      { dur:'1s', ease:'ease-in-out', kfs:[{pct:0,p:[{n:'transform',v:'scale(1)'}]},{pct:50,p:[{n:'transform',v:'scale(1.15)'}]},{pct:100,p:[{n:'transform',v:'scale(1)'}]}] },
+  spin:       { dur:'1s', ease:'linear', kfs:[{pct:0,p:[{n:'transform',v:'rotate(0deg)'}]},{pct:100,p:[{n:'transform',v:'rotate(360deg)'}]}] },
+  shake:      { dur:'0.5s', ease:'ease-in-out', kfs:[{pct:0,p:[{n:'transform',v:'translateX(0)'}]},{pct:20,p:[{n:'transform',v:'translateX(-8px)'}]},{pct:40,p:[{n:'transform',v:'translateX(8px)'}]},{pct:60,p:[{n:'transform',v:'translateX(-8px)'}]},{pct:80,p:[{n:'transform',v:'translateX(8px)'}]},{pct:100,p:[{n:'transform',v:'translateX(0)'}]}] },
+  flip:       { dur:'0.7s', ease:'ease-in-out', kfs:[{pct:0,p:[{n:'transform',v:'perspective(400px) rotateY(0)'}]},{pct:50,p:[{n:'transform',v:'perspective(400px) rotateY(90deg)'},{n:'opacity',v:'0.5'}]},{pct:100,p:[{n:'transform',v:'perspective(400px) rotateY(0)'},{n:'opacity',v:'1'}]}] },
+  rubberBand: { dur:'0.8s', ease:'ease-in-out', kfs:[{pct:0,p:[{n:'transform',v:'scale(1)'}]},{pct:30,p:[{n:'transform',v:'scale(1.25,.75)'}]},{pct:50,p:[{n:'transform',v:'scale(.75,1.25)'}]},{pct:70,p:[{n:'transform',v:'scale(1.15,.85)'}]},{pct:100,p:[{n:'transform',v:'scale(1)'}]}] },
+};
+
+function applyPreset(key) {
+  const p = PRESETS[key];
+  if(!p) return;
+  document.getElementById('duration').value = p.dur;
+  document.getElementById('easing').value   = p.ease;
+  kfs = []; kfId = 0;
+  p.kfs.forEach(k=>{ kfs.push({id:++kfId,pct:k.pct,props:k.p.map(pp=>({name:pp.n,val:pp.v}))}); });
+  renderKFs(); generate();
+}
+
+// Init
+applyPreset('pulse');
+</script>
+</body>
+</html>

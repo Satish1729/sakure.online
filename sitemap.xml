@@ -261,6 +261,44 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- ── CSS Tools (Week 10) ── -->
+  <url>
+    <loc>https://sakure.online/tools/css-gradient-generator</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/box-shadow-generator</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/border-radius-previewer</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/flexbox-playground</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/css-grid-generator</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sakure.online/tools/css-animation-generator</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- ── SEO & Marketing Tools (Week 9) ── -->
   <url>
     <loc>https://sakure.online/tools/meta-tag-generator</loc>
