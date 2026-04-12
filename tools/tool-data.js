@@ -165,5 +165,62 @@ window.TOOL_DATA = {
       { q: "Is this a medical tool?", a: "No. BMI is an approximate indicator and not a diagnostic tool. Consult a healthcare professional for medical advice." },
       { q: "Does it support both metric and imperial?", a: "Yes. You can switch between kg/cm and lbs/ft." },
     ],
+    "json-formatter": [
+      { q: "Is this JSON formatter free?", a: "Yes, it is completely free and works in your browser." },
+      { q: "Does it validate JSON?", a: "Yes, it detects syntax errors and invalid JSON." },
+      { q: "Is my data stored?", a: "No, everything runs locally in your browser." },
+    ],
+    "base64-encoder": [
+      { q: "What is Base64 used for?", a: "It is used for encoding data in APIs, emails, and data URLs." },
+      { q: "Is Base64 encryption?", a: "No, it is encoding, not encryption." },
+      { q: "Is my data secure?", a: "Yes, everything runs locally in your browser." },
+    ],
+    "url-encoder": [
+      { q: "Why encode URLs?", a: "To safely include special characters in web requests." },
+      { q: "What characters are encoded?", a: "Spaces, symbols, and reserved characters." },
+      { q: "Is this tool free?", a: "Yes, completely free with no signup required." },
+    ],
+  },
+
+  // Tool-specific content: intro, howToSteps, example
+  toolContent: {
+    "json-formatter": {
+      intro: "Format and validate JSON instantly with this free online JSON formatter. Clean up messy JSON, fix syntax errors, and make your data readable in seconds. No login required.",
+      howToSteps: [
+        "Paste your JSON into the input field",
+        "Click 'Format JSON'",
+        "View the formatted result instantly",
+        "Copy or download the output"
+      ],
+      example: {
+        input: '{"name":"John","age":30}',
+        output: '{\n  "name": "John",\n  "age": 30\n}'
+      }
+    },
+    "base64-encoder": {
+      intro: "Encode and decode Base64 data instantly with this free online tool. Convert text or files into Base64 format for use in APIs, authentication headers, and data URLs.",
+      howToSteps: [
+        "Enter text or upload a file",
+        "Click 'Encode' or 'Decode'",
+        "View the result instantly",
+        "Copy the output"
+      ],
+      example: {
+        input: "Hello",
+        output: "SGVsbG8="
+      }
+    },
+    "url-encoder": {
+      intro: "Encode and decode URLs instantly using this free online URL encoder. Safely convert special characters for use in query strings and web requests.",
+      howToSteps: [
+        "Enter your URL or text",
+        "Click 'Encode' or 'Decode'",
+        "Copy the result"
+      ],
+      example: {
+        input: "hello world",
+        output: "hello%20world"
+      }
+    },
   }
 };
