@@ -67,12 +67,13 @@
     contentHtml = (introHtml ? introSection : '') + stepsHtml + exampleHtml;
   }
 
-  // Build FAQ HTML — tool-specific overrides + generic fallback
+  // Build FAQ HTML — skip if page already has inline FAQ items (prevents duplicates)
+  const hasInlineFaq = !!document.querySelector('.faq-item');
   const faqs = (data.toolFaq && data.toolFaq[slug])
     ? [...(data.toolFaq[slug]), ...data.genericFaq.slice(0, 3)]
     : data.genericFaq;
 
-  const faqHtml = `
+  const faqHtml = hasInlineFaq ? '' : `
 <section class="tool-extras-section" id="faq">
   <h2 class="tool-extras-heading">Frequently Asked Questions</h2>
   <div class="faq-list">

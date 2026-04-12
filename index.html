@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sakure – Free Online Tools | Text, Calculators, Encoders, Generators & More</title>
-<meta name="description" content="Free online tools for developers, students & professionals. Text, SEO, math, calculators, encoders, generators, image tools — 62 tools, no signup, no cost.">
+<meta name="description" content="Free online tools for developers, students & professionals. Text, SEO, math, calculators, encoders, generators, image tools — 63 tools, no signup, no cost.">
 <meta name="keywords" content="free online tools, text tools, calculator, encoder decoder, developer tools, generator tools, sakure">
 <meta property="og:title" content="Sakure – Free Online Tools">
-<meta property="og:description" content="62 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
+<meta property="og:description" content="63 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sakure.online">
 <meta property="og:image" content="https://sakure.online/assets/og-image.png">
@@ -265,7 +265,7 @@
     <a href="/blog">Blog</a>
     <a href="/about">About</a>
   </div>
-  <div class="nav-count" id="nav-count">34 tools</div>
+  <div class="nav-count" id="nav-count">63 tools</div>
 </nav>
 
 <!-- CATEGORY NAV -->
@@ -285,7 +285,7 @@
 <div class="hero">
   <div class="hero-eyebrow">✦ Free · No Signup · Client-Side</div>
   <h1>The Internet's<br>Most <em>Useful</em> Toolbox</h1>
-  <p>63 free browser-based tools — CSS, SEO, text, math, encoding, and generators. No accounts, no servers, no cost.</p>
+  <p><span id="hero-count">63</span> free browser-based tools — CSS, SEO, text, math, encoding, and generators. No accounts, no servers, no cost.</p>
 
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
@@ -905,7 +905,7 @@
     <a href="/contact">Contact</a>
     <a href="/sitemap.xml">Sitemap</a>
   </div>
-  <div style="font-size:0.75rem;color:var(--muted);margin-top:16px">© 2025 Sakure.online · Made with ❤️ in India</div>
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
 </footer>
 
 <script>
@@ -942,9 +942,11 @@ function filterTools(query) {
   document.getElementById('search-count').textContent = visibleCount > 0 ? visibleCount + ' found' : '';
 }
 
-// Update nav count dynamically
+// Update all tool counts from single source of truth
 const totalTools = document.querySelectorAll('.tool-card').length;
 document.getElementById('nav-count').textContent = totalTools + ' tools';
+document.getElementById('stat-tools').textContent = totalTools;
+document.getElementById('hero-count').textContent = totalTools;
 
 // Category nav smooth scroll with header offset
 document.querySelectorAll('.cat-nav-link').forEach(link => {
