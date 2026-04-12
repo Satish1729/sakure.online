@@ -75,6 +75,10 @@ select:focus{border-color:var(--accent)}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
 .related-link{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:9px;font-size:0.83rem;font-weight:500;color:var(--text);transition:border-color .2s,background .2s}
 .related-link:hover{border-color:var(--accent);background:var(--surface2);text-decoration:none;color:var(--text)}
+.learn-more-block{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:24px 0;font-size:0.88rem}
+.learn-more-block a{font-weight:600}
+.igst-note{font-size:0.75rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.info-card p strong{color:var(--text)}
 footer{background:var(--surface);border-top:1px solid var(--border);padding:22px 24px;text-align:center;font-size:0.8rem;color:var(--muted)}
 footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
 @media(max-width:720px){.calc-layout{grid-template-columns:1fr}nav .nav-links{display:none}.hero{padding:36px 16px 24px}}
@@ -138,14 +142,22 @@ footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
         <div class="stat-row"><span class="s-label">GST Amount</span><span class="s-val gst-color" id="s-gst">₹180</span></div>
         <div class="stat-row"><span class="s-label">GST Rate</span><span class="s-val" id="s-rate">18%</span></div>
         <div class="stat-row"><span class="s-label">Total Amount</span><span class="s-val" id="s-total">₹1,180</span></div>
+        <div class="stat-row"><span class="s-label" id="cgst-label">CGST (9%)</span><span class="s-val" id="s-cgst">₹90</span></div>
+        <div class="stat-row"><span class="s-label" id="sgst-label">SGST (9%)</span><span class="s-val" id="s-sgst">₹90</span></div>
       </div>
+      <p class="igst-note">Intra-state split (CGST + SGST). For inter-state transactions, full rate applies as IGST.</p>
     </div>
   </div>
 
   <div class="info-grid">
-    <div class="info-card"><div class="info-icon">➕</div><h3>Adding GST</h3><p>Total = Base Amount × (1 + GST Rate / 100). The GST amount is added on top of the original price.</p></div>
-    <div class="info-card"><div class="info-icon">➖</div><h3>Removing GST</h3><p>Base = GST-inclusive Amount ÷ (1 + GST Rate / 100). Extract the original price from a GST-inclusive figure.</p></div>
-    <div class="info-card"><div class="info-icon">📋</div><h3>GST Slabs</h3><p>India has four main GST rates: 5% (essentials), 12% (standard goods), 18% (most services), 28% (luxury items).</p></div>
+    <div class="info-card"><div class="info-icon">➕</div><h3>Adding GST</h3><p><strong>Total = Base × (1 + Rate/100)</strong><br>Example: ₹1,000 + 18% = ₹1,000 × 1.18 = <strong>₹1,180</strong></p></div>
+    <div class="info-card"><div class="info-icon">➖</div><h3>Removing GST</h3><p><strong>Base = Total ÷ (1 + Rate/100)</strong><br>Example: ₹1,180 ÷ 1.18 = <strong>₹1,000</strong> base</p></div>
+    <div class="info-card"><div class="info-icon">📋</div><h3>GST Slabs in India</h3><p>5% essentials · 12% standard goods · 18% most services · 28% luxury &amp; sin goods · 0% fresh produce</p></div>
+  </div>
+
+  <div class="info-grid" style="margin-top:0">
+    <div class="info-card"><div class="info-icon">🔢</div><h3>Example: Add 18% GST to ₹1,000</h3><p>GST = ₹1,000 × 18% = <strong>₹180</strong><br>CGST = ₹90 · SGST = ₹90<br>Total = ₹1,000 + ₹180 = <strong>₹1,180</strong></p></div>
+    <div class="info-card"><div class="info-icon">🔢</div><h3>Example: Remove 18% GST from ₹1,180</h3><p>Base = ₹1,180 ÷ 1.18 = <strong>₹1,000</strong><br>GST = ₹1,180 − ₹1,000 = <strong>₹180</strong><br>CGST = ₹90 · SGST = ₹90</p></div>
   </div>
 
   <div class="faq-section">
@@ -168,13 +180,17 @@ footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
     </div>
   </div>
 
+  <div class="learn-more-block">
+    <span>📖</span>
+    <a href="/how-to-calculate-gst-india">How to Calculate GST in India →</a>
+  </div>
+
   <div class="related-section">
     <h2>Related Tools</h2>
     <div class="related-grid">
-      <a href="/tools/loan-calculator/" class="related-link">🏦 EMI Calculator</a>
-      <a href="/tools/discount-calculator/" class="related-link">🏷️ Discount Calculator</a>
       <a href="/tools/percentage-calculator/" class="related-link">📊 Percentage Calculator</a>
-      <a href="/tools/tip-calculator/" class="related-link">💰 Tip Calculator</a>
+      <a href="/tools/discount-calculator/" class="related-link">🏷️ Discount Calculator</a>
+      <a href="/tools/loan-calculator/" class="related-link">🏦 EMI Calculator</a>
     </div>
   </div>
 
@@ -238,6 +254,11 @@ function calcGST() {
   document.getElementById('s-gst').textContent = fmtINR(gstAmt);
   document.getElementById('s-rate').textContent = rate + '%';
   document.getElementById('s-total').textContent = fmtINR(total);
+  const half = rate / 2;
+  document.getElementById('cgst-label').textContent = 'CGST (' + half + '%)';
+  document.getElementById('sgst-label').textContent = 'SGST (' + half + '%)';
+  document.getElementById('s-cgst').textContent = fmtINR(gstAmt / 2);
+  document.getElementById('s-sgst').textContent = fmtINR(gstAmt / 2);
 }
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
