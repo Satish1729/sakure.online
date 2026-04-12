@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML to Markdown Converter – Sakure Online Tools</title>
+  <meta name="description" content="Convert HTML markup to clean Markdown syntax instantly in your browser. Supports headings, lists, tables, links, images, code blocks, and more. Free, no upload required.">
+  <meta name="keywords" content="html to markdown, html converter, markdown generator, html parser, convert html, markdown syntax, free tool">
+  <meta name="author" content="Sakure Online Tools">
+  <link rel="canonical" href="https://sakure.online/tools/html-to-markdown">
+  <meta property="og:title" content="HTML to Markdown Converter – Sakure Online Tools">
+  <meta property="og:description" content="Convert HTML markup to clean Markdown syntax instantly in your browser.">
+  <meta property="og:url" content="https://sakure.online/tools/html-to-markdown">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HTML to Markdown Converter">
+  <meta name="twitter:description" content="Convert HTML to Markdown instantly. Free, client-side, no upload needed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HTML to Markdown Converter",
+    "description": "Convert HTML markup to clean Markdown syntax instantly in your browser.",
+    "url": "https://sakure.online/tools/html-to-markdown",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21263a;
+      --border: #2e3345;
+      --text: #e4e6ef;
+      --muted: #7a8499;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245,158,11,0.15);
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    .main-nav { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 20px; font-size: 0.9rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero { padding: 48px 24px 32px; text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); font-size: 0.78rem; font-weight: 600; padding: 4px 12px; border-radius: 99px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+
+    /* LAYOUT */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; }
+    .tool-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .tool-wrap { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+    .panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .panel-title { font-weight: 600; font-size: 0.9rem; }
+    .panel-body { flex: 1; display: flex; flex-direction: column; }
+
+    textarea {
+      flex: 1; background: transparent; border: none; color: var(--text);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      padding: 16px; resize: none; outline: none; min-height: 420px;
+      line-height: 1.6;
+    }
+
+    /* OPTIONS */
+    .options-bar { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .opt-label { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
+    .opt-label input[type=checkbox] { accent-color: var(--accent); width: 15px; height: 15px; }
+    .opt-sep { width: 1px; height: 20px; background: var(--border); }
+    .opt-select { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 0.82rem; font-family: inherit; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-size: 0.82rem; font-family: inherit; cursor: pointer; transition: all .15s; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+    .btn-primary:hover { opacity: .88; color: #000; }
+    .btn-icon { padding: 6px 10px; }
+
+    /* STATS */
+    .stats { display: flex; gap: 16px; font-size: 0.78rem; color: var(--muted); }
+    .stat-item span { color: var(--text); font-weight: 600; }
+
+    /* AD */
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.78rem; margin: 24px 0; }
+    .ad-leaderboard { height: 90px; }
+    .ad-square { width: 300px; height: 250px; }
+
+    /* CONTENT */
+    .content-section { margin-top: 48px; }
+    .content-section h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    details summary { padding: 14px 16px; cursor: pointer; font-weight: 500; font-size: 0.9rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    details summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 16px 14px; color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--accent); text-decoration: none; }
+    .related-card-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .related-card-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer .footer-logo { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    footer .footer-logo span { color: var(--accent); }
+    footer .footer-links { display: flex; gap: 20px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
+    footer .footer-links a { color: var(--muted); font-size: 0.82rem; }
+    footer .footer-links a:hover { color: var(--text); }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #000; padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; opacity: 0; transform: translateY(10px); transition: all .2s; pointer-events: none; z-index: 999; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="/" class="nav-logo">Sakure<span>.</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-data">Data Tools</a>
+    <a href="/tools/markdown-to-html">MD→HTML</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Data Tools</div>
+  <h1>HTML to Markdown Converter</h1>
+  <p>Paste or type HTML markup and instantly get clean, readable Markdown. Supports all common elements — headings, tables, lists, code, links, images, and more.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-slot ad-leaderboard">Advertisement (728×90)</div>
+
+  <!-- Options -->
+  <div class="options-bar">
+    <label class="opt-label"><input type="checkbox" id="optTables" checked> Tables</label>
+    <label class="opt-label"><input type="checkbox" id="optCodeBlocks" checked> Code blocks</label>
+    <label class="opt-label"><input type="checkbox" id="optLinkTitles" checked> Link titles</label>
+    <label class="opt-label"><input type="checkbox" id="optStrikethrough" checked> Strikethrough</label>
+    <div class="opt-sep"></div>
+    <label class="opt-label" style="gap:8px">Heading style:
+      <select class="opt-select" id="optHeadingStyle">
+        <option value="atx"># ATX</option>
+        <option value="setext">Setext (==)</option>
+      </select>
+    </label>
+    <label class="opt-label" style="gap:8px">Bullet:
+      <select class="opt-select" id="optBullet">
+        <option value="-">- dash</option>
+        <option value="*">* asterisk</option>
+        <option value="+">+ plus</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Panels -->
+  <div class="tool-wrap">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">HTML Input</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-icon" onclick="loadSample()" title="Load sample">Sample</button>
+          <button class="btn btn-icon" onclick="clearInput()" title="Clear">✕ Clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="htmlInput" placeholder="Paste HTML here…" oninput="convert()"></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Markdown Output</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <div class="stats" id="statsRow"><span class="stat-item">Lines: <span id="statLines">0</span></span><span class="stat-item">Words: <span id="statWords">0</span></span></div>
+          <button class="btn btn-icon" onclick="copyOutput()" title="Copy">Copy</button>
+          <button class="btn btn-primary" onclick="downloadMd()">Download .md</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="mdOutput" readonly placeholder="Markdown will appear here…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard" style="margin-top:24px">Advertisement (728×90)</div>
+
+  <!-- FAQ -->
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>What HTML elements are supported?</summary>
+        <p>All common elements: h1–h6, p, br, strong/b, em/i, del/s, a, img, pre/code, ul/ol/li, blockquote, table/thead/tbody/tr/th/td, hr, and div/span containers. Unknown elements fall back to their inner text.</p>
+      </details>
+      <details>
+        <summary>What happens to inline styles or CSS classes?</summary>
+        <p>Inline styles and CSS classes are stripped — Markdown doesn't support them natively. The tool preserves semantic meaning (bold, italic, links) but discards visual-only attributes.</p>
+      </details>
+      <details>
+        <summary>Can I convert full HTML pages?</summary>
+        <p>Yes. Paste a full page including &lt;html&gt;, &lt;head&gt;, and &lt;body&gt; tags. The converter extracts the body content automatically and ignores the head section.</p>
+      </details>
+      <details>
+        <summary>How are nested lists handled?</summary>
+        <p>Nested lists (ul/ol inside li) are indented with 2 spaces per level, which is standard Markdown. Both ordered and unordered nesting work correctly.</p>
+      </details>
+      <details>
+        <summary>Is any data sent to a server?</summary>
+        <p>No. All conversion happens entirely in your browser using JavaScript. Nothing leaves your machine, so it's safe to use with sensitive or proprietary HTML content.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="content-section">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a href="/tools/markdown-to-html" class="related-card">
+        <div class="related-card-name">Markdown to HTML</div>
+        <div class="related-card-desc">Convert Markdown to HTML with preview</div>
+      </a>
+      <a href="/tools/html-encoder" class="related-card">
+        <div class="related-card-name">HTML Encoder</div>
+        <div class="related-card-desc">Encode special HTML characters</div>
+      </a>
+      <a href="/tools/json-formatter" class="related-card">
+        <div class="related-card-name">JSON Formatter</div>
+        <div class="related-card-desc">Format and validate JSON data</div>
+      </a>
+      <a href="/tools/xml-to-json" class="related-card">
+        <div class="related-card-name">XML to JSON</div>
+        <div class="related-card-desc">Convert XML markup to JSON</div>
+      </a>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:32px">
+    <div class="ad-slot ad-square">Advertisement (300×250)</div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Sakure<span>.</span></div>
+  <p>Free online tools — no login, no limits.</p>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-data">Data Tools</a>
+    <a href="/tools/csv-viewer">CSV Viewer</a>
+    <a href="/tools/markdown-to-html">MD to HTML</a>
+  </div>
+  <p style="margin-top:8px">© 2026 Sakure Online Tools</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const htmlInput = document.getElementById('htmlInput');
+const mdOutput  = document.getElementById('mdOutput');
+
+/* ── HTML → Markdown ── */
+function htmlToMarkdown(html) {
+  // Parse into DOM
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const root = doc.body || doc.documentElement;
+
+  const opts = {
+    tables:       document.getElementById('optTables').checked,
+    codeBlocks:   document.getElementById('optCodeBlocks').checked,
+    linkTitles:   document.getElementById('optLinkTitles').checked,
+    strikethrough:document.getElementById('optStrikethrough').checked,
+    headingStyle: document.getElementById('optHeadingStyle').value,
+    bullet:       document.getElementById('optBullet').value,
+  };
+
+  function processNode(node, depth) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.textContent.replace(/\n+/g, ' ');
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+    const tag = node.tagName.toLowerCase();
+    const children = () => Array.from(node.childNodes).map(n => processNode(n, depth)).join('');
+    const innerText = () => children().trim();
+
+    // Headings
+    if (/^h[1-6]$/.test(tag)) {
+      const level = parseInt(tag[1]);
+      const text = innerText();
+      if (opts.headingStyle === 'setext' && level <= 2) {
+        const under = level === 1 ? '='.repeat(text.length || 3) : '-'.repeat(text.length || 3);
+        return `\n\n${text}\n${under}\n\n`;
+      }
+      return `\n\n${'#'.repeat(level)} ${text}\n\n`;
+    }
+
+    // Paragraph
+    if (tag === 'p') return `\n\n${innerText()}\n\n`;
+
+    // Line break
+    if (tag === 'br') return '  \n';
+
+    // Horizontal rule
+    if (tag === 'hr') return '\n\n---\n\n';
+
+    // Bold
+    if (tag === 'strong' || tag === 'b') return `**${innerText()}**`;
+
+    // Italic
+    if (tag === 'em' || tag === 'i') return `*${innerText()}*`;
+
+    // Strikethrough
+    if ((tag === 'del' || tag === 's') && opts.strikethrough) return `~~${innerText()}~~`;
+    if (tag === 'del' || tag === 's') return innerText();
+
+    // Code (inline)
+    if (tag === 'code' && node.parentElement?.tagName?.toLowerCase() !== 'pre') {
+      return `\`${node.textContent}\``;
+    }
+
+    // Pre / code block
+    if (tag === 'pre') {
+      const codeEl = node.querySelector('code');
+      const lang = codeEl ? (codeEl.className.match(/language-(\S+)/) || [])[1] || '' : '';
+      const text = (codeEl || node).textContent;
+      if (opts.codeBlocks) return `\n\n\`\`\`${lang}\n${text.replace(/\n$/, '')}\n\`\`\`\n\n`;
+      return `\n\n    ${text.split('\n').join('\n    ')}\n\n`;
+    }
+
+    // Blockquote
+    if (tag === 'blockquote') {
+      const inner = innerText().trim().split('\n').map(l => `> ${l}`).join('\n');
+      return `\n\n${inner}\n\n`;
+    }
+
+    // Links
+    if (tag === 'a') {
+      const href = node.getAttribute('href') || '';
+      const title = node.getAttribute('title');
+      const text = innerText() || href;
+      if (opts.linkTitles && title) return `[${text}](${href} "${title}")`;
+      return `[${text}](${href})`;
+    }
+
+    // Images
+    if (tag === 'img') {
+      const src   = node.getAttribute('src') || '';
+      const alt   = node.getAttribute('alt') || '';
+      const title = node.getAttribute('title');
+      if (opts.linkTitles && title) return `![${alt}](${src} "${title}")`;
+      return `![${alt}](${src})`;
+    }
+
+    // Lists
+    if (tag === 'ul' || tag === 'ol') {
+      let idx = 1;
+      const items = Array.from(node.children).filter(c => c.tagName.toLowerCase() === 'li').map(li => {
+        const bullet = tag === 'ol' ? `${idx++}.` : opts.bullet;
+        const liContent = processLi(li, depth + 1);
+        return `${bullet} ${liContent}`;
+      });
+      return `\n\n${items.join('\n')}\n\n`;
+    }
+
+    // Table
+    if (tag === 'table' && opts.tables) {
+      return processTable(node);
+    }
+
+    // Div, span, section, article, main, header, footer, aside, nav
+    if (['div','span','section','article','main','header','footer','aside','nav','body'].includes(tag)) {
+      return children();
+    }
+
+    // head — skip
+    if (tag === 'head' || tag === 'script' || tag === 'style') return '';
+
+    // Fallback
+    return innerText();
+  }
+
+  function processLi(li, depth) {
+    let result = '';
+    const indent = '  '.repeat(depth - 1);
+    Array.from(li.childNodes).forEach(child => {
+      const cTag = child.tagName?.toLowerCase();
+      if (cTag === 'ul' || cTag === 'ol') {
+        let idx = 1;
+        const sub = Array.from(child.children).filter(c => c.tagName.toLowerCase() === 'li').map(subLi => {
+          const bullet = cTag === 'ol' ? `${idx++}.` : document.getElementById('optBullet').value;
+          return `  ${indent}${bullet} ${processLi(subLi, depth + 1)}`;
+        });
+        result += '\n' + sub.join('\n');
+      } else {
+        result += processNode(child, depth);
+      }
+    });
+    return result.trim();
+  }
+
+  function processTable(table) {
+    const rows = Array.from(table.querySelectorAll('tr'));
+    if (!rows.length) return '';
+
+    const data = rows.map(row =>
+      Array.from(row.querySelectorAll('th, td')).map(cell => cell.textContent.trim().replace(/\|/g, '\\|'))
+    );
+    if (!data.length) return '';
+
+    const colCount = Math.max(...data.map(r => r.length));
+    // Pad rows
+    data.forEach(row => { while (row.length < colCount) row.push(''); });
+
+    const isHeader = rows[0].querySelector('th') !== null;
+    let out = '\n\n';
+
+    if (isHeader) {
+      out += `| ${data[0].join(' | ')} |\n`;
+      out += `| ${data[0].map(() => '---').join(' | ')} |\n`;
+      data.slice(1).forEach(row => { out += `| ${row.join(' | ')} |\n`; });
+    } else {
+      out += `| ${data[0].join(' | ')} |\n`;
+      out += `| ${data[0].map(() => '---').join(' | ')} |\n`;
+      data.slice(1).forEach(row => { out += `| ${row.join(' | ')} |\n`; });
+    }
+    return out + '\n';
+  }
+
+  let md = processNode(root, 0);
+  // Clean up excessive blank lines
+  md = md.replace(/\n{3,}/g, '\n\n').trim();
+  return md;
+}
+
+function convert() {
+  const html = htmlInput.value.trim();
+  if (!html) { mdOutput.value = ''; updateStats(''); return; }
+  try {
+    const md = htmlToMarkdown(html);
+    mdOutput.value = md;
+    updateStats(md);
+  } catch(e) {
+    mdOutput.value = '<!-- Error: ' + e.message + ' -->';
+  }
+}
+
+function updateStats(md) {
+  const lines = md ? md.split('\n').length : 0;
+  const words = md ? md.trim().split(/\s+/).filter(Boolean).length : 0;
+  document.getElementById('statLines').textContent = lines;
+  document.getElementById('statWords').textContent = words;
+}
+
+function clearInput() { htmlInput.value = ''; mdOutput.value = ''; updateStats(''); }
+
+function copyOutput() {
+  if (!mdOutput.value) return;
+  navigator.clipboard.writeText(mdOutput.value).then(() => showToast('Copied!'));
+}
+
+function downloadMd() {
+  if (!mdOutput.value) return;
+  const blob = new Blob([mdOutput.value], { type: 'text/markdown' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'converted.md'; a.click();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function loadSample() {
+  htmlInput.value = `<!DOCTYPE html>
+<html>
+<head><title>Sample Page</title></head>
+<body>
+  <h1>HTML to Markdown Converter</h1>
+  <p>This tool converts <strong>HTML markup</strong> into clean, readable <em>Markdown</em> syntax.</p>
+
+  <h2>Features</h2>
+  <ul>
+    <li>Headings (h1–h6)</li>
+    <li>Bold and <em>italic</em> text</li>
+    <li>Links: <a href="https://sakure.online" title="Free Tools">Sakure Online</a></li>
+    <li>Nested lists:
+      <ul>
+        <li>Item A</li>
+        <li>Item B</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Code Example</h2>
+  <pre><code class="language-javascript">function greet(name) {
+  return \`Hello, \${name}!\`;
+}
+console.log(greet('World'));</code></pre>
+
+  <blockquote>
+    <p>Markdown is a lightweight markup language for creating formatted text using a plain-text editor.</p>
+  </blockquote>
+
+  <h2>Comparison Table</h2>
+  <table>
+    <thead>
+      <tr><th>Format</th><th>Readable</th><th>Converts to HTML</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Markdown</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>HTML</td><td>Somewhat</td><td>Native</td></tr>
+      <tr><td>Plain text</td><td>Yes</td><td>No</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>`;
+  convert();
+}
+
+// Option change handlers
+document.querySelectorAll('.opt-label input, .opt-select').forEach(el => el.addEventListener('change', convert));
+
+// Init
+loadSample();
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Viewer – View & Analyze CSV Files Online | Sakure.online</title>
+<meta name="description" content="View, search, sort and analyze CSV files directly in your browser. No upload to server — paste or open any CSV and explore it as a sortable table instantly.">
+<meta name="keywords" content="csv viewer, online csv viewer, csv table viewer, csv reader, view csv online, csv file viewer, csv analyzer">
+<meta property="og:title" content="CSV Viewer – Sakure.online">
+<meta property="og:description" content="View and analyze CSV files as a sortable table in your browser. Paste or drop a file — no server upload. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/csv-viewer">
+<link rel="canonical" href="https://sakure.online/tools/csv-viewer">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSV Viewer","url":"https://sakure.online/tools/csv-viewer","description":"Free online CSV viewer. View, search and sort CSV files as tables in your browser — no server upload.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#06b6d4;--accent-glow:rgba(6,182,212,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:48px 24px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(80px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(6,182,212,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1200px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+/* DROP ZONE */
+.drop-zone{border:2px dashed var(--border);border-radius:12px;padding:40px 24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent);background:var(--accent-glow)}
+.drop-zone-icon{font-size:2.5rem;margin-bottom:10px}
+.drop-zone-text{font-size:.95rem;color:var(--muted)}
+.drop-zone-text span{color:var(--accent);font-weight:600}
+.drop-zone input[type=file]{display:none}
+/* OPTIONS */
+.options-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+.opt-group{display:flex;align-items:center;gap:8px}
+.opt-group label{font-size:.8rem;color:var(--muted);font-weight:500}
+.opt-group select,.opt-group input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--text);font-size:.85rem;outline:none;font-family:var(--font)}
+.opt-group select:focus,.opt-group input:focus{border-color:var(--accent)}
+.opt-group input[type=text]{width:180px;font-family:var(--mono)}
+/* STATS */
+.csv-stats{display:flex;gap:20px;flex-wrap:wrap;padding:12px 0;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.csv-stat{text-align:center}
+.csv-stat-val{font-family:var(--mono);font-size:1.3rem;font-weight:700;color:var(--accent);display:block}
+.csv-stat-label{font-size:.72rem;color:var(--muted)}
+/* TABLE */
+.table-wrap{overflow:auto;border-radius:10px;border:1px solid var(--border);max-height:500px}
+.csv-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.csv-table th{background:var(--surface2);padding:10px 14px;text-align:left;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;position:sticky;top:0}
+.csv-table th:hover{color:var(--accent)}
+.csv-table th .sort-icon{margin-left:4px;opacity:.4;font-size:.8rem}
+.csv-table th.asc .sort-icon::after{content:'▲';opacity:1;color:var(--accent)}
+.csv-table th.desc .sort-icon::after{content:'▼';opacity:1;color:var(--accent)}
+.csv-table th .sort-icon::after{content:'⇅'}
+.csv-table td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);font-size:.8rem}
+.csv-table tr:hover td{background:rgba(6,182,212,.04)}
+.csv-table tr:last-child td{border-bottom:none}
+.row-num{color:var(--muted);font-size:.72rem;min-width:36px}
+.empty-state{text-align:center;padding:48px;color:var(--muted)}
+.empty-state .ei{font-size:2.5rem;margin-bottom:12px}
+.pagination{display:flex;align-items:center;gap:8px;margin-top:14px;flex-wrap:wrap}
+.page-btn{padding:6px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:.82rem;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.page-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.page-btn:disabled{opacity:.4;cursor:default}
+.page-info{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.2rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/#cat-developer">Developer</a></div>
+</nav>
+<div class="hero">
+  <div class="hero-badge">📊 Data Tools</div>
+  <h1>CSV <span>Viewer</span></h1>
+  <p class="hero-sub">View, search and sort CSV files as a table in your browser. Paste text or open a file — nothing leaves your device.</p>
+</div>
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Load CSV</div>
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+      <input type="file" id="file-input" accept=".csv,.tsv,.txt" onchange="loadFile(event)">
+      <div class="drop-zone-icon">📂</div>
+      <div class="drop-zone-text">Drop a CSV file here or <span>click to browse</span></div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:6px">Supports .csv, .tsv, .txt</div>
+    </div>
+    <textarea id="csv-input" placeholder="…or paste CSV data here" rows="5"
+      style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);font-family:var(--mono);font-size:.82rem;resize:vertical;outline:none;margin-bottom:12px"
+      oninput="parsePasted()"></textarea>
+    <div class="options-row">
+      <div class="opt-group"><label>Delimiter</label>
+        <select id="delimiter" onchange="reparseAndRender()">
+          <option value=",">Comma (,)</option>
+          <option value="	">Tab (\t)</option>
+          <option value=";">Semicolon (;)</option>
+          <option value="|">Pipe (|)</option>
+        </select>
+      </div>
+      <div class="opt-group"><label>Has header row</label>
+        <input type="checkbox" id="has-header" checked onchange="reparseAndRender()" style="accent-color:var(--accent);width:16px;height:16px;cursor:pointer">
+      </div>
+      <div class="opt-group"><label>Search</label>
+        <input type="text" id="search-input" placeholder="Filter rows…" oninput="filterAndRender()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="table-card">
+    <div class="card-title">Table View</div>
+    <div class="csv-stats" id="csv-stats"></div>
+    <div class="table-wrap"><div id="table-container"><div class="empty-state"><div class="ei">📋</div><div>Load a CSV file or paste data above to view it here.</div></div></div></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related Data Tools</h2>
+    <div class="related">
+      <a href="/tools/csv-to-json" class="related-card"><div class="r-icon">🔄</div><div class="r-name">CSV to JSON</div><div class="r-desc">Convert CSV data to JSON format</div></a>
+      <a href="/tools/json-formatter" class="related-card"><div class="r-icon">{ }</div><div class="r-name">JSON Formatter</div><div class="r-desc">Format and validate JSON data</div></a>
+      <a href="/tools/yaml-to-json" class="related-card"><div class="r-icon">📄</div><div class="r-name">YAML to JSON</div><div class="r-desc">Convert YAML to JSON instantly</div></a>
+      <a href="/tools/xml-to-json" class="related-card"><div class="r-icon">📋</div><div class="r-name">XML to JSON</div><div class="r-desc">Parse XML and convert to JSON</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open><summary>Is my CSV data uploaded to a server?</summary><p>No. This tool processes your CSV entirely in your browser using JavaScript. Your data never leaves your device — there are no server requests, no storage, and no logging of your file contents. It's completely private.</p></details>
+    <details><summary>What delimiters are supported?</summary><p>This viewer supports comma (,), tab, semicolon (;) and pipe (|) delimiters. TSV (tab-separated values) files are auto-detected. You can manually select the correct delimiter from the options bar if auto-detection picks the wrong one.</p></details>
+    <details><summary>How many rows can the CSV viewer handle?</summary><p>The viewer paginates data in batches of 100 rows, so it can comfortably display files with tens of thousands of rows. Very large files (100,000+ rows) may take a few seconds to parse depending on your device's performance.</p></details>
+    <details><summary>Can I sort and filter the data?</summary><p>Yes. Click any column header to sort ascending or descending. Use the search box to filter rows — it searches across all column values simultaneously. Sorting and filtering work together.</p></details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let rawData = []; // array of arrays
+let headers = [];
+let filtered = [];
+let sortCol = -1;
+let sortDir = 1;
+let page = 0;
+const PAGE_SIZE = 100;
+
+/* ── PARSE ── */
+function parseCSV(text) {
+  const delim = document.getElementById('delimiter').value;
+  const hasHeader = document.getElementById('has-header').checked;
+  const lines = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n').filter(l => l.trim() !== '');
+  const rows = lines.map(l => splitLine(l, delim));
+  if (!rows.length) return;
+  rawData = hasHeader ? rows.slice(1) : rows;
+  headers = hasHeader ? rows[0] : rows[0].map((_,i) => 'Column '+(i+1));
+  filtered = [...rawData];
+  sortCol = -1; sortDir = 1;
+  filterAndRender();
+}
+
+function splitLine(line, delim) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; continue; }
+    if (!inQ && c === delim) { result.push(cur.trim()); cur = ''; continue; }
+    cur += c;
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+function filterAndRender() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  filtered = q ? rawData.filter(r => r.some(c => String(c).toLowerCase().includes(q))) : [...rawData];
+  if (sortCol >= 0) {
+    filtered.sort((a,b) => {
+      const av = a[sortCol]||'', bv = b[sortCol]||'';
+      const an = parseFloat(av), bn = parseFloat(bv);
+      if (!isNaN(an) && !isNaN(bn)) return sortDir*(an-bn);
+      return sortDir*av.localeCompare(bv);
+    });
+  }
+  page = 0;
+  renderTable();
+  renderStats();
+  renderPagination();
+}
+
+function renderStats() {
+  document.getElementById('csv-stats').innerHTML = `
+    <div class="csv-stat"><span class="csv-stat-val">${headers.length}</span><span class="csv-stat-label">Columns</span></div>
+    <div class="csv-stat"><span class="csv-stat-val">${rawData.length.toLocaleString()}</span><span class="csv-stat-label">Total Rows</span></div>
+    <div class="csv-stat"><span class="csv-stat-val">${filtered.length.toLocaleString()}</span><span class="csv-stat-label">Showing</span></div>`;
+}
+
+function renderTable() {
+  if (!headers.length) return;
+  const start = page * PAGE_SIZE;
+  const slice = filtered.slice(start, start + PAGE_SIZE);
+  const thead = `<thead><tr><th class="row-num">#</th>${headers.map((h,i)=>`<th onclick="sortBy(${i})" id="th-${i}">${escH(h)}<span class="sort-icon"></span></th>`).join('')}</tr></thead>`;
+  const tbody = `<tbody>${slice.map((row,ri)=>`<tr><td class="row-num">${start+ri+1}</td>${headers.map((_,ci)=>`<td title="${escA(row[ci]||'')}">${escH(row[ci]||'')}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  document.getElementById('table-container').innerHTML = `<table class="csv-table">${thead}${tbody}</table>`;
+  // Restore sort indicators
+  if (sortCol >= 0) {
+    const th = document.getElementById('th-'+sortCol);
+    if (th) th.classList.add(sortDir>0?'asc':'desc');
+  }
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+  filterAndRender();
+}
+
+function renderPagination() {
+  const total = Math.ceil(filtered.length / PAGE_SIZE);
+  const pg = document.getElementById('pagination');
+  if (total <= 1) { pg.innerHTML=''; return; }
+  pg.innerHTML = `
+    <button class="page-btn" onclick="goPage(0)" ${page===0?'disabled':''}>«</button>
+    <button class="page-btn" onclick="goPage(${page-1})" ${page===0?'disabled':''}>‹</button>
+    <span class="page-info">Page ${page+1} / ${total}</span>
+    <button class="page-btn" onclick="goPage(${page+1})" ${page>=total-1?'disabled':''}>›</button>
+    <button class="page-btn" onclick="goPage(${total-1})" ${page>=total-1?'disabled':''}>»</button>`;
+}
+
+function goPage(p) { page=p; renderTable(); renderPagination(); }
+
+/* ── LOAD ── */
+function loadFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  // Auto-detect TSV
+  if (file.name.endsWith('.tsv')) document.getElementById('delimiter').value = '\t';
+  const reader = new FileReader();
+  reader.onload = ev => { document.getElementById('csv-input').value = ev.target.result; parseCSV(ev.target.result); };
+  reader.readAsText(file);
+}
+
+function parsePasted() { const v = document.getElementById('csv-input').value; if (v) parseCSV(v); }
+function reparseAndRender() { const v = document.getElementById('csv-input').value; if (v) parseCSV(v); }
+
+function onDragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+function onDragLeave()  { document.getElementById('drop-zone').classList.remove('drag-over'); }
+function onDrop(e) {
+  e.preventDefault(); onDragLeave();
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { document.getElementById('csv-input').value = ev.target.result; parseCSV(ev.target.result); };
+  reader.readAsText(file);
+}
+
+function escH(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escA(s){ return String(s||'').replace(/"/g,'&quot;'); }
+
+// Sample data
+const SAMPLE = `name,age,city,salary,department
+Alice,32,New York,95000,Engineering
+Bob,28,San Francisco,88000,Design
+Charlie,35,Austin,112000,Engineering
+Diana,29,Seattle,76000,Marketing
+Eve,41,Chicago,134000,Management
+Frank,26,Boston,68000,Design
+Grace,38,Portland,99000,Engineering
+Henry,45,Denver,145000,Management`;
+document.getElementById('csv-input').value = SAMPLE;
+parseCSV(SAMPLE);
+</script>
+</body>
+</html>

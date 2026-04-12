@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML to JSON Converter – Sakure Online Tools</title>
+  <meta name="description" content="Convert XML to JSON instantly in your browser. Paste XML and get structured JSON output. Handles attributes, namespaces, CDATA, and nested elements. Free, no upload required.">
+  <meta name="keywords" content="xml to json, xml converter, xml parser, json formatter, convert xml, xml json online, free tool">
+  <meta name="author" content="Sakure Online Tools">
+  <link rel="canonical" href="https://sakure.online/tools/xml-to-json">
+  <meta property="og:title" content="XML to JSON Converter – Sakure Online Tools">
+  <meta property="og:description" content="Convert XML to JSON instantly in your browser. Handles attributes, nested elements, CDATA, and more.">
+  <meta property="og:url" content="https://sakure.online/tools/xml-to-json">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XML to JSON Converter">
+  <meta name="twitter:description" content="Convert XML to JSON instantly. Free, client-side, no upload needed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "XML to JSON Converter",
+    "description": "Convert XML to JSON instantly in your browser.",
+    "url": "https://sakure.online/tools/xml-to-json",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21263a;
+      --border: #2e3345;
+      --text: #e4e6ef;
+      --muted: #7a8499;
+      --accent: #e879f9;
+      --accent-dim: rgba(232,121,249,0.15);
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .main-nav { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 20px; font-size: 0.9rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .hero { padding: 48px 24px 32px; text-align: center; max-width: 760px; margin: 0 auto; }
+    .hero-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); font-size: 0.78rem; font-weight: 600; padding: 4px 12px; border-radius: 99px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; }
+    .tool-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .tool-wrap { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+    .panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .panel-title { font-weight: 600; font-size: 0.9rem; }
+    .panel-body { flex: 1; display: flex; flex-direction: column; }
+
+    textarea {
+      flex: 1; background: transparent; border: none; color: var(--text);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      padding: 16px; resize: none; outline: none; min-height: 420px;
+      line-height: 1.6;
+    }
+
+    .options-bar { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .opt-label { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
+    .opt-label input[type=checkbox] { accent-color: var(--accent); width: 15px; height: 15px; }
+    .opt-sep { width: 1px; height: 20px; background: var(--border); }
+    .opt-select { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 0.82rem; font-family: inherit; }
+    .opt-input { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 0.82rem; font-family: 'JetBrains Mono', monospace; width: 60px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-size: 0.82rem; font-family: inherit; cursor: pointer; transition: all .15s; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+    .btn-primary:hover { opacity: .88; color: #000; }
+
+    .error-bar { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #f87171; margin-bottom: 12px; display: none; }
+    .error-bar.show { display: block; }
+
+    .stats { display: flex; gap: 16px; font-size: 0.78rem; color: var(--muted); }
+    .stat-item span { color: var(--text); font-weight: 600; }
+
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.78rem; margin: 24px 0; }
+    .ad-leaderboard { height: 90px; }
+    .ad-square { width: 300px; height: 250px; }
+
+    .content-section { margin-top: 48px; }
+    .content-section h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    details summary { padding: 14px 16px; cursor: pointer; font-weight: 500; font-size: 0.9rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    details summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 16px 14px; color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--accent); text-decoration: none; }
+    .related-card-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .related-card-desc { font-size: 0.78rem; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer .footer-logo { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    footer .footer-logo span { color: var(--accent); }
+    footer .footer-links { display: flex; gap: 20px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
+    footer .footer-links a { color: var(--muted); font-size: 0.82rem; }
+    footer .footer-links a:hover { color: var(--text); }
+
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #000; padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; opacity: 0; transform: translateY(10px); transition: all .2s; pointer-events: none; z-index: 999; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav class="main-nav">
+  <a href="/" class="nav-logo">Sakure<span>.</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#cat-data">Data Tools</a>
+    <a href="/tools/yaml-to-json">YAML→JSON</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Data Tools</div>
+  <h1>XML to JSON Converter</h1>
+  <p>Paste XML and instantly convert it to structured JSON. Handles attributes, nested elements, CDATA sections, text nodes, repeated elements (as arrays), and XML namespaces.</p>
+</div>
+
+<div class="container">
+
+  <div class="ad-slot ad-leaderboard">Advertisement (728×90)</div>
+
+  <!-- Options -->
+  <div class="options-bar">
+    <label class="opt-label"><input type="checkbox" id="optAttrs" checked> Include attributes</label>
+    <label class="opt-label"><input type="checkbox" id="optPretty" checked> Pretty print</label>
+    <label class="opt-label"><input type="checkbox" id="optCompact"> Compact (arrays always)</label>
+    <label class="opt-label"><input type="checkbox" id="optIgnoreNS"> Ignore namespaces</label>
+    <div class="opt-sep"></div>
+    <label class="opt-label" style="gap:8px">Attr prefix:
+      <input class="opt-input" id="optAttrPrefix" value="@" maxlength="4">
+    </label>
+    <label class="opt-label" style="gap:8px">Text key:
+      <input class="opt-input" id="optTextKey" value="#text" maxlength="10">
+    </label>
+    <label class="opt-label" style="gap:8px">Indent:
+      <select class="opt-select" id="optIndent">
+        <option value="2">2 sp</option>
+        <option value="4">4 sp</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="error-bar" id="errorBar"></div>
+
+  <div class="tool-wrap">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">XML Input</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn" onclick="loadSample()">Sample</button>
+          <button class="btn" onclick="clearAll()">✕ Clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="xmlInput" placeholder="Paste XML here…" oninput="convert()"></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">JSON Output</span>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <div class="stats">
+            <span class="stat-item">Elements: <span id="statElements">0</span></span>
+            <span class="stat-item">Size: <span id="statSize">0 B</span></span>
+          </div>
+          <button class="btn" onclick="copyOutput()">Copy</button>
+          <button class="btn btn-primary" onclick="downloadJSON()">Download .json</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="jsonOutput" readonly placeholder="JSON will appear here…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard">Advertisement (728×90)</div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>How are XML attributes handled?</summary>
+        <p>Attributes are included as prefixed keys in the JSON object (default prefix "@"). For example, &lt;book id="1"&gt; becomes {"@id":"1",...}. You can change the prefix in options or disable attribute inclusion entirely.</p>
+      </details>
+      <details>
+        <summary>What happens with repeated XML elements?</summary>
+        <p>Repeated sibling elements with the same tag name are automatically converted to a JSON array. For example, multiple &lt;item&gt; elements become an array of item objects. Enable "Compact" to always use arrays, even for single elements.</p>
+      </details>
+      <details>
+        <summary>How is mixed content (text + child elements) handled?</summary>
+        <p>When an element contains both text and child elements, the text is stored under the configurable text key (default "#text") alongside the child element keys. Pure text-only elements are stored as a simple string value.</p>
+      </details>
+      <details>
+        <summary>What about CDATA sections?</summary>
+        <p>CDATA sections (&lt;![CDATA[...]]&gt;) are extracted and treated as text content. The raw CDATA wrapper is stripped and the inner text is included in the JSON output.</p>
+      </details>
+      <details>
+        <summary>Is my XML data sent to a server?</summary>
+        <p>No. The browser's built-in DOMParser handles all XML parsing client-side. Nothing is transmitted to any server, making this safe for internal or sensitive XML documents.</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a href="/tools/yaml-to-json" class="related-card">
+        <div class="related-card-name">YAML to JSON</div>
+        <div class="related-card-desc">Convert YAML to JSON format</div>
+      </a>
+      <a href="/tools/json-formatter" class="related-card">
+        <div class="related-card-name">JSON Formatter</div>
+        <div class="related-card-desc">Format and validate JSON</div>
+      </a>
+      <a href="/tools/csv-to-json" class="related-card">
+        <div class="related-card-name">CSV to JSON</div>
+        <div class="related-card-desc">Convert CSV data to JSON</div>
+      </a>
+      <a href="/tools/html-to-markdown" class="related-card">
+        <div class="related-card-name">HTML to Markdown</div>
+        <div class="related-card-desc">Convert HTML markup to Markdown</div>
+      </a>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:32px">
+    <div class="ad-slot ad-square">Advertisement (300×250)</div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Sakure<span>.</span></div>
+  <p>Free online tools — no login, no limits.</p>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#cat-data">Data Tools</a>
+    <a href="/tools/yaml-to-json">YAML to JSON</a>
+    <a href="/tools/json-formatter">JSON Formatter</a>
+  </div>
+  <p style="margin-top:8px">© 2026 Sakure Online Tools</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let elementCount = 0;
+
+function xmlNodeToJson(node) {
+  const opts = {
+    attrs:       document.getElementById('optAttrs').checked,
+    compact:     document.getElementById('optCompact').checked,
+    ignoreNS:    document.getElementById('optIgnoreNS').checked,
+    attrPrefix:  document.getElementById('optAttrPrefix').value || '@',
+    textKey:     document.getElementById('optTextKey').value || '#text',
+  };
+
+  function nodeName(n) {
+    let name = n.nodeName;
+    if (opts.ignoreNS && name.includes(':')) name = name.split(':').pop();
+    return name;
+  }
+
+  function processNode(node) {
+    // Text node
+    if (node.nodeType === Node.TEXT_NODE) {
+      const t = node.textContent.trim();
+      return t || null;
+    }
+    // CDATA
+    if (node.nodeType === Node.CDATA_SECTION_NODE) {
+      return node.textContent;
+    }
+    // Processing instruction / comment
+    if (node.nodeType === Node.COMMENT_NODE || node.nodeType === Node.PROCESSING_INSTRUCTION_NODE) {
+      return null;
+    }
+    // Element
+    if (node.nodeType !== Node.ELEMENT_NODE) return null;
+
+    elementCount++;
+    const result = {};
+
+    // Attributes
+    if (opts.attrs && node.attributes && node.attributes.length > 0) {
+      Array.from(node.attributes).forEach(attr => {
+        let attrName = attr.name;
+        if (opts.ignoreNS && attrName.includes(':')) attrName = attrName.split(':').pop();
+        result[opts.attrPrefix + attrName] = attr.value;
+      });
+    }
+
+    // Children
+    const childNodes = Array.from(node.childNodes).filter(c =>
+      c.nodeType === Node.ELEMENT_NODE ||
+      c.nodeType === Node.TEXT_NODE ||
+      c.nodeType === Node.CDATA_SECTION_NODE
+    );
+
+    const textChildren = childNodes.filter(c =>
+      (c.nodeType === Node.TEXT_NODE || c.nodeType === Node.CDATA_SECTION_NODE)
+    );
+    const elemChildren = childNodes.filter(c => c.nodeType === Node.ELEMENT_NODE);
+
+    const text = textChildren.map(c => c.textContent).join('').trim();
+
+    if (elemChildren.length === 0) {
+      // Leaf node
+      if (Object.keys(result).length === 0) {
+        return text || '';
+      }
+      if (text) result[opts.textKey] = text;
+      return result;
+    }
+
+    // Has element children — group by tag name
+    const groups = {};
+    elemChildren.forEach(child => {
+      const name = nodeName(child);
+      if (!groups[name]) groups[name] = [];
+      groups[name].push(processNode(child));
+    });
+
+    Object.entries(groups).forEach(([name, vals]) => {
+      result[name] = (vals.length === 1 && !opts.compact) ? vals[0] : vals;
+    });
+
+    if (text) result[opts.textKey] = text;
+    return result;
+  }
+
+  return processNode(node);
+}
+
+function convert() {
+  const xml = document.getElementById('xmlInput').value.trim();
+  const errBar = document.getElementById('errorBar');
+  const out = document.getElementById('jsonOutput');
+
+  if (!xml) { out.value = ''; errBar.classList.remove('show'); updateStats(''); return; }
+
+  try {
+    errBar.classList.remove('show');
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xml, 'text/xml');
+
+    // Check parse errors
+    const parseErr = doc.querySelector('parsererror');
+    if (parseErr) throw new Error(parseErr.textContent.split('\n')[0]);
+
+    elementCount = 0;
+    const root = doc.documentElement;
+    const rootName = document.getElementById('optIgnoreNS').checked && root.nodeName.includes(':')
+      ? root.nodeName.split(':').pop()
+      : root.nodeName;
+
+    const json = {};
+    json[rootName] = xmlNodeToJson(root);
+
+    const indent = parseInt(document.getElementById('optIndent').value);
+    const pretty = document.getElementById('optPretty').checked;
+    const str = pretty ? JSON.stringify(json, null, indent) : JSON.stringify(json);
+    out.value = str;
+    updateStats(str);
+  } catch(e) {
+    errBar.textContent = '⚠ XML Parse Error: ' + e.message;
+    errBar.classList.add('show');
+    out.value = '';
+    updateStats('');
+  }
+}
+
+function updateStats(str) {
+  document.getElementById('statElements').textContent = elementCount;
+  const bytes = new TextEncoder().encode(str).length;
+  document.getElementById('statSize').textContent = bytes >= 1024 ? (bytes/1024).toFixed(1)+' KB' : bytes+' B';
+}
+
+function clearAll() {
+  document.getElementById('xmlInput').value = '';
+  document.getElementById('jsonOutput').value = '';
+  document.getElementById('errorBar').classList.remove('show');
+  elementCount = 0;
+  updateStats('');
+}
+
+function copyOutput() {
+  const v = document.getElementById('jsonOutput').value;
+  if (!v) return;
+  navigator.clipboard.writeText(v).then(() => showToast('Copied!'));
+}
+
+function downloadJSON() {
+  const v = document.getElementById('jsonOutput').value;
+  if (!v) return;
+  const blob = new Blob([v], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'converted.json'; a.click();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function loadSample() {
+  document.getElementById('xmlInput').value = `<?xml version="1.0" encoding="UTF-8"?>
+<library name="City Library" established="1892">
+  <catalog>
+    <book id="1" available="true">
+      <title>The Great Gatsby</title>
+      <author>F. Scott Fitzgerald</author>
+      <year>1925</year>
+      <genre>Fiction</genre>
+      <pages>180</pages>
+    </book>
+    <book id="2" available="false">
+      <title>To Kill a Mockingbird</title>
+      <author>Harper Lee</author>
+      <year>1960</year>
+      <genre>Fiction</genre>
+      <pages>281</pages>
+    </book>
+    <book id="3" available="true">
+      <title>1984</title>
+      <author>George Orwell</author>
+      <year>1949</year>
+      <genre>Dystopian</genre>
+      <pages>328</pages>
+    </book>
+  </catalog>
+  <hours>
+    <weekday open="09:00" close="21:00" />
+    <weekend open="10:00" close="18:00" />
+  </hours>
+  <address>
+    <street>123 Main Street</street>
+    <city>Springfield</city>
+    <country>USA</country>
+  </address>
+</library>`;
+  convert();
+}
+
+document.querySelectorAll('.opt-label input, .opt-select, .opt-input').forEach(el => {
+  el.addEventListener('change', convert);
+  el.addEventListener('input', convert);
+});
+
+loadSample();
+</script>
+</body>
+</html>

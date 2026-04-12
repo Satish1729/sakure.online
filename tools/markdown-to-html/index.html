@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown to HTML Converter – Convert MD to HTML Online | Sakure.online</title>
+<meta name="description" content="Convert Markdown to HTML instantly online. Live preview, syntax highlighting, GitHub Flavored Markdown support. Copy HTML or preview rendered output. Free tool.">
+<meta name="keywords" content="markdown to html, md to html converter, markdown converter online, markdown preview, markdown parser, github markdown, convert markdown">
+<meta property="og:title" content="Markdown to HTML Converter – Sakure.online">
+<meta property="og:description" content="Convert Markdown to HTML with live preview. GFM support, syntax highlighting, copy HTML. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/markdown-to-html">
+<link rel="canonical" href="https://sakure.online/tools/markdown-to-html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Markdown to HTML","url":"https://sakure.online/tools/markdown-to-html","description":"Free online Markdown to HTML converter with live preview and GitHub Flavored Markdown support.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#8b5cf6;--accent-glow:rgba(139,92,246,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:48px 24px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(80px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1200px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-height:420px}
+@media(max-width:760px){.editor-grid{grid-template-columns:1fr}}
+.pane-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pane-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+.pane-actions{display:flex;gap:6px}
+.sm-btn{padding:5px 12px;border:1px solid var(--border);border-radius:7px;background:var(--surface2);color:var(--muted);font-size:.75rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.sm-btn:hover{border-color:var(--accent);color:var(--accent)}
+.md-input{width:100%;height:380px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-family:var(--mono);font-size:.83rem;resize:vertical;outline:none;line-height:1.7}
+.md-input:focus{border-color:var(--accent)}
+.tabs-row{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:10px;margin-bottom:10px}
+.tab-btn{flex:1;padding:7px;border:none;background:none;color:var(--muted);font-size:.8rem;font-weight:600;border-radius:7px;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.tab-btn.active{background:var(--accent);color:#fff}
+.html-output{width:100%;height:380px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px;color:#a5b4fc;font-family:var(--mono);font-size:.8rem;resize:vertical;outline:none;line-height:1.7;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+.preview-output{height:380px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-y:auto;line-height:1.7;font-size:.92rem}
+/* markdown preview styles */
+.preview-output h1,.preview-output h2,.preview-output h3,.preview-output h4{margin:1em 0 .5em;font-weight:700;letter-spacing:-.5px}
+.preview-output h1{font-size:1.7rem;border-bottom:1px solid var(--border);padding-bottom:.3em}
+.preview-output h2{font-size:1.3rem;border-bottom:1px solid var(--border);padding-bottom:.2em}
+.preview-output h3{font-size:1.1rem}
+.preview-output p{margin-bottom:.8em}
+.preview-output code{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-family:var(--mono);font-size:.85em;color:#e879f9}
+.preview-output pre{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin-bottom:.8em}
+.preview-output pre code{background:none;border:none;padding:0;color:#a5b4fc;font-size:.85rem}
+.preview-output blockquote{border-left:3px solid var(--accent);padding:4px 16px;color:var(--muted);margin:0 0 .8em}
+.preview-output ul,.preview-output ol{margin:0 0 .8em 1.5em}
+.preview-output li{margin-bottom:.2em}
+.preview-output table{border-collapse:collapse;width:100%;margin-bottom:.8em}
+.preview-output th,.preview-output td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.preview-output th{background:var(--surface2);font-weight:600;font-size:.85rem}
+.preview-output hr{border:none;border-top:1px solid var(--border);margin:1.2em 0}
+.preview-output a{color:var(--accent)}
+.preview-output img{max-width:100%;border-radius:8px}
+.preview-output input[type=checkbox]{margin-right:6px;accent-color:var(--accent)}
+.options-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.opt-group{display:flex;align-items:center;gap:8px}
+.opt-group label{font-size:.8rem;color:var(--muted);font-weight:500}
+.opt-group input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.2rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/#cat-developer">Developer</a></div>
+</nav>
+<div class="hero">
+  <div class="hero-badge">📊 Data Tools</div>
+  <h1>Markdown to <span>HTML</span></h1>
+  <p class="hero-sub">Convert Markdown to HTML with live preview. GitHub Flavored Markdown, tables, task lists and code blocks supported.</p>
+</div>
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Options</div>
+    <div class="options-row">
+      <div class="opt-group"><label>GFM tables</label><input type="checkbox" id="opt-tables" checked onchange="convert()"></div>
+      <div class="opt-group"><label>Task lists</label><input type="checkbox" id="opt-tasks" checked onchange="convert()"></div>
+      <div class="opt-group"><label>Strikethrough</label><input type="checkbox" id="opt-strike" checked onchange="convert()"></div>
+      <div class="opt-group"><label>Wrap in &lt;html&gt;</label><input type="checkbox" id="opt-wrap" onchange="convert()"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Editor</div>
+    <div class="editor-grid">
+      <div>
+        <div class="pane-header">
+          <span class="pane-label">Markdown</span>
+          <div class="pane-actions">
+            <button class="sm-btn" onclick="loadSample()">Sample</button>
+            <button class="sm-btn" onclick="document.getElementById('md-input').value='';convert()">Clear</button>
+          </div>
+        </div>
+        <textarea class="md-input" id="md-input" placeholder="Type or paste Markdown here…" oninput="convert()" spellcheck="false"></textarea>
+      </div>
+      <div>
+        <div class="tabs-row">
+          <button class="tab-btn active" id="tab-preview" onclick="switchTab('preview',this)">Preview</button>
+          <button class="tab-btn" id="tab-html" onclick="switchTab('html',this)">HTML Source</button>
+        </div>
+        <div id="preview-pane" class="preview-output"></div>
+        <div id="html-pane" class="html-output" style="display:none"></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="copyHTML()">📋 Copy HTML</button>
+      <button class="btn btn-secondary" onclick="downloadHTML()">⬇️ Download .html</button>
+      <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related Data Tools</h2>
+    <div class="related">
+      <a href="/tools/html-to-markdown" class="related-card"><div class="r-icon">🔄</div><div class="r-name">HTML to Markdown</div><div class="r-desc">Convert HTML back to Markdown</div></a>
+      <a href="/tools/html-beautifier" class="related-card"><div class="r-icon">✨</div><div class="r-name">HTML Beautifier</div><div class="r-desc">Format and pretty-print HTML</div></a>
+      <a href="/tools/csv-to-json" class="related-card"><div class="r-icon">🔄</div><div class="r-name">CSV to JSON</div><div class="r-desc">Convert CSV data to JSON</div></a>
+      <a href="/tools/json-formatter" class="related-card"><div class="r-icon">{ }</div><div class="r-name">JSON Formatter</div><div class="r-desc">Format and validate JSON data</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open><summary>What is GitHub Flavored Markdown (GFM)?</summary><p>GFM is an extension of standard Markdown that adds support for tables, task lists (checkboxes), strikethrough text, fenced code blocks with language tags, and autolinked URLs. It's the format used by GitHub READMEs, GitLab, and many documentation tools. This converter supports all GFM features.</p></details>
+    <details><summary>Can I use this for blog posts or documentation?</summary><p>Yes. Write your content in Markdown in the left pane, then copy the HTML from the right pane. The "Wrap in HTML" option adds a complete HTML document skeleton with basic CSS, making it suitable to paste directly into a blog CMS or save as a standalone file.</p></details>
+    <details><summary>Is code syntax highlighting included in the output?</summary><p>The live preview shows styled code blocks. The raw HTML output includes language class attributes (e.g. class="language-js") that are compatible with Prism.js and highlight.js — just include one of those libraries in your page to get full syntax highlighting.</p></details>
+    <details><summary>What happens to unsafe HTML inside Markdown?</summary><p>This tool renders HTML embedded in Markdown as-is in the preview. If you are generating HTML to be shown to other users on a website, always sanitize the output server-side or use a library like DOMPurify to prevent XSS attacks.</p></details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+let currentTab = 'preview';
+let lastHTML = '';
+
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('preview-pane').style.display = tab==='preview'?'':'none';
+  document.getElementById('html-pane').style.display    = tab==='html'?'':'none';
+}
+
+/* Minimal but complete Markdown parser */
+function mdToHtml(md) {
+  const tables   = document.getElementById('opt-tables').checked;
+  const tasks    = document.getElementById('opt-tasks').checked;
+  const strike   = document.getElementById('opt-strike').checked;
+
+  let html = md;
+
+  // Escape HTML entities first except in code blocks
+  const codeBlocks = [];
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_,lang,code)=>{
+    const idx = codeBlocks.length;
+    codeBlocks.push(`<pre><code class="language-${lang||'text'}">${escH(code.trimEnd())}</code></pre>`);
+    return `\x00CODE${idx}\x00`;
+  });
+  const inlineCodes = [];
+  html = html.replace(/`([^`]+)`/g,(_,c)=>{
+    const idx=inlineCodes.length;
+    inlineCodes.push(`<code>${escH(c)}</code>`);
+    return `\x00IC${idx}\x00`;
+  });
+
+  // Headings
+  html = html.replace(/^###### (.+)$/gm,'<h6>$1</h6>');
+  html = html.replace(/^##### (.+)$/gm,'<h5>$1</h5>');
+  html = html.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
+  html = html.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  html = html.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  html = html.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  // Setext headings
+  html = html.replace(/^(.+)\n={3,}$/gm,'<h1>$1</h1>');
+  html = html.replace(/^(.+)\n-{3,}$/gm,'<h2>$1</h2>');
+
+  // HR
+  html = html.replace(/^(-{3,}|\*{3,}|_{3,})$/gm,'<hr>');
+
+  // Blockquotes
+  html = html.replace(/^> (.+)$/gm,'<blockquote><p>$1</p></blockquote>');
+
+  // GFM Tables
+  if (tables) {
+    html = html.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, body) => {
+      const ths = header.split('|').slice(1,-1).map(h=>`<th>${h.trim()}</th>`).join('');
+      const trs = body.trim().split('\n').map(r=>{
+        const tds = r.split('|').slice(1,-1).map(c=>`<td>${c.trim()}</td>`).join('');
+        return `<tr>${tds}</tr>`;
+      }).join('');
+      return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+    });
+  }
+
+  // Task lists
+  if (tasks) {
+    html = html.replace(/^- \[x\] (.+)$/gmi,'<li><input type="checkbox" checked disabled> $1</li>');
+    html = html.replace(/^- \[ \] (.+)$/gm,'<li><input type="checkbox" disabled> $1</li>');
+  }
+
+  // Lists
+  html = html.replace(/((?:^[-*+] .+\n?)+)/gm, m=>'<ul>'+m.replace(/^[-*+] (.+)$/gm,'<li>$1</li>')+'</ul>');
+  html = html.replace(/((?:^\d+\. .+\n?)+)/gm, m=>'<ol>'+m.replace(/^\d+\. (.+)$/gm,'<li>$1</li>')+'</ol>');
+
+  // Inline styles
+  if (strike) html = html.replace(/~~(.+?)~~/g,'<del>$1</del>');
+  html = html.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  html = html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  html = html.replace(/__(.+?)__/g,'<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  html = html.replace(/_(.+?)_/g,'<em>$1</em>');
+
+  // Links & images
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<img src="$2" alt="$1">');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  html = html.replace(/https?:\/\/[^\s<>"]+/g, url=>`<a href="${url}" target="_blank" rel="noopener">${url}</a>`);
+
+  // Paragraphs
+  html = html.replace(/\n\n+/g,'\n\n');
+  html = html.split('\n\n').map(block=>{
+    if (/^<(h[1-6]|ul|ol|li|blockquote|pre|hr|table)/.test(block.trim())) return block;
+    if (block.trim()==='') return '';
+    return `<p>${block.trim().replace(/\n/g,'<br>')}</p>`;
+  }).join('\n');
+
+  // Restore code blocks
+  codeBlocks.forEach((cb,i)=>{ html=html.replace(`\x00CODE${i}\x00`,cb); });
+  inlineCodes.forEach((ic,i)=>{ html=html.replace(`\x00IC${i}\x00`,ic); });
+
+  return html;
+}
+
+function convert() {
+  const md = document.getElementById('md-input').value;
+  const wrap = document.getElementById('opt-wrap').checked;
+  let html = mdToHtml(md);
+  if (wrap) {
+    html = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Document</title>\n<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.7}</style>\n</head>\n<body>\n${html}\n</body>\n</html>`;
+  }
+  lastHTML = html;
+  document.getElementById('preview-pane').innerHTML = mdToHtml(document.getElementById('md-input').value);
+  document.getElementById('html-pane').textContent = html;
+}
+
+function copyHTML() {
+  if (!lastHTML) return;
+  navigator.clipboard.writeText(lastHTML).then(()=>{
+    const m=document.getElementById('copy-msg');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2000);
+  });
+}
+
+function downloadHTML() {
+  if (!lastHTML) return;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([lastHTML],{type:'text/html'}));
+  a.download='output.html';a.click();URL.revokeObjectURL(a.href);
+}
+
+function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function loadSample() {
+  document.getElementById('md-input').value = `# Hello, Markdown!
+
+This is a **bold** word and this is _italic_. Here is some ~~strikethrough~~ text.
+
+## Features
+
+- GitHub Flavored Markdown
+- Tables, task lists, code blocks
+- Live HTML preview
+
+## Code Example
+
+\`\`\`javascript
+function greet(name) {
+  return \`Hello, \${name}!\`;
+}
+console.log(greet('World'));
+\`\`\`
+
+## Table
+
+| Name    | Age | City          |
+|---------|-----|---------------|
+| Alice   | 32  | New York      |
+| Bob     | 28  | San Francisco |
+
+## Task List
+
+- [x] Write Markdown
+- [x] Convert to HTML
+- [ ] Deploy to production
+
+> This is a blockquote. It can span multiple lines.
+
+[Visit Sakure.online](https://sakure.online)
+`;
+  convert();
+}
+
+loadSample();
+</script>
+</body>
+</html>

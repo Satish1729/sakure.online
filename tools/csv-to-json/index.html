@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV to JSON Converter – Convert CSV Data to JSON Online | Sakure.online</title>
+<meta name="description" content="Convert CSV to JSON online instantly. Choose array of objects, array of arrays, or keyed object output. Paste CSV or upload a file. Free client-side converter.">
+<meta name="keywords" content="csv to json, csv to json converter, convert csv to json online, csv json tool, csv parser, json from csv">
+<meta property="og:title" content="CSV to JSON Converter – Sakure.online">
+<meta property="og:description" content="Convert CSV data to JSON instantly. Multiple output formats, custom delimiter, pretty print. Free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/csv-to-json">
+<link rel="canonical" href="https://sakure.online/tools/csv-to-json">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSV to JSON","url":"https://sakure.online/tools/csv-to-json","description":"Free online CSV to JSON converter with multiple output formats and live preview.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#10b981;--accent-glow:rgba(16,185,129,.12);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:.85rem}.nav-links a{color:var(--muted);text-decoration:none}.nav-links a:hover{color:var(--text)}
+.hero{text-align:center;padding:48px 24px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(80px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(16,185,129,.3);color:var(--accent);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
+h1 span{color:var(--accent)}.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:1100px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;margin:28px 0}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border)}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-family:var(--mono);font-size:.82rem;resize:vertical;outline:none;min-height:300px;line-height:1.6}
+textarea:focus{border-color:var(--accent)}
+.options-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.opt-group{display:flex;align-items:center;gap:8px}
+.opt-group label{font-size:.8rem;color:var(--muted);font-weight:500}
+.opt-group select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--text);font-size:.85rem;outline:none;font-family:var(--font)}
+.opt-group select:focus{border-color:var(--accent)}
+.opt-group input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.stats-row{display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.stat-chip{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:.78rem;font-family:var(--mono);color:var(--muted)}
+.stat-chip span{color:var(--accent);font-weight:700}
+.error-msg{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 14px;color:#fca5a5;font-size:.82rem;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .18s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{opacity:.88}
+.btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.copy-msg{display:none;color:var(--accent);font-size:.82rem;font-weight:600;align-items:center;gap:4px}
+.copy-msg.show{display:inline-flex}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;transition:border-color .18s}
+.related-card:hover{border-color:var(--accent);text-decoration:none}
+.related-card .r-icon{font-size:1.3rem;margin-bottom:6px}
+.related-card .r-name{font-size:.88rem;font-weight:600;color:var(--text)}
+.related-card .r-desc{font-size:.75rem;color:var(--muted);margin-top:3px}
+details{border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:10px;background:var(--surface)}
+details[open]{border-color:var(--accent)}
+summary{font-size:.95rem;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'＋';color:var(--accent);font-size:1.1rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:12px;color:var(--muted);font-size:.9rem;line-height:1.6}
+h2{font-size:1.2rem;font-weight:700;margin-bottom:16px}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
+.footer-logo{font-weight:800;font-size:1.1rem;margin-bottom:8px}.footer-logo span{color:var(--accent)}
+.footer-sub{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
+.footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.</span>online</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/#cat-developer">Developer</a></div>
+</nav>
+<div class="hero">
+  <div class="hero-badge">📊 Data Tools</div>
+  <h1>CSV to <span>JSON</span></h1>
+  <p class="hero-sub">Convert CSV data to JSON instantly. Choose output format, custom delimiter, and pretty-print. Nothing leaves your browser.</p>
+</div>
+<div class="container">
+  <div class="ad-banner"><!-- Adsense slot: 728×90 leaderboard --></div>
+
+  <div class="card">
+    <div class="card-title">Options</div>
+    <div class="options-row">
+      <div class="opt-group"><label>Delimiter</label>
+        <select id="delimiter" onchange="convert()">
+          <option value=",">Comma (,)</option>
+          <option value="	">Tab (\t)</option>
+          <option value=";">Semicolon (;)</option>
+          <option value="|">Pipe (|)</option>
+        </select>
+      </div>
+      <div class="opt-group"><label>Output format</label>
+        <select id="format" onchange="convert()">
+          <option value="objects">Array of Objects</option>
+          <option value="arrays">Array of Arrays</option>
+          <option value="keyed">Keyed by first column</option>
+        </select>
+      </div>
+      <div class="opt-group"><label>Pretty print</label>
+        <input type="checkbox" id="pretty" checked onchange="convert()">
+      </div>
+      <div class="opt-group"><label>Auto-cast numbers</label>
+        <input type="checkbox" id="autocast" checked onchange="convert()">
+      </div>
+      <div class="opt-group"><label>Skip empty rows</label>
+        <input type="checkbox" id="skip-empty" checked onchange="convert()">
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="card-title">CSV Input</div>
+      <textarea id="csv-input" placeholder="Paste your CSV here…" oninput="convert()"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="loadSample()">Load Sample</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('csv-input').value='';convert()">Clear</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">JSON Output</div>
+      <div class="stats-row" id="stats-row"></div>
+      <div id="error-box"></div>
+      <textarea id="json-output" readonly placeholder="JSON will appear here…"></textarea>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="copyJSON()">📋 Copy JSON</button>
+        <button class="btn btn-secondary" onclick="downloadJSON()">⬇️ Download .json</button>
+        <span class="copy-msg" id="copy-msg">✓ Copied!</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- Adsense slot: 300×250 rectangle --></div>
+
+  <div class="card">
+    <h2>Related Data Tools</h2>
+    <div class="related">
+      <a href="/tools/csv-viewer" class="related-card"><div class="r-icon">📊</div><div class="r-name">CSV Viewer</div><div class="r-desc">View and sort CSV as a table</div></a>
+      <a href="/tools/json-formatter" class="related-card"><div class="r-icon">{ }</div><div class="r-name">JSON Formatter</div><div class="r-desc">Format and validate JSON data</div></a>
+      <a href="/tools/yaml-to-json" class="related-card"><div class="r-icon">📄</div><div class="r-name">YAML to JSON</div><div class="r-desc">Convert YAML to JSON format</div></a>
+      <a href="/tools/xml-to-json" class="related-card"><div class="r-icon">📋</div><div class="r-name">XML to JSON</div><div class="r-desc">Parse XML and convert to JSON</div></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+    <details open><summary>What output formats are available?</summary><p>"Array of Objects" (most common) produces a JSON array where each row is an object with header names as keys. "Array of Arrays" skips headers and wraps each row as a simple array. "Keyed by first column" creates an object where each key is the value from the first column — useful for lookup tables.</p></details>
+    <details><summary>What does "auto-cast numbers" do?</summary><p>When enabled, values that look like numbers (integers or decimals) are converted from strings to actual JSON numbers. This avoids issues where "42" needs to be compared arithmetically. Disable it if your data contains IDs or zip codes that should remain as strings.</p></details>
+    <details><summary>How are quoted fields and commas inside values handled?</summary><p>The parser follows the RFC 4180 CSV standard. Fields wrapped in double-quotes can contain commas, newlines, and escaped double-quotes (""). The parser handles all of these cases correctly.</p></details>
+    <details><summary>Is there a size limit?</summary><p>There is no enforced limit. The converter runs in your browser, so the only constraints are your device's available memory and JavaScript engine. For very large files (100MB+) consider splitting them first.</p></details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">sakure<span>.</span>online</div>
+  <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-data">Data Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
+</footer>
+
+<script>
+function parseCSV(text, delim) {
+  const rows = []; let row = []; let cur = ''; let inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') { if (inQ && text[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; continue; }
+    if (!inQ && c === delim) { row.push(cur); cur=''; continue; }
+    if (!inQ && (c==='\n'||c==='\r')) {
+      row.push(cur); cur='';
+      if (c==='\r'&&text[i+1]==='\n') i++;
+      rows.push(row); row=[];
+      continue;
+    }
+    cur += c;
+  }
+  if (cur||row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+
+function maybeCast(v) {
+  if (!document.getElementById('autocast').checked) return v;
+  const n = Number(v);
+  return v!==''&&!isNaN(n) ? n : v;
+}
+
+function convert() {
+  const csv = document.getElementById('csv-input').value;
+  const delim = document.getElementById('delimiter').value;
+  const fmt = document.getElementById('format').value;
+  const pretty = document.getElementById('pretty').checked;
+  const skipEmpty = document.getElementById('skip-empty').checked;
+  const errBox = document.getElementById('error-box');
+  errBox.innerHTML = '';
+
+  if (!csv.trim()) { document.getElementById('json-output').value=''; document.getElementById('stats-row').innerHTML=''; return; }
+
+  try {
+    let rows = parseCSV(csv.trim(), delim);
+    if (skipEmpty) rows = rows.filter(r=>r.some(c=>c.trim()!==''));
+    if (!rows.length) throw new Error('No data found.');
+
+    const headers = rows[0].map(h=>h.trim());
+    const dataRows = rows.slice(1);
+    let result;
+
+    if (fmt==='objects') {
+      result = dataRows.map(r=>Object.fromEntries(headers.map((h,i)=>[h, maybeCast(r[i]??'')])));
+    } else if (fmt==='arrays') {
+      result = [headers, ...dataRows.map(r=>r.map(maybeCast))];
+    } else {
+      result = {};
+      dataRows.forEach(r=>{ result[r[0]??''] = Object.fromEntries(headers.slice(1).map((h,i)=>[h,maybeCast(r[i+1]??'')])); });
+    }
+
+    const json = JSON.stringify(result, null, pretty ? 2 : undefined);
+    document.getElementById('json-output').value = json;
+    const bytes = new TextEncoder().encode(json).length;
+    document.getElementById('stats-row').innerHTML = `
+      <div class="stat-chip">Rows: <span>${dataRows.length}</span></div>
+      <div class="stat-chip">Columns: <span>${headers.length}</span></div>
+      <div class="stat-chip">Size: <span>${(bytes/1024).toFixed(1)} KB</span></div>`;
+  } catch(e) {
+    errBox.innerHTML = `<div class="error-msg">⚠️ ${e.message}</div>`;
+    document.getElementById('json-output').value='';
+  }
+}
+
+function copyJSON() {
+  const v = document.getElementById('json-output').value;
+  if (!v) return;
+  navigator.clipboard.writeText(v).then(()=>{
+    const m=document.getElementById('copy-msg');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2000);
+  });
+}
+
+function downloadJSON() {
+  const v = document.getElementById('json-output').value;
+  if (!v) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([v],{type:'application/json'}));
+  a.download = 'output.json'; a.click(); URL.revokeObjectURL(a.href);
+}
+
+function loadSample() {
+  document.getElementById('csv-input').value = `id,name,age,city,score
+1,Alice,32,New York,95.5
+2,Bob,28,San Francisco,88.0
+3,Charlie,35,Austin,112.3
+4,Diana,29,Seattle,76.8
+5,Eve,41,Chicago,134.1`;
+  convert();
+}
+
+loadSample();
+</script>
+</body>
+</html>
