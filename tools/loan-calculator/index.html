@@ -203,17 +203,31 @@ footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
 </div>
 
 <footer>
-  © 2025 <a href="/">Sakure.online</a> · Free Online Tools ·
-  <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a>
+  <p style="margin-bottom:8px">
+    <a href="/about">About</a> &nbsp;·&nbsp;
+    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/terms">Terms</a> &nbsp;·&nbsp;
+    <a href="/contact">Contact</a> &nbsp;·&nbsp;
+    <a href="/sitemap.xml">Sitemap</a>
+  </p>
+  <p>© 2026 Sakure.online · Free Online Tools</p>
 </footer>
 
 <script>
 let tenureMode = 'years', amortShown = 12, amortData = [];
-function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function fmtINR(n) {
+  const r = Math.round(n);
+  if (!isFinite(r)) return '₹0';
+  const s = Math.abs(r).toString();
+  const last3 = s.length > 3 ? s.slice(-3) : s;
+  const rest = s.length > 3 ? s.slice(0, -3) : '';
+  const formatted = rest ? rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last3 : last3;
+  return '₹' + formatted;
+}
 function updateLabel(id, val) {
   const v = parseFloat(val) || 0;
   const labels = {
-    amount: '₹' + Math.round(v).toLocaleString('en-IN'),
+    amount: fmtINR(v),
     rate: v.toFixed(1) + '%',
     tenure: val + (tenureMode === 'years' ? ' years' : ' months')
   };
@@ -285,6 +299,7 @@ function showMore() { amortShown = Math.min(amortShown + 12, amortData.length); 
 function toggleAmort() { const w = document.getElementById('amort-wrap'); w.style.display = w.style.display === 'none' ? 'block' : 'none'; }
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 calcEMI();
+window.addEventListener('DOMContentLoaded', calcEMI);
 </script>
 
 <script src="/tools/tool-data.js"></script>

@@ -97,7 +97,7 @@
 .faq-list{display:flex;flex-direction:column;gap:20px}
 .faq-item{background:var(--surface,#1a1d27);border:1px solid var(--border,#2e3345);border-radius:10px;padding:18px 20px}
 .faq-q{font-size:0.95rem;font-weight:600;color:var(--text,#e4e6ef);margin-bottom:8px}
-.faq-a{font-size:0.88rem;color:var(--muted,#7a8499);line-height:1.6;margin:0}
+.faq-a{font-size:0.88rem;color:var(--muted,#7a8499);line-height:1.6;margin:0;max-height:none !important;overflow:visible !important;transition:none !important}
 .tool-intro-text{font-size:0.95rem;color:var(--muted,#7a8499);line-height:1.7;margin:0}
 .tool-steps-list{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;font-size:0.9rem;color:var(--text,#e4e6ef);line-height:1.6}
 .tool-example-block{display:flex;gap:16px;flex-wrap:wrap}
