@@ -21,19 +21,20 @@
     }
   }
 
-  // Build related tools HTML (same category, exclude self, max 5)
+  // Build related tools HTML — use per-tool override if defined, else same category (exclude self, max 5)
   let relatedHtml = '';
-  if (currentCat) {
-    const related = currentCat.tools.filter(t => t.slug !== slug).slice(0, 5);
-    if (related.length > 0) {
-      relatedHtml = `
+  const overrideList = data.relatedOverrides && data.relatedOverrides[slug];
+  const relatedTools = overrideList
+    ? overrideList
+    : (currentCat ? currentCat.tools.filter(t => t.slug !== slug).slice(0, 5) : []);
+  if (relatedTools.length > 0) {
+    relatedHtml = `
 <section class="tool-extras-section" id="related-tools">
   <h2 class="tool-extras-heading">Related Tools</h2>
   <div class="related-tools-grid">
-    ${related.map(t => `<a href="/tools/${t.slug}" class="related-tool-card">${t.name}</a>`).join('\n    ')}
+    ${relatedTools.map(t => `<a href="/tools/${t.slug}" class="related-tool-card">${t.name}</a>`).join('\n    ')}
   </div>
 </section>`;
-    }
   }
 
   // Build intro/how-to/example HTML from toolContent if available

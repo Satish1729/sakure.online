@@ -180,6 +180,20 @@ window.TOOL_DATA = {
       { q: "What characters are encoded?", a: "Spaces, symbols, and reserved characters." },
       { q: "Is this tool free?", a: "Yes, completely free with no signup required." },
     ],
+    "loan-calculator": [
+      { q: "What is EMI?", a: "EMI (Equated Monthly Instalment) is a fixed amount paid to a lender each month. It has two components: principal repayment and interest. Early EMIs pay more interest; later ones pay more principal." },
+      { q: "How is EMI calculated?", a: "EMI = [P × r × (1+r)ⁿ] ÷ [(1+r)ⁿ − 1], where P = loan amount, r = monthly interest rate (annual rate ÷ 12 ÷ 100), n = tenure in months. The calculator applies this formula automatically." },
+      { q: "What factors affect my EMI?", a: "Three factors: Loan Amount (higher loan = higher EMI), Interest Rate (higher rate = higher EMI), and Tenure (longer tenure = lower monthly EMI but more total interest paid)." },
+      { q: "How can I reduce my EMI?", a: "Make a larger down payment, choose a longer tenure, negotiate a lower interest rate, or make part-prepayments to reduce the outstanding principal." },
+    ],
+  },
+
+  // Per-tool related tools overrides (slug → array of {slug, name})
+  relatedOverrides: {
+    "loan-calculator": [
+      { slug: "percentage-calculator", name: "Percentage Calculator" },
+      { slug: "discount-calculator", name: "Discount Calculator" },
+    ],
   },
 
   // Tool-specific content: intro, howToSteps, example

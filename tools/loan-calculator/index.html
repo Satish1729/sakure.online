@@ -200,36 +200,6 @@ footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
 
   <div class="ad-square"><!-- AdSense 300×250 -->Advertisement</div>
 
-  <div class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is EMI?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">EMI (Equated Monthly Installment) is a fixed amount paid to a lender each month. It has two components: principal repayment and interest. Early EMIs pay more interest; later ones pay more principal.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How is EMI calculated?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">EMI = [P × r × (1+r)ⁿ] ÷ [(1+r)ⁿ − 1], where P = loan amount, r = monthly interest rate (annual rate ÷ 12 ÷ 100), n = tenure in months. Our calculator uses this formula automatically.</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What factors affect my EMI?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Three factors: Loan Amount (higher loan = higher EMI), Interest Rate (higher rate = higher EMI), and Tenure (longer tenure = lower EMI but more total interest paid over the life of the loan).</div></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How can I reduce my EMI?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">You can reduce EMI by making a larger down payment, choosing a longer tenure, negotiating a lower interest rate, or making prepayments to reduce the outstanding principal balance.</div></div>
-    </div>
-  </div>
-
-  <div class="related-section">
-    <h2>Related Calculators</h2>
-    <div class="related-grid">
-      <a href="/tools/percentage-calculator/" class="related-link">🧮 Percentage Calc</a>
-      <a href="/tools/discount-calculator/" class="related-link">🏷️ Discount Calc</a>
-      <a href="/tools/tip-calculator/" class="related-link">🍽️ Tip Calculator</a>
-      <a href="/tools/bmi-calculator/" class="related-link">⚖️ BMI Calc</a>
-      <a href="/tools/age-calculator/" class="related-link">🎂 Age Calculator</a>
-    </div>
-  </div>
 </div>
 
 <footer>
@@ -240,18 +210,22 @@ footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
 <script>
 let tenureMode = 'years', amortShown = 12, amortData = [];
 function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
-function syncNum(id, val) {
-  document.getElementById('n-' + id).value = parseFloat(val).toFixed(id === 'rate' ? 1 : 0);
+function updateLabel(id, val) {
+  const v = parseFloat(val) || 0;
   const labels = {
-    amount: '₹' + parseInt(val).toLocaleString('en-IN'),
-    rate: parseFloat(val).toFixed(1) + '%',
+    amount: '₹' + Math.round(v).toLocaleString('en-IN'),
+    rate: v.toFixed(1) + '%',
     tenure: val + (tenureMode === 'years' ? ' years' : ' months')
   };
   document.getElementById('lbl-' + id).textContent = labels[id];
 }
+function syncNum(id, val) {
+  document.getElementById('n-' + id).value = parseFloat(val).toFixed(id === 'rate' ? 1 : 0);
+  updateLabel(id, val);
+}
 function syncRange(id, val) {
   document.getElementById('r-' + id).value = val;
-  syncNum(id, val);
+  updateLabel(id, val);
 }
 function setTenureMode(m, btn) {
   tenureMode = m;
