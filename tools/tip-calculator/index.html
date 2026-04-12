@@ -87,6 +87,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:22px
 footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
 @media(max-width:580px){.result-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}nav .nav-links{display:none}.hero{padding:36px 16px 24px}}
 </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 <nav>
@@ -245,5 +249,8 @@ function calcTip() {
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 calcTip();
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

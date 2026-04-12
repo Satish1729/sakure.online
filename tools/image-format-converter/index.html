@@ -7,6 +7,7 @@
     <meta name="description" content="Convert images between JPEG, PNG, WebP, and BMP formats instantly. Free online image format converter. No upload, runs in your browser.">
     <meta name="keywords" content="image converter, convert png to jpg, jpg to png, webp converter, image format converter, convert image online, png to webp">
     <link rel="canonical" href="https://sakure.online/tools/image-format-converter">
+<meta property="og:url" content="https://sakure.online/tools/image-format-converter">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebApplication","name":"Image Format Converter","description":"Free online image format converter. Convert between JPEG, PNG, WebP, and BMP.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
@@ -49,9 +50,13 @@
         .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
         footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
     </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
-<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/image-compressor">Image Compressor</a><a href="/tools">All Tools</a></nav></div></header>
+<header><div class="container header-inner"><a href="/" class="logo">sakure<span class="dot">.</span>online</a><nav><a href="/tools/image-compressor">Image Compressor</a><a href="/tools">All Tools</a></nav></div></header>
 <main class="container">
     <section class="hero"><h1>Image Format Converter</h1><p>Convert images between JPEG, PNG, WebP, and BMP formats. Choose quality, compare file sizes, download instantly.</p></section>
 
@@ -112,7 +117,13 @@
         </div></div>
     </section>
 </main>
-<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<footer>
+    <div class="container">
+        <p style="margin-bottom:10px">Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+        <p style="font-size:0.82rem"><a href="/about">About</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/contact">Contact</a></p>
+        <p style="font-size:0.75rem;margin-top:10px;opacity:0.6">© 2026 sakure.online</p>
+    </div>
+</footer>
 <script>
 const dropZone=document.getElementById('dropZone');
 dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover')});
@@ -178,5 +189,8 @@ function resetTool(){
     document.getElementById('fileInput').value='';
 }
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

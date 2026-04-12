@@ -7,6 +7,7 @@
     <meta name="description" content="Encode and decode ROT13 cipher text instantly. Free online ROT13 translator — also supports ROT5, ROT18, ROT47, and custom rotation values.">
     <meta name="keywords" content="rot13 decoder, rot13 encoder, rot13 cipher, rot13 converter, caesar cipher, letter rotation, rot13 online">
     <link rel="canonical" href="https://sakure.online/tools/rot13-decoder">
+<meta property="og:url" content="https://sakure.online/tools/rot13-decoder">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebApplication","name":"ROT13 Encoder & Decoder","description":"Free online ROT13 cipher encoder and decoder with support for custom rotation values.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
@@ -44,9 +45,13 @@
         .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
         footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
     </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
-<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<header><div class="container header-inner"><a href="/" class="logo">sakure<span class="dot">.</span>online</a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
 <main class="container">
     <section class="hero"><h1>ROT13 Encoder & Decoder</h1><p>Apply ROT13 or any rotation cipher to your text. Encoding and decoding use the same operation — just paste and convert.</p></section>
 
@@ -94,7 +99,13 @@
         </div></div>
     </section>
 </main>
-<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<footer>
+    <div class="container">
+        <p style="margin-bottom:10px">Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+        <p style="font-size:0.82rem"><a href="/about">About</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/contact">Contact</a></p>
+        <p style="font-size:0.75rem;margin-top:10px;opacity:0.6">© 2026 sakure.online</p>
+    </div>
+</footer>
 <script>
 let rotValue=13;
 function setRot(n,btn){rotValue=n;document.getElementById('customRot').value=n;document.querySelectorAll('.rot-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('outLabel').textContent=`ROT${n} Output`;convert();renderMap()}
@@ -116,5 +127,8 @@ function renderMap(){
 document.getElementById('inputText').addEventListener('input',convert);
 renderMap();
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

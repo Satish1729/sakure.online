@@ -97,6 +97,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:32px
 .footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
 .footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
 </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 
@@ -258,6 +262,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:32px
     <a href="/#cat-seo">SEO Tools</a>
     <a href="/sitemap.xml">Sitemap</a>
     <a href="/privacy">Privacy</a>
+  
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/contact">Contact</a>
   </div>
   <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
 </footer>
@@ -366,5 +375,8 @@ addRow('https://example.com/', 'monthly', '1.0', new Date().toISOString().slice(
 addRow('https://example.com/about', 'yearly', '0.7', new Date().toISOString().slice(0,10));
 addRow('https://example.com/blog', 'weekly', '0.8', new Date().toISOString().slice(0,10));
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

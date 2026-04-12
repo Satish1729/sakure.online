@@ -120,6 +120,9 @@
     .toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #000; padding: 10px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; opacity: 0; transform: translateY(10px); transition: all .2s; pointer-events: none; z-index: 999; }
     .toast.show { opacity: 1; transform: translateY(0); }
   </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 
@@ -251,6 +254,11 @@
     <a href="/#cat-data">Data Tools</a>
     <a href="/tools/csv-to-json">CSV to JSON</a>
     <a href="/tools/xml-to-json">XML to JSON</a>
+  
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/contact">Contact</a>
   </div>
   <p style="margin-top:8px">© 2026 Sakure Online Tools</p>
 </footer>
@@ -583,5 +591,8 @@ retry:
 document.querySelectorAll('.opt-label input, .opt-select').forEach(el => el.addEventListener('change', convert));
 loadSample();
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

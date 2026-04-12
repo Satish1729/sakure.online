@@ -122,6 +122,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:28px
 .footer-links a:hover{color:var(--text)}
 @media(max-width:600px){.form-row{grid-template-columns:1fr}nav .nav-links{display:none}}
 </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 
@@ -276,6 +280,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:28px
     <a href="/#cat-math">Math Tools</a>
     <a href="/sitemap.xml">Sitemap</a>
     <a href="/privacy">Privacy</a>
+  
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/contact">Contact</a>
   </div>
   <div style="font-size:0.75rem;color:var(--muted);margin-top:14px">© 2025 Sakure.online · Made with ❤️ in India</div>
 </footer>
@@ -387,5 +396,8 @@ function clearDice() {
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

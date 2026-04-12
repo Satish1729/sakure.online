@@ -10,6 +10,7 @@
     <meta property="og:description" content="Convert text between uppercase, lowercase, title case, sentence case and more. Free, instant, no signup.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://sakure.online/tools/case-converter">
+<meta property="og:url" content="https://sakure.online/tools/case-converter">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {
@@ -293,12 +294,16 @@
         }
         footer a { color: var(--accent); text-decoration: none; }
     </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 
 <header>
     <div class="container header-inner">
-        <a href="/" class="logo">ToolKit <span>/ free tools</span></a>
+        <a href="/" class="logo">sakure<span class="dot">.</span>online</a>
         <nav>
             <a href="/tools/word-counter">Word Counter</a>
             <a href="/tools">All Tools</a>
@@ -462,7 +467,9 @@
 
 <footer>
     <div class="container">
-        <p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+        <p style="margin-bottom:10px">Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+        <p style="font-size:0.82rem"><a href="/about">About</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/contact">Contact</a></p>
+        <p style="font-size:0.75rem;margin-top:10px;opacity:0.6">© 2026 sakure.online</p>
     </div>
 </footer>
 
@@ -635,5 +642,8 @@ inputEl.addEventListener('input', applyConversion);
 applyConversion();
 </script>
 
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

@@ -89,6 +89,10 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:32px
 .footer-links{display:flex;gap:20px;justify-content:center;font-size:.82rem;color:var(--muted);flex-wrap:wrap}
 .footer-links a{color:var(--muted)}.footer-links a:hover{color:var(--text)}
 </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 <nav>
@@ -237,7 +241,12 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:32px
 <footer>
   <div class="footer-logo">sakure<span>.</span>online</div>
   <div class="footer-sub">Free online tools — no signup, no servers, no BS.</div>
-  <div class="footer-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a></div>
+  <div class="footer-links"><a href="/">Home</a><a href="/#cat-css">CSS Tools</a><a href="/sitemap.xml">Sitemap</a><a href="/privacy">Privacy</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/contact">Contact</a>
+  </div>
   <div style="font-size:.75rem;color:var(--muted);margin-top:16px">© 2026 Sakure.online · Made with ❤️ in India</div>
 </footer>
 
@@ -371,5 +380,8 @@ renderItems();
 syncItemControls();
 generate();
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>

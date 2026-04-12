@@ -7,6 +7,7 @@
     <meta name="description" content="Encode text to Base64 or decode Base64 to text instantly. Free online Base64 converter with UTF-8 support. No signup, no limits.">
     <meta name="keywords" content="base64 encode, base64 decode, base64 converter, base64 encoder, base64 decoder, base64 online, text to base64">
     <link rel="canonical" href="https://sakure.online/tools/base64-encoder">
+<meta property="og:url" content="https://sakure.online/tools/base64-encoder">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebApplication","name":"Base64 Encoder & Decoder","description":"Free online Base64 encoder and decoder. Convert text to Base64 and back with UTF-8 support.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
@@ -23,9 +24,13 @@
         .related-tools{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}.related-tools h3{font-size:16px;margin-bottom:12px}.related-links{display:flex;flex-wrap:wrap;gap:10px}.related-links a{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--accent);text-decoration:none}.related-links a:hover{border-color:var(--accent)}
         footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-muted);font-size:13px}footer a{color:var(--accent);text-decoration:none}
     </style>
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
-<header><div class="container header-inner"><a href="/" class="logo">ToolKit <span>/ free tools</span></a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
+<header><div class="container header-inner"><a href="/" class="logo">sakure<span class="dot">.</span>online</a><nav><a href="/tools/word-counter">Word Counter</a><a href="/tools">All Tools</a></nav></div></header>
 <main class="container">
     <section class="hero"><h1>Base64 Encoder & Decoder</h1><p>Encode text to Base64 or decode Base64 strings back to readable text. Supports UTF-8 and Unicode characters.</p></section>
     <div class="mode-toggle">
@@ -64,7 +69,13 @@
         </div></div>
     </section>
 </main>
-<footer><div class="container"><p>Built with care. Free forever. <a href="/tools">Explore all tools →</a></p></div></footer>
+<footer>
+    <div class="container">
+        <p style="margin-bottom:10px">Built with care. Free forever. <a href="/tools">Explore all tools →</a></p>
+        <p style="font-size:0.82rem"><a href="/about">About</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/contact">Contact</a></p>
+        <p style="font-size:0.75rem;margin-top:10px;opacity:0.6">© 2026 sakure.online</p>
+    </div>
+</footer>
 <script>
 let mode='encode';
 function setMode(m,btn){mode=m;document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('inLabel').textContent=m==='encode'?'Text Input':'Base64 Input';document.getElementById('outLabel').textContent=m==='encode'?'Base64 Output':'Text Output';document.getElementById('inputText').placeholder=m==='encode'?'Type or paste text to encode...':'Paste Base64 string to decode...';document.getElementById('inputText').value='';reset()}
@@ -77,5 +88,8 @@ function copyOutput(){const t=document.getElementById('outputText').textContent;
 function swapText(){const t=document.getElementById('outputText').textContent;if(!t||t.startsWith('Result')||t.startsWith('⚠'))return;mode=mode==='encode'?'decode':'encode';document.querySelectorAll('.mode-btn').forEach((b,i)=>{b.classList.toggle('active',i===(mode==='encode'?0:1))});document.getElementById('inLabel').textContent=mode==='encode'?'Text Input':'Base64 Input';document.getElementById('outLabel').textContent=mode==='encode'?'Base64 Output':'Text Output';document.getElementById('inputText').value=t;convert()}
 document.getElementById('inputText').addEventListener('input',convert);
 </script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
 </body>
 </html>
