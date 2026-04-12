@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sakure – Free Online Tools | Text, Calculators, Encoders, Generators & More</title>
-<meta name="description" content="Free online tools for developers, students & professionals. Text, SEO, math, calculators, encoders, generators, image tools — 63 tools, no signup, no cost.">
+<meta name="description" content="Free online tools for developers, students & professionals. Text, SEO, math, calculators, encoders, generators, image tools — 65 tools, no signup, no cost.">
 <meta name="keywords" content="free online tools, text tools, calculator, encoder decoder, developer tools, generator tools, sakure">
 <meta property="og:title" content="Sakure – Free Online Tools">
-<meta property="og:description" content="63 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
+<meta property="og:description" content="65 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sakure.online">
 <meta property="og:image" content="https://sakure.online/assets/og-image.png">
@@ -635,6 +635,14 @@
         <div class="tool-card-tag">Calculator</div>
       </a>
 
+      <a href="/tools/gst-calculator" class="tool-card" style="--card-accent:#06b6d4" data-tags="gst calculator india add remove gst tax 5 12 18 28 percent">
+        <div class="week-badge new">New</div>
+        <div class="tool-card-icon">🧾</div>
+        <div class="tool-card-name">GST Calculator</div>
+        <div class="tool-card-desc">Add or remove GST from any amount. Supports 5%, 12%, 18%, and 28% slabs.</div>
+        <div class="tool-card-tag">Calculator</div>
+      </a>
+
     </div>
   </div>
 
@@ -947,6 +955,11 @@ const totalTools = document.querySelectorAll('.tool-card').length;
 document.getElementById('nav-count').textContent = totalTools + ' tools';
 document.getElementById('stat-tools').textContent = totalTools;
 document.getElementById('hero-count').textContent = totalTools;
+document.querySelectorAll('.category').forEach(cat => {
+  const n = cat.querySelectorAll('.tool-card').length;
+  const span = cat.querySelector('.cat-count');
+  if (span) span.textContent = n + (n === 1 ? ' tool' : ' tools');
+});
 
 // Category nav smooth scroll with header offset
 document.querySelectorAll('.cat-nav-link').forEach(link => {
