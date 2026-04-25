@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compound Interest Calculator India – Calculate Returns Online</title>
+<meta name="description" content="Calculate compound interest online with principal, rate, time, and compounding frequency. Free India-friendly calculator with no signup.">
+<meta name="keywords" content="compound interest calculator, compound interest calculator India, CI calculator, compounding frequency, FD calculator, compound interest formula">
+<meta property="og:title" content="Compound Interest Calculator India – Sakure.online">
+<meta property="og:description" content="Calculate compound interest online with principal, rate, time, and compounding frequency. Free India-friendly calculator with no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sakure.online/tools/compound-interest-calculator/">
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#06b6d4">
+<link rel="canonical" href="https://sakure.online/tools/compound-interest-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compound Interest Calculator India",
+  "url": "https://sakure.online/tools/compound-interest-calculator/",
+  "description": "Free online compound interest calculator. Enter principal, rate, time, and compounding frequency to estimate total amount and interest earned.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#21263a;--border:#2e3345;--text:#e4e6ef;--muted:#7a8499;--accent:#06b6d4;--accent-glow:rgba(6,182,212,0.11);--font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);letter-spacing:-0.5px;text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;font-size:0.85rem}.nav-links a{color:var(--muted)}.nav-links a:hover{color:var(--text);text-decoration:none}
+.hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(6,182,212,0.25);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
+.container{max-width:940px;margin:0 auto;padding:0 16px 80px}
+.ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0}
+.ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px}
+.card-title{font-size:0.95rem;font-weight:700;margin-bottom:18px;color:var(--text)}
+.input-group{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+.input-group label{font-size:0.74rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.6px}
+input[type=number]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-family:var(--mono);font-size:0.93rem;width:100%;transition:border-color .2s;outline:none;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type=number]:focus{border-color:var(--accent)}
+select{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.93rem;width:100%;transition:border-color .2s;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8499' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
+select:focus{border-color:var(--accent)}
+.result-highlight{background:linear-gradient(135deg,rgba(6,182,212,0.13),rgba(6,182,212,0.04));border:1px solid rgba(6,182,212,0.28);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px}
+.result-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.result-val{font-family:var(--mono);font-size:2.1rem;font-weight:700;color:var(--accent)}
+.result-sub{font-size:0.78rem;color:var(--muted);margin-top:3px}
+.stat-rows{display:flex;flex-direction:column;gap:8px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--surface2);border-radius:8px}
+.s-label{font-size:0.83rem;color:var(--muted)}
+.s-val{font-family:var(--mono);font-size:0.92rem;font-weight:600}
+.s-val.interest-color{color:#f59e0b}.s-val.principal-color{color:var(--accent)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:28px 0}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+.info-icon{font-size:1.3rem;margin-bottom:7px}.info-card h3{font-size:0.88rem;font-weight:600;margin-bottom:5px}.info-card p{font-size:0.81rem;color:var(--muted);line-height:1.55}
+.faq-section{margin:36px 0}.faq-section>h2{font-size:1.25rem;font-weight:700;margin-bottom:14px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:15px 18px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.faq-q:hover{background:var(--surface2)}.faq-icon{color:var(--accent);font-size:1.1rem;transition:transform .2s;flex-shrink:0;margin-left:12px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:0.85rem;color:var(--muted);line-height:1.65}
+.faq-a-inner{padding:0 18px 15px}.faq-item.open .faq-a{max-height:220px}.faq-item.open .faq-icon{transform:rotate(45deg)}
+.related-section{margin:28px 0}.related-section h2{font-size:1.05rem;font-weight:700;margin-bottom:12px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
+.related-link{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:9px;font-size:0.83rem;font-weight:500;color:var(--text);transition:border-color .2s,background .2s}
+.related-link:hover{border-color:var(--accent);background:var(--surface2);text-decoration:none;color:var(--text)}
+.learn-more-block{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:24px 0;font-size:0.88rem}
+.learn-more-block a{font-weight:600}
+.info-card p strong{color:var(--text)}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:22px 24px;text-align:center;font-size:0.8rem;color:var(--muted)}
+footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
+@media(max-width:720px){.calc-layout{grid-template-columns:1fr}nav .nav-links{display:none}.hero{padding:36px 16px 24px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">sakure<span>.online</span></a>
+  <div class="nav-links"><a href="/">Home</a><a href="/tools/">All Tools</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">💰 Finance Calculator</div>
+  <h1>Compound Interest <span>Calculator</span></h1>
+  <p class="hero-sub">Calculate compound interest on any principal with your choice of compounding frequency. Real-time results in Indian ₹ format.</p>
+</div>
+
+<div class="container">
+  <div class="ad-banner"><!-- AdSense 728×90 -->Advertisement</div>
+
+  <div class="calc-layout">
+    <!-- INPUT PANEL -->
+    <div class="calc-card">
+      <div class="card-title">Investment Details</div>
+
+      <div class="input-group">
+        <label>Principal Amount (₹)</label>
+        <input type="number" id="n-principal" value="100000" min="1" oninput="calcCI()">
+      </div>
+
+      <div class="input-group">
+        <label>Annual Interest Rate (%)</label>
+        <input type="number" id="n-rate" value="10" min="0.01" max="100" step="0.01" oninput="calcCI()">
+      </div>
+
+      <div class="input-group">
+        <label>Time Period</label>
+        <input type="number" id="n-time" value="5" min="1" oninput="calcCI()">
+      </div>
+
+      <div class="input-group">
+        <label>Time Unit</label>
+        <select id="n-unit" onchange="calcCI()">
+          <option value="years" selected>Years</option>
+          <option value="months">Months</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Compounding Frequency</label>
+        <select id="n-freq" onchange="calcCI()">
+          <option value="1">Yearly (1×/year)</option>
+          <option value="2">Half-Yearly (2×/year)</option>
+          <option value="4" selected>Quarterly (4×/year)</option>
+          <option value="12">Monthly (12×/year)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="calc-card">
+      <div class="card-title">Results</div>
+      <div class="result-highlight">
+        <div class="result-label">Total Amount</div>
+        <div class="result-val" id="result-val">₹0</div>
+        <div class="result-sub" id="result-sub">at 10% p.a. for 5 years</div>
+      </div>
+      <div class="stat-rows">
+        <div class="stat-row"><span class="s-label">Total Interest Earned</span><span class="s-val interest-color" id="s-interest">₹0</span></div>
+        <div class="stat-row"><span class="s-label">Principal Amount</span><span class="s-val principal-color" id="s-principal">₹0</span></div>
+        <div class="stat-row"><span class="s-label">Compounding Frequency</span><span class="s-val" id="s-freq">Quarterly</span></div>
+        <div class="stat-row"><span class="s-label">Effective Duration</span><span class="s-val" id="s-duration">5 years</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">📐</div><h3>CI Formula</h3><p><strong>A = P(1 + r/n)^(nt)</strong><br>Where P = principal, r = annual rate/100, n = compounding frequency/year, t = time in years</p></div>
+    <div class="info-card"><div class="info-icon">💡</div><h3>How it Works</h3><p>Interest is added to the principal at each compounding interval. The next period's interest is calculated on the new, higher principal — this is the compounding effect.</p></div>
+    <div class="info-card"><div class="info-icon">🔢</div><h3>Example</h3><p>₹1,00,000 at <strong>10% p.a.</strong> for <strong>5 years</strong> (quarterly)<br>Total Amount: ₹1,63,862<br>Interest Earned: ₹63,862</p></div>
+  </div>
+
+  <div class="info-grid" style="margin-top:0">
+    <div class="info-card"><div class="info-icon">📊</div><h3>Compounding Frequency</h3><p>More frequent compounding means more interest cycles per year. Monthly compounding earns slightly more than yearly on the same principal and rate.</p></div>
+    <div class="info-card"><div class="info-icon">🏆</div><h3>Key Factors</h3><p><strong>Principal</strong> · <strong>Rate of interest</strong> · <strong>Time period</strong> · <strong>Compounding frequency</strong>. Time and frequency together create the snowball effect of compound growth.</p></div>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is compound interest? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, it grows exponentially — the longer you stay invested, the more the interest-on-interest effect amplifies your returns.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How does compounding frequency affect returns? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The more frequently interest is compounded, the higher the effective yield. For example, ₹1,00,000 at 10% for 5 years: yearly compounding gives ₹1,61,051; quarterly gives ₹1,63,862; monthly gives ₹1,64,531. The difference grows with higher rates and longer time periods.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between compound and simple interest? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Simple interest is calculated only on the original principal: SI = P × r × t. Compound interest is calculated on the growing balance at each interval. Over time, compound interest generates significantly more than simple interest — the gap widens with longer durations and higher rates.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I use this for FD interest calculations? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Most bank Fixed Deposits in India use quarterly compounding. Enter your FD principal, the bank's interest rate, and choose "Quarterly" as the compounding frequency to get a close estimate. For monthly-compounding FDs, select "Monthly" instead.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the Rule of 72 for compound interest? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The Rule of 72 is a quick mental shortcut: divide 72 by the annual interest rate to estimate how many years it takes to double your money. At 8% p.a., your money doubles in about 9 years (72 ÷ 8). It works best for yearly compounding and moderate interest rates.</div></div>
+    </div>
+  </div>
+
+  <div class="learn-more-block">
+    <span>📖</span>
+    <a href="/how-to-calculate-compound-interest-india/">How to Calculate Compound Interest in India →</a>
+  </div>
+
+  <div class="related-section">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a href="/tools/sip-calculator/" class="related-link">📈 SIP Calculator</a>
+      <a href="/tools/loan-calculator/" class="related-link">🏦 EMI Calculator</a>
+      <a href="/tools/gst-calculator/" class="related-link">🧾 GST Calculator</a>
+      <a href="/tools/percentage-calculator/" class="related-link">📊 Percentage Calculator</a>
+    </div>
+  </div>
+
+  <div class="ad-square"><!-- AdSense 300×250 -->Advertisement</div>
+</div>
+
+<footer>
+  <p style="margin-bottom:8px">
+    <a href="/about">About</a> &nbsp;·&nbsp;
+    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/terms">Terms</a> &nbsp;·&nbsp;
+    <a href="/contact">Contact</a> &nbsp;·&nbsp;
+    <a href="/sitemap.xml">Sitemap</a>
+  </p>
+  <p>© 2026 Sakure.online · Free Online Tools</p>
+</footer>
+
+<script>
+function fmtINR(n) {
+  const r = Math.round(n);
+  if (!isFinite(r)) return '₹0';
+  const abs = Math.abs(r).toString();
+  const last3 = abs.length > 3 ? abs.slice(-3) : abs;
+  const rest = abs.length > 3 ? abs.slice(0, -3) : '';
+  const formatted = rest ? rest.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + ',' + last3 : last3;
+  return '₹' + formatted;
+}
+
+const freqLabels = { '1': 'Yearly', '2': 'Half-Yearly', '4': 'Quarterly', '12': 'Monthly' };
+
+function calcCI() {
+  const P = parseFloat(document.getElementById('n-principal').value) || 0;
+  const annualRate = parseFloat(document.getElementById('n-rate').value) || 0;
+  const timeVal = parseFloat(document.getElementById('n-time').value) || 0;
+  const unit = document.getElementById('n-unit').value;
+  const n = parseInt(document.getElementById('n-freq').value) || 1;
+
+  const t = unit === 'years' ? timeVal : timeVal / 12;
+  const r = annualRate / 100;
+
+  const A = P * Math.pow(1 + r / n, n * t);
+  const interest = A - P;
+
+  const durationLabel = unit === 'years'
+    ? timeVal + (timeVal === 1 ? ' year' : ' years')
+    : timeVal + (timeVal === 1 ? ' month' : ' months');
+
+  document.getElementById('result-val').textContent = fmtINR(A);
+  document.getElementById('result-sub').textContent = 'at ' + annualRate + '% p.a. for ' + durationLabel;
+  document.getElementById('s-interest').textContent = fmtINR(interest);
+  document.getElementById('s-principal').textContent = fmtINR(P);
+  document.getElementById('s-freq').textContent = freqLabels[String(n)] || n + '×/year';
+  document.getElementById('s-duration').textContent = durationLabel;
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+calcCI();
+</script>
+
+<script src="/tools/tool-data.js"></script>
+<script src="/tools/tool-inject.js"></script>
+</body>
+</html>
