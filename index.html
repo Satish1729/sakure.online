@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sakure – Free Online Tools | Text, Calculators, Encoders, Generators & More</title>
-<meta name="description" content="Free online tools for developers, students & professionals. Text, SEO, math, calculators, encoders, generators, image tools — 65 tools, no signup, no cost.">
-<meta name="keywords" content="free online tools, text tools, calculator, encoder decoder, developer tools, generator tools, sakure">
-<meta property="og:title" content="Sakure – Free Online Tools">
-<meta property="og:description" content="65 free browser-based tools. Text, calculators, encoders, generators, image tools — fast, no signup.">
+<title>Free Online Tools – Calculators, Converters, Developer Tools | Sakure</title>
+<meta name="description" content="Use free online tools for EMI, GST, SIP, JSON formatting, Base64 encoding, URL encoding, image tools, calculators, and more. No signup required.">
+<meta name="keywords" content="free online tools, EMI calculator, GST calculator, SIP calculator, JSON formatter, base64 encoder, url encoder, developer tools, calculators, converters, sakure">
+<meta property="og:title" content="Free Online Tools – Calculators, Converters, Developer Tools | Sakure">
+<meta property="og:description" content="Free tools for EMI, GST, SIP, JSON formatting, Base64, URL encoding, image tools, and more. No signup required.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sakure.online/">
 <meta property="og:image" content="https://sakure.online/assets/og-image.png">
@@ -249,6 +249,36 @@
   .cat-nav-link:hover { color: var(--text); }
   .cat-nav-link.active { color: var(--text); border-bottom-color: #6366f1; }
 
+  /* ── POPULAR ROW ── */
+  .popular-row { margin-bottom: 36px; }
+  .popular-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+  .popular-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pop-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 7px 14px; font-size: 0.82rem; font-weight: 500;
+    color: var(--text); transition: border-color 0.15s, background 0.15s;
+  }
+  .pop-chip:hover { border-color: #6366f1; background: var(--surface2); }
+
+  /* ── HIGHLIGHT SECTIONS ── */
+  .highlight-section { margin-bottom: 48px; }
+  .hl-header { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .hl-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .hl-desc { font-size: 0.84rem; color: var(--muted); margin-bottom: 8px; }
+  .hl-guides { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+  .hl-guide { font-size: 0.78rem; color: #818cf8; border-bottom: 1px dashed rgba(129,140,248,0.4); transition: border-color 0.15s; }
+  .hl-guide:hover { border-bottom-color: #818cf8; }
+  .hl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .hl-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+    transition: border-color 0.15s, background 0.15s; font-size: 0.88rem; font-weight: 500;
+    color: var(--text);
+  }
+  .hl-card:hover { border-color: var(--hl-accent, #6366f1); background: var(--surface2); }
+  .hl-icon { font-size: 1.2rem; flex-shrink: 0; }
+
   @media (max-width: 640px) {
     nav .nav-links { display: none; }
     .hero { padding: 48px 20px 36px; }
@@ -284,8 +314,8 @@
 
 <div class="hero">
   <div class="hero-eyebrow">✦ Free · No Signup · Client-Side</div>
-  <h1>The Internet's<br>Most <em>Useful</em> Toolbox</h1>
-  <p><span id="hero-count">63</span> free browser-based tools — CSS, SEO, text, math, encoding, and generators. No accounts, no servers, no cost.</p>
+  <h1>Free Online Tools — <em>Calculators</em>,<br>Converters & Developer Utilities</h1>
+  <p><span id="hero-count">63</span> free tools for finance calculators, developer utilities, encoding, image tools, and generators. No accounts, no servers, no cost.</p>
 
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
@@ -305,6 +335,82 @@
     <div class="stat"><div class="stat-val">10</div><div class="stat-label">Categories</div></div>
     <div class="stat"><div class="stat-val">0</div><div class="stat-label">API Costs</div></div>
     <div class="stat"><div class="stat-val">∞</div><div class="stat-label">Free Uses</div></div>
+  </div>
+
+  <!-- POPULAR TOOLS -->
+  <div class="popular-row">
+    <div class="popular-label">Popular Tools</div>
+    <div class="popular-chips">
+      <a href="/tools/loan-calculator" class="pop-chip">🏦 Loan / EMI Calculator</a>
+      <a href="/tools/gst-calculator" class="pop-chip">🧾 GST Calculator</a>
+      <a href="/tools/sip-calculator" class="pop-chip">📈 SIP Calculator</a>
+      <a href="/tools/json-formatter" class="pop-chip">{ } JSON Formatter</a>
+      <a href="/tools/base64-encoder" class="pop-chip">🔒 Base64 Encoder</a>
+      <a href="/tools/url-encoder" class="pop-chip">🔗 URL Encoder</a>
+      <a href="/tools/password-generator" class="pop-chip">🔑 Password Generator</a>
+      <a href="/tools/qr-code-generator" class="pop-chip">📱 QR Code Generator</a>
+    </div>
+  </div>
+
+  <!-- FINANCE CALCULATORS HIGHLIGHT -->
+  <div class="highlight-section">
+    <div class="hl-header">
+      <div class="hl-title">🧮 Finance Calculators</div>
+      <div class="hl-desc">Calculate EMI, GST, SIP returns, percentages, and discounts instantly.</div>
+      <div class="hl-guides">
+        <a href="/how-to-calculate-emi-india/" class="hl-guide">How to calculate EMI in India →</a>
+        <a href="/how-to-calculate-gst-india/" class="hl-guide">How to calculate GST in India →</a>
+        <a href="/how-to-calculate-sip-india/" class="hl-guide">How to calculate SIP returns →</a>
+      </div>
+    </div>
+    <div class="hl-grid">
+      <a href="/tools/loan-calculator" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">🏦</span>Loan / EMI Calculator
+      </a>
+      <a href="/tools/gst-calculator" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">🧾</span>GST Calculator
+      </a>
+      <a href="/tools/sip-calculator" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">📈</span>SIP Calculator
+      </a>
+      <a href="/tools/percentage-calculator" class="hl-card" style="--hl-accent:#f59e0b">
+        <span class="hl-icon">%</span>Percentage Calculator
+      </a>
+      <a href="/tools/discount-calculator" class="hl-card" style="--hl-accent:#f97316">
+        <span class="hl-icon">🏷️</span>Discount Calculator
+      </a>
+    </div>
+  </div>
+
+  <!-- DEVELOPER TOOLS HIGHLIGHT -->
+  <div class="highlight-section">
+    <div class="hl-header">
+      <div class="hl-title">💻 Developer Tools</div>
+      <div class="hl-desc">Format, encode, validate, and generate — all in the browser, no setup required.</div>
+      <div class="hl-guides">
+        <a href="/how-to-use-json-formatter/" class="hl-guide">How to use the JSON Formatter →</a>
+      </div>
+    </div>
+    <div class="hl-grid">
+      <a href="/tools/json-formatter" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">{ }</span>JSON Formatter
+      </a>
+      <a href="/tools/base64-encoder" class="hl-card" style="--hl-accent:#f59e0b">
+        <span class="hl-icon">🔒</span>Base64 Encoder
+      </a>
+      <a href="/tools/url-encoder" class="hl-card" style="--hl-accent:#f59e0b">
+        <span class="hl-icon">🔗</span>URL Encoder
+      </a>
+      <a href="/tools/regex-tester" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">🔮</span>Regex Tester
+      </a>
+      <a href="/tools/timestamp-converter" class="hl-card" style="--hl-accent:#06b6d4">
+        <span class="hl-icon">⏱️</span>Timestamp Converter
+      </a>
+      <a href="/tools/meta-tag-generator" class="hl-card" style="--hl-accent:#10b981">
+        <span class="hl-icon">🏷️</span>Meta Tag Generator
+      </a>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════
