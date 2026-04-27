@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Percentage Calculator – Free Online Tool | Sakure.online</title>
-<meta name="description" content="Calculate percentages instantly. Find what percent of a number is, percentage increase/decrease, reverse percentage, and more. Free, fast, no signup required.">
-<meta name="keywords" content="percentage calculator, percent calculator, percentage increase, percentage decrease, what percent of, reverse percentage">
+<title>Percentage Calculator – Calculate Percentages Online</title>
+<meta name="description" content="Calculate percentages, percentage change, increase, decrease, and reverse percentages instantly with this free online calculator.">
+<meta name="keywords" content="percentage calculator, percent calculator, percentage increase, percentage decrease, what percent of, reverse percentage, add percentage, subtract percentage">
 <meta property="og:title" content="Percentage Calculator – Sakure.online">
-<meta property="og:description" content="Calculate percentages in multiple ways — basic %, increase/decrease, reverse %. Free tool.">
+<meta property="og:description" content="Calculate percentages in multiple ways — basic %, increase/decrease, add/subtract %, reverse %. Free tool.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sakure.online/tools/percentage-calculator/">
+<meta property="og:image" content="https://sakure.online/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
+<meta name="theme-color" content="#f59e0b">
 <link rel="canonical" href="https://sakure.online/tools/percentage-calculator/">
 <script type="application/ld+json">
 {
@@ -17,7 +21,7 @@
   "@type": "WebApplication",
   "name": "Percentage Calculator",
   "url": "https://sakure.online/tools/percentage-calculator/",
-  "description": "Free online percentage calculator. Calculate what percent of a number is, find percentage increase or decrease, and reverse percentage.",
+  "description": "Free online percentage calculator. Calculate what percent of a number is, percentage increase or decrease, add or subtract percentage, and reverse percentage.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -41,37 +45,31 @@
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.6}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-/* NAV */
 nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
 .nav-logo{font-weight:700;font-size:1.1rem;color:var(--text);letter-spacing:-0.5px;text-decoration:none}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:20px;font-size:0.85rem}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:var(--text);text-decoration:none}
-/* HERO */
 .hero{text-align:center;padding:52px 24px 36px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--accent-glow);border-radius:50%;filter:blur(70px);pointer-events:none}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-glow);border:1px solid rgba(245,158,11,0.25);color:var(--accent);font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
 h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-1px;margin-bottom:10px}
 h1 span{color:var(--accent)}
 .hero-sub{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto}
-/* CONTAINER */
 .container{max-width:860px;margin:0 auto;padding:0 16px 80px}
-/* ADS */
 .ad-banner{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:24px 0;letter-spacing:.5px}
 .ad-square{background:var(--surface);border:1px dashed var(--border);border-radius:10px;height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.78rem;margin:28px 0}
-/* TABS */
-.mode-tabs{display:flex;gap:8px;margin:28px 0 18px;flex-wrap:wrap}
+.intro-text{font-size:0.92rem;color:var(--muted);margin-bottom:4px;line-height:1.7}
+.mode-tabs{display:flex;gap:8px;margin:20px 0 18px;flex-wrap:wrap}
 .tab-btn{padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--font);font-size:0.84rem;font-weight:500;cursor:pointer;transition:all .18s}
 .tab-btn:hover{border-color:var(--accent);color:var(--text)}
 .tab-btn.active{background:var(--accent);border-color:var(--accent);color:#000;font-weight:700}
-/* CARD */
 .calc-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
 .pane-title{font-size:1rem;font-weight:600;margin-bottom:4px}
 .pane-desc{font-size:0.84rem;color:var(--muted);margin-bottom:20px}
 .pane{display:none}
 .pane.active{display:block}
-/* INPUTS */
 .input-row{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:14px}
 .op-label{color:var(--muted);font-size:1rem;text-align:center;padding:0 4px}
 .input-group{display:flex;flex-direction:column;gap:5px}
@@ -79,36 +77,41 @@ h1 span{color:var(--accent)}
 input[type=number]{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:0.97rem;width:100%;transition:border-color .2s;outline:none;-moz-appearance:textfield}
 input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 input[type=number]:focus{border-color:var(--accent)}
-/* RESULT */
 .result-box{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:16px 20px;margin-top:16px;display:none}
 .result-box.show{display:block}
 .result-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
 .result-value{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--accent)}
 .result-formula{font-size:0.8rem;color:var(--muted);margin-top:5px;font-family:var(--mono)}
-/* INFO */
+.result-example{font-size:0.78rem;color:var(--muted);margin-top:6px;font-style:italic}
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:28px 0}
 .info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
 .info-icon{font-size:1.3rem;margin-bottom:7px}
 .info-card h3{font-size:0.88rem;font-weight:600;margin-bottom:5px}
 .info-card p{font-size:0.81rem;color:var(--muted);line-height:1.55}
-/* FAQ */
+.section-title{font-size:1.1rem;font-weight:700;margin:32px 0 12px}
+.how-list{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px}
+.how-list ul{list-style:none;padding:0;margin:0}
+.how-list li{padding:7px 0;font-size:0.87rem;color:var(--muted);border-bottom:1px solid var(--border);display:flex;gap:10px}
+.how-list li:last-child{border-bottom:none}
+.how-list li::before{content:'→';color:var(--accent);flex-shrink:0;font-weight:700}
+.example-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:12px 0}
+.example-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+.example-card h4{font-size:0.88rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.ex-calc{font-family:var(--mono);font-size:0.8rem;color:var(--muted);line-height:1.9;background:var(--surface2);border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.ex-answer{font-size:0.84rem;font-weight:600;color:var(--accent)}
+.learn-more-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px;margin:28px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.learn-more-block p{font-size:0.9rem;color:var(--muted);margin:0}
+.learn-more-block a{font-size:0.88rem;font-weight:600;white-space:nowrap}
 .faq-section{margin:36px 0}
 .faq-section>h2{font-size:1.25rem;font-weight:700;margin-bottom:14px}
-.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
-.faq-q{padding:15px 18px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.faq-q:hover{background:var(--surface2)}
-.faq-icon{color:var(--accent);font-size:1.1rem;transition:transform .2s;flex-shrink:0;margin-left:12px}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:0.85rem;color:var(--muted);line-height:1.65}
-.faq-a-inner{padding:0 18px 15px}
-.faq-item.open .faq-a{max-height:220px}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-/* RELATED */
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;padding:16px 18px}
+.faq-q{font-size:0.9rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.faq-a{font-size:0.85rem;color:var(--muted);line-height:1.65}
 .related-section{margin:28px 0}
 .related-section h2{font-size:1.05rem;font-weight:700;margin-bottom:12px}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
 .related-link{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:9px;font-size:0.83rem;font-weight:500;color:var(--text);transition:border-color .2s,background .2s}
 .related-link:hover{border-color:var(--accent);background:var(--surface2);text-decoration:none;color:var(--text)}
-/* FOOTER */
 footer{background:var(--surface);border-top:1px solid var(--border);padding:22px 24px;text-align:center;font-size:0.8rem;color:var(--muted)}
 footer a{color:var(--muted)}
 footer a:hover{color:var(--accent)}
@@ -117,12 +120,9 @@ footer a:hover{color:var(--accent)}
   .op-label{display:none}
   nav .nav-links{display:none}
   .hero{padding:36px 16px 24px}
+  .learn-more-block{flex-direction:column;align-items:flex-start}
 }
 </style>
-<meta property="og:image" content="https://sakure.online/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sakure.online/assets/og-image.png">
-<meta name="theme-color" content="#6366f1">
 </head>
 <body>
 
@@ -144,15 +144,19 @@ footer a:hover{color:var(--accent)}
 
   <div class="ad-banner"><!-- AdSense 728×90 leaderboard -->Advertisement</div>
 
+  <p class="intro-text">A percentage is a way of expressing a number as a fraction of 100. Whether you need to find a discount, calculate tax, measure growth, or split a bill — percentages appear everywhere in daily life. Choose a tab below and get your answer in real time, with the formula shown.</p>
+
   <div class="mode-tabs">
     <button class="tab-btn active" onclick="switchTab('basic',this)">X% of Y</button>
     <button class="tab-btn" onclick="switchTab('iswhat',this)">X is what % of Y?</button>
     <button class="tab-btn" onclick="switchTab('change',this)">% Change</button>
     <button class="tab-btn" onclick="switchTab('reverse',this)">Reverse %</button>
+    <button class="tab-btn" onclick="switchTab('add',this)">Add %</button>
+    <button class="tab-btn" onclick="switchTab('subtract',this)">Subtract %</button>
   </div>
 
   <div class="calc-card">
-    <!-- PANE 1 -->
+    <!-- PANE 1: X% of Y -->
     <div class="pane active" id="pane-basic">
       <div class="pane-title">What is X% of Y?</div>
       <div class="pane-desc">Find a percentage of any number. e.g. What is 15% of 200?</div>
@@ -165,9 +169,10 @@ footer a:hover{color:var(--accent)}
         <div class="result-label">Result</div>
         <div class="result-value" id="r-basic-val">—</div>
         <div class="result-formula" id="r-basic-f"></div>
+        <div class="result-example">e.g. 20% of 500 = 100</div>
       </div>
     </div>
-    <!-- PANE 2 -->
+    <!-- PANE 2: X is what % of Y -->
     <div class="pane" id="pane-iswhat">
       <div class="pane-title">X is what percent of Y?</div>
       <div class="pane-desc">e.g. 30 is what percent of 150? Answer: 20%</div>
@@ -180,9 +185,10 @@ footer a:hover{color:var(--accent)}
         <div class="result-label">Result</div>
         <div class="result-value" id="r-iswhat-val">—</div>
         <div class="result-formula" id="r-iswhat-f"></div>
+        <div class="result-example">e.g. 30 out of 150 = 20%</div>
       </div>
     </div>
-    <!-- PANE 3 -->
+    <!-- PANE 3: % Change -->
     <div class="pane" id="pane-change">
       <div class="pane-title">Percentage Change</div>
       <div class="pane-desc">Find the % increase or decrease between two values.</div>
@@ -195,9 +201,10 @@ footer a:hover{color:var(--accent)}
         <div class="result-label">Percentage Change</div>
         <div class="result-value" id="r-change-val">—</div>
         <div class="result-formula" id="r-change-f"></div>
+        <div class="result-example">e.g. 80 → 100 = +25% increase</div>
       </div>
     </div>
-    <!-- PANE 4 -->
+    <!-- PANE 4: Reverse % -->
     <div class="pane" id="pane-reverse">
       <div class="pane-title">Reverse Percentage</div>
       <div class="pane-desc">Find the original value before a percentage was applied.</div>
@@ -210,6 +217,39 @@ footer a:hover{color:var(--accent)}
         <div class="result-label">Original Value</div>
         <div class="result-value" id="r-reverse-val">—</div>
         <div class="result-formula" id="r-reverse-f"></div>
+        <div class="result-example">e.g. ₹120 after 20% increase → original = ₹100</div>
+      </div>
+    </div>
+    <!-- PANE 5: Add % -->
+    <div class="pane" id="pane-add">
+      <div class="pane-title">Add a Percentage</div>
+      <div class="pane-desc">Increase a number by a percentage. Useful for adding tax, markup, or tip.</div>
+      <div class="input-row">
+        <div class="input-group"><label>Number</label><input type="number" id="add-num" placeholder="e.g. 500" oninput="calcAdd()"></div>
+        <div class="op-label">+</div>
+        <div class="input-group"><label>Add (%)</label><input type="number" id="add-pct" placeholder="e.g. 18" oninput="calcAdd()"></div>
+      </div>
+      <div class="result-box" id="r-add">
+        <div class="result-label">Result after adding</div>
+        <div class="result-value" id="r-add-val">—</div>
+        <div class="result-formula" id="r-add-f"></div>
+        <div class="result-example">e.g. Add 18% to 500 = 590</div>
+      </div>
+    </div>
+    <!-- PANE 6: Subtract % -->
+    <div class="pane" id="pane-subtract">
+      <div class="pane-title">Subtract a Percentage</div>
+      <div class="pane-desc">Decrease a number by a percentage. Useful for applying discounts.</div>
+      <div class="input-row">
+        <div class="input-group"><label>Number</label><input type="number" id="sub-num" placeholder="e.g. 500" oninput="calcSubtract()"></div>
+        <div class="op-label">−</div>
+        <div class="input-group"><label>Subtract (%)</label><input type="number" id="sub-pct" placeholder="e.g. 20" oninput="calcSubtract()"></div>
+      </div>
+      <div class="result-box" id="r-subtract">
+        <div class="result-label">Result after subtracting</div>
+        <div class="result-value" id="r-subtract-val">—</div>
+        <div class="result-formula" id="r-subtract-f"></div>
+        <div class="result-example">e.g. 20% off ₹500 = ₹400</div>
       </div>
     </div>
   </div>
@@ -220,25 +260,63 @@ footer a:hover{color:var(--accent)}
     <div class="info-card"><div class="info-icon">💡</div><h3>Quick Tip</h3><p>To find 10% of any number, move the decimal one place left. 10% of 350 = 35.</p></div>
   </div>
 
+  <div class="section-title">How it works</div>
+  <div class="how-list">
+    <ul>
+      <li>Choose the type of percentage calculation using the tabs above</li>
+      <li>Enter numbers in the input fields — results update in real time as you type</li>
+      <li>The formula used is shown below the result for full transparency</li>
+      <li>A quick example is shown to help verify your answer</li>
+      <li>All calculations run locally in your browser — nothing is sent to a server</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Worked Examples</div>
+  <div class="example-grid">
+    <div class="example-card">
+      <h4>Example 1: Find 15% of ₹4,800</h4>
+      <div class="ex-calc">Formula: (15 ÷ 100) × 4800
+= 0.15 × 4800
+= ₹720</div>
+      <div class="ex-answer">Answer: ₹720 — use the "X% of Y" tab</div>
+    </div>
+    <div class="example-card">
+      <h4>Example 2: Price rose from ₹800 to ₹960 — what % increase?</h4>
+      <div class="ex-calc">Formula: ((960 − 800) ÷ 800) × 100
+= (160 ÷ 800) × 100
+= 20%</div>
+      <div class="ex-answer">Answer: 20% increase — use the "% Change" tab</div>
+    </div>
+  </div>
+
+  <div class="learn-more-block">
+    <p>Want to understand the formulas in depth? Read the complete guide with more examples and common mistakes to avoid.</p>
+    <a href="/how-to-calculate-percentage/">Learn: How to Calculate Percentage →</a>
+  </div>
+
   <div class="ad-square"><!-- AdSense 300×250 rectangle -->Advertisement</div>
 
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate a percentage of a number?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Multiply the number by the percentage and divide by 100. For example, 25% of 80 = (25 × 80) ÷ 100 = 20. Use the "X% of Y" tab above for instant results.</div></div>
+      <div class="faq-q">How do I calculate a percentage of a number?</div>
+      <div class="faq-a">Multiply the number by the percentage and divide by 100. For example, 25% of 80 = (25 × 80) ÷ 100 = 20. Use the "X% of Y" tab above for instant results.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I find what percentage one number is of another?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Divide the part by the whole and multiply by 100. Example: 30 out of 150 = (30 ÷ 150) × 100 = 20%. Use the "X is what % of Y?" tab.</div></div>
+      <div class="faq-q">How do I find what percentage one number is of another?</div>
+      <div class="faq-a">Divide the part by the whole and multiply by 100. Example: 30 out of 150 = (30 ÷ 150) × 100 = 20%. Use the "X is what % of Y?" tab.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is percentage increase and decrease?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Percentage change = ((New Value − Old Value) ÷ Old Value) × 100. A positive result is an increase, negative is a decrease. Use the "% Change" tab to calculate this instantly.</div></div>
+      <div class="faq-q">What is percentage increase and decrease?</div>
+      <div class="faq-a">Percentage change = ((New Value − Old Value) ÷ Old Value) × 100. A positive result is an increase, negative is a decrease. Use the "% Change" tab to calculate this instantly.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I find the original value before a percentage was added?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Use the Reverse Percentage tab. Original = Final Value ÷ (1 + percentage÷100). E.g., if price after 20% increase is ₹120, original = 120 ÷ 1.2 = ₹100.</div></div>
+      <div class="faq-q">How do I find the original value before a percentage was added?</div>
+      <div class="faq-a">Use the Reverse Percentage tab. Original = Final Value ÷ (1 + percentage÷100). For example, if a price after a 20% increase is ₹120, the original = 120 ÷ 1.2 = ₹100.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I add or subtract a percentage from a number?</div>
+      <div class="faq-a">To add: result = number × (1 + percent÷100). To subtract: result = number × (1 − percent÷100). For example, adding 10% to ₹500 = 500 × 1.1 = ₹550. Use the "Add %" or "Subtract %" tabs above.</div>
     </div>
   </div>
 
@@ -246,17 +324,17 @@ footer a:hover{color:var(--accent)}
     <h2>Related Calculators</h2>
     <div class="related-grid">
       <a href="/tools/discount-calculator/" class="related-link">🏷️ Discount Calculator</a>
-      <a href="/tools/tip-calculator/" class="related-link">🍽️ Tip Calculator</a>
-      <a href="/tools/bmi-calculator/" class="related-link">⚖️ BMI Calculator</a>
+      <a href="/tools/gst-calculator/" class="related-link">🧾 GST Calculator</a>
       <a href="/tools/loan-calculator/" class="related-link">🏦 Loan / EMI</a>
-      <a href="/tools/age-calculator/" class="related-link">🎂 Age Calculator</a>
+      <a href="/tools/sip-calculator/" class="related-link">📈 SIP Calculator</a>
+      <a href="/tools/tip-calculator/" class="related-link">🍽️ Tip Calculator</a>
     </div>
   </div>
 
 </div>
 
 <footer>
-  © 2025 <a href="/">Sakure.online</a> · Free Online Tools ·
+  © 2026 <a href="/">Sakure.online</a> · Free Online Tools ·
   <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a>
 </footer>
 
@@ -307,7 +385,22 @@ function calcReverse() {
   const res = val / (1 + pct / 100);
   showResult('r-reverse','r-reverse-val','r-reverse-f', fmt(res), `${val} ÷ (1 + ${pct}÷100) = ${fmt(res)}`);
 }
-function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+function calcAdd() {
+  const n = parseFloat(document.getElementById('add-num').value);
+  const p = parseFloat(document.getElementById('add-pct').value);
+  if (isNaN(n) || isNaN(p)) { document.getElementById('r-add').classList.remove('show'); return; }
+  const added = n * p / 100;
+  const res = n + added;
+  showResult('r-add','r-add-val','r-add-f', fmt(res), `${n} + (${n} × ${p}÷100) = ${fmt(n)} + ${fmt(added)} = ${fmt(res)}`);
+}
+function calcSubtract() {
+  const n = parseFloat(document.getElementById('sub-num').value);
+  const p = parseFloat(document.getElementById('sub-pct').value);
+  if (isNaN(n) || isNaN(p)) { document.getElementById('r-subtract').classList.remove('show'); return; }
+  const removed = n * p / 100;
+  const res = n - removed;
+  showResult('r-subtract','r-subtract-val','r-subtract-f', fmt(res), `${n} − (${n} × ${p}÷100) = ${fmt(n)} − ${fmt(removed)} = ${fmt(res)}`);
+}
 </script>
 
 <script src="/tools/tool-data.js"></script>
